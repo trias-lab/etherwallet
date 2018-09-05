@@ -13,10 +13,11 @@
 
 .block {
   background-color: white;
-  box-shadow: 16px 16px 47px 2px rgba(0,0,0,.07);
-  padding: @space-lg @space-xl;
+  // box-shadow: 16px 16px 47px 2px rgba(0,0,0,.07);
+  // padding: @space-lg @space-xl;
+  width: 100%;
   min-height: @space-lg;
-  margin: @space auto;
+  // margin: @space auto;
   position: relative;
   .clearfix();
   @media screen and (max-width: @screen-xs) { padding: 1.25rem; }
@@ -63,19 +64,19 @@
 .block__main {
   .block();
   text-align: left;
-  padding: @space-md;
-  flex-basis: 98%;
-  margin: @space @cont-padding/2;
-  @media screen and (min-width: @screen-sm) {
-    flex-basis: 68%;
-  }
-  @media screen and (min-width: @screen-md) {
-    flex-basis: 73%;
-  }
+  // flex-basis: 98%;
+  // margin: @space @cont-padding/2;
+  // @media screen and (min-width: @screen-sm) {
+  //   flex-basis: 68%;
+  // }
+  // @media screen and (min-width: @screen-md) {
+  //   flex-basis: 73%;
+  // }
 }
 
 .block__help {
   .block();
+  display: none;
   background-image: url(../images/icon-help-2.svg);
   background-size: 8rem;
   background-position: 102% -5%;
@@ -130,18 +131,27 @@
 }
 
 .gen__1--inner {
-  text-align: center;
-  h1   {  margin: @space   auto @space*2  }
+  // text-align: center;
+  h1   {  
+    margin: @space   auto @space*2;
+    font-size:1.88rem;
+    font-family:MoskMedium500;
+    color:rgba(43,47,55,1);
+    line-height:2.5rem;
+  }
   h4   {  margin: @space*3 auto @space    }
   p    {  margin: 0        0    @space*2  }
   .btn {  
-    margin: 0        auto @space*3;
+    float: right;
+    margin-top: 2rem;
     background:rgba(93,184,92,1);
     border-radius:4px;
     border:1px solid rgba(93,184,92,1);
-    font-size:16px;
     color:rgba(255,255,255,1);
-    line-height:24px;
+    height: 2.38rem;
+    font-size: 1rem;
+    font-family: MoskLight300;
+    line-height: 2.38rem;
   }
 }
 
