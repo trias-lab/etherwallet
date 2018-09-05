@@ -38,7 +38,7 @@ var footerCtrl = function($scope, globalService) {
     }
     // user click event
     // param : toggleName --- click concact icon
-    $scope.footerWechatToggle = function(toggleName){
+    $scope.footerToggle = function(toggleName){
         switch(toggleName){
             case 'weChat' :
                 $scope.footer.weChat = !$scope.footer.weChat

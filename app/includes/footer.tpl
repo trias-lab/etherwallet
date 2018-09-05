@@ -204,7 +204,7 @@
               <i class="fab fa-medium-m"></i>
           </span>
       </a>
-      <a class="wechat-button toggle-button" ng-click = "footerWechatToggle('weChat')">
+      <a class="wechat-button toggle-button" ng-click = "footerToggle('weChat')">
           <span class="btn-icon">
               <i class="fa fa-weixin" aria-hidden="true"></i>
           </span>
@@ -217,7 +217,7 @@
               <i class="fab fa-reddit-alien"></i>
           </span>
       </a>
-      <span class="telegram-button toggle-button" ng-click = "footerWechatToggle('telegram')">
+      <span class="telegram-button toggle-button" ng-click = "footerToggle('telegram')">
           <span class="btn-icon">
               <i class="fab fa-telegram-plane"></i>
           </span>
@@ -237,7 +237,7 @@
               <i class="fa fa-github" aria-hidden="true"></i>
           </span>
       </a>                
-      <a class="email-button toggle-button" ng-click = "footerWechatToggle('email')">
+      <a class="email-button toggle-button" ng-click = "footerToggle('email')">
           <span class="btn-icon">
               <i class="fas fa-envelope"></i>
           </span>
