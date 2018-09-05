@@ -192,126 +192,125 @@
 
 </footer> -->
 
-<div class="common-footer">
+<div class="common-footer" ng-controller='footerCtrl'>
   <div class="contacts">
-      <a target="blank" href="https://twitter.com/triaslab">
-          <span class="btn-icon">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-          </span>
-      </a>
-      <a target="blank" href="https://medium.com/@Triaslab">
-          <span class="btn-icon">
-              <i class="fab fa-medium-m"></i>
-          </span>
-      </a>
-      <a class="wechat-button toggle-button" href="javascript:void(0)">
-          <span class="btn-icon">
-              <i class="fa fa-weixin" aria-hidden="true"></i>
-          </span>
-          <div class='qrcode toggle-box'>
-              <img src="images/footer/wechat-qrcode.jpeg" />
-          </div>
-      </a>
-      <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
-          <span class="btn-icon">
-              <i class="fab fa-reddit-alien"></i>
-          </span>
-      </a>
-      <span class="telegram-button toggle-button">
-          <span class="btn-icon">
-              <i class="fab fa-telegram-plane"></i>
-          </span>
-          <div class='telegram-box toggle-box'>
-              <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
-              <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
-              <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
-          </div>
+    <a target="blank" href="https://twitter.com/triaslab">
+      <span class="btn-icon">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
       </span>
-      <a target="blank" href="https://0.plus/sp/triaslab">
-          <span class="btn-icon logo-biyong">
-              <i class="fas fa-envelope" style="color:'transparent'"></i>
-          </span>
-      </a>
-      <a target="blank" href="https://github.com/trias-lab/Documentation">
-          <span class="btn-icon">
-              <i class="fa fa-github" aria-hidden="true"></i>
-          </span>
-      </a>                
-      <a class="email-button toggle-button">
-          <span class="btn-icon">
-              <i class="fas fa-envelope"></i>
-          </span>
-          <div class='email-box toggle-box'>
-              Email: contact@trias.one
-          </div>
-      </a>
+    </a>
+    <a target="blank" href="https://medium.com/@Triaslab">
+      <span class="btn-icon">
+        <i class="fab fa-medium-m"></i>
+      </span>
+    </a>
+    <a class="wechat-button toggle-button" >
+      <span class="btn-icon" ng-click="wexin = !wexin">
+        <i class="fa fa-weixin" aria-hidden="true"></i>
+      </span>
+      <div class='qrcode toggle-box' ng-show="wexin">
+        <img src="images/footer/wechat-qrcode.jpeg" />
+      </div>
+    </a>
+    <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
+      <span class="btn-icon">
+        <i class="fab fa-reddit-alien"></i>
+      </span>
+    </a>
+    <span class="telegram-button toggle-button">
+      <span class="btn-icon"  ng-click="telegram = !telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </span>
+      <div class='telegram-box toggle-box' ng-show="telegram">
+        <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
+        <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
+        <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
+      </div>
+    </span>
+    <a target="blank" href="https://0.plus/sp/triaslab">
+      <span class="btn-icon logo-biyong">
+        <i class="fas fa-envelope" style="color:'transparent'"></i>
+      </span>
+    </a>
+    <a target="blank" href="https://github.com/trias-lab/Documentation">
+      <span class="btn-icon">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </span>
+    </a>
+    <a class="email-button toggle-button">
+      <span class="btn-icon"  ng-click="email = !email">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <div class='email-box toggle-box' ng-show="email">
+        Email: contact@trias.one
+      </div>
+    </a>
   </div>
   <div class="info">
-      <div class="center-box clearfix">
-          <div class="intro pull-left">
-              <img src="images/logo.png" alt=""/>
-              <P>
-                TRIAS aims to define a new-generation all-platform-supported 
-                public chain system. Trustworthy and Reliable Intelligent 
-                Autonomous Systems make people trust in machines.
-              </P>
+    <div class="center-box clearfix">
+      <div class="intro pull-left">
+        <img src="images/logo.png" alt="" />
+        <P>
+          TRIAS aims to define a new-generation all-platform-supported public chain system. Trustworthy and Reliable Intelligent Autonomous
+          Systems make people trust in machines.
+        </P>
+      </div>
+
+      <div class="links pull-right">
+        <div class="docs">
+          <h2>
+            About Us
+          </h2>
+          <div class="link">
+            <a href="https://www.trias.one/aboutus" target="blank">
+              Recent Events
+            </a>
           </div>
-  
-        <div class="links pull-right">
-            <div class="docs">
-                <h2>
-                  About Us
-                </h2>
-                <div class="link">
-                    <a href="https://www.trias.one/aboutus" target="blank">
-                      Recent Events
-                    </a>
-                </div>
-                <div class="link">
-                    <a href="https://www.trias.one/aboutus" target="blank">
-                      View
-                    </a>
-                </div>
-                <div class="link">
-                    <a href="https://www.trias.one/aboutus" target="blank">
-                      Project Progress
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="links pull-right">
-          <div class="docs">
-              <h2>
-                Products
-              </h2>
-              <div class="link">
-                  <a href="https://www.trias.one/" target="blank">
-                    Trias Project
-                  </a>
-              </div>
-              <div class="link">
-                  <a href=" https://explorer.trias.one/" target="blank">
-                    Blockchain Explorer
-                  </a>
-              </div>
-              <div class="link">
-                  <a href="https://monitor.trias.one/" target="blank">
-                    Nodes Status Monitor
-                  </a>
-              </div>
+          <div class="link">
+            <a href="https://www.trias.one/aboutus" target="blank">
+              View
+            </a>
+          </div>
+          <div class="link">
+            <a href="https://www.trias.one/aboutus" target="blank">
+              Project Progress
+            </a>
           </div>
         </div>
       </div>
-      <div class="center-box clearfix">
-          <hr/>
-          <span class="pull-left">© 2018 Trias-lab Foundation. </span>
-          <!-- <span class="pull-right">All rights reserved.</span> -->
-      </div> 
-  </div>                   
+      <div class="links pull-right">
+        <div class="docs">
+          <h2>
+            Products
+          </h2>
+          <div class="link">
+            <a href="https://www.trias.one/" target="blank">
+              Trias Project
+            </a>
+          </div>
+          <div class="link">
+            <a href=" https://explorer.trias.one/" target="blank">
+              Blockchain Explorer
+            </a>
+          </div>
+          <div class="link">
+            <a href="https://monitor.trias.one/" target="blank">
+              Nodes Status Monitor
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center-box clearfix">
+      <hr/>
+      <span class="pull-left">© 2018 Trias-lab Foundation. </span>
+      <!-- <span class="pull-right">All rights reserved.</span> -->
+    </div>
+  </div>
 </div>
 
-@@if (site === 'mew' ) { @@include( './footer-disclaimer-modal.tpl',   { "site": "mew" } ) }
-@@if (site === 'cx'  ) { @@include( './footer-disclaimer-modal.tpl',   { "site": "cx"  } ) }
+@@if (site === 'mew' ) { @@include( './footer-disclaimer-modal.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
+'./footer-disclaimer-modal.tpl', { "site": "cx" } ) }
 
 <!-- @@if (site === 'mew' ) { @@include( './onboardingModal.tpl',   { "site": "mew" } ) } -->
 <!-- @@if (site === 'cx'  ) { @@include( './onboardingModal.tpl',   { "site": "cx"  } ) } -->
@@ -319,4 +318,5 @@
 
 </main>
 </body>
+
 </html>
