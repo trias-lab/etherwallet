@@ -229,7 +229,7 @@
     </span>
     <a target="blank" href="https://0.plus/sp/triaslab">
       <span class="btn-icon logo-biyong">
-        <i class="fas fa-envelope" style="color:'transparent'"></i>
+        <i class="fas fa-envelope" style="color:transparent"></i>
       </span>
     </a>
     <a target="blank" href="https://github.com/trias-lab/Documentation">
