@@ -32,7 +32,7 @@
 
 <header class="bg-gradient text-white">
 <section class="container text-center">
-  <a href="https://www.myetherwallet.com/"><img src="images/logo-myetherwallet.svg" height="50px" width="auto" alt="Ether Wallet" class="embedded-logo" /></a>
+  <a href="https://www.myetherwallet.com/"><img src="images/logo.png" height="44px" width="100px" alt="Trias Wallet" class="embedded-logo" /></a>
 </section>
 </header>
 
@@ -48,87 +48,54 @@
       ng-controller='walletGenCtrl'
       role="main"
       ng-cloak>
-
-  <article class="block__wrap gen__1" ng-show="!wallet && !showGetAddress">
-    <section class="block__main gen__1--inner">
-      <br />
-      <h1 translate="NAV_GenerateWallet" aria-live="polite">
-        Create New Wallet
-      </h1>
-      <h4 translate="GEN_Label_1">
-        Enter password
-      </h4>
-      <div class="input-group">
-        <input name="password"
-             class="form-control"
-             type="{{showPass && 'password' || 'text'}}"
-             placeholder="{{'GEN_Placeholder_1' | translate }}"
-             ng-model="password"
-             ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
-             aria-label="{{'GEN_Label_1' | translate}}"
-             />
-        <span tabindex="0"
-              aria-label="make password visible"
-              role="button"
-              class="input-group-addon eye"
-              ng-click="showPass=!showPass">
-        </span>
+  <div class="tab-title">
+    <div class="text">
+      <h1>Create New Wallet</h1>
+      <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance. </h2>
+    </div>
+    <div class="icon">
+      <i class="fas fa-wallet"></i>
+    </div>    
+  </div>
+  <article ng-class="!wallet && !showGetAddress? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
+    <div class="step-title">
+      <div class="num">1</div>
+      <p class="text" aria-live="polite">
+        Set Wallet Password
+      </p>
+      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
+    </div>
+    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showGetAddress">
+      <p class="intro">
+        This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.
+      </p>
+      <div class="input-label">
+        Set wallet password
       </div>
+      <input name="password"
+           class="form-control"
+           type="{{showPass && 'password' || 'text'}}"
+           placeholder="{{'GEN_Placeholder_1' | translate }}"
+           ng-model="password"
+           ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
+           aria-label="{{'GEN_Label_1' | translate}}"
+           />
+<!--         <span tabindex="0"
+            aria-label="make password visible"
+            role="button"
+            class="input-group-addon eye"
+            ng-click="showPass=!showPass"> -->
+      </span>
       <a tabindex="0"
          role="button"
          class="btn btn-primary"
-         ng-click="genNewWallet()"
-         translate="NAV_GenerateWallet">
-           Generate Wallet
+         ng-click="genNewWallet()">
+           Create New Wallet
       </a>
-      <article class="modal fade" id="appleMobileModal" tabindex="-1">
-  <section class="modal-dialog">
-    <section class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" ng-click="closeModal()" aria-label="Close Dialog">&times;</button>
-        <h2 class="modal-title" translate="APPLE_Mob_Notice_Head">
-          It seems like you're using an IPhone or an IPad.
-        </h2>
-
-        <p translate="APPLE_Mob_Notice_Body_1">
-          Just letting you know that generating wallets isn't supported in these devices because of Apple's storage restrictions.
-        </p>
-        <p translate="APPLE_Mob_Notice_Body_2">
-          Please use the website on a laptop or computer.
-        </p>
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-primary col-xs-12" ng-click="closeModal()" translate="APPLE_Mob_Notice_Understand">
-          I understand.
-        </button>
-      </div>
-    </section>
-  </section>
-</article>
-
-      <p translate="x_PasswordDesc"></p>
-      <div class="text-center">
-        <strong>
-          <a href="https://myetherwallet.github.io/knowledge-base/getting-started/creating-a-new-wallet-on-myetherwallet.html"
-             target="_blank"
-             rel="noopener noreferrer"
-             translate="GEN_Help_5">
-               How to Create a Wallet
-          </a>
-          &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-          <a href="https://myetherwallet.github.io/knowledge-base/getting-started/getting-started-new.html"
-             target="_blank"
-             rel="noopener noreferrer"
-             translate="GEN_Help_6">
-               Getting Started
-          </a>
-        </strong>
-      </div>
-      <br>
+      
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
 
       <h2 translate="GEN_Help_0">
         Already have a wallet somewhere?
@@ -208,15 +175,20 @@
         </li>
       </ul>
 
-    </section>
+    </section> -->
 
   </article>
 
 
-  <article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet" > <!-- -->
-
-    <section class="block__main gen__2--inner">
-      <br />
+  <article role="main" ng-class="wallet && !showPaperWallet ? 'block__wrap gen__2 step-card active':'block__wrap gen__2 step-card'" >
+     <div class="step-title">
+      <div class="num">2</div>
+      <p class="text" aria-live="polite">
+        Save Keystore file
+      </p>
+      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showGetAddress"></i>
+    </div>
+    <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
       <h1 translate="GEN_Label_2">
         Save your Keystore File (UTC / JSON)
       </h1>
@@ -263,7 +235,7 @@
 
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
       <h2 translate="GEN_Help_8">
         Not Downloading a File?
       </h2>
@@ -304,16 +276,20 @@
         </li>
       </ul>
 
-    </section>
+    </section> -->
 
   </article>
 
 
-  <article role="main" class="block__wrap gen__3" ng-show="showPaperWallet">
-
-    <section class="block__main gen__3--inner">
-
-      <br />
+  <article role="main" ng-class="showPaperWallet ? 'block__wrap gen__3 step-card active':'block__wrap gen__3 step-card'" >
+    <div class="step-title">
+      <div class="num">3</div>
+      <p class="text" aria-live="polite">
+        Save Private Key
+      </p>
+      <i class="fas fa-check-circle success" ng-show="showGetAddress"></i>
+    </div>
+    <section class="block__main gen__3--inner step-content" ng-show="showPaperWallet">
 
       <h1 translate="GEN_Label_5"> Save your Private Key</h1>
       <textarea aria-label="{{'x_PrivKey'|translate}}"
@@ -355,7 +331,7 @@
 
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
       <h2 translate="GEN_Help_4">
         Guides &amp; FAQ
       </h2>
@@ -390,10 +366,33 @@
 
       <h2 translate="x_PrintDesc"></h2>
 
-    </section>
+    </section> -->
 
   </article>
 
+  <article role="main" ng-class="showGetAddress ? 'block__wrap gen__3 step-card active':'block__wrap gen__4 step-card'" >
+    <div class="step-title">
+      <div class="num">4</div>
+      <p class="text" aria-live="polite">
+        Confirmation
+      </p>
+    </div>
+    <section class="block__main gen__3--inner step-content" ng-show="showGetAddress">
+
+      <h1 >You’re all set!</h1>
+      <p class="intro">
+        Make sure you’ve already properly saved your wallet password, Keystore file and Private Key. Remember there’s not way to recover any of them if you lost it, and you won’t be able to access your wallet.
+      </p>
+      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+        <span> Back To Home</span> 
+      </a>
+      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+        <span> Check My Account</span>
+      </a>
+
+    </section>
+  </article>
+<!-- 
   <article class="text-left" ng-show="showGetAddress">
     <div class="clearfix collapse-container">
 
@@ -545,7 +544,7 @@
    
     </div>
 
-  </article>
+  </article> -->
 </main>
 
 
