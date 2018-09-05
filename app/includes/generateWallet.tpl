@@ -18,6 +18,7 @@
       <p class="text" aria-live="polite">
         Set Wallet Password
       </p>
+      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
     </div>
     <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showGetAddress">
       <p class="intro">
@@ -159,6 +160,7 @@
       <p class="text" aria-live="polite">
         Save Keystore file
       </p>
+      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showGetAddress"></i>
     </div>
     <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
       <h1 translate="GEN_Label_2">
@@ -259,6 +261,7 @@
       <p class="text" aria-live="polite">
         Save Private Key
       </p>
+      <i class="fas fa-check-circle success" ng-show="showGetAddress"></i>
     </div>
     <section class="block__main gen__3--inner step-content" ng-show="showPaperWallet">
 
