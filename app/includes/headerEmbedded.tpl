@@ -32,6 +32,6 @@
 
 <header class="bg-gradient text-white">
 <section class="container text-center">
-  <a href="https://www.myetherwallet.com/"><img src="images/logo.png" height="44px" width="auto" alt="Trias Wallet" class="embedded-logo" /></a>
+  <a href="https://www.myetherwallet.com/"><img src="images/logo.png" height="44px" width="100px" alt="Trias Wallet" class="embedded-logo" /></a>
 </section>
 </header>

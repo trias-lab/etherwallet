@@ -16,7 +16,7 @@
     <section class="footer--left">
 
       <a href="/">
-        <img src="images/logo.png" height="44px" width="auto" alt="Trias Wallet" class="footer--logo"/>
+        <img src="images/logo.png" height="44px" width="100px" alt="Trias Wallet" class="footer--logo"/>
       </a>
 
       <p>
