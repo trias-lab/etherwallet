@@ -236,13 +236,13 @@
             <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
       </li>
       }
-      <li class="nav-item help">
+      <!-- <li class="nav-item help">
         <a href="https://myetherwallet.github.io/knowledge-base/" target="_blank" rel="noopener noreferrer">
           <span translate="NAV_Help">
             Help
           </span>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
   <a aria-hidden="true"
