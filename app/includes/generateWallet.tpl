@@ -3,40 +3,50 @@
       ng-controller='walletGenCtrl'
       role="main"
       ng-cloak>
-
-  <article class="block__wrap gen__1" ng-show="!wallet && !showGetAddress">
-    <section class="block__main gen__1--inner">
-      <br />
-      <h1 translate="NAV_GenerateWallet" aria-live="polite">
-        Create New Wallet
-      </h1>
-      <h4 translate="GEN_Label_1">
-        Enter password
-      </h4>
-      <div class="input-group">
-        <input name="password"
-             class="form-control"
-             type="{{showPass && 'password' || 'text'}}"
-             placeholder="{{'GEN_Placeholder_1' | translate }}"
-             ng-model="password"
-             ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
-             aria-label="{{'GEN_Label_1' | translate}}"
-             />
-        <span tabindex="0"
-              aria-label="make password visible"
-              role="button"
-              class="input-group-addon eye"
-              ng-click="showPass=!showPass">
-        </span>
+  <div class="tab-title">
+    <div class="text">
+      <h1>Create New Wallet</h1>
+      <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance. </h2>
+    </div>
+    <div class="icon">
+      <i class="fas fa-wallet"></i>
+    </div>    
+  </div>
+  <article ng-class="!wallet && !showGetAddress? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
+    <div class="step-title">
+      <div class="num">1</div>
+      <p class="text" aria-live="polite">
+        Set Wallet Password
+      </p>
+    </div>
+    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showGetAddress">
+      <p class="intro">
+        This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.
+      </p>
+      <div class="input-label">
+        Set wallet password
       </div>
+      <input name="password"
+           class="form-control"
+           type="{{showPass && 'password' || 'text'}}"
+           placeholder="{{'GEN_Placeholder_1' | translate }}"
+           ng-model="password"
+           ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
+           aria-label="{{'GEN_Label_1' | translate}}"
+           />
+<!--         <span tabindex="0"
+            aria-label="make password visible"
+            role="button"
+            class="input-group-addon eye"
+            ng-click="showPass=!showPass"> -->
+      </span>
       <a tabindex="0"
          role="button"
          class="btn btn-primary"
-         ng-click="genNewWallet()"
-         translate="NAV_GenerateWallet">
-           Generate Wallet
+         ng-click="genNewWallet()">
+           Create New Wallet
       </a>
-      @@include('./apple-mobile-modal.tpl', { "site": "" } )
+      <!-- @@include('./apple-mobile-modal.tpl', { "site": "" } )
       <p translate="x_PasswordDesc"></p>
       <div class="text-center">
         <strong>
@@ -55,10 +65,10 @@
           </a>
         </strong>
       </div>
-      <br>
+      <br> -->
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
 
       <h2 translate="GEN_Help_0">
         Already have a wallet somewhere?
@@ -138,15 +148,19 @@
         </li>
       </ul>
 
-    </section>
+    </section> -->
 
   </article>
 
 
-  <article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet" > <!-- -->
-
-    <section class="block__main gen__2--inner">
-      <br />
+  <article role="main" ng-class="wallet && !showPaperWallet ? 'block__wrap gen__2 step-card active':'block__wrap gen__2 step-card'" >
+     <div class="step-title">
+      <div class="num">2</div>
+      <p class="text" aria-live="polite">
+        Save Keystore file
+      </p>
+    </div>
+    <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
       <h1 translate="GEN_Label_2">
         Save your Keystore File (UTC / JSON)
       </h1>
@@ -193,7 +207,7 @@
 
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
       <h2 translate="GEN_Help_8">
         Not Downloading a File?
       </h2>
@@ -234,7 +248,7 @@
         </li>
       </ul>
 
-    </section>
+    </section> -->
 
   </article>
 
@@ -285,7 +299,7 @@
 
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
       <h2 translate="GEN_Help_4">
         Guides &amp; FAQ
       </h2>
@@ -320,7 +334,7 @@
 
       <h2 translate="x_PrintDesc"></h2>
 
-    </section>
+    </section> -->
 
   </article>
 
