@@ -60,3 +60,102 @@
   height: auto;
   max-width: 100%;
 }
+
+.tab-content{
+  .tab-pane{
+    max-width: 50rem;
+    margin: 0 auto;
+    .tab-title{
+      .clearfix();
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      .text{
+        float: left;
+        max-width: 34rem;
+          h1{
+            font-size:1.88rem;
+            font-family:MoskMedium500;
+            color:rgba(43,47,55,1);
+            line-height:2.5rem;
+            margin-bottom: 1rem;
+          }
+          h2{
+            font-size:0.94rem;
+            font-family:MoskLight300;
+            color:rgba(20,42,63,1);
+            line-height:1.5rem;
+          }
+        }
+        .icon{
+          height: 5rem;
+          width: 5rem;
+          float: right;
+          margin-top: 1rem;
+          i{
+            font-size:5rem;
+            color:rgba(203,208,211,1);
+            line-height:5rem;
+          }
+        }
+    }
+    .step-card{
+      margin-bottom: 2rem;
+      .step-title{
+        width: 100%;
+        height:3.38rem;
+        background:rgba(229,232,234,1);
+        border-radius:0.25rem;
+        padding: 0.8rem;
+        .num{
+            display: inline-block;
+            margin-right: 1rem;
+            width:1.75rem;
+            height:1.75rem;            
+            border-radius: 50%;
+            font-size:1rem;
+            font-family:MoskMedium500;
+            line-height:1.75rem;
+            text-align: center;
+            background:rgba(246,247,249,1);
+            color:rgba(145,153,158,1);
+          }
+          .text{
+            display: inline-block;
+            font-size:1rem;
+            font-family:MoskMedium500;
+            color:rgba(255,255,255,1);
+            color:rgba(145,153,158,1);
+            line-height:1.5rem;
+          }
+      }
+      &.active{
+        .step-title{
+          background:linear-gradient(270deg,rgba(140,199,43,1) 0%,rgba(93,184,92,1) 100%);
+          border-radius:0.25rem 0.25rem 0rem 0rem;
+          .num{background:rgba(213,247,201,1);
+            color:rgba(93,184,92,1);
+          }
+          .text{
+            color:rgba(255,255,255,1);
+          }
+        }
+      }
+      .step-content{
+        padding: 2rem;
+        .intro{
+          font-size:0.94rem;
+          font-family:MoskLight300;
+          color:rgba(20,42,63,1);
+          line-height:1.5rem;
+          margin-bottom: 2rem;
+        }
+        .input-label{
+          font-size:1rem;
+          font-family:MoskMedium500;
+          color:rgba(20,42,63,1);
+          line-height:1.5rem;
+        }
+      }
+    }
+  }
+}
