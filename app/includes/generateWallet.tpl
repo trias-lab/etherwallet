@@ -253,11 +253,14 @@
   </article>
 
 
-  <article role="main" class="block__wrap gen__3" ng-show="showPaperWallet">
-
-    <section class="block__main gen__3--inner">
-
-      <br />
+  <article role="main" ng-class="showPaperWallet ? 'block__wrap gen__3 step-card active':'block__wrap gen__3 step-card'" >
+    <div class="step-title">
+      <div class="num">3</div>
+      <p class="text" aria-live="polite">
+        Save Private Key
+      </p>
+    </div>
+    <section class="block__main gen__3--inner step-content" ng-show="showPaperWallet">
 
       <h1 translate="GEN_Label_5"> Save your Private Key</h1>
       <textarea aria-label="{{'x_PrivKey'|translate}}"
@@ -338,6 +341,29 @@
 
   </article>
 
+  <article role="main" ng-class="showGetAddress ? 'block__wrap gen__3 step-card active':'block__wrap gen__4 step-card'" >
+    <div class="step-title">
+      <div class="num">4</div>
+      <p class="text" aria-live="polite">
+        Confirmation
+      </p>
+    </div>
+    <section class="block__main gen__3--inner step-content" ng-show="showGetAddress">
+
+      <h1 >You’re all set!</h1>
+      <p class="intro">
+        Make sure you’ve already properly saved your wallet password, Keystore file and Private Key. Remember there’s not way to recover any of them if you lost it, and you won’t be able to access your wallet.
+      </p>
+      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+        <span> Back To Home</span> 
+      </a>
+      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+        <span> Check My Account</span>
+      </a>
+
+    </section>
+  </article>
+<!-- 
   <article class="text-left" ng-show="showGetAddress">
     <div class="clearfix collapse-container">
 
@@ -358,5 +384,5 @@
       @@if (site === 'mew') {  @@include( './viewWalletInfo-content.tpl', { "site": "mew" } )   }
     </div>
 
-  </article>
+  </article> -->
 </main>
