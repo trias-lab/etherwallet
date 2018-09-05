@@ -29,5 +29,28 @@ var footerCtrl = function($scope, globalService) {
     }
     setGasValues();
     $scope.gasChanged();
+    // footer about us and concact 
+    // control hide or show variate
+    $scope.footer = {
+        weChat:false,
+        telegram:false,
+        email:false,
+    }
+    // user click event
+    // param : toggleName --- click concact icon
+    $scope.footerWechatToggle = function(toggleName){
+        switch(toggleName){
+            case 'weChat' :
+                $scope.footer.weChat = !$scope.footer.weChat
+                break;
+            case 'telegram' :
+                $scope.footer.telegram = !$scope.footer.telegram
+                break;
+            case 'email' :
+                $scope.footer.email = !$scope.footer.email
+                break;
+        }
+        
+    }
 };
 module.exports = footerCtrl;
