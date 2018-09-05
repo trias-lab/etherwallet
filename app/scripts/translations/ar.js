@@ -402,7 +402,7 @@ MYWAL_Content_3             : 'If you want to use this wallet with your MyEtherW
 /* Generate Wallets */
 GEN_desc                    : 'If you want to generate multiple wallets, you can do so here ',
 GEN_Label_1                 : 'Enter a password',
-GEN_Placeholder_1           : 'Do NOT forget to save this! ',
+GEN_Placeholder_1           : 'The password is not recoverable! ',
 GEN_SuccessMsg              : 'Success! Your wallet has been generated. ',
 GEN_Label_2                 : 'Save your `Keystore` File. ',
 GEN_Label_3                 : 'Save Your Address. ',

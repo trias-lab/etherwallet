@@ -373,7 +373,7 @@ GEN_Label_2                 : '`Keystore`ファイルを保存してください
 GEN_Label_3                 : 'アドレスを保存してください。', /* Save Your Address. */
 GEN_Label_4                 : 'お財布紙情報 (ペーパーウォレット) かQRコードを印刷してください。', /* Print paper wallet or a QR code. */
 GEN_Label_5                 : '自分の`秘密鍵`を保存してください。', /* Save Your `Private Key`. */
-GEN_Placeholder_1           : '必ず保存してください!', /* Do NOT forget to save this! */
+GEN_Placeholder_1           : '必ず保存してください!', /* The password is not recoverable! */
 GEN_SuccessMsg              : '成功! お財布が作成されました。', /* Success! Your wallet has been generated. */
 GEN_Unlock                  : '自分のアドレスを確認するために、お財布を解錠する。', /* Unlock your wallet to see your address */
 GET_ConfButton              : 'わかりました。続けます。', /* I understand. Continue. */

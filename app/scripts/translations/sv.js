@@ -403,7 +403,7 @@ ADD_Label_8                 : 'Password (optional): ',
 /* Generate Wallets */
 GEN_desc                    : 'If you want to generate multiple wallets, you can do so here ',
 GEN_Label_1                 : 'Enter a strong password (at least 9 characters) ',
-GEN_Placeholder_1           : 'Do NOT forget to save this! ',
+GEN_Placeholder_1           : 'The password is not recoverable! ',
 GEN_SuccessMsg              : 'Success! Your wallet has been generated. ',
 GEN_Label_2                 : 'Save your Wallet File.   ',
 GEN_Label_3                 : 'Save Your Address. ',
