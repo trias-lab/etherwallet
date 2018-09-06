@@ -15,16 +15,12 @@
     @@if (site === 'mew' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
     '../includes/swap-stage-1.tpl', { "site": "cx" } ) }
 
-    <div ng-show="!isKyberSwap">
         @@if (site === 'mew' ) { @@include( '../includes/swap-stage-2.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
         '../includes/swap-stage-2.tpl', { "site": "cx" } ) } @@if (site === 'mew' ) { @@include( '../includes/swap-stage-3.tpl',
         { "site": "mew" } ) } @@if (site === 'cx' ) { @@include( '../includes/swap-stage-3.tpl', { "site": "cx" } ) }
-    </div>
 
-    <div ng-if="isKyberSwap">
         @@if (site === 'mew' ) { @@include( '../includes/swap-kyber.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
         '../includes/swap-kyber.tpl', { "site": "cx" } ) }
-    </div>
 
     <!-- <section class="bity-contact text-center" ng-if="!isKyberRateSwap">
         <p><a class="btn-warning btn-sm"

@@ -1,14 +1,11 @@
 <!-- Swap Rates Panel -->
-<article class="swap-rates" ng-show="showStage1">
 
-  <!-- Title -->
-  <!-- <section class="row">
+<!-- <article class="swap-rates" ng-show="showStage1">
+
+  <section class="row">
     <h5 class="col-xs-6 col-xs-offset-3" translate="SWAP_rates"> Current Rates </h5>
-  </section> -->
-  <!-- Title -->
-
-  <!-- Colored Columns -->
-  <!-- <section class="row order-panel">
+  </section>
+  <section class="row order-panel">
     <div class="col-sm-4 order-info">
       <p class="mono">
         <input class="form-control input-sm" ng-model="priceTicker.ETHBTC"/>
@@ -41,26 +38,30 @@
       </p>
     </div>
 
-  </section> -->
+  </section>
 
-  <!-- / Colored Columns -->
 
-</article>
+</article> -->
+
+
+
 <!-- / Swap Rates Panel -->
 
 
 
 <!-- Swap Init Panel -->
-<article class="swap-panel block clearfix" ng-show="showStage1">
+<article class="swap-panel block clearfix">
 
-  <div class="swap-panel-tit">
+  <div  ng-class="showStage1 ?'swap-panel-tit':'swap-panel-tit not-slect'">
 
     <div class="swap-pane-step">1</div> Swap Detail
+
+    <i class="fas fa-check-circle success"   ng-show="!showStage1"></i>
   </div>
 
-  <div class="swap-panel-warp">
+  <div class="swap-panel-warp" ng-show="showStage1">
 
-    <div class="clearfix">
+    <div class="clearfix swap-panel-step1">
 
       <div style="float: left;width: 43%">
         <label for="original">
@@ -110,27 +111,29 @@
       </div>
     </div>
 
-  </div>
-
-
-
-  <div class="col-xs-12 clearfix text-center" ng-if="isKyberRateSwap">
-    <span> 1 {{swapOrder.fromCoin}} = {{kyber.kyberRates[swapOrder.fromCoin + "/" + swapOrder.toCoin] | number: 6}} {{swapOrder.toCoin}}</span><!-- todo: restrict the rate shown to token decimal is less than 6 -->
-  </div>
-
-
-  <div class="generateTransaction-button clearfix">
-    <a ng-click="setFinalPrices()" class="btn btn-info btn-default">
-      <span translate="SWAP_init_CTA"> Generate Transaction </span>
-    </a>
-    <!-- <section class="row">
-      <div class="col-xs-6 col-xs-offset-3" >
-        <h4 style="margin-top: 40px; border: 5px #0b1929">
-          <a href="https://ccswap.myetherwallet.com" > Buy ETH with <img src="images/visa-master.png" width="60" height="30"></a>
-        </h4>
+    
+    <div class="generateTransaction-button clearfix">
+        <a ng-click="setFinalPrices()" class="btn btn-info btn-default">
+          <span translate="SWAP_init_CTA"> Generate Transaction </span>
+        </a>
+        <!-- <section class="row">
+          <div class="col-xs-6 col-xs-offset-3" >
+            <h4 style="margin-top: 40px; border: 5px #0b1929">
+              <a href="https://ccswap.myetherwallet.com" > Buy ETH with <img src="images/visa-master.png" width="60" height="30"></a>
+            </h4>
+          </div>
+        </section> -->
       </div>
-    </section> -->
   </div>
+
+
+
+  <!-- <div class="col-xs-12 clearfix text-center" ng-if="isKyberRateSwap">
+    <span> 1 {{swapOrder.fromCoin}} = {{kyber.kyberRates[swapOrder.fromCoin + "/" + swapOrder.toCoin] | number: 6}} {{swapOrder.toCoin}}</span>
+  </div> -->
+
+
+
 
 </article>
 <!-- / Swap Init Panel -->

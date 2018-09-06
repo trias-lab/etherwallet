@@ -1,5 +1,5 @@
 .swap-tab {
-
+  margin-bottom:  @space-lg*2 !important;
   a.link, a.link:hover {
     transition: none;
   }
@@ -65,10 +65,10 @@
 
   .swap-panel {
     text-align: center;
-    // margin-top: @space-lg*2;
     font-family:MoskMedium500;
     font-size:1rem;
     border-radius: 0.25rem;
+    margin-bottom: 2.25rem;
     // padding: 36px;
     .swap-panel-tit{
       width:100%;
@@ -90,23 +90,40 @@
         text-align: center;
         color:rgba(93,184,92,1);
       }
+      i{
+        float: right;
+        margin-top: 0.3125rem
+      }
+    }
+    >.not-slect{
+      background:  #E5E8EA;
+      color: #91999E;
+      .swap-pane-step{
+        background:#F6F7F9;
+        color:#91999E;
+      }
+      i{
+        color:  #5DB85C;
+      }
     }
     .swap-panel-warp{
       padding: 2.25rem;
       width: 100%;
       margin: 0;
-      >div{
+      text-align: left;
+   
+      .swap-panel-step1{
         background: #F6F7F9;
         padding: 1.5rem;
-        label{
-          display: block;
-          text-align: left;
-        }
+      }
+      label{
+        display: block;
+        text-align: left;
       }
     }
 
     .generateTransaction-button{
-      padding: 0 2.25rem 2.25rem;
+      padding: 1.25rem 2.25rem  0;
       >a{
         float: right;
         height:2.375rem;
@@ -158,7 +175,7 @@
       border-radius: 50%;
       color: #fff;
       text-align: center;
-      margin-top: 1.5625rem;
+      margin-top: 2.1rem;
       i{
         margin-top: 0.625rem;
       }
@@ -166,8 +183,8 @@
   }
 
   .swap-address {
-    text-align: center;
-    padding: @space*3 @space;
+    // text-align: center;
+    // padding: @space*3 @space;
   }
 
   .swap-start {
