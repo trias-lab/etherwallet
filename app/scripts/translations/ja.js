@@ -418,6 +418,7 @@ NAV_Contracts               : '契約', /* Contracts */
 NAV_DeployContract          : '契約を展開', /* Deploy Contract */
 NAV_DomainSale              : 'ドメイン販売', /*DomainSale*/
 NAV_ENS                     : 'ENS', /* ENS */
+NAV_Homepage_alt			: 'Homepage',
 NAV_GenerateWallet          : 'お財布の作成', /* Create New Wallet */
 NAV_GenerateWallet_alt      : 'お財布の作成', /* New Wallet */
 NAV_Help                    : 'ヘルプ', /* Help */

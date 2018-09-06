@@ -265,6 +265,7 @@ TXFEE_Desc                  : 'The TX Fee is paid to miners for including your T
 /* Navigation*/
 NAV_YourWallets             : 'Tárcáid ',
 NAV_AddWallet               : 'Tárca hozzáadása ',
+NAV_Homepage_alt			: 'Homepage',
 NAV_GenerateWallet_alt      : 'New Wallet ',
 NAV_GenerateWallet          : 'Tárca generálása ',
 NAV_BulkGenerate            : 'Több tárca generálása ',

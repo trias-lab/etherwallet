@@ -9,7 +9,7 @@ var walletGenCtrl = function($scope) {
     $scope.showPass = true;
     $scope.fileDownloaded = false;
     $scope.showPaperWallet = false;
-    $scope.showGetAddress = false;
+    $scope.showConfirmation = false;
     $scope.isMobileApple = function() {
       if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
         return true;
@@ -55,10 +55,10 @@ var walletGenCtrl = function($scope) {
     $scope.continueToPaper = function() {
         $scope.showPaperWallet = true;
     }
-    $scope.getAddress = function(){
+    $scope.confirm = function(){
         $scope.showPaperWallet = false;
         $scope.wallet = null;
-        $scope.showGetAddress = true;
+        $scope.showConfirmation = true;
     }
 
     $scope.closeModal = function() {
