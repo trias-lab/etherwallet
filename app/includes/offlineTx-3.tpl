@@ -13,7 +13,7 @@
           <label translate="SEND_signed" class="step-box-title">
             Signed Transaction
           </label>
-          <textarea class="form-control" rows="7" ng-model="signedTx"></textarea>
+          <textarea class="form-control" rows="9" ng-model="signedTx"></textarea>
           <a class="btn btn-primary" ng-click="confirmSendTx()" translate="SEND_trans">
             SEND TRANSACTION
           </a>
