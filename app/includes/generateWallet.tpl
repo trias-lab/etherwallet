@@ -163,18 +163,40 @@
       <i class="fas fa-check-circle success" ng-show="showPaperWallet || showGetAddress"></i>
     </div>
     <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
-      <h1 translate="GEN_Label_2">
-        Save your Keystore File (UTC / JSON)
-      </h1>
+
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not lose it!
+          </span> 
+          It cannot be recovered if you lose it.
+        </p>
+        <p class="GEN_Warning_2">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not share it!
+          </span> 
+          Your funds will be stolen if you use this file on a malicious/phishing site.
+        </p>
+        <p class="GEN_Warning_3">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Make a backup!
+          </span> 
+          Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
 
       <a tabindex="0" role="button"
-         class="btn btn-primary"
+         class="btn btn-default"
          href="{{blobEnc}}"
          download="{{encFileName}}"
          aria-label="{{'x_Download'|translate}} {{'x_Keystore'|translate}}"
          aria-describedby="x_KeystoreDesc"
          ng-click="downloaded()"
          rel="noopener noreferrer">
+        <i class="fas fa-download"></i>
         <span translate="x_Download">
           DOWNLOAD
         </span>
@@ -183,26 +205,14 @@
         </span>
       </a>
 
-      <div class="warn">
-        <p class="GEN_Warning_1">
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p class="GEN_Warning_2">
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p class="GEN_Warning_3">
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
       <p>
         <a tabindex="0"
            role="button"
-           class="btn btn-danger"
+           class="btn btn-primary pull-right"
            ng-class="fileDownloaded ? '' : 'disabled' "
            ng-click="continueToPaper()">
-            <span translate="GET_ConfButton">
-              I understand. Continue.
+            <span>
+              I’ve Saved Keystore
             </span>
         </a>
       </p>
