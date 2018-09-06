@@ -1,16 +1,60 @@
-<article class="modal fade" id="sendTransaction" tabindex="-1">
-  <section class="modal-dialog">
+<article  class="modal fade swap-modal" id="sendTransaction" tabindex="-1">
+  <section class="modal-dialog" style="transform: translateY(0%)">
     <section class="modal-content">
 
       <div class="modal-body">
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close Dialog">&times;</button>
 
-        <h2 class="modal-title text-center">
+        <!-- <h2 class="modal-title text-center">
           <span translate="SENDModal_Content_1">You are about to send</span>...
-        </h2>
+        </h2> -->
 
-        <table class="table text-center">
+        <div class="address-swap">
+          <div class="clearfix">
+            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet.getAddressString()">
+            </div>
+            <div class="addressInfo">
+              <p>Output Address</p>
+              <p ng-show="tx.sendMode=='ether'">{{wallet.getChecksumAddressString()}}</p>
+            </div>
+          </div>
+
+          <div ng-show="tx.sendMode=='ether'" class="mono clearfix">
+            <div  class="arrow-down" > <i class="fa fa-arrow-down "></i></div>
+            <div style="float:left" class="text-danger text-des">
+              {{tx.value}} {{unitReadable}}
+            </div>
+          </div>
+          <div ng-show="tx.sendMode!=='ether'" class="mono clearfix">
+            <div  class="arrow-down"> <i class="fa fa-arrow-down "></i></div>
+            <div style="float:left" class="text-primary text-des">
+              {{tx.value}} {{unitReadable}}
+            </div>
+          </div>
+
+          <div class="clearfix" ng-show="tx.sendMode=='ether'">
+            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tx.to}}" watch-var="tx.to">
+            </div>
+            <div class="addressInfo">
+              <p>Output Address</p>
+              <p ng-show="tx.sendMode=='ether'"> {{tx.to}}</p>
+            </div>
+          </div>
+
+          <div class="clearfix" ng-show="tx.sendMode!=='ether'">
+            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tokenTx.to}}" watch-var="tokenTx.to">
+            </div>
+            <div class="addressInfo">
+              <p>Output Address</p>
+              <p ng-show="tx.sendMode=='ether'"> {{tokenTx.to}}</p>
+            </div>
+          </div>
+        </div>
+
+
+        <p>Advanced Info</p>
+        <!-- <table class="table text-center">
           <tbody>
             <tr>
               <td>
@@ -25,6 +69,7 @@
                   </strong>
                 </p>
               </td>
+
               <td ng-show="tx.sendMode=='ether'" class="mono">
                 ->
                 <br />
@@ -39,6 +84,8 @@
                   {{tx.value}} {{unitReadable}}
                 </h4>
               </td>
+
+
               <td ng-show="tx.sendMode=='ether'">
                 <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tx.to}}" watch-var="tx.to"></div>
                 <p>
@@ -57,7 +104,7 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
 
         <br />
 
@@ -65,9 +112,8 @@
           <tbody>
             <tr>
               <td class="small text-right">To Address:</td>
-              <td class="small text-left mono">{{parsedSignedTx.to}}
-                <br />
-                <em><small>If sending tokens, this should be the token contract address.</small></em>
+              <td class="small text-left mono">
+                {{parsedSignedTx.to}}
               </td>
             </tr>
             <tr>
@@ -96,7 +142,9 @@
             </tr>
             <tr>
               <td class="small text-right">Gas Price:</td>
-              <td class="small text-left mono">{{parsedSignedTx.gasPrice.gwei}} GWEI <small>({{parsedSignedTx.gasPrice.eth}} ETH)</small>
+              <td class="small text-left mono">{{parsedSignedTx.gasPrice.gwei}} GWEI <small>({{parsedSignedTx.gasPrice.eth}}
+                  ETH)
+                </small>
               </td>
             </tr>
             <tr>
@@ -109,7 +157,9 @@
             </tr>
             <tr>
               <td class="small text-right">Data:</td>
-              <td class="small text-left mono text-width-limit"><p>{{parsedSignedTx.data}}</p></td>
+              <td class="small text-left mono text-width-limit">
+                <p>{{parsedSignedTx.data}}</p>
+              </td>
             </tr>
 
           </tbody>
@@ -129,19 +179,21 @@
           Are you sure you want to do this?
         </p>
         <br />
-        <button class="btn btn-default" data-dismiss="modal" translate="SENDModal_No">
+        <button class="btn btn-primary" ng-click="sendTx()" translate="SENDModal_Yes" style="float:right;">
+            Yes, I am sure! Make transaction.
+          </button>
+        <!-- <button class="btn btn-default" data-dismiss="modal" translate="SENDModal_No" style="float:right;">
           No, get me out of here!
-        </button>
-        <button class="btn btn-primary" ng-click="sendTx()" translate="SENDModal_Yes">
-          Yes, I am sure! Make transaction.
-        </button>
+        </button> -->
+       
       </div>
 
-      <p class="small text-center" style="padding: 0px 5px;">
-        <a href="https://myetherwallet.github.io/knowledge-base/transactions/transactions-not-showing-or-pending.html" target="_blank" ref="noopener noreferrer">
+      <!-- <p class="small text-center" style="padding: 0px 5px;">
+        <a href="https://myetherwallet.github.io/knowledge-base/transactions/transactions-not-showing-or-pending.html" target="_blank"
+          ref="noopener noreferrer">
           The network is a bit overloaded. If you're having issues with TXs, please read me.
         </a>
-      </p>
+      </p> -->
 
 
 
