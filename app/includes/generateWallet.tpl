@@ -12,15 +12,15 @@
       <i class="fas fa-wallet"></i>
     </div>    
   </div>
-  <article ng-class="!wallet && !showGetAddress? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
+  <article ng-class="!wallet && !showConfirmation? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
     <div class="step-title">
       <div class="num">1</div>
       <p class="text" aria-live="polite">
         Set Wallet Password
       </p>
-      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
+      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showConfirmation"></i>
     </div>
-    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showGetAddress">
+    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showConfirmation">
       <p class="intro">
         This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.
       </p>
@@ -160,7 +160,7 @@
       <p class="text" aria-live="polite">
         Save Keystore file
       </p>
-      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showGetAddress"></i>
+      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showConfirmation"></i>
     </div>
     <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
 
@@ -271,46 +271,51 @@
       <p class="text" aria-live="polite">
         Save Private Key
       </p>
-      <i class="fas fa-check-circle success" ng-show="showGetAddress"></i>
+      <i class="fas fa-check-circle success" ng-show="showConfirmation"></i>
     </div>
     <section class="block__main gen__3--inner step-content" ng-show="showPaperWallet">
-
-      <h1 translate="GEN_Label_5"> Save your Private Key</h1>
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not lose it!
+          </span> 
+          It cannot be recovered if you lose it.
+        </p>
+        <p class="GEN_Warning_2">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not share it!
+          </span> 
+          Your funds will be stolen if you use this file on a malicious/phishing site.
+        </p>
+        <p class="GEN_Warning_3">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Make a backup!
+          </span> 
+          Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
       <textarea aria-label="{{'x_PrivKey'|translate}}"
              aria-describedby="{{'x_PrivKeyDesc'|translate}}"
              class="form-control"
              readonly="readonly"
-             rows="3"
-             style="max-width: 50rem;margin: auto;"
+             rows="2"
       >{{wallet.getPrivateKeyString()}}</textarea>
-      <br />
 
       <a tabindex="0"
          aria-label="{{'x_Print'|translate}}"
          aria-describedby="x_PrintDesc"
          role="button"
-         class="btn btn-primary"
-         ng-click="printQRCode()"
-         translate="x_Print">
-          PRINT
+         class="btn btn-default"
+         ng-click="printQRCode()">
+         <i class="fas fa-print"></i>
+          Print Paper Wallet
       </a>
 
-      <div class="warn">
-        <p>
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p>
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p>
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
-      <br />
-
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
-        <span translate="GEN_Label_3"> Save your Address </span> →
+      <a class="btn btn-primary pull-right" ng-click="confirm()">
+        <span>I’ve Saved Private Key</span>
       </a>
 
     </section>
@@ -354,24 +359,24 @@
 
   </article>
 
-  <article role="main" ng-class="showGetAddress ? 'block__wrap gen__3 step-card active':'block__wrap gen__4 step-card'" >
+  <article role="main" ng-class="showConfirmation ? 'block__wrap gen__4 step-card active':'block__wrap gen__4 step-card'" >
     <div class="step-title">
       <div class="num">4</div>
       <p class="text" aria-live="polite">
         Confirmation
       </p>
     </div>
-    <section class="block__main gen__3--inner step-content" ng-show="showGetAddress">
+    <section class="block__main gen__4--inner step-content" ng-show="showConfirmation">
 
-      <h1 >You’re all set!</h1>
+      <h1><i class="fas fa-check-circle"></i> You’re all set!</h1>
       <p class="intro">
         Make sure you’ve already properly saved your wallet password, Keystore file and Private Key. Remember there’s not way to recover any of them if you lost it, and you won’t be able to access your wallet.
       </p>
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
-        <span> Back To Home</span> 
-      </a>
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+      <a class="btn btn-primary pull-right" ng-click="globalService.currentTab=globalService.tabs.viewWalletInfo.id">
         <span> Check My Account</span>
+      </a>
+      <a class="btn btn-default pull-right" ng-click="globalService.currentTab=globalService.tabs.homepage.id">
+        <span> Back To Home</span> 
       </a>
 
     </section>

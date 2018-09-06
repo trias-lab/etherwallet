@@ -155,7 +155,28 @@
   > .btn {
     margin: @space   auto  @space*2;
     width: 100%;
+  }  
+}
+
+.gen__3--inner {
+  h1     {  margin: @space*2   auto  @space }
+  textarea {
+    margin: 1rem auto 0;
+    background:rgba(246,247,249,1);
+    border-radius:0.25rem;
+    border:0.06rem solid rgba(203,208,211,1);
+    font-size:0.94rem;
+    font-family:MoskLight300;
+    color:rgba(20,42,63,1);
+    line-height:1.5rem;
   }
+  .btn-default{
+    .size(100%, auto);
+    margin-bottom: 2rem;
+  }
+}
+
+.gen__2--inner, .gen__3--inner{
   .warn  {
     p{
       display:inline-block; 
@@ -182,11 +203,26 @@
   }
 }
 
-.gen__3--inner {
-  text-align: center;
-  h1     {  margin: @space*2   auto  @space }
-  > .btn,
-  > .form-control { margin: 0 auto @space*3 }
+.gen__4--inner{
+  h1{
+    font-size:1.5rem;
+    font-family:MoskMedium500;
+    color:rgba(43,47,55,1);
+    line-height:2rem;
+    margin-bottom: 2rem;
+    i{
+      font-size:1.5rem;
+      color:rgba(93,184,92,1);
+      line-height:2rem;
+      margin-right: 1rem;
+    }
+  }
+  .intro{
+    padding-left: 3rem;
+  }
+  .btn-primary{
+    margin-left: 1rem;
+  }
 }
 
 // footer
