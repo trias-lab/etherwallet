@@ -204,14 +204,14 @@
 
     </div>
   </section>
-  <p class="dropdown-gas__msg"
+<!--   <p class="dropdown-gas__msg"
      ng-show="gasPriceMsg"
      ng-hide="ajaxReq.type!='ETH'">
     The network is really full right now. Check
     <a href="https://ethgasstation.info/"
        target="_blank" rel="noopener noreferrer">Eth Gas Station</a>
     for gas price to use.
-  </p>
+  </p> -->
 </section>
 
 <nav role="navigation" aria-label="main navigation" class="container nav-container overflowing">
