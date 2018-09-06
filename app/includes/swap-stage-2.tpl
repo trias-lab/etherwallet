@@ -31,11 +31,12 @@
 
 
   <!-- Your Address -->
-  <section class='swap-address block  swap-panel '>
+  <section class='swap-address  swap-panel '>
 
     <div class="swap-panel-tit" ng-class="showStage2 ?'swap-panel-tit':'swap-panel-tit not-slect'">
 
-      <div class="swap-pane-step">2</div> Enter Receiving Address
+      <div class="swap-pane-step">2</div>
+      <span>Enter Receiving Address</span>
       <i class="fas fa-check-circle success" ng-show="!showStage1"></i>
     </div>
     <section class="row swap-panel-warp" ng-show="showStage2">

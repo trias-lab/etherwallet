@@ -50,12 +50,12 @@
 
 
 <!-- Swap Init Panel -->
-<article class="swap-panel block clearfix">
+<article class="swap-panel clearfix">
 
   <div  ng-class="showStage1 ?'swap-panel-tit':'swap-panel-tit not-slect'">
 
-    <div class="swap-pane-step">1</div> Swap Detail
-
+    <div class="swap-pane-step">1</div> 
+    <span>Swap Detail</span> 
     <i class="fas fa-check-circle success"   ng-show="!showStage1"></i>
   </div>
 

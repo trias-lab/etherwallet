@@ -5,22 +5,28 @@
     <div class="tab-title">
         <div class="text">
             <h1>Swap</h1>
-            <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance.  </h2>
+            <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor
+                your balance. </h2>
         </div>
         <div class="icon">
-                <i class="fa fa-exchange" aria-hidden="true"></i>
+            <i class="fa fa-exchange" aria-hidden="true"></i>
         </div>
     </div>
 
-    @@if (site === 'mew' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
-    '../includes/swap-stage-1.tpl', { "site": "cx" } ) }
+    @@if (site === 'mew' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "mew" } ) } 
+    @@if (site === 'cx' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "cx" } ) }
+    
+    @@if (site === 'mew' ) { @@include( '../includes/swap-stage-2.tpl',{ "site": "mew" } ) } 
+    @@if (site === 'cx' ) { @@include( '../includes/swap-stage-2.tpl', { "site": "cx" } ) }
+    
+    @@if (site=== 'mew' ) { @@include( '../includes/swap-stage-3.tpl', { "site": "mew" } ) } 
+    @@if (site === 'cx' ) { @@include( '../includes/swap-stage-3.tpl',{ "site": "cx" } ) }
+    
+    @@if (site=== 'mew' ) { @@include( '../includes/swap-stage-4.tpl', { "site": "mew" } ) } 
+    @@if (site === 'cx' ) { @@include( '../includes/swap-stage-4.tpl',{ "site": "cx" } ) }
 
-        @@if (site === 'mew' ) { @@include( '../includes/swap-stage-2.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
-        '../includes/swap-stage-2.tpl', { "site": "cx" } ) } @@if (site === 'mew' ) { @@include( '../includes/swap-stage-3.tpl',
-        { "site": "mew" } ) } @@if (site === 'cx' ) { @@include( '../includes/swap-stage-3.tpl', { "site": "cx" } ) }
-
-        @@if (site === 'mew' ) { @@include( '../includes/swap-kyber.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include(
-        '../includes/swap-kyber.tpl', { "site": "cx" } ) }
+    @@if (site === 'mew' ) { @@include( '../includes/swap-kyber.tpl', { "site": "mew" } ) } 
+    @@if (site === 'cx' ) { @@include( '../includes/swap-kyber.tpl', { "site": "cx" } ) }
 
     <!-- <section class="bity-contact text-center" ng-if="!isKyberRateSwap">
         <p><a class="btn-warning btn-sm"
