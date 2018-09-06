@@ -2,9 +2,9 @@
 <article class="swap-rates" ng-show="showStage1">
 
   <!-- Title -->
-  <section class="row">
+  <!-- <section class="row">
     <h5 class="col-xs-6 col-xs-offset-3" translate="SWAP_rates"> Current Rates </h5>
-  </section>
+  </section> -->
   <!-- Title -->
 
   <!-- Colored Columns -->
