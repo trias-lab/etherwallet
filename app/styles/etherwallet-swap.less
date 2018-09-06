@@ -64,7 +64,7 @@
   }
 
   .swap-panel {
-    text-align: center;
+    // text-align: center;
     font-family:MoskMedium500;
     font-size:1rem;
     border-radius: 0.25rem;
@@ -73,6 +73,7 @@
     .swap-panel-tit{
       width:100%;
       height:3.375rem;
+      line-height: 0.8rem;
       padding: 0.8125rem;
       background:linear-gradient(270deg,rgba(140,199,43,1) 0%,rgba(93,184,92,1) 100%);
       border-radius:0.25rem 0.25rem 0rem 0rem;
@@ -89,6 +90,14 @@
         line-height: 1.75rem;
         text-align: center;
         color:rgba(93,184,92,1);
+      }
+      span{
+        display: inline-block;
+        width: 60%;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        // padding-top: 0.5rem
       }
       i{
         float: right;
@@ -111,7 +120,7 @@
       width: 100%;
       margin: 0;
       text-align: left;
-   
+      background: #fff;
       .swap-panel-step1{
         background: #F6F7F9;
         padding: 1.5rem;
@@ -130,7 +139,6 @@
         background:rgba(93,184,92,1);
         border-radius:0.25rem;
         border:0.0625rem solid rgba(93,184,92,1);
-        padding: 0.4375rem 1.25rem;
         span{
           width: 100%;
           height: 100%;
@@ -149,7 +157,7 @@
     //   margin: @space-lg @space-sm;
     //   vertical-align: middle;
     // }
-    .form-control {
+    .swap-panel-input {
       display: inline-block;
       width: 10rem;
       margin-right: 0;

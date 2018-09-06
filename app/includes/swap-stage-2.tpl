@@ -44,7 +44,7 @@
       <div class="form-group" ng-show="swapOrder.toCoin!='BTC'">
         <address-field placeholder="0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D" var-name="swapOrder.toAddress"></address-field>
       </div>
-      <input class="form-control" ng-show="swapOrder.toCoin=='BTC'" type="text" placeholder="1DECAF2uSpFTP4L1fAHR8GCLrPqdwdLse9"
+      <input class="form-control swap-panel-input" ng-show="swapOrder.toCoin=='BTC'" type="text" placeholder="1DECAF2uSpFTP4L1fAHR8GCLrPqdwdLse9"
         ng-model="swapOrder.toAddress" style="width: 100%" ng-class="Validator.isValidBTCAddress(swapOrder.toAddress) ? 'is-valid' : 'is-invalid'"
       />
 
