@@ -97,21 +97,21 @@
 
 
       <!-- To Address -->
-      <div class="row form-group">
+      <div class="form-group">
         <address-field placeholder="0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D" var-name="tx.to"></address-field>
       </div>
 
 
       <!-- Amount to Send -->
-      <section class="row form-group">
+      <section class="form-group">
 
-        <div class="col-sm-11">
+        <div>
           <label translate="SEND_amount">
             Amount to Send:
           </label>
         </div>
 
-        <div class="col-sm-11">
+        <div>
 
           <div class="input-group">
 
@@ -137,7 +137,8 @@
 
               <!-- Amount to Send - Dropdown -->
               <ul class="dropdown-menu dropdown-menu-right"
-                  ng-show="dropdownAmount && !tx.readOnly">
+                  ng-show="dropdownAmount && !tx.readOnly"
+                  style="overflow-x:hidden;">
                 <li>
                   <a ng-class="{true:'active'}[tx.sendMode=='ether']"
                     ng-click="setSendMode('ether')">
@@ -176,7 +177,7 @@
         -->
 
         <!-- Amount to Send - Transfer Entire Balance -->
-        <p class="col-xs-12" ng-hide="tx.readOnly">
+        <p ng-hide="tx.readOnly">
           <a ng-click="transferAllBalance()">
             <span class="strong" translate="SEND_TransferTotal">
               Send Entire Balance
@@ -190,8 +191,8 @@
 
 
       <!-- Gas Limit -->
-      <section class="row form-group">
-        <div class="col-sm-11 clearfix">
+      <section class="form-group">
+        <div class="clearfix">
           <!-- <a class="account-help-icon"
             href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html"
             target="_blank"
@@ -225,8 +226,8 @@
       <div ng-show="showAdvance || checkTxPage">
 
         <!-- Data -->
-        <section class="row form-group">
-          <div class="col-sm-11 clearfix" ng-show="tx.sendMode=='ether'">
+        <section class="form-group">
+          <div class="clearfix" ng-show="tx.sendMode=='ether'">
             <!-- <span class="account-help-icon">
               <img src="images/icon-help.svg" class="help-icon" />
               <p class="account-help-text" translate="OFFLINE_Step2_Label_6b">
@@ -321,7 +322,7 @@
 
 
 
-      <div class="row form-group">
+      <div class="form-group">
         <div class="clearfix">
           <a class="btn btn-block btn-default"
             ng-click="generateTx()">
