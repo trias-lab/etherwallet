@@ -6,14 +6,19 @@
 
   <!-- Account Address -->
   <div class="block">
-    <h5 translate="sidebar_AccountAddr">Account Address</h5>
-    <ul class="account-info">
-      <div class="addressIdenticon med float" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet"></div>
-      <span class="mono wrap">{{wallet.getChecksumAddressString()}}</span>
-      <label class="ens-response" ng-show="showEns()">
-        ↳ <span class="mono ng-binding"> {{ensAddress}} </span>
-      </label>
-    </ul>
+    <h5>Account Info</h5>
+    <div>
+      <h5 translate="sidebar_AccountAddr">Account Address</h5>
+      <ul class="account-info">
+        <span class="mono wrap">{{wallet.getChecksumAddressString()}}</span>
+        <label class="ens-response" ng-show="showEns()">
+          ↳ <span class="mono ng-binding"> {{ensAddress}} </span>
+        </label>
+      </ul>
+      <div>
+        <div class="addressIdenticon med float" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet"></div>
+      </div>
+    </div>
     <div ng-show="showDisplayOnTrezor()">
       <h5 translate="sidebar_DisplayOnTrezor">Display address on TREZOR</h5>
       <ul class="account-info">
@@ -26,25 +31,35 @@
         <li><a href="" ng-click="displayOnLedger()" translate="sidebar_DisplayOnLedger">Display address on Ledger</a></li>
       </ul>
     </div>
-    <h5 translate="sidebar_AccountBal">Account Balance</h5>
-    <ul class="account-info point">
-      <li>
-        <span class="mono wrap">{{wallet.balance}}</span> {{ajaxReq.type}}
-      </li>
-    </ul>
-    <h5 translate="sidebar_TransHistory"> Transaction History</h5>
-    <ul class="account-info">
-      <li ng-show="ajaxReq.type != 'CUS'">
-        <a href="{{ajaxReq.blockExplorerAddr.replace('[[address]]', wallet.getAddressString())}}" target="_blank" rel="noopener noreferrer">
-          {{ajaxReq.type}} ({{ajaxReq.blockExplorerTX.match('://(.*?)/')[1]}})
-        </a>
-      </li>
-      <li ng-show="ajaxReq.type == 'ETH'">
-        <a href="https://ethplorer.io/address/{{wallet.getAddressString()}}" target="_blank" rel="noopener noreferrer">
-          Tokens (Ethplorer.io)
-        </a>
-      </li>
-    </ul>
+    <div>
+      <h5 translate="sidebar_AccountBal">Account Balance</h5>
+      <ul class="account-info point">
+        <li>
+          <span class="mono wrap">{{wallet.balance}}</span> 
+          <!-- {{ajaxReq.type}} -->
+          TRI
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h5 translate="sidebar_TransHistory"> Transaction History</h5>
+      <ul class="account-info">
+        <!-- <li ng-show="ajaxReq.type != 'CUS'">
+          <a href="{{ajaxReq.blockExplorerAddr.replace('[[address]]', wallet.getAddressString())}}" target="_blank" rel="noopener noreferrer">
+            {{ajaxReq.type}} ({{ajaxReq.blockExplorerTX.match('://(.*?)/')[1]}})
+          </a>
+        </li> -->
+        <!-- <li ng-show="ajaxReq.type == 'ETH'"> -->
+        <li>
+          <!-- <a href="https://ethplorer.io/address/{{wallet.getAddressString()}}" target="_blank" rel="noopener noreferrer"> -->
+          <i class="fas fa-external-link-alt"></i>
+          <a href="https://explorer.trias.one/address/{{wallet.getChecksumAddressString()}}" target="_blank" rel="noopener noreferrer">
+            <!-- Tokens (Ethplorer.io) -->
+            Trias Blockchain Explorer
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
 

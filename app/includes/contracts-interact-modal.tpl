@@ -45,7 +45,7 @@
                  ng-model="tx.gasLimit"
                  ng-class="Validator.isPositiveNumber(tx.gasLimit) ? 'is-valid' : 'is-invalid'"/>
 
-          <a class="btn btn-info btn-block" ng-click="generateTx()" translate="SEND_generate">
+          <a class="btn btn-info btn-block btn-default" ng-click="generateTx()" translate="SEND_generate">
             Generate Transaction
           </a>
 
