@@ -10,14 +10,30 @@
     </p>
   </div>
 
+  <div class="tab-title">
+    <div class="text">
+      <h1 translate="NAV_SendEther">Send TRI</h1>
+      <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance.</h2>
+    </div>
+    <div class="icon">
+      <i class="fas fa-envelope"></i>
+    </div>    
+  </div>
 
   <!-- Unlock Wallet -->
-  <article class="collapse-container">
+  <article class="collapse-container step-card" ng-class="!wd ? 'collapse-container step-card active':'collapse-container step-card'">
     <div ng-click="wd = !wd">
-      <a class="collapse-button"><span ng-show="wd">+</span><span ng-show="!wd">-</span></a>
-      <h1 translate="NAV_SendEther">
+      <!-- <a class="collapse-button"><span ng-show="wd">+</span><span ng-show="!wd">-</span></a> -->
+      <div class="step-title">
+        <div class="num">1</div>
+        <p class="text" aria-live="polite" translate="decrypt_Access">
+          How would you like to access your wallet?
+        </p>
+        <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
+      </div>
+      <!-- <h1 translate="NAV_SendEther">
         Send Ether &amp; Tokens
-      </h1>
+      </h1> -->
     </div>
     <div ng-show="!wd">
         @@if (site === 'cx' )  {  <cx-wallet-decrypt-drtv></cx-wallet-decrypt-drtv>   }
