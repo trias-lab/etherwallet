@@ -67,7 +67,7 @@
         <label for="original">
           Original  
           <br>
-          <input id="original" class="form-control" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(true)"
+          <input id="original" class="form-control swap-panel-input" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(true)"
             ng-model="swapOrder.fromVal" ng-click="resetErrorShownStates()" ng-class="Validator.isPositiveNumber(swapOrder.fromVal)  && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'"
           />
           <div class="dropdown" ng-click="dropdownFrom = !dropdownFrom">
@@ -94,7 +94,7 @@
         <label for="target">
           Target
           <br>
-          <input id="target" class="form-control" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(false)"
+          <input id="target" class="form-control swap-panel-input" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(false)"
             ng-model="swapOrder.toVal" ng-click="resetErrorShownStates()" ng-class="Validator.isPositiveNumber(swapOrder.toVal) && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'"
           />
 

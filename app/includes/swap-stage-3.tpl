@@ -1,7 +1,11 @@
 <article ng-if="!isKyberSwap">
     <article class="swap-order" ng-show="showStage3Btc || showStage3Eth">
 
-
+        <section class="row text-center">
+            <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" ng-click="newSwap()"> Start New Swap </a>
+            </div>
+        </section>
+        
         <!-- Title -->
         <!-- <section class="row text-center">
             <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" ng-click="newSwap()"> Start New Swap </a>
