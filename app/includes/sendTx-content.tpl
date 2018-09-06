@@ -1,5 +1,36 @@
+
+<!-- Sidebar -->
+<section>
+
+  <div class="block block--danger"
+       ng-show="wallet!=null && globalService.currentTab==globalService.tabs.swap.id && !hasEnoughBalance()">
+
+    <h5 translate="SWAP_Warning_1">
+      Warning! You do not have enough funds to complete this swap.
+    </h5>
+
+    <p translate="SWAP_Warning_2">
+      Please add more funds to your wallet or access a different wallet.
+    </p>
+
+  </div>
+
+  <wallet-balance-drtv></wallet-balance-drtv>
+
+  <div ng-show="checkTxPage"
+       ng-click="checkTxReadOnly=!checkTxReadOnly"
+       class="small text-right text-gray-lighter">
+        <small translate="X_Advanced">
+          Advanced Users Only.
+        </small>
+  </div>
+
+</section>
+<!-- / Sidebar -->
+
+
 <!-- Content -->
-<div class="col-sm-8">
+<div>
 
 
   <!-- If unlocked with address only -->
@@ -150,13 +181,13 @@
     <!-- Gas Limit -->
     <section class="row form-group">
       <div class="col-sm-11 clearfix">
-        <a class="account-help-icon"
+        <!-- <a class="account-help-icon"
            href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html"
            target="_blank"
            rel="noopener noreferrer">
           <img src="images/icon-help.svg" class="help-icon" />
           <p class="account-help-text" translate="GAS_LIMIT_Desc"></p>
-        </a>
+        </a> -->
         <label translate="TRANS_gas">
           Gas Limit:
         </label>
@@ -185,12 +216,12 @@
       <!-- Data -->
       <section class="row form-group">
         <div class="col-sm-11 clearfix" ng-show="tx.sendMode=='ether'">
-          <span class="account-help-icon">
+          <!-- <span class="account-help-icon">
             <img src="images/icon-help.svg" class="help-icon" />
             <p class="account-help-text" translate="OFFLINE_Step2_Label_6b">
               This is optional.
             </p>
-          </span>
+          </span> -->
 
           <label translate="TRANS_data"> Data: </label>
 
@@ -326,32 +357,3 @@
 
 
 
-
-<!-- Sidebar -->
-<section class="col-sm-4">
-
-  <div class="block block--danger"
-       ng-show="wallet!=null && globalService.currentTab==globalService.tabs.swap.id && !hasEnoughBalance()">
-
-    <h5 translate="SWAP_Warning_1">
-      Warning! You do not have enough funds to complete this swap.
-    </h5>
-
-    <p translate="SWAP_Warning_2">
-      Please add more funds to your wallet or access a different wallet.
-    </p>
-
-  </div>
-
-  <wallet-balance-drtv></wallet-balance-drtv>
-
-  <div ng-show="checkTxPage"
-       ng-click="checkTxReadOnly=!checkTxReadOnly"
-       class="small text-right text-gray-lighter">
-        <small translate="X_Advanced">
-          Advanced Users Only.
-        </small>
-  </div>
-
-</section>
-<!-- / Sidebar -->

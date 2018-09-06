@@ -54,7 +54,7 @@
 
   <!-- Slider Thingy -->
   <!-- Hardware Wallets -->
-  <a href="https://myetherwallet.github.io/knowledge-base/getting-started/protecting-yourself-and-your-funds.html"
+  <!-- <a href="https://myetherwallet.github.io/knowledge-base/getting-started/protecting-yourself-and-your-funds.html"
      ng-show="slide==1 || ajaxReq.type!=='ETH'"
      class="block swap--hw"
      target="_blank" rel="noopener noreferrer">
@@ -73,7 +73,7 @@
       <br />
       <img src="images/logo-trezor.svg" width="80" height="auto" class="swap__logo">
     </div>
-  </a>
+  </a> -->
 
   <!-- Bity -->
   <a ng-click="globalService.currentTab=globalService.tabs.swap.id"
@@ -109,31 +109,18 @@
   </a>
   -->
 
-  <div class="swap__nav" ng-show="ajaxReq.type=='ETH'">
+  <!-- <div class="swap__nav" ng-show="ajaxReq.type=='ETH'">
     <a ng-click="slide=1"> &bull; </a>
     <a ng-click="slide=2"> &bull; </a>
-  </div>
+  </div> -->
 
 
 
 
   <!-- Token Balances -->
-  <div class="block token-balances">
+  <!-- <div class="block token-balances">
     <h5 translate="sidebar_TokenBal">Token Balances</h5>
 
-    <!-- Load Token Balances
-    <a class="btn btn-warning btn-xs"
-       ng-click="wallet.setTokens(); globalService.tokensLoaded=true"
-       ng-hide="globalService.tokensLoaded">
-      <img src="images/icon-load-tokens.svg" style="height: 1em; width: auto; margin-right: 5px;" />
-      Load Tokens
-    </a>
-     -->
-
-    <!-- you can your Balance on Blockchain Explorer -->
-
-
-    <h5 class="u__protip">
       <a href="https://myetherwallet.github.io/knowledge-base/send/adding-new-token-and-sending-custom-tokens.html"
          rel="noopener noreferrer"
          target="_blank">
@@ -158,7 +145,6 @@
       </span>
     </p>
 
-    <!-- Buttons -->
     <a class="btn btn-warning btn-xs" ng-click="showAllTokens=true" ng-show="showAllTokens==false">
       Show All Tokens
     </a>
@@ -171,7 +157,6 @@
 
     <br ng-show="customTokenField" />
 
-    <!-- Add Custom Token -->
     <div class="custom-token-fields" ng-show="customTokenField">
       <div class="row">
         <address-field
@@ -199,7 +184,6 @@
     <br />
     <br />
 
-    <!-- Balances -->
     <table class="account-info">
       <tr ng-class="token.type!=='default' ? 'custom-token' : ''"
           ng-repeat="token in wallet.tokenObjs track by $index"
@@ -220,12 +204,12 @@
       </tr>
     </table>
 
-  </div>
+  </div> -->
 
 
 
   <!-- Equivalent Balances -->
-  <div class="block" ng-show="ajaxReq.type=='ETH'">
+  <!-- <div class="block" ng-show="ajaxReq.type=='ETH'">
     <h5 translate="sidebar_Equiv">Equivalent Values:</h5>
     <div class="row">
       <ul class="account-info col-xs-6">
@@ -240,6 +224,6 @@
       </ul>
     </div>
     <p><small> These are only the equivalent values for ETH, not tokens. Sorry! </small></p>
-  </div>
+  </div> -->
 
 </aside>
