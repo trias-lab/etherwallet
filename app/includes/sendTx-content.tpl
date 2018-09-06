@@ -42,7 +42,8 @@
     <!-- <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i> -->
   </div>
 
-  <!-- <article class="row" ng-show="wallet!=null"> -->
+  <!-- <article class="row step-content" ng-show="wallet!=null"> -->
+  <article class="step-content">
     <!-- If unlocked with address only -->
     <article class="block" ng-show="wallet.type=='addressOnly'">
       <div class="row form-group">
@@ -330,38 +331,38 @@
         </div>
       </div>
 
-      <div class="row form-group" ng-show="rootScopeShowRawTx">
+      <!-- <div class="row form-group" ng-show="rootScopeShowRawTx"> -->
 
-        <div class="col-sm-6">
+        <div class="text-container">
           <label translate="SEND_raw">
             Raw Transaction
           </label>
           <textarea class="form-control" rows="4" readonly>{{rawTx}}</textarea>
         </div>
 
-        <div class="col-sm-6">
+        <div class="text-container">
           <label translate="SEND_signed">
             Signed Transaction
           </label>
           <textarea class="form-control" rows="4" readonly>{{signedTx}}</textarea>
         </div>
 
-      </div>
+      <!-- </div> -->
 
-      <div class="clearfix form-group" ng-show="rootScopeShowRawTx">
-        <a class="btn btn-primary btn-block col-sm-11"
+      <!-- <div class="clearfix form-group clearfix" ng-show="rootScopeShowRawTx"> -->
+        <a class="btn btn-primary send-tran"
           data-toggle="modal"
           data-target="#sendTransaction"
           translate="SEND_trans"
           ng-click="parseSignedTx( signedTx )">
               Send Transaction
         </a>
-      </div>
+      <!-- </div> -->
 
 
     </article>
 
-  <!-- </article> -->
+  </article>
 </div>
 <!-- / Content -->
 
