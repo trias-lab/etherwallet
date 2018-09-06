@@ -2,7 +2,8 @@
 var walletService = function() {
 	return {
         wallet: null,
-        password:''
+        password:'',
+        sendDealStep:1, //sendoffline step control
     }
 };
 module.exports = walletService;

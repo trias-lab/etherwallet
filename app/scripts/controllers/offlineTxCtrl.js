@@ -15,6 +15,7 @@ var offlineTxCtrl = function($scope, $sce, walletService) {
     $scope.nonceDec = 0;
     $scope.tokens = Token.popTokens;
     $scope.Validator = Validator;
+    $scope.sendDealStep = walletService;
     $scope.tx = {
         gasLimit: globalFuncs.defaultTxGasLimit,
         from: "",
@@ -41,6 +42,7 @@ var offlineTxCtrl = function($scope, $sce, walletService) {
     $scope.$watch(function() {
         if (walletService.wallet == null) return null;
         return walletService.wallet.getAddressString();
+        
     }, function() {
         if (walletService.wallet == null) return;
         $scope.wallet = walletService.wallet;
