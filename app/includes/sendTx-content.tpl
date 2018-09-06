@@ -322,17 +322,18 @@
 
 
       <div class="row form-group">
-        <div class="col-xs-12 clearfix">
-          <a class="btn btn-info btn-block"
-            ng-click="generateTx()"
-            translate="SEND_generate">
+        <div class="clearfix">
+          <a class="btn btn-block btn-default"
+            ng-click="generateTx()">
+              <i class="fas fa-wallet"></i>
+              <span translate="SEND_generate">
                 Generate Transaction
+              </span>
           </a>
         </div>
       </div>
 
-      <!-- <div class="row form-group" ng-show="rootScopeShowRawTx"> -->
-
+      <div class="form-group" ng-show="rootScopeShowRawTx">
         <div class="text-container">
           <label translate="SEND_raw">
             Raw Transaction
@@ -346,10 +347,9 @@
           </label>
           <textarea class="form-control" rows="4" readonly>{{signedTx}}</textarea>
         </div>
+      </div>
 
-      <!-- </div> -->
-
-      <!-- <div class="clearfix form-group clearfix" ng-show="rootScopeShowRawTx"> -->
+      <div class="clearfix form-group clearfix" ng-show="rootScopeShowRawTx">
         <a class="btn btn-primary send-tran"
           data-toggle="modal"
           data-target="#sendTransaction"
@@ -357,7 +357,7 @@
           ng-click="parseSignedTx( signedTx )">
               Send Transaction
         </a>
-      <!-- </div> -->
+      </div>
 
 
     </article>
