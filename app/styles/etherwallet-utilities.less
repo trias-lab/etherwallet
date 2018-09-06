@@ -166,3 +166,40 @@
     }
   }
 }
+
+wallet-balance-drtv {
+  .block {
+    margin-bottom: 2rem;
+    & > h5 {
+      font-size:1rem;
+      font-family:MoskMedium500;
+      color:rgba(20,42,63,1);
+      line-height:1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(203,208,211,1); 
+    }
+    & > div {
+      .clearfix();
+      border-bottom: 1px solid rgba(203,208,211,1); 
+      & > h5,
+      & > ul {
+        display: inline-block;
+        margin: 1rem 0;
+        font-size:0.94rem;
+      }
+      & > ul {
+        float: right;
+        font-family:MoskMedium500;
+        i {
+          color:rgba(93,184,92,1);
+        }
+      }
+      & > div {
+        // .clearfix();
+        padding-bottom: 1rem;
+        height: 5rem;
+        position: relative;
+      }
+    }
+  }
+}
