@@ -28,8 +28,8 @@
       <!-- <a class="collapse-button"><span ng-show="wd">+</span><span ng-show="!wd">-</span></a> -->
       <div class="step-title">
         <div class="num">1</div>
-        <p class="text" aria-live="polite" translate="decrypt_Access">
-          How would you like to access your wallet?
+        <p class="text" aria-live="polite">
+          Access your wallet
         </p>
         <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
       </div>

@@ -234,6 +234,31 @@ wallet-balance-drtv {
     }
   }
 }
+@media screen and (max-width: 768px) {
+  wallet-balance-drtv {
+    .block {
+      & > div {
+        & > ul {
+          float: none;
+          word-break: break-word;
+          padding-left: 0;
+          margin-top: 0;
+        } 
+        & > div {
+          padding-bottom: 1rem;
+          height: 5rem;
+          position: relative;
+          .addressIdenticon.float {
+            left: 0;
+          }
+        }
+        .account-info.point {
+          display: block;
+        }
+      }
+    }
+  }
+}
 
 .text-container {
   label {
