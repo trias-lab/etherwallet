@@ -42,8 +42,8 @@
     <!-- <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i> -->
   </div>
 
-<!-- <article class="step-content" ng-show="wallet!=null"> -->
-  <article class="step-content">
+<article class="step-content" ng-show="wallet!=null">
+  <!-- <article class="step-content"> -->
     <!-- If unlocked with address only -->
     <article class="block" ng-show="wallet.type=='addressOnly'">
       <div class="row form-group">
