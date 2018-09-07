@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MyEtherWallet.com</title>
+<title>TriasWallet.com</title>
 <meta property="og:title" content="MyEtherWallet.com: Your Key to Ethereum">
 <meta property="og:site_name" content="MyEtherWallet.com: Your Key to Ethereum">
 <meta name="twitter:title" content="MyEtherWallet.com: Your Key to Ethereum">
@@ -25,7 +25,7 @@
 <link href="images/fav/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
 <link href="images/fav/manifest.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
-<link href="images/fav/favicon.ico" rel="shortcut icon">
+<link href="images/favicon.ico" rel="shortcut icon">
 <meta name="apple-mobile-web-app-title" content="MyEtherWallet &middot; Your Key to Ethereum">
 <meta name="application-name" content="MyEtherWallet">
 <meta name="msapplication-config" content="images/fav/browserconfig.xml">
