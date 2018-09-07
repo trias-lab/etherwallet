@@ -33,7 +33,7 @@
 
 
 <!-- Content -->
-<div ng-class="wallet!=null ? 'step-card active':'step-card'">
+<div ng-class="wallet!=null ? 'step-card tran-card active':'step-card tran-card'">
   <div class="step-title">
     <div class="num">2</div>
     <p class="text" aria-live="polite">
