@@ -13,7 +13,9 @@
   <div class="tab-title">
     <div class="text">
       <h1 translate="NAV_SendEther">Send TRI</h1>
-      <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance.</h2>
+      <h2>Send TRI to another Trias Wallet address. 
+        Be absolutely sure about what you’re doing, 
+        check the everything twice before initiating the transaction.</h2>
     </div>
     <div class="icon">
       <i class="fas fa-envelope"></i>
