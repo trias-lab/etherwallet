@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from wallet.views import swap
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^api/swap/rate/', swap.rate),
+    url(r'^api/swap/order/', swap.order),
+    url(r'^api/swap/status/', swap.status),
 ]
