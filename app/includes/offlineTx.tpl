@@ -25,11 +25,7 @@
       <h2 class="col-xs-11 clearfix sendOffline-step-title-finish" translate="OFFLLINE_Step1_Title">Step 1: Generate Information (Online
           Computer)</h2>
   </div>
-  <div ng-show='sendDealStep.sendDealStep==2'>
-    @@if (site === 'mew' ) { @@include( './offlineTx-2.tpl', { "site": "mew" } ) } @@if (site === 'cx' ) { @@include( './offlineTx-2.tpl',
-    { "site": "cx" } ) }
-
-  </div>
+  
   <div ng-hide='sendDealStep.sendDealStep==3'>
       <h2 class="col-xs-11 clearfix sendOffline-step-title-finish" translate="OFFLINE_Step2_Title">
           Step 2: Generate Transaction (Offline Computer)
