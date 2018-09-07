@@ -1,5 +1,5 @@
 <!-- Step 1 -->
-<article class="row block sendOffline-step-box clearfix">
+<article class="row sendOffline-step-box clearfix">
 
     <h2 class="col-xs-11 clearfix sendOffline-step-title" translate="OFFLLINE_Step1_Title">Step 1: Generate Information (Online
       Computer)</h2>
