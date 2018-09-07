@@ -459,6 +459,7 @@ label small {
 .qr-overlay {
   background-color: black;
   position: absolute;
+  width: 80%;
   top: 0;
   left: 0;
   right: 0;
@@ -555,7 +556,16 @@ label small {
 }
 
 .view-wallet-content {
+  >.row{
+    margin-bottom: 5rem;
+  }
+  hr{
+    margin-bottom: 14px;
+    border: 0;
+    border-top: 1px solid #cbd0d3;
+  }
   h5 {
+    margin: 0;
     margin-bottom: @space-xs;
     font-size: 1.13rem;
     font-family: MoskMedium500;
@@ -564,6 +574,33 @@ label small {
     max-width: 80%;
   }
   a.isActive { color: @text-color; }
+  .address-identicon-container{
+    margin-top: 0;
+  }
+  span.address{
+    display: inline-block;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  .qr-code{
+    display: inline-block;
+    width: 61%;
+    height: 61%;
+  }
+  .qr-overlay{
+    background: #CBD0D3;
+    width: 51%;
+    right: 1rem;
+    left: initial;
+  }
+  .input-group-addon{
+    background: #F6F7F9;
+    border: none;
+    box-shadow: none;
+  }
+  .btn-primary{
+    margin-top: 18px;
+  }
 }
 #selectedTypeLedger ol {
   padding-left: 1rem;

@@ -12,7 +12,8 @@
   </div>
 
   <section class="block__main view__2--inner step-content" ng-show="wallet!=null">
-    <article class="view-wallet-content row-container">
+    <article class="view-wallet-content">
+      <hr>
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
           <div class="account-help-icon">           
@@ -28,7 +29,8 @@
         </div>
 
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 address-identicon-container">
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 address-identicon-container">
             <div class="addressIdenticon"
                  title="Address Indenticon"
                  blockie-address="{{wallet.getAddressString()}}"
@@ -36,24 +38,25 @@
             </div>
           </div>
           <span class="col-lg-10 col-md-10 col-sm-10 col-xs-10 address">{{wallet.getChecksumAddressString()}}</span>
-<!--           <input class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-control"
-                 type="text"
-                 ng-value="wallet.getChecksumAddressString()"
-                 readonly="readonly"> -->
-          <a class="btn btn-primary" href="{{blobEnc}}" download="{{encFileName}}" ng-show='showEnc'>
-            <span translate="x_Download">
-              DOWNLOAD
-            </span>
-            <span translate="x_Keystore2">
-              Keystore File (UTC / JSON)
-            </span>
-          </a>
+          </div>         
+          <div class="row"> 
+            <a class="btn btn-primary" href="{{blobEnc}}" download="{{encFileName}}" ng-show='showEnc'>
+              <span translate="x_Download">
+                DOWNLOAD
+              </span>
+              <span translate="x_Keystore2">
+                Keystore File (UTC / JSON)
+              </span>
+            </a>
+          </div>
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
           <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
         </div>
       </div>
+
+      <hr>
 
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -72,26 +75,30 @@
         </div>
 
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-show="wallet.type=='default'">
-          <div class="input-group">
+          <div class="input-group row" style="width:100%;">
             <input class="form-control no-animate"
                    type="{{pkeyVisible ? 'text' : 'password'}}"
                    ng-value="wallet.getPrivateKeyString()"
-                   readonly="readonly">
+                   readonly="readonly"
+                   style="height: 1.5rem;font-size: 1rem;font-family: MoskLight300;color: rgba(20,42,63,1);line-height: 1.5rem;background: transparent;border:none;padding: 0;">
             <span tabindex="0"
                   aria-label="make private key visible"
                   role="button"
                   class="input-group-addon eye"
-                  ng-click="showHidePkey()"></span>
+                  ng-click="showHidePkey()"
+                  style="background: transparent;width: 3rem;text-align: center; padding: 0;"></span>
           </div>
-          <a class="btn btn-primary" ng-click="printQRCode()" translate="x_Print">
-            Print Paper Wallet
-          </a>
+          <div class="row" style="margin-top: 1rem;">
+            <a class="btn btn-primary" ng-click="printQRCode()" translate="x_Print">
+              Print Paper Wallet
+            </a>
+          </div>          
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
           <div class="qr-overlay" ng-show="!pkeyVisible"></div>
           <div class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
-          <div class="input-group">
+          <div class="input-group" style="width: 61%;float: right;display: inline-block;">
             <input class="form-control no-animate"
                    type="{{pkeyVisible ? 'text' : 'password'}}"
                    ng-value="wallet.getPrivateKeyString()"
@@ -100,10 +107,15 @@
             <span tabindex="0"
                   aria-label="make private key visible"
                   role="button" class="input-group-addon eye"
-                  ng-click="showHidePkey()"></span>
+                  ng-click="showHidePkey()"
+                  style="width: 100%; display: inherit;"></span>
           </div>
         </div>
       </div>
+
+      <a class="btn btn-default pull-right" ng-click="globalService.currentTab=globalService.tabs.homepage.id">
+        <span> Back To Home</span> 
+      </a>
     </article>
   </section>
 </article>

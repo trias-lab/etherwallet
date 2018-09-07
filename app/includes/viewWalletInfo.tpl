@@ -17,7 +17,7 @@
         How would you like to access your wallet?
       </p>
       <a class="collapse-button pull-right">
-        <span ng-show="wd">+</span><span ng-show="!wd">-</span>
+        <i class="fas fa-plus-square" ng-show="wd"></i><i class="fas fa-minus-square" ng-show="!wd"></i>
       </a>
     </div>
     <section class="block__main view__1--inner step-content" ng-show="!wd">
