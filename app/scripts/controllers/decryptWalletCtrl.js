@@ -315,9 +315,6 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
     }
     $scope.decryptWallet = function() {
         $scope.wallet = null;
-        // ｊｓｏｎ文件解锁钱包，进入下一步
-        // 成功解锁钱包，进入下一步
-        walletService.sendDealStep = 2; 
     
         try {
           if ($scope.showPDecrypt && $scope.requirePPass) {
