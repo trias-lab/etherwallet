@@ -165,8 +165,11 @@ textarea {
     z-index: 999;
   }
   img {
-    margin-left: -30px;
-    margin-right: 3px;
+    // margin-left: -30px;
+    // margin-right: 3px;
+    position: absolute;
+    bottom: -16px;
+    left: 16px;
   }
   &:hover {
     opacity: 1;
@@ -186,6 +189,7 @@ textarea {
   width: 18rem;
   z-index: 999;
   color: @text-color;
+  left: 42px;
   ul& {
     padding-left: 1.6rem;
   }
@@ -553,6 +557,11 @@ label small {
 .view-wallet-content {
   h5 {
     margin-bottom: @space-xs;
+    font-size: 1.13rem;
+    font-family: MoskMedium500;
+    color: rgba(20,42,63,1);
+    /* line-height: 1; */
+    max-width: 80%;
   }
   a.isActive { color: @text-color; }
 }
