@@ -57,7 +57,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
     Object.keys($scope.kyber.kyberRates).forEach(kkey => {
       $scope.kyberPriceTicker[kkey] = 1
     });
-    $scope.availableTokens = $scope.kyber.getTokenList();
+    // $scope.availableTokens = $scope.kyber.getTokenList();
     $scope.availableTokens.slice($scope.availableTokens.indexOf("ETH"), 1);
     $scope.availableFromOptions = [...$scope.availableCoins, ...$scope.availableTokens];
     $scope.availableToOptions = [...$scope.availableCoins, ...$scope.availableTokens];
