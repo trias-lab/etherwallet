@@ -33,7 +33,7 @@
 
 
 <!-- Content -->
-<div ng-class="wallet!=null ? 'step-card active':'step-card'">
+<div ng-class="wallet!=null ? 'step-card tran-card active':'step-card tran-card'">
   <div class="step-title">
     <div class="num">2</div>
     <p class="text" aria-live="polite">
@@ -42,8 +42,8 @@
     <!-- <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i> -->
   </div>
 
-<article class="step-content" ng-show="wallet!=null">
-  <!-- <article class="step-content"> -->
+<!-- <article class="step-content" ng-show="wallet!=null"> -->
+  <article class="step-content">
     <!-- If unlocked with address only -->
     <article class="block" ng-show="wallet.type=='addressOnly'">
       <div class="row form-group">
