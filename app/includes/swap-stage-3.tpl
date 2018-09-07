@@ -1,10 +1,7 @@
-<article ng-if="!isKyberSwap">
-    <article class="swap-order" ng-show="showStage3Btc || showStage3Eth">
+<article>
+    <article class="swap-order" >
 
-        <section class="row text-center">
-            <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" ng-click="newSwap()"> Start New Swap </a>
-            </div>
-        </section>
+
         
         <!-- Title -->
         <!-- <section class="row text-center">
@@ -70,7 +67,7 @@
 
 
         <!-- Swap CTA -->
-        <section style="margin-bottom: 36px;overflow: hidden;" ng-show="orderResult.progress.status=='OPEN'">
+        <section style="overflow: hidden;" ng-show="orderResult.progress.status=='OPEN'">
             <h5>
                 <span translate="SWAP_order_CTA"> Please send </span>
                 <strong style="padding: 5px;background:#FEFEFE;display: inline-block; color: #5DB85C;"> {{orderResult.input.amount}}
@@ -82,16 +79,19 @@
             <p style="color:#142A3F">Your money will be transfered to a temperary address to complete the swap.</p>
         </section>
 
-
+        <section class="row text-center" ng-show="orderResult.progress.status=='OPEN'" style="margin-bottom: 30px;">
+                <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" style="background: #B00F23" ng-click="newSwap()"> End This Session</a>
+                </div>
+            </section>
         <!-- Swap CTA ETH -->
-        <section class="swap-panel" ng-show="showStage3Eth && orderResult.progress.status=='OPEN'">
+        <section class="swap-panel" ng-show="!wd || !isKyberSwap">
 
-            <div ng-class="!isKyberSwap && !wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
+            <div ng-class="orderResult.progress.status=='OPEN' && !wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
                 <div class="swap-pane-step">3</div>
                 <span>How would you like to access your wallet?</span>
-                <i class="fas fa-check-circle success" ng-show="!isKyberSwap"></i>
+                <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='OPEN' && wd"></i>
             </div>
-            <div ng-show="!wd">
+            <div ng-show="orderResult.progress.status=='OPEN' && !wd">
                 @@if (site === 'mew' ) {
                 <wallet-decrypt-drtv></wallet-decrypt-drtv>
                 } @@if (site === 'cx' ) {

@@ -289,7 +289,7 @@
         <!-- @@if (site === 'mew' ) { @@include( './sendTx-content.tpl', { "site": "mew" } ) }
         @@if (site === 'cx' ) { @@include( './sendTx-content.tpl',{ "site": "cx" } ) }  -->
 
-        @@if (site === 'mew' ) { @@include( './sendTx-modal.tpl', { "site": "mew" } ) } 
-        @@if (site === 'cx' ) { @@include( './sendTx-modal.tpl', { "site": "cx" } ) }
+        @@if (site === 'mew' ) { @@include( './swap-modal.tpl', { "site": "mew" } ) } 
+        @@if (site === 'cx' ) { @@include( './swap-modal.tpl', { "site": "cx" } ) }
     </section>
 </section>
