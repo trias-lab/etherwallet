@@ -25,19 +25,17 @@
   <!-- Unlock Wallet -->
   <article class="collapse-container step-card" ng-class="!wd ? 'collapse-container step-card active':'collapse-container step-card'">
     <div ng-click="wd = !wd">
-      <!-- <a class="collapse-button"><span ng-show="wd">+</span><span ng-show="!wd">-</span></a> -->
       <div class="step-title">
         <div class="num">1</div>
         <p class="text" aria-live="polite">
-          Access your wallet
+          How would you like to access your wallet?
         </p>
-        <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
+         <a class="collapse-button pull-right">
+          <i class="fas fa-plus-square" ng-show="wd"></i><i class="fas fa-minus-square" ng-show="!wd"></i>
+        </a>
       </div>
-      <!-- <h1 translate="NAV_SendEther">
-        Send Ether &amp; Tokens
-      </h1> -->
     </div>
-    <div ng-show="!wd">
+    <div ng-show="!wd" class="step-content" style="padding: 0 2rem;" >
         @@if (site === 'cx' )  {  <cx-wallet-decrypt-drtv></cx-wallet-decrypt-drtv>   }
         @@if (site === 'mew' ) {  <wallet-decrypt-drtv></wallet-decrypt-drtv>         }
     </div>
