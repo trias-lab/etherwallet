@@ -263,17 +263,17 @@
                   About Us
                 </h2>
                 <div class="link">
-                    <a href="https://www.trias.one/aboutus" target="blank">
+                    <a href="https://www.trias.one/aboutus/recent" target="blank">
                       Recent Events
                     </a>
                 </div>
                 <div class="link">
-                    <a href="https://www.trias.one/aboutus" target="blank">
+                    <a href="https://www.trias.one/aboutus/view" target="blank">
                       View
                     </a>
                 </div>
                 <div class="link">
-                    <a href="https://www.trias.one/aboutus" target="blank">
+                    <a href="https://www.trias.one/aboutus/project" target="blank">
                       Project Progress
                     </a>
                 </div>
