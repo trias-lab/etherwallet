@@ -2,10 +2,13 @@
 
 <div class="tab-title">
     <div class="text">
-      <h1>View Account Info</h1>
+      <h1 translate="NAV_ViewAccount">View Account Info</h1>
+      <div class="icon visible-xs-inline-block">
+        <i class="fas fa-user-circle"></i>
+      </div> 
       <h2>Check your account to view the private key and your address. If you forget to download the Paper Wallet or Keystore file, you can still do it here.</h2>
     </div>
-    <div class="icon">
+    <div class="icon hidden-xs">
       <i class="fas fa-user-circle"></i>
     </div>  
   </div>

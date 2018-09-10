@@ -4,11 +4,14 @@
 
     <div class="tab-title">
         <div class="text">
-            <h1>Swap</h1>
+            <h1 translate="NAV_Swap">Swap</h1>
+            <div class="icon visible-xs-inline-block">
+                <i class="fa fa-exchange" aria-hidden="true"></i>
+            </div>
             <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor
                 your balance. </h2>
         </div>
-        <div class="icon">
+        <div class="icon hidden-xs">
             <i class="fa fa-exchange" aria-hidden="true"></i>
         </div>
     </div>

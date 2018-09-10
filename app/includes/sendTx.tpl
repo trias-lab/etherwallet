@@ -13,11 +13,14 @@
   <div class="tab-title">
     <div class="text">
       <h1 translate="NAV_SendTRI">Send TRI</h1>
+      <div class="icon visible-xs-inline-block">
+        <i class="fas fa-envelope"></i>
+      </div>  
       <h2>Send TRI to another Trias Wallet address. 
         Be absolutely sure about what you’re doing, 
         check the everything twice before initiating the transaction.</h2>
     </div>
-    <div class="icon">
+    <div class="icon hidden-xs">
       <i class="fas fa-envelope"></i>
     </div>    
   </div>

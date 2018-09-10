@@ -5,10 +5,13 @@
       ng-cloak>
   <div class="tab-title">
     <div class="text">
-      <h1>Create New Wallet</h1>
+      <h1 translate="NAV_GenerateWallet">Create New Wallet</h1>
+      <div class="icon visible-xs-inline-block">
+        <i class="fas fa-wallet"></i>
+      </div>  
       <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance. </h2>
     </div>
-    <div class="icon">
+    <div class="icon hidden-xs">
       <i class="fas fa-wallet"></i>
     </div>    
   </div>
