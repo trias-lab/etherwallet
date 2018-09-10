@@ -250,6 +250,34 @@ wallet-balance-drtv {
     }
   }
 }
+#sendTransaction {
+  .modal-footer {
+    border: none;
+  }
+  .transaction-list {
+    font-size:0.94rem;
+    font-family:MoskLight300;
+    color:rgba(22,25,27,1);
+    line-height:1.5rem;
+    border-top:1px solid rgba(203,208,211,1);
+    p {
+      padding: 1rem;
+      margin: 0;
+      border-bottom:1px solid rgba(203,208,211,1);
+      span:nth-child(1) {
+        float: left;
+      }
+      span:nth-child(2) {
+        font-family:MoskMedium500;
+        color:rgba(22,25,27,1);
+        float: right;
+      }
+    }
+    p:nth-child(2n+1) {
+      background:rgba(246,247,249,1);
+    }
+  }
+}
 @media screen and (max-width: 768px) {
   wallet-balance-drtv {
     .block {
@@ -321,8 +349,20 @@ wallet-balance-drtv {
         strong {
           word-break: break-all;
         }
-        .btn-default {
-          margin-bottom: 1rem;
+      }
+      .btn-default {
+        margin-bottom: 1rem;
+      }
+    }
+    .transaction-list {
+      p {
+        span:nth-child(1) {
+          float: none;
+        }
+        span:nth-child(2) {
+          float: none;
+          word-break: break-all;
+          display: block;
         }
       }
     }
