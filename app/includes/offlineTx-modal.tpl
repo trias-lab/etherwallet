@@ -1,7 +1,7 @@
 <article class=" fade" id="sendTransactionOffline" tabindex="-1" ng-show='sendDealBox'>
     <h2 class="col-xs-11 clearfix sendOffline-step-title">
         <span class="step-item">4</span>
-        <span translate="OFFLINE_Step3_Title" >Initiate Transaction</span>
+        <span translate="" >Initiate Transaction</span>
       
     </h2>
   <div class="deal-detail">
@@ -77,9 +77,9 @@
 
 
       <div class="modal-footer">
-        <button class="btn btn-default" data-dismiss="modal" translate="SENDModal_No">
+        <!-- <button class="btn btn-default" data-dismiss="modal" translate="SENDModal_No">
           No, get me out of here!
-        </button>
+        </button> -->
         <button class="btn btn-primary" ng-click="sendTx()" translate="SENDModal_Yes">
           Yes, I am sure! Make transaction.
         </button>
