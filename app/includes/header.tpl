@@ -109,13 +109,13 @@
     }
     <div class="language-change tagline">
         <span class="dropdown">
-            <a href="https://www.trias.one" target="_blank">Trias Project</a>
+            <a href="https://www.trias.one" target="_blank" translate="HEADER_TriasProject">Trias Project</a>
           </span>
           <span class="dropdown">
-              <a href="https://monitor.trias.one" target="_blank">Nodes Status Monitor</a>
+              <a href="https://monitor.trias.one" target="_blank" translate="HEADER_Monitor">Nodes Status Monitor</a>
             </span>
         <span class="dropdown">
-          <a href="https://explorer.trias.one" target="_blank">Blockchain Explorer</a>
+          <a href="https://explorer.trias.one" target="_blank" translate="HEADER_Explorer">Blockchain Explorer</a>
         </span>
         <span class="dropdown dropdown-lang" ng-cloak>
             <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
