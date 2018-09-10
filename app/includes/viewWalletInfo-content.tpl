@@ -15,7 +15,7 @@
     <article class="view-wallet-content">
       <hr>
       <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="account-help-icon">           
             <h5 translate="x_Address">
               Your Address:
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
           <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 address-identicon-container">
             <div class="addressIdenticon"
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
           <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
         </div>
       </div>
@@ -59,7 +59,7 @@
       <hr>
 
       <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="account-help-icon">
             <h5>
               <span translate="x_PrivKey">
@@ -74,7 +74,7 @@
           </div>
         </div>
 
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" ng-show="wallet.type=='default'">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-show="wallet.type=='default'">
           <div class="input-group row" style="width:100%;">
             <input class="form-control no-animate"
                    type="{{pkeyVisible ? 'text' : 'password'}}"
@@ -95,10 +95,10 @@
           </div>          
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 text-right">
           <div class="qr-overlay" ng-show="!pkeyVisible"></div>
           <div class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
-          <div class="input-group" style="width: 61%;float: right;display: inline-block;">
+          <div class="input-group">
             <input class="form-control no-animate"
                    type="{{pkeyVisible ? 'text' : 'password'}}"
                    ng-value="wallet.getPrivateKeyString()"

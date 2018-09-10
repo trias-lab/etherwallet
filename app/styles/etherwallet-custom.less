@@ -612,6 +612,10 @@ label small {
     right: 1rem;
     left: initial;
   }
+  .qr-code + .input-group{
+    width: 61%;
+    float: right;    
+  }
   .input-group-addon{
     background: #F6F7F9;
     border: none;
@@ -619,6 +623,41 @@ label small {
   }
   .btn-primary{
     margin-top: 18px;
+  }
+  @media (max-width: @screen-xs-max){
+    .row{
+      margin-bottom: 70px;
+    }
+    .col-lg-5 .row{
+      margin: 0;
+      margin-top: 24px;
+    }
+    .address-identicon-container{
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    span.address{
+      padding-left: 0;
+    }
+    .btn{
+      width: 100%;
+      margin-bottom: 18px;
+      margin-top: 0
+    }
+    .qr-code{
+      width: 146px;
+      height: 146px;
+      float: left;
+    }
+    .qr-overlay{
+      left: 15px;
+      width: 148px;
+    }
+    .qr-code + .input-group{
+      width: 148px;
+      float: left;
+      margin-left: -1px;   
+    }
   }
 }
 #selectedTypeLedger ol {
