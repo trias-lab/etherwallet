@@ -33,11 +33,11 @@
   font-family:MoskMedium500;
   color:rgba(43,47,55,1);
   line-height:2.5rem;
-  margin:0;
+  margin:0 0 0.5rem 0;
 }
 .sendOffline-intro{
   width:33.75rem;
-  height:3rem;
+  // height:3rem;
   font-size:0.94rem;
   font-family:MoskLight300;
   color:rgba(20,42,63,1);
@@ -58,6 +58,7 @@
   background:rgba(255,255,255,1);
   border-radius:0.25rem;
   margin:0 0 2rem 0;
+  padding-bottom: 2rem;
   
 }
 .sendOffline-step-title{
@@ -82,9 +83,9 @@
   font-weight: normal;
 }
 .sendOffline-step-content{
-  padding:2rem 1rem 2rem 1rem;
+  padding:2rem 1rem 0 1rem;
   .address-input{
-    margin-bottom: 1.5rem;
+    // margin-bottom: 1.5rem;
   }
   .button-next{
     width:100%;
@@ -124,6 +125,7 @@
 }
 .inputForm-box-bottom-gaps{
   margin-bottom: 1.5rem;
+  padding: 0 1rem;
 }
 .wallet-decrypt-drtv{
   .sendOffline-step-title{
@@ -151,4 +153,29 @@
   font-family:MoskMedium500;
   color:rgba(145,153,158,1);
   margin-bottom: 2rem;
+}
+@media only screen and(max-width:768px){
+  .sendOffline-title-box{
+    margin:2rem 0;
+  }
+  .send-title-icon{
+    font-size: 2rem;
+    margin-top: -3.8rem;
+  }
+  .sendOffline-intro{
+    width: 100%;
+  }
+  .sendOffline-step-content{
+    padding:2rem 0 0 0;
+  }
+  .sendOffline-step-content .address-input{
+    width: 72%;
+  }
+  .address-identicon-container{
+    width: 28%;
+    margin-left: 0.2rem;
+  }
+  .inputForm-box-bottom-gaps{
+    padding:0;
+  }
 }

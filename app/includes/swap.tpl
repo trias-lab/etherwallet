@@ -24,9 +24,9 @@
     
     @@if (site=== 'mew' ) { @@include( '../includes/swap-stage-4.tpl', { "site": "mew" } ) } 
     @@if (site === 'cx' ) { @@include( '../includes/swap-stage-4.tpl',{ "site": "cx" } ) }
-<!--    
-    @@if (site === 'mew' ) { @@include( '../includes/swap-kyber.tpl', { "site": "mew" } ) } 
-    @@if (site === 'cx' ) { @@include( '../includes/swap-kyber.tpl', { "site": "cx" } ) } -->
+   
+    <!-- @@if (site === 'mew' ) { @@include( '../includes/swap-kyber.tpl', { "site": "mew" } ) }  -->
+    <!-- @@if (site === 'cx' ) { @@include( '../includes/swap-kyber.tpl', { "site": "cx" } ) } -->
 
     <!-- <section class="bity-contact text-center" ng-if="!isKyberRateSwap">
         <p><a class="btn-warning btn-sm"
@@ -68,4 +68,4 @@
     </section> -->
 
 </main>
-<!-- / Swap Page -->
+<!-- / Swap Page

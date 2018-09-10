@@ -179,12 +179,13 @@
           Are you sure you want to do this?
         </p>
         <br />
-        <button class="btn btn-primary" ng-click="sendTx()" translate="SENDModal_Yes" style="float:right;">
+        <button class="btn btn-default" data-dismiss="modal" translate="SENDModal_No" >
+          No, get me out of here!
+        </button>
+        <button class="btn btn-primary" ng-click="sendTx()" translate="SENDModal_Yes" >
             Yes, I am sure! Make transaction.
           </button>
-        <!-- <button class="btn btn-default" data-dismiss="modal" translate="SENDModal_No" style="float:right;">
-          No, get me out of here!
-        </button> -->
+    
        
       </div>
 

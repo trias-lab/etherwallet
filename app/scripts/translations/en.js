@@ -431,7 +431,7 @@ NAV_SendTokens                  :  'Send Tokens',
 NAV_SignMsg                     :  'Sign Message',
 NAV_Swap                        :  'Swap',
 NAV_TxStatus                    :  'TX Status',
-NAV_ViewWallet                  :  'View Wallet Info',
+NAV_ViewWallet                  :  'View Account Info',
 NAV_YourWallets                 :  'Your Wallets',
 
 NODE_CTA                        :  'Save & Use Custom Node',

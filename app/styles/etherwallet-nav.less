@@ -297,3 +297,90 @@
     }
   }
 }
+
+.header-branding{
+  .language-change{
+    .dropdown{
+      padding-left: 2rem;
+    }
+  }
+}
+.header-navbar-title{
+  margin: auto;
+  width: 100%;
+  padding: 0 10rem;
+  height:6rem;
+  line-height: 6rem;
+  background: url(../images/bg_top.jpg) no-repeat left top;
+  background-size: 100%;
+  .trias-title{
+    font-size:1.88rem;
+    font-family:MoskLight300;
+    color:rgba(20,42,63,1);
+    line-height:2.19rem;
+    .fa-thumbs-up{
+      font-size:1rem;
+      color:rgba(92,184,92,1);
+      line-height:1.5rem;
+      margin-left: 1rem;
+    }
+  }
+  .trias-fondation{
+    font-size:1rem;
+    font-family:MoskLight300;
+    color:rgba(20,42,63,1);
+    line-height:1.5rem;
+  }
+  .select-gas-btn,.select-node-btn{
+    background:rgba(246,247,249,1);
+    border-radius:0.25rem;
+    border:0.06rem solid rgba(203,208,211,1);
+    margin-left: 1rem;
+  }
+  .dropdown-menu{
+    margin-top:-1.8rem;
+  }
+
+  .dropdown-gas{
+    float: right;
+    padding-bottom: 0;
+  }
+  .dropdown-node{
+    float: right;
+    padding-bottom: 0;
+  }
+  .header--gas{
+    line-height: 1.4rem;
+  }
+}
+
+@media only screen and(max-width:768px){
+  .header-navbar-title{
+    height:11rem;
+    line-height: inherit;
+    padding:0 1rem;
+    background-size: cover;
+  }
+  .dropdown-gas ,.dropdown-node{
+    width:100%;
+    
+  }
+  .dropdown-gas {
+    margin-bottom: 0.6rem;
+  }
+  .header-navbar-title .select-gas-btn, .header-navbar-title .select-node-btn{
+    width:100%;
+    margin-left: 0;
+    text-align: left;
+    .caret{
+      float: right;
+      margin-top: 1rem;
+    }
+  }
+  .header-navbar-title .trias-title{
+    line-height: 5rem;
+  }
+  .header-navbar-title .dropdown-menu{
+    margin-top: 0;
+  }
+}
