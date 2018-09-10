@@ -145,6 +145,11 @@
     float: right;
     margin-top: 2rem;
   }
+  @media (max-width: @screen-xs-max) {
+    .btn{
+      width: 100%;
+    }
+  }
 }
 
 .gen__2 {
@@ -201,6 +206,26 @@
       }
     }
   }
+  @media (max-width: @screen-xs-max) {
+    .warn{
+      p{
+        padding: 0 0.5rem;
+        height: initial;
+        .emphasis{
+          width: calc(100% + 1rem);
+          margin: 0 -0.5rem;
+        }
+      }
+    }
+    .btn-default{
+      margin-top: 18px;
+      margin-bottom: 12px;
+    }
+    .btn.pull-right{
+      width: 100%;
+      margin-top: 0;
+    }
+  }
 }
 
 .gen__4--inner{
@@ -222,6 +247,14 @@
   }
   .btn-primary{
     margin-left: 1rem;
+  }
+  @media (max-width: @screen-xs-max) {
+    .intro{
+      padding-left: 0;
+    }
+    .btn{
+      width: 100%;
+    }
   }
 }
 

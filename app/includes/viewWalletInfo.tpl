@@ -23,7 +23,7 @@
         <i class="fas fa-plus-square" ng-show="wd"></i><i class="fas fa-minus-square" ng-show="!wd"></i>
       </a>
     </div>
-    <section class="block__main view__1--inner step-content" ng-show="!wd" style="padding: 0 2rem;">
+    <section class="block__main view__1--inner step-content wallet-decrypt-container" ng-show="!wd">
       <wallet-decrypt-drtv></wallet-decrypt-drtv>
     </section>
   </article>
