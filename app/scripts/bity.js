@@ -13,7 +13,7 @@ bity.prototype.priceLoaded = false;
 bity.prototype.refreshRates = function(callback) {
     var _this = this;
     ajaxReq.getRates(function(data) {
-        _this.curRate = {};
+        _this.curRate = {}; 
         data.forEach(function(pair) {
             if (bity.mainPairs.indexOf(pair.pair.substring(3)) != -1) _this.curRate[pair.pair] = parseFloat(pair.rate_we_sell);
             else if (bity.mainPairs.indexOf(pair.pair.substring(0, 3)) != -1) _this.curRate[pair.pair] = parseFloat(pair.rate_we_buy);
