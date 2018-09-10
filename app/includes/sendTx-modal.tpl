@@ -1,4 +1,4 @@
-<article  style="display: block" class="modal fade swap-modal" id="sendTransaction" tabindex="-1">
+<article  class="modal fade swap-modal" id="sendTransaction" tabindex="-1">
   <section class="modal-dialog" style="transform: translateY(0%)">
     <section class="modal-content">
 
