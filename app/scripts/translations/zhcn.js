@@ -272,19 +272,19 @@ NAV_Contact                 : '联系我们 ',
 NAV_Contracts               : '合同 ',
 NAV_DeployContract          : '部署合约 ',
 NAV_ENS                     : 'ENS',
-NAV_Homepage_alt			: 'Homepage',
-NAV_GenerateWallet_alt      : 'New Wallet ',
+NAV_Homepage_alt			: '首页',
+NAV_GenerateWallet_alt      : '创建钱包 ',
 NAV_GenerateWallet          : '生成钱包 ',
 NAV_Help                    : '帮助 ',
 NAV_InteractContract        : 'Interact with Contract ',
 NAV_Multisig                : 'Multisig ',
 NAV_MyWallets               : '我的钱包 ',
 NAV_Offline                 : '离线发送 ',
-NAV_SendEther               : '发送以太币 / 发送代币 ', //combined these tabs
+NAV_SendTRI               	: '发送TRI币 ', //combined these tabs
 NAV_SendTokens              : 'Send Tokens ',
 NAV_SignMsg                 : 'Sign Message ',
 NAV_Swap                    : 'Swap ',
-NAV_ViewWallet              : '查看钱包信息 ',
+NAV_ViewAccount             : '查看账户信息',
 NAV_YourWallets             : '你的钱包 ',
 
 /* General */
