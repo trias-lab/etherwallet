@@ -63,6 +63,9 @@
 
 .tab-content{
   padding-bottom: 9rem;
+  @media (max-width: @screen-xs-max) {
+    padding-bottom: 4.5rem;
+  }
   .tab-pane{
     max-width: 50rem;
     margin: 0 auto;
@@ -106,21 +109,46 @@
       border-left: 0.38rem solid #5DB85C;
       margin-bottom: 2rem;
       h1{
+        display: inline-block;
         font-size:1.5rem;
         font-family:MoskMedium500;
         color:rgba(43,47,55,1);
         line-height:1.5rem;
         margin-bottom: 0.75rem;
         margin-top: 0;
-      }
+      }      
       .icon{
         margin-top:0;
-      }
+      }      
       &:first-child{
         margin-top: 3rem;
       }
       &:last-child{
         margin-bottom: 0
+      }
+      @media screen and (max-width: @screen-xs-max) {
+        padding: 1rem 1.125rem;
+        margin-bottom: 1.5rem;
+        .text .icon{
+          width: 1.63rem;
+          height: 1.63rem;
+          float: none;
+          margin-left: .5rem;
+          i{
+            font-size: 1.63rem;
+            line-height: 1.63rem;
+          }
+        }
+        h1{
+          margin-bottom: 0;
+        }
+        h2{
+          margin-top: 12px;
+          margin-bottom: 2px;
+        }
+        &:first-child{
+          margin-top: 1.25rem;
+        }
       }
     }
     .step-card{
