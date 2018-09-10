@@ -1,7 +1,9 @@
 <article class="row sendOffline-step-box clearfix">
 
-    <h2 translate="OFFLINE_Step3_Title" class="col-xs-11 clearfix sendOffline-step-title">
-      Step 3: Send / Publish Transaction
+    <h2 class="col-xs-11 clearfix sendOffline-step-title">
+        <span class="step-item">3</span>
+        <span translate="OFFLINE_Step3_Title" >Step 3: Send / Publish Transaction</span>
+      
     </h2>
   
     <!-- <p translate="OFFLINE_Step3_Label_1">

@@ -3,8 +3,10 @@
     <!-- To Address -->
     <article class="clearfix sendOffline-step-box clearfix">
   
-      <h2 class="col-xs-12 clearfix sendOffline-step-title" translate="OFFLINE_Step2_Title">
-        Step 2: Generate Transaction (Offline Computer)
+      <h2 class="col-xs-12 clearfix sendOffline-step-title" >
+          <span class="step-item">2</span>
+          <span translate="OFFLINE_Step2_Title">Step 2: Generate Transaction (Offline Computer)</span>
+        
       </h2>
       <div class="clearfix sendOffline-step-content">
         <section class="col-xs-11 clearfix address-input">
@@ -150,7 +152,7 @@
               <section class="col-sm-11">
               
                 <label class="step-box-title">
-                    How would you like to access your wallet?
+                   access your wallet
                 </label>
                 <!-- choose wallet access -->
                 <section> 
