@@ -17,7 +17,7 @@
           />
         </section>
   
-        <section class="col-xs-1 address-identicon-container">
+        <section class="col-xs-1 address-identicon-container address-send-photo">
           <div class="addressIdenticon" title="Address Indenticon" blockie-address="{{tx.to}}" watch-var="tx.to"></div>
         </section>
   

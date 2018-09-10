@@ -1,43 +1,45 @@
-<article class="modal fade" id="sendTransactionOffline" tabindex="-1">
-  <section class="modal-dialog">
-    <section class="modal-content">
-
-      <div class="modal-body">
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close Dialog">&times;</button>
-
-        <h2 class="modal-title text-danger" translate="SENDModal_Title">
-          Warning!
-        </h2>
-
-        <table class="table text-center"><tbody><tr>
-
-          <td ng-show="tx.sendMode=='ether'">
-            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tx.from}}" watch-var="tx.from"></div>
-          </td>
-          <td ng-show="tx.sendMode!=='ether'">
-            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tokenTx.from}}" watch-var="tokenTx.from"></div>
-          </td>
-
-          <td ng-show="tx.sendMode=='ether'" class="mono">
-            ->
-            <br />
-            {{tx.value}} {{unitReadable}}
-          </td>
-          <td ng-show="tx.sendMode!=='ether'" class="mono">
-            ->
-            <br />
-            {{tokenTx.value}} {{unitReadable}}
-          </td>
-
-          <td ng-show="tx.sendMode=='ether'">
-            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tx.to}}" watch-var="tx.to"></div>
-          </td>
-          <td ng-show="tx.sendMode!=='ether'">
-            <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tokenTx.to}}" watch-var="tokenTx.to"></div>
-          </td>
-
-        </tr></tbody></table>
+<article class=" fade" id="sendTransactionOffline" tabindex="-1" ng-show='sendDealBox'>
+    <h2 class="col-xs-11 clearfix sendOffline-step-title">
+        <span class="step-item">4</span>
+        <span translate="OFFLINE_Step3_Title" >Initiate Transaction</span>
+      
+    </h2>
+  <div class="deal-detail">
+      <div class="">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close Dialog">&times;</button>
+      
+          <h2 class="modal-title text-danger" translate="SENDModal_Title">
+            Warning!
+          </h2> -->
+        <ul class="deal-photo">
+          <li class="photo-address clearfix">
+              <div ng-show="tx.sendMode=='ether'" class="deal-photo-icon">
+                  <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tx.from}}" watch-var="tx.from"></div>
+              </div>
+              <p class="deal-address" ng-show="tx.sendMode=='ether'">
+                <span>Output Address</span>
+                <span>{{tx.from}}</span>
+              </p>
+          </li>
+          <li class="photo-alt">
+            <span class="deal-alt-circle">
+                <i class="fa fa-arrow-alt-circle-down"></i>
+            </span>
+            <span class="deal-coin" ng-show="tx.sendMode=='ether'">
+                {{tx.value}} {{unitReadable}}
+            </span>
+          </li>
+          <li class="photo-address clearfix" >
+              <div ng-show="tx.sendMode=='ether'" class="deal-photo-icon">
+                  <div class="addressIdenticon med" title="Address Indenticon" blockie-address="{{tx.to}}" watch-var="tx.to"></div>
+              </div>
+              <p class="deal-address" ng-show="tx.sendMode =='ether'">
+                  <span>Input Address</span>
+                  <span> {{tx.to}}</span>
+                </p>
+          </li>
+        
+        </ul>
 
         <br />
 
@@ -83,6 +85,5 @@
         </button>
       </div>
 
-    </section>
-  </section>
+    </div>
 </article>
