@@ -2,7 +2,7 @@
 <article class="row sendOffline-step-box clearfix">
 
     <h2 class="col-xs-11 clearfix sendOffline-step-title" >
-      <span class="step-item">1</span>  <span translate="OFFLLINE_Step1_Title"> Step 1: Generate Information (Online
+      <span class="step-item">1</span>  <span translate="OFFLLINE_Step1_Title" class="step-caption"> Step 1: Generate Information (Online
           Computer)</span>  </h2>
     <div class="clearfix sendOffline-step-content">
       <!-- From Address Input -->

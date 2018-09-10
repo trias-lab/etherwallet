@@ -1,7 +1,7 @@
 <article class=" fade" id="sendTransactionOffline" tabindex="-1" ng-show='sendDealBox'>
     <h2 class="col-xs-11 clearfix sendOffline-step-title">
         <span class="step-item">4</span>
-        <span translate="" >Initiate Transaction</span>
+        <span translate="" class="step-caption">Initiate Transaction</span>
       
     </h2>
   <div class="deal-detail">

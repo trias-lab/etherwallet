@@ -5,7 +5,7 @@
   
       <h2 class="col-xs-12 clearfix sendOffline-step-title" >
           <span class="step-item">2</span>
-          <span translate="OFFLINE_Step2_Title">Step 2: Generate Transaction (Offline Computer)</span>
+          <span translate="OFFLINE_Step2_Title" class="step-caption">Step 2: Generate Transaction (Offline Computer)</span>
         
       </h2>
       <div class="clearfix sendOffline-step-content">
