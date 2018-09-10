@@ -3,8 +3,10 @@
     <!-- To Address -->
     <article class="clearfix sendOffline-step-box clearfix">
   
-      <h2 class="col-xs-12 clearfix sendOffline-step-title" translate="OFFLINE_Step2_Title">
-        Step 2: Generate Transaction (Offline Computer)
+      <h2 class="col-xs-12 clearfix sendOffline-step-title" >
+          <span class="step-item">2</span>
+          <span translate="OFFLINE_Step2_Title" class="step-caption">Step 2: Generate Transaction (Offline Computer)</span>
+        
       </h2>
       <div class="clearfix sendOffline-step-content">
         <section class="col-xs-11 clearfix address-input">
@@ -15,7 +17,7 @@
           />
         </section>
   
-        <section class="col-xs-1 address-identicon-container">
+        <section class="col-xs-1 address-identicon-container address-send-photo">
           <div class="addressIdenticon" title="Address Indenticon" blockie-address="{{tx.to}}" watch-var="tx.to"></div>
         </section>
   
@@ -26,7 +28,7 @@
         </section>
         <!-- Amount to Send -->
         <article class="clearfix inputForm-box-bottom-gaps">
-          <section class="col-sm-11">
+          <section class="step-two-section">
             <label translate="OFFLINE_Step2_Label_2" class="step-box-title">
               Amount to Send
             </label>
@@ -57,7 +59,7 @@
   
         <!-- Gas Limit -->
         <article class="clearfix inputForm-box-bottom-gaps">
-          <section class="col-sm-11">
+          <section class="step-two-section">
             <!-- <a class="account-help-icon" href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank"
               rel="noopener noreferrer">
               <img src="images/icon-help.svg" class="help-icon" />
@@ -75,7 +77,7 @@
   
         <!-- Gas Price -->
         <article class="clearfix inputForm-box-bottom-gaps">
-          <section class="col-sm-11">
+          <section class="step-two-section">
             <!-- <a class="account-help-icon" href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank"
               rel="noopener noreferrer">
               <img src="images/icon-help.svg" class="help-icon" />
@@ -110,7 +112,7 @@
   
         <!-- Nonce -->
         <article class="clearfix inputForm-box-bottom-gaps">
-          <section class="col-sm-11">
+          <section class="step-two-section">
             <!-- <a class="account-help-icon" href="https://myetherwallet.github.io/knowledge-base/transactions/what-is-nonce.html" target="_blank"
               rel="noopener noreferrer">
               <img src="images/icon-help.svg" class="help-icon" />
@@ -128,7 +130,7 @@
   
         <!-- Data -->
         <article class="clearfix inputForm-box-bottom-gaps">
-          <section class="col-sm-11" ng-show="tokenTx.id=='ether'">
+          <section class="step-two-section" ng-show="tokenTx.id=='ether'">
             <!-- <span class="account-help-icon">
               <img src="images/icon-help.svg" class="help-icon" />
               <p class="account-help-text" translate="OFFLINE_Step2_Label_6b">
@@ -147,10 +149,10 @@
         </article>
           <!-- Decrypt -->
           <article class="clearfix inputForm-box-bottom-gaps">
-              <section class="col-sm-11">
+              <section class="step-two-section">
               
                 <label class="step-box-title">
-                    How would you like to access your wallet?
+                   access your wallet
                 </label>
                 <!-- choose wallet access -->
                 <section> 

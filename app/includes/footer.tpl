@@ -250,7 +250,7 @@
       <div class="center-box clearfix">
           <div class="intro pull-left">
               <img src="images/logo.png" alt=""/>
-              <P>
+              <P translate="FOOTER_TriasIntroduction">
                 TRIAS aims to define a new-generation all-platform-supported 
                 public chain system. Trustworthy and Reliable Intelligent 
                 Autonomous Systems make people trust in machines.
@@ -263,17 +263,17 @@
                   About Us
                 </h2>
                 <div class="link">
-                    <a href="https://www.trias.one/aboutus/recent" target="blank">
+                    <a href="https://www.trias.one/aboutus/recent" target="blank" translate="FOOTER_RecentEvents">
                       Recent Events
                     </a>
                 </div>
                 <div class="link">
-                    <a href="https://www.trias.one/aboutus/view" target="blank">
+                    <a href="https://www.trias.one/aboutus/view" target="blank" translate="FOOTER_View">
                       View
                     </a>
                 </div>
                 <div class="link">
-                    <a href="https://www.trias.one/aboutus/project" target="blank">
+                    <a href="https://www.trias.one/aboutus/project" target="blank" translate="FOOTER_Project">
                       Project Progress
                     </a>
                 </div>
@@ -285,20 +285,20 @@
                 Products
               </h2>
               <div class="link">
-                  <a href="https://www.trias.one/" target="blank">
+                  <a href="https://www.trias.one/" target="blank" translate="HEADER_TriasProject">
                     Trias Project
                   </a>
               </div>
               <div class="link">
-                  <a href=" https://explorer.trias.one/" target="blank">
-                    Blockchain Explorer
-                  </a>
-              </div>
-              <div class="link">
-                  <a href="https://monitor.trias.one/" target="blank">
+                  <a href="https://monitor.trias.one/" target="blank" translate="HEADER_Monitor">
                     Nodes Status Monitor
                   </a>
               </div>
+              <div class="link">
+                  <a href=" https://explorer.trias.one/" target="blank" translate="HEADER_Explorer">
+                    Blockchain Explorer
+                  </a>
+              </div>              
           </div>
         </div>
       </div>

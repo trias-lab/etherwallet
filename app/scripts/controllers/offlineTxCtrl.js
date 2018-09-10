@@ -15,6 +15,7 @@ var offlineTxCtrl = function($scope, $sce, walletService) {
     $scope.nonceDec = 0;
     $scope.tokens = Token.popTokens;
     $scope.Validator = Validator;
+    $scope.sendDealBox = false; //发送交易
     $scope.tx = {
         gasLimit: globalFuncs.defaultTxGasLimit,
         from: "",
@@ -175,7 +176,9 @@ var offlineTxCtrl = function($scope, $sce, walletService) {
                 $scope.tx.from = ethFuncs.sanitizeHex(eTx.getSenderAddress().toString('hex'));
                 $scope.tx.to = ethFuncs.sanitizeHex(eTx.to.toString('hex'));
             }
-            new Modal(document.getElementById('sendTransactionOffline')).open();
+            //显示交易详情步骤
+            $scope.sendDealBox = true;
+            // new Modal(document.getElementById('sendTransactionOffline')).open();
         } catch (e) {
             $scope.notifier.danger(e);
         }

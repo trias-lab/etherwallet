@@ -272,19 +272,19 @@ NAV_Contact                 : '联系我们 ',
 NAV_Contracts               : '合同 ',
 NAV_DeployContract          : '部署合约 ',
 NAV_ENS                     : 'ENS',
-NAV_Homepage_alt			: 'Homepage',
-NAV_GenerateWallet_alt      : 'New Wallet ',
-NAV_GenerateWallet          : '生成钱包 ',
+NAV_Homepage_alt			: '首页',
+NAV_GenerateWallet_alt      : '创建钱包 ',
+NAV_GenerateWallet          : '创建钱包 ',
 NAV_Help                    : '帮助 ',
 NAV_InteractContract        : 'Interact with Contract ',
 NAV_Multisig                : 'Multisig ',
 NAV_MyWallets               : '我的钱包 ',
 NAV_Offline                 : '离线发送 ',
-NAV_SendEther               : '发送以太币 / 发送代币 ', //combined these tabs
+NAV_SendTRI               	: '发送TRI币 ', //combined these tabs
 NAV_SendTokens              : 'Send Tokens ',
 NAV_SignMsg                 : 'Sign Message ',
 NAV_Swap                    : 'Swap ',
-NAV_ViewWallet              : '查看钱包信息 ',
+NAV_ViewAccount             : '查看账户信息',
 NAV_YourWallets             : '你的钱包 ',
 
 /* General */
@@ -877,7 +877,17 @@ HELP_Sec_Desc_6             : 'Generate a test wallet and check and see what net
 HELP_Sec_Desc_8             : 'If you do not feel comfortable using this tool, then by all means, do not use it. We created this tool as a helpful way for people to generate wallets and make transactions without needing to dive into command line or run a full node. Again, feel free to reach out if you have concerns and we will respond as quickly as possible. Thanks! ',
 
 HELP_FAQ_Title              : 'More Helpful Answers to Frequent Questions 常见问题的更多有用回答 ',
-HELP_Contact_Title          : 'Ways to Get in Touch 联系方式'
+HELP_Contact_Title          : 'Ways to Get in Touch 联系方式',
+
+HEADER_TriasProject				:  'Trias 项目',
+HEADER_Monitor					:  '节点状态 Monitor',
+HEADER_Explorer					:  '区块链浏览器',
+
+FOOTER_RecentEvents				:  '近期活动',
+FOOTER_View						:  '技术观点',
+FOOTER_Project					:  '项目进展',
+
+FOOTER_TriasIntroduction		:  'TRIAS 旨在创造支持通用应用程序的新一代公链体系，构建可信赖的智能自主运算设备（Trustworthy and Reliable Intelligent Autonomous Systems），构筑普世可信赖计算生态，让人相信机器。'
 };
 
 module.exports = zhcn;

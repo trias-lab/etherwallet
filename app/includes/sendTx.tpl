@@ -12,7 +12,7 @@
 
   <div class="tab-title">
     <div class="text">
-      <h1 translate="NAV_SendEther">Send TRI</h1>
+      <h1 translate="NAV_SendTRI">Send TRI</h1>
       <h2>Send TRI to another Trias Wallet address. 
         Be absolutely sure about what you’re doing, 
         check the everything twice before initiating the transaction.</h2>
@@ -28,14 +28,14 @@
       <div class="step-title">
         <div class="num">1</div>
         <p class="text" aria-live="polite">
-          How would you like to access your wallet?
+          Access your wallet
         </p>
          <a class="collapse-button pull-right">
           <i class="fas fa-plus-square" ng-show="wd"></i><i class="fas fa-minus-square" ng-show="!wd"></i>
         </a>
       </div>
     </div>
-    <div ng-show="!wd" class="step-content" style="padding: 0 2rem;" >
+    <div ng-show="!wd" class="step-content">
         @@if (site === 'cx' )  {  <cx-wallet-decrypt-drtv></cx-wallet-decrypt-drtv>   }
         @@if (site === 'mew' ) {  <wallet-decrypt-drtv></wallet-decrypt-drtv>         }
     </div>

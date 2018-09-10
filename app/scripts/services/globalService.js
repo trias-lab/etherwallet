@@ -38,7 +38,7 @@ var globalService = function($http, $httpParamSerializerJQLike) {
   },
   sendTransaction: {
     id: 4,
-    name: "NAV_SendEther",
+    name: "NAV_SendTRI",
     url: "send-transaction",
     mew: true,
     cx: true
@@ -52,7 +52,7 @@ var globalService = function($http, $httpParamSerializerJQLike) {
   },
   viewWalletInfo: {
     id: 6,
-    name: "NAV_ViewWallet",
+    name: "NAV_ViewAccount",
     url: "view-wallet-info",
     mew: true,
     cx: false

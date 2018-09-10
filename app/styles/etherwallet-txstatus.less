@@ -28,7 +28,6 @@
   margin: 4rem 0;
 }
 .sendOffline-title{
-  height:2.5rem;
   font-size:1.88rem;
   font-family:MoskMedium500;
   color:rgba(43,47,55,1);
@@ -72,6 +71,26 @@
   font-size:1rem;
   font-family:MoskMedium500;
   color:rgba(255,255,255,1);
+  span{
+    display: inline-block;
+  }
+  span.step-item{
+    float: left;
+    margin-right: 1rem;
+    margin-top: 0.8rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-family: MoskMedium500;
+    line-height: 1.75rem;
+    text-align: center;
+    background: #d5f7c9;
+    color: #5db85c;
+  }
+}
+.step-two-section{
+  width: 100%;
 }
 .step-box-title{
   height:1.5rem;
@@ -154,13 +173,68 @@
   color:rgba(145,153,158,1);
   margin-bottom: 2rem;
 }
+.deal-detail{
+  padding:2rem;
+  background:rgba(255,255,255,1);
+  border-radius:0.25rem;
+}
+.deal-photo{
+  margin:0;
+  padding:1rem;
+  background:rgba(246,247,249,1);
+  border-radius:0.13rem;
+  li{
+    list-style: none;
+    .deal-photo-icon,.deal-address{
+      display: inline-block;
+      float: left;
+    }
+  }
+}
+.deal-photo-icon{
+  width: 4rem;
+  height:4rem;
+  margin-right: 1rem;
+}
+.deal-address{
+  width: 30rem;
+  margin:0;
+  span{
+    display: inline-block;
+    height:2rem;
+    line-height: 2rem;
+    width: 100%;
+  }
+}
+.photo-alt{
+  span{
+    display: inline-block;
+
+  }
+}
+.deal-alt-circle{
+  font-size: 1rem;
+  color: rgba(20,42,63,1);
+  margin:0 2.5rem 0 1.5rem;
+}
+.deal-coin{
+  height:1.75rem;
+  background:rgba(93,184,92,1);
+  border-radius:0.13rem;
+  text-align: center;
+  padding:0 1rem;
+  line-height: 1.75rem;
+  font-size:0.94rem;
+  font-family:MoskLight300;
+  color:rgba(255,255,255,1);
+}
 @media only screen and(max-width:768px){
   .sendOffline-title-box{
     margin:2rem 0;
   }
   .send-title-icon{
     font-size: 2rem;
-    margin-top: -3.8rem;
+    margin-top: -4.4rem;
   }
   .sendOffline-intro{
     width: 100%;
@@ -171,11 +245,32 @@
   .sendOffline-step-content .address-input{
     width: 72%;
   }
-  .address-identicon-container{
+  .address-send-photo{
     width: 28%;
     margin-left: 0.2rem;
   }
   .inputForm-box-bottom-gaps{
     padding:0;
+  }
+  .step-two-section{
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .deal-address{
+    width:11rem;
+    word-break: break-all;
+    span{
+      line-height:1rem;
+    }
+  }
+  .deal-detail strong{
+    word-break: break-all;
+  }
+  .sendOffline-step-title .step-caption{
+    width:17rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 3.38rem;
+    white-space: nowrap;
   }
 }

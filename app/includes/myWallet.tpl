@@ -225,8 +225,8 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <h3 class="modal-title text-warning">
-            <span translate="NAV_ViewWallet">
-              View Wallet Info
+            <span translate="NAV_ViewAccount">
+              View Account Info
             </span>:
             {{viewWallet.nick}}
           </h3>
@@ -256,8 +256,8 @@
           <button type="button" class="btn btn-default" data-dismiss="modal" translate="x_Cancel">
             Cancel
           </button>
-          <button type="button" class="btn btn-warning" ng-click="decryptWallet()" translate="NAV_ViewWallet">
-            View Wallet Info
+          <button type="button" class="btn btn-warning" ng-click="decryptWallet()" translate="NAV_ViewAccount">
+            View Account Info
           </button>
         </div>
 

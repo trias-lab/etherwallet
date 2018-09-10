@@ -107,7 +107,54 @@
         </table> -->
 
         <br />
+        <div class="transaction-list">
+          <p class="list-row clearfix">
+            <span>To Address</span>
+            <span> {{parsedSignedTx.to}}</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>From Address</span>
+            <span> {{parsedSignedTx.from}}</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Amount to Send</span>
+            <span>{{parsedSignedTx.value}} ETH</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Account Balance</span>
+            <span>{{parsedSignedTx.balance}}</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Coin</span>
+            <span>{{unitReadable}}</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Network</span>
+            <span>{{ajaxReq.type}} by {{ajaxReq.service}}</span>
+          </p>
 
+          <p class="list-row clearfix">
+            <span>Gas Limit</span>
+            <span>{{parsedSignedTx.gasLimit}}</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Gas Price</span>
+            <span>{{parsedSignedTx.gasPrice.gwei}} GWEI <small>({{parsedSignedTx.gasPrice.eth}} ETH)</small></span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Max TX Fee</span>
+            <span>{{parsedSignedTx.txFee.eth}} ETH <small>({{parsedSignedTx.txFee.gwei}} GWEI)</small></span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Nonce</span>
+            <span>{{parsedSignedTx.nonce}}</span>
+          </p>
+          <p class="list-row clearfix">
+            <span>Data</span>
+            <span>{{parsedSignedTx.data}}</span>
+          </p>
+        </div>
+<!-- 
         <table class="table small table-condensed table-hover transaction-modal">
           <tbody>
             <tr>
@@ -163,7 +210,7 @@
             </tr>
 
           </tbody>
-        </table>
+        </table> -->
       </div>
 
       <div class="modal-footer">
