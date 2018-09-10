@@ -14,7 +14,7 @@
     <div class="step-title" ng-click="wd = !wd">
       <div class="num">1</div>
       <p class="text" aria-live="polite">
-        How would you like to access your wallet?
+        Access your wallet
       </p>
       <a class="collapse-button pull-right">
         <i class="fas fa-plus-square" ng-show="wd"></i><i class="fas fa-minus-square" ng-show="!wd"></i>
