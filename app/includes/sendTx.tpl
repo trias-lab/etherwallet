@@ -35,7 +35,7 @@
         </a>
       </div>
     </div>
-    <div ng-show="!wd" class="step-content" style="padding: 0 2rem;" >
+    <div ng-show="!wd" class="step-content">
         @@if (site === 'cx' )  {  <cx-wallet-decrypt-drtv></cx-wallet-decrypt-drtv>   }
         @@if (site === 'mew' ) {  <wallet-decrypt-drtv></wallet-decrypt-drtv>         }
     </div>
