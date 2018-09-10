@@ -1,6 +1,6 @@
 'use strict';
 var decryptWalletCtrl = function($scope, $sce, walletService) {
-    $scope.walletType = "";
+    $scope.walletType = "addressOnly";
     $scope.requireFPass = $scope.requirePPass = $scope.showFDecrypt = $scope.showPDecrypt = $scope.showAOnly = $scope.showParityDecrypt = false;
     $scope.filePassword = "";
     $scope.fileContent = "";

@@ -457,6 +457,47 @@ label small {
   h4 {
     margin-top: 0;
   }
+  @media (max-width: @screen-xs-max){
+    .col-md-4{
+      padding:0 1rem;
+      background: #fff;
+    }
+    .dropdown-wallet-key{
+      width: 100%;
+      display: block;
+      background: #fff;
+      .dropdown-toggle{
+        width: 100%;
+        background: #f6f7f9;
+        border-radius: .25rem;
+        border: .06rem solid #cbd0d3;
+        color: #142A3F;
+        text-align: left;
+        .caret{
+          float: right;
+          margin-top: 1rem;
+        }
+      }
+      .dropdown-menu{
+        border: .06rem solid #cbd0d3;
+        label.active{
+          span{
+            color: #5db85c;
+          }
+        }
+        label.radio{
+          padding-left: 1rem;
+          span{
+            top:0;
+          }
+          input{
+            height: 1rem;
+            display: none
+          }
+        }
+      }      
+    }
+  }  
 }
 
 

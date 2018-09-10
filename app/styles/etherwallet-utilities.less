@@ -220,13 +220,7 @@
         padding: 2rem;        
         &.wallet-decrypt-container{
           padding: 0 2rem;
-        }
-        @media (max-width: @screen-xs-max) {
-          padding: 24px 12px;
-          &.wallet-decrypt-container{
-            padding: 0 1rem 0 2rem;
-          }
-        }
+        }        
         background:rgba(255,255,255,1);
         border-radius:0 0 0.25rem 0.25rem;
         .intro{
@@ -246,6 +240,23 @@
           padding: 0;
           margin-left: -2rem;
           width: calc(~"100% + 3rem");          
+        }
+        @media (max-width: @screen-xs-max) {
+          padding: 24px 12px;
+          &.wallet-decrypt-container{
+            padding: 24px 12px;
+          }
+          .decrypt-drtv {
+            margin-left:0;
+            width: 100%; 
+            .col-md-4{
+              padding: 0;
+            }         
+            .col-md-8{
+              padding-left: 0;
+              padding-right: 0;
+            }
+          }
         }
       }
     }
