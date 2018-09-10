@@ -9,7 +9,7 @@
       Generate &amp; Send Offline Transaction
     </h1>
     <i class="fa fa-user-secret send-title-icon"></i>
-    <h2 class="sendOffline-intro">By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance.</h2>
+    <h2 class="sendOffline-intro">Send offline is the a very secure way to make a transaction. When transfering large amount of money, this method is recommended.</h2>
   </div>    
   
   @@if (site === 'mew' ) { @@include( './offlineTx-1.tpl',     { "site": "mew" } ) }
