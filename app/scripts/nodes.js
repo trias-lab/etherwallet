@@ -4,6 +4,7 @@ nodes.customNode = require("./nodeHelpers/customNode");
 nodes.infuraNode = require("./nodeHelpers/infura");
 nodes.metamaskNode = require("./nodeHelpers/metamask");
 nodes.nodeTypes = {
+	TRI: "TRI",
 	ETH: "ETH",
 	ETC: "ETC",
 	Ropsten: "ROPSTEN ETH",
@@ -43,6 +44,18 @@ nodes.customNodeObj = {
 	lib: null
 };
 nodes.nodeList = {
+	tri: {
+        name: "TRI",
+        blockExplorerTX: "https://explorer.trias.one/translist/[[txHash]]",
+        blockExplorerAddr: "https://explorer.trias.one/address/[[address]]",
+        type: nodes.nodeTypes.TRI,
+        eip155: true,
+        chainId: 15,
+        tokenList: require("./tokens/triTokens.json"),
+        abiList: require("./abiDefinitions/triAbi.json"),
+        service: "TRI",
+        lib: new nodes.customNode("http://192.144.140.64:8701/api/tri/", "")
+    },
 	eth_mew: {
 		name: "ETH",
 		blockExplorerTX: "https://etherscan.io/tx/[[txHash]]",
