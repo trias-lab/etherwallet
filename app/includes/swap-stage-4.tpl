@@ -1,11 +1,11 @@
 <section class="swap-panel">
 
 
-    <div class="alert alert-danger" ng-show="ajaxReq.type!=='ETH'">
+    <!-- <div class="alert alert-danger" ng-show="ajaxReq.type!=='ETH'">
         <strong>Warning! You are not connected to an ETH node.</strong> <br/> Please use the node switcher in the top-right
         corner to switch to an ETH node. We <strong>do not
         </strong> support swapping ETC or Testnet ETH.
-    </div>
+    </div> -->
 
     <section class="" ng-show="!isKyberSwap " ng-controller='sendTxCtrl'>
         <!-- Sidebar -->
@@ -85,13 +85,13 @@
                     <!-- Amount to Send -->
                     <section class="form-group">
 
-                        <div class="col-sm-11">
+                        <div class="clearfix">
                             <label translate="SEND_amount">
                                 Amount to Send:
                             </label>
                         </div>
 
-                        <div class="col-sm-11">
+                        <div class="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="{{ 'SEND_amount_short' | translate }}" ng-model="tx.value" ng-disabled="tx.readOnly || checkTxReadOnly"
                                     ng-class="Validator.isPositiveNumber(tx.value) ? 'is-valid' : 'is-invalid'" />
@@ -141,7 +141,7 @@
                                             -->
 
                         <!-- Amount to Send - Transfer Entire Balance -->
-                        <p class="col-xs-12" ng-hide="tx.readOnly">
+                        <p class="" ng-hide="tx.readOnly">
                             <a ng-click="transferAllBalance()">
                                 <span class="strong" translate="SEND_TransferTotal">
                                     Send Entire Balance
@@ -153,7 +153,7 @@
 
                     <!-- Gas Limit -->
                     <section class="form-group">
-                        <div class="col-sm-11 clearfix">
+                        <div class="clearfix">
                             <!-- <a class="account-help-icon"
                                                 href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html"
                                                 target="_blank"
@@ -181,7 +181,7 @@
                     <div ng-show="showAdvance || checkTxPage">
                         <!-- Data -->
                         <section class="form-group">
-                            <div class="col-sm-11 clearfix" ng-show="tx.sendMode=='ether'">
+                            <div class="clearfix" ng-show="tx.sendMode=='ether'">
                                 <!-- <span class="account-help-icon">
                                                   <img src="images/icon-help.svg" class="help-icon" />
                                                   <p class="account-help-text" translate="OFFLINE_Step2_Label_6b">
@@ -200,7 +200,7 @@
 
                         <!-- Nonce -->
                         <section class="form-group" ng-show="checkTxPage">
-                            <div class="col-sm-11 clearfix">
+                            <div class=" clearfix">
 
                                 <a class="account-help-icon" href="https://myetherwallet.github.io/knowledge-base/transactions/what-is-nonce.html" target="_blank"
                                     rel="noopener noreferrer">
@@ -219,7 +219,7 @@
 
                         <!-- Gas Price -->
                         <section class="form-group" ng-show="checkTxPage">
-                            <div class="col-sm-11 clearfix">
+                            <div class="clearfix">
                                 <a class="account-help-icon" href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank"
                                     rel="noopener noreferrer">
                                     <img src="images/icon-help.svg" class="help-icon" />
@@ -254,7 +254,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-12 clearfix">
+                        <div class=" clearfix">
                             <a class="btn btn-info btn-block" ng-click="generateTx()" translate="SEND_generate">
                                 Generate Transaction
                             </a>

@@ -310,6 +310,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       pendingStatusReq: false,
       checkDelay: 1000
     };
+    //定时器 用来计算交易
     var timeRem = setInterval(function () {
       if (!orderResult) clearInterval(timeRem);
       if (orderResult.progress.secsRemaining > 0) {
@@ -384,13 +385,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
 
 
   $scope.openOrder = function () {
-
+    //如果接受的币种不是BTC &&  是一个错误的地址  或者 接受的币种是BTC && 是比特币的地址
     if (($scope.swapOrder.toCoin != 'BTC' && $scope.Validator.isValidAddress($scope.swapOrder.toAddress)) || ($scope.swapOrder.toCoin == 'BTC' && $scope.Validator.isValidBTCAddress($scope.swapOrder.toAddress))) {
       var order = {
-        amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal,
-        mode: $scope.swapOrder.isFrom ? 0 : 1,
-        pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,
-        destAddress: $scope.swapOrder.toAddress
+        amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal, //根据是否是发送方,选择数量
+        mode: $scope.swapOrder.isFrom ? 0 : 1,                                               //应该是后台区分的一个参数
+        pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,                           //哪种币转哪种币 eg: EHTTRI
+        destAddress: $scope.swapOrder.toAddress                                              //目的地址
       }
       $scope.bity.openOrder(order, function (data) {
         if (!data.error) {
