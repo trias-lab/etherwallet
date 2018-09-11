@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from wallet.views import swap
+from wallet.views import tri
 
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     url(r'^api/swap/rate/', swap.rate),
     url(r'^api/swap/order/', swap.order),
     url(r'^api/swap/status/', swap.status),
+    url(r'^api/tri/', tri.tri),
 ]
