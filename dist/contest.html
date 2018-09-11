@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MyEtherWallet.com</title>
+<title>TriasWallet.com</title>
 <meta property="og:title" content="MyEtherWallet.com: Your Key to Ethereum">
 <meta property="og:site_name" content="MyEtherWallet.com: Your Key to Ethereum">
 <meta name="twitter:title" content="MyEtherWallet.com: Your Key to Ethereum">
@@ -25,7 +25,7 @@
 <link href="images/fav/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
 <link href="images/fav/manifest.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
-<link href="images/fav/favicon.ico" rel="shortcut icon">
+<link href="images/favicon.ico" rel="shortcut icon">
 <meta name="apple-mobile-web-app-title" content="MyEtherWallet &middot; Your Key to Ethereum">
 <meta name="application-name" content="MyEtherWallet">
 <meta name="msapplication-config" content="images/fav/browserconfig.xml">
@@ -94,52 +94,104 @@
  -->
 
 <section class="bg-gradient header-branding">
-  <section class="container">
+  <section class="container clearfix">
     
       <a class="brand" href="/" aria-label="Go to homepage">
         <img src="images/logo.png"   height="44px" width="100px" alt="Trias Wallet" />
-        <p class="small visible-xs">3.21.22</p>
+        <!-- <p class="small visible-xs">3.21.22</p> -->
       </a>
     
     
-    <div class="tagline">
 
-    <span class="hidden-xs">3.21.22</span>
+    <div class="language-change tagline">
+        <span class="dropdown hidden-xs">
+          <a href="https://www.trias.one" target="_blank" translate="HEADER_TriasProject">Trias Project</a>
+        </span>
+        <span class="dropdown hidden-xs">
+          <a href="https://monitor.trias.one" target="_blank" translate="HEADER_Monitor">Nodes Status Monitor</a>
+        </span>
+        <span class="dropdown hidden-xs">
+          <a href="https://explorer.trias.one" target="_blank" translate="HEADER_Explorer">Blockchain Explorer</a>
+        </span>
 
-    <span class="dropdown dropdown-lang" ng-cloak>
-      <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
-      <ul class="dropdown-menu" ng-show="dropdown">
-        <li><a ng-class="{true:'active'}[curLang=='Català']"          ng-click="changeLanguage('ca','Català'         )"> Català          </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Deutsch']"         ng-click="changeLanguage('de','Deutsch'        )"> Deutsch         </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Ελληνικά']"        ng-click="changeLanguage('el','Ελληνικά'       )"> Ελληνικά        </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='English']"         ng-click="changeLanguage('en','English'        )"> English         </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Español']"         ng-click="changeLanguage('es','Español'        )"> Español         </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Farsi']"           ng-click="changeLanguage('fa','Farsi'          )"> Farsi           </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Suomi']"           ng-click="changeLanguage('fi','Suomi'          )"> Suomi           </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Français']"        ng-click="changeLanguage('fr','Français'       )"> Français        </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Magyar']"          ng-click="changeLanguage('hu','Magyar'         )"> Magyar          </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Haitian Creole']"  ng-click="changeLanguage('ht','Haitian Creole' )"> Haitian Creole  </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Indonesian']"      ng-click="changeLanguage('id','Indonesian'     )"> Bahasa Indonesia</a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Italiano']"        ng-click="changeLanguage('it','Italiano'       )"> Italiano        </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='日本語']"           ng-click="changeLanguage('ja','日本語'          )"> 日本語          </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='한국어']"            ng-click="changeLanguage('ko','한국어'          )"> 한국어           </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Nederlands']"      ng-click="changeLanguage('nl','Nederlands'     )"> Nederlands      </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Norsk Bokmål']"    ng-click="changeLanguage('no','Norsk Bokmål'   )"> Norsk Bokmål    </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Polski']"          ng-click="changeLanguage('pl','Polski'         )"> Polski          </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Português']"       ng-click="changeLanguage('pt','Português'      )"> Português       </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Русский']"         ng-click="changeLanguage('ru','Русский'        )"> Русский         </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='ภาษาไทย']"         ng-click="changeLanguage('th','ภาษาไทย'        )"> ภาษาไทย         </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Türkçe']"          ng-click="changeLanguage('tr','Türkçe'         )"> Türkçe          </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='Tiếng Việt']"      ng-click="changeLanguage('vi','Tiếng Việt'     )"> Tiếng Việt      </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='简体中文']"         ng-click="changeLanguage('zhcn','简体中文'      )"> 简体中文         </a></li>
-        <li><a ng-class="{true:'active'}[curLang=='繁體中文']"         ng-click="changeLanguage('zhtw','繁體中文'      )"> 繁體中文         </a></li>
-        <li role="separator" class="divider"></li>
-        <li><a data-toggle="modal" data-target="#disclaimerModal" translate="FOOTER_4"> Disclaimer </a></li>
-      </ul>
+        <span class="dropdown dropdown-header-links visible-xs-inline-block" ng-cloak>
+          <a tabindex="0" aria-haspopup="true" class="dropdown-toggle btn" ng-click="dropdownHeaderLinks = !dropdownHeaderLinks">
+            <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
+            <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
+            <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
+            <i class="fas fa-times icon-close" ng-show="dropdownHeaderLinks"></i>
+          </a>
+          <ul class="dropdown-menu" ng-show="dropdownHeaderLinks">
+            <li>
+              <a href="https://www.trias.one" target="_blank" translate="HEADER_TriasProject">Trias Project</a>
+            </li>
+            <li>
+              <a href="https://monitor.trias.one" target="_blank" translate="HEADER_Monitor">Nodes Status Monitor</a>
+            </li>
+            <li>
+              <a href="https://explorer.trias.one" target="_blank" translate="HEADER_Explorer">Blockchain Explorer</a>
+            </li>
+          </ul>
+        </span>
+        
+        <span class="dropdown dropdown-lang" ng-cloak>
+            <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle hidden-xs" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
+            <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle btn visible-xs" ng-click="dropdown = !dropdown">
+              <i class="fas fa-globe-americas" ng-show="!dropdown"></i>
+              <i class="fas fa-times icon-close" ng-show="dropdown"></i>
+            </a>
+            <ul class="dropdown-menu" ng-show="dropdown">
+              <!-- <li><a ng-class="{true:'active'}[curLang=='Català']"          ng-click="changeLanguage('ca','Català'         )"> Català          </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Deutsch']"         ng-click="changeLanguage('de','Deutsch'        )"> Deutsch         </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Ελληνικά']"        ng-click="changeLanguage('el','Ελληνικά'       )"> Ελληνικά        </a></li> -->
+              <li><a ng-class="{true:'active'}[curLang=='English']"         ng-click="changeLanguage('en','English'        )"> English         </a></li>
+              <!-- <li><a ng-class="{true:'active'}[curLang=='Español']"         ng-click="changeLanguage('es','Español'        )"> Español         </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Farsi']"           ng-click="changeLanguage('fa','Farsi'          )"> Farsi           </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Suomi']"           ng-click="changeLanguage('fi','Suomi'          )"> Suomi           </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Français']"        ng-click="changeLanguage('fr','Français'       )"> Français        </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Magyar']"          ng-click="changeLanguage('hu','Magyar'         )"> Magyar          </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Haitian Creole']"  ng-click="changeLanguage('ht','Haitian Creole' )"> Haitian Creole  </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Indonesian']"      ng-click="changeLanguage('id','Indonesian'     )"> Bahasa Indonesia</a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Italiano']"        ng-click="changeLanguage('it','Italiano'       )"> Italiano        </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='日本語']"           ng-click="changeLanguage('ja','日本語'          )"> 日本語          </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='한국어']"            ng-click="changeLanguage('ko','한국어'          )"> 한국어           </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Nederlands']"      ng-click="changeLanguage('nl','Nederlands'     )"> Nederlands      </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Norsk Bokmål']"    ng-click="changeLanguage('no','Norsk Bokmål'   )"> Norsk Bokmål    </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Polski']"          ng-click="changeLanguage('pl','Polski'         )"> Polski          </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Português']"       ng-click="changeLanguage('pt','Português'      )"> Português       </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Русский']"         ng-click="changeLanguage('ru','Русский'        )"> Русский         </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='ภาษาไทย']"         ng-click="changeLanguage('th','ภาษาไทย'        )"> ภาษาไทย         </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Türkçe']"          ng-click="changeLanguage('tr','Türkçe'         )"> Türkçe          </a></li>
+              <li><a ng-class="{true:'active'}[curLang=='Tiếng Việt']"      ng-click="changeLanguage('vi','Tiếng Việt'     )"> Tiếng Việt      </a></li> -->
+              <li><a ng-class="{true:'active'}[curLang=='简体中文']"         ng-click="changeLanguage('zhcn','简体中文'      )"> 简体中文         </a></li>
+              <!-- <li><a ng-class="{true:'active'}[curLang=='繁體中文']"         ng-click="changeLanguage('zhtw','繁體中文'      )"> 繁體中文         </a></li> -->
+              <!-- <li role="separator" class="divider"></li> -->
+              <!-- <li><a data-toggle="modal" data-target="#disclaimerModal" translate="FOOTER_4"> Disclaimer </a></li> -->
+            </ul>
+          </span>
+    </div>
+    
+  </section>
+<!--   <p class="dropdown-gas__msg"
+     ng-show="gasPriceMsg"
+     ng-hide="ajaxReq.type!='ETH'">
+    The network is really full right now. Check
+    <a href="https://ethgasstation.info/"
+       target="_blank" rel="noopener noreferrer">Eth Gas Station</a>
+    for gas price to use.
+  </p> -->
+</section>
+<div class="tagline header-navbar-title">
+
+    <!-- <span class="hidden-xs">3.21.22</span> -->
+    <span class="dropdown trias-title">
+        Trias Wallet
+        <i class="fa fa-thumbs-up"></i>
+        <span class="trias-fondation">by Trias-lab Foundation</span>
     </span>
 
     <span class="dropdown dropdown-gas" ng-cloak>
-      <a tabindex="0" aria-haspopup="true" aria-label="adjust gas price" class="dropdown-toggle  btn btn-white" ng-click="dropdownGasPrice = !dropdownGasPrice">
+      <a tabindex="0" aria-haspopup="true" aria-label="adjust gas price" class="dropdown-toggle  btn btn-white select-gas-btn" ng-click="dropdownGasPrice = !dropdownGasPrice">
         <span translate="OFFLINE_Step2_Label_3">Gas Price</span>:
           {{gas.value}} Gwei
           <i class="caret"></i>
@@ -174,7 +226,7 @@
       <a tabindex="0"
          aria-haspopup="true"
          aria-label="change node. current node {{curNode.name}} node by {{curNode.service}}"
-         class="dropdown-toggle  btn btn-white"
+         class="dropdown-toggle  btn btn-white select-node-btn"
          ng-click="dropdownNode = !dropdownNode">
            <span translate="X_Network">Network:</span>
            {{curNode.name}}
@@ -198,17 +250,6 @@
     </span>
 
     </div>
-  </section>
-  <p class="dropdown-gas__msg"
-     ng-show="gasPriceMsg"
-     ng-hide="ajaxReq.type!='ETH'">
-    The network is really full right now. Check
-    <a href="https://ethgasstation.info/"
-       target="_blank" rel="noopener noreferrer">Eth Gas Station</a>
-    for gas price to use.
-  </p>
-</section>
-
 <nav role="navigation" aria-label="main navigation" class="container nav-container overflowing">
   <a aria-hidden="true" ng-show="showLeftArrow" class="nav-arrow-left" ng-click="scrollLeft(100);" ng-mouseover="scrollHoverIn(true,2);" ng-mouseleave="scrollHoverOut()">&#171;</a>
   <div class="nav-scroll">
@@ -710,121 +751,122 @@
 
 </footer> -->
 
-<div class="common-footer" ng-controller='footerCtrl'>
+<div class="common-footer" ng-controller = "footerCtrl">
   <div class="contacts">
-    <a target="blank" href="https://twitter.com/triaslab">
-      <span class="btn-icon">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
+      <a target="blank" href="https://twitter.com/triaslab">
+          <span class="btn-icon">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+          </span>
+      </a>
+      <a target="blank" href="https://medium.com/@Triaslab">
+          <span class="btn-icon">
+              <i class="fab fa-medium-m"></i>
+          </span>
+      </a>
+      <a class="wechat-button toggle-button" ng-click = "footerToggle('weChat')">
+          <span class="btn-icon">
+              <i class="fa fa-weixin" aria-hidden="true"></i>
+          </span>
+          <div class='qrcode toggle-box' ng-show="footer.weChat">
+              <img src="images/footer/wechat-qrcode.jpeg" />
+          </div>
+      </a>
+      <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
+          <span class="btn-icon">
+              <i class="fab fa-reddit-alien"></i>
+          </span>
+      </a>
+      <span class="telegram-button toggle-button" ng-click = "footerToggle('telegram')">
+          <span class="btn-icon">
+              <i class="fab fa-telegram-plane"></i>
+          </span>
+          <div class='telegram-box toggle-box' ng-show = "footer.telegram">
+              <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
+              <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
+              <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
+          </div>
       </span>
-    </a>
-    <a target="blank" href="https://medium.com/@Triaslab">
-      <span class="btn-icon">
-        <i class="fab fa-medium-m"></i>
-      </span>
-    </a>
-    <a class="wechat-button toggle-button" >
-      <span class="btn-icon" ng-click="wexin = !wexin">
-        <i class="fa fa-weixin" aria-hidden="true"></i>
-      </span>
-      <div class='qrcode toggle-box' ng-show="wexin">
-        <img src="images/footer/wechat-qrcode.jpeg" />
-      </div>
-    </a>
-    <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
-      <span class="btn-icon">
-        <i class="fab fa-reddit-alien"></i>
-      </span>
-    </a>
-    <span class="telegram-button toggle-button">
-      <span class="btn-icon"  ng-click="telegram = !telegram">
-        <i class="fab fa-telegram-plane"></i>
-      </span>
-      <div class='telegram-box toggle-box' ng-show="telegram">
-        <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
-        <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
-        <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
-      </div>
-    </span>
-    <a target="blank" href="https://0.plus/sp/triaslab">
-      <span class="btn-icon logo-biyong">
-        <i class="fas fa-envelope" style="color:'transparent'"></i>
-      </span>
-    </a>
-    <a target="blank" href="https://github.com/trias-lab/Documentation">
-      <span class="btn-icon">
-        <i class="fa fa-github" aria-hidden="true"></i>
-      </span>
-    </a>
-    <a class="email-button toggle-button">
-      <span class="btn-icon"  ng-click="email = !email">
-        <i class="fas fa-envelope"></i>
-      </span>
-      <div class='email-box toggle-box' ng-show="email">
-        Email: contact@trias.one
-      </div>
-    </a>
+      <a target="blank" href="https://0.plus/sp/triaslab">
+          <span class="btn-icon logo-biyong">
+            <i class="fas fa-envelope" style="color:transparent"></i>
+          </span>
+      </a>
+      <a target="blank" href="https://github.com/trias-lab/Documentation">
+          <span class="btn-icon">
+              <i class="fa fa-github" aria-hidden="true"></i>
+          </span>
+      </a>                
+      <a class="email-button toggle-button" ng-click = "footerToggle('email')">
+          <span class="btn-icon">
+              <i class="fas fa-envelope"></i>
+          </span>
+          <div class='email-box toggle-box' ng-show = "footer.email">
+              Email: contact@trias.one
+          </div>
+      </a>
   </div>
   <div class="info">
-    <div class="center-box clearfix">
-      <div class="intro pull-left">
-        <img src="images/logo.png" alt="" />
-        <P>
-          TRIAS aims to define a new-generation all-platform-supported public chain system. Trustworthy and Reliable Intelligent Autonomous
-          Systems make people trust in machines.
-        </P>
-      </div>
-
-      <div class="links pull-right">
-        <div class="docs">
-          <h2>
-            About Us
-          </h2>
-          <div class="link">
-            <a href="https://www.trias.one/aboutus" target="blank">
-              Recent Events
-            </a>
+      <div class="center-box clearfix">
+          <div class="intro pull-left">
+              <img src="images/logo.png" alt=""/>
+              <P translate="FOOTER_TriasIntroduction">
+                TRIAS aims to define a new-generation all-platform-supported 
+                public chain system. Trustworthy and Reliable Intelligent 
+                Autonomous Systems make people trust in machines.
+              </P>
           </div>
-          <div class="link">
-            <a href="https://www.trias.one/aboutus" target="blank">
-              View
-            </a>
-          </div>
-          <div class="link">
-            <a href="https://www.trias.one/aboutus" target="blank">
-              Project Progress
-            </a>
+  
+        <div class="links pull-right">
+            <div class="docs">
+                <h2>
+                  About Us
+                </h2>
+                <div class="link">
+                    <a href="https://www.trias.one/aboutus/recent" target="blank" translate="FOOTER_RecentEvents">
+                      Recent Events
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://www.trias.one/aboutus/view" target="blank" translate="FOOTER_View">
+                      View
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://www.trias.one/aboutus/project" target="blank" translate="FOOTER_Project">
+                      Project Progress
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="links pull-right">
+          <div class="docs">
+              <h2>
+                Products
+              </h2>
+              <div class="link">
+                  <a href="https://www.trias.one/" target="blank" translate="HEADER_TriasProject">
+                    Trias Project
+                  </a>
+              </div>
+              <div class="link">
+                  <a href="https://monitor.trias.one/" target="blank" translate="HEADER_Monitor">
+                    Nodes Status Monitor
+                  </a>
+              </div>
+              <div class="link">
+                  <a href=" https://explorer.trias.one/" target="blank" translate="HEADER_Explorer">
+                    Blockchain Explorer
+                  </a>
+              </div>              
           </div>
         </div>
       </div>
-      <div class="links pull-right">
-        <div class="docs">
-          <h2>
-            Products
-          </h2>
-          <div class="link">
-            <a href="https://www.trias.one/" target="blank">
-              Trias Project
-            </a>
-          </div>
-          <div class="link">
-            <a href=" https://explorer.trias.one/" target="blank">
-              Blockchain Explorer
-            </a>
-          </div>
-          <div class="link">
-            <a href="https://monitor.trias.one/" target="blank">
-              Nodes Status Monitor
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="center-box clearfix">
-      <hr/>
-      <span class="pull-left">© 2018 Trias-lab Foundation. </span>
-      <!-- <span class="pull-right">All rights reserved.</span> -->
-    </div>
-  </div>
+      <div class="center-box clearfix">
+          <hr/>
+          <span class="pull-left">© 2018 Trias-lab Foundation. </span>
+          <!-- <span class="pull-right">All rights reserved.</span> -->
+      </div> 
+  </div>                   
 </div>
 
  <article class="modal fade" id="disclaimerModal" tabindex="-1">
@@ -860,7 +902,8 @@
     </section>
   </section>
 </article>
-  
+ 
+
 
 
 
@@ -868,5 +911,5 @@
 
 </main>
 </body>
-
 </html>
+

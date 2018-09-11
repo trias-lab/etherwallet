@@ -2,7 +2,7 @@
 <html lang="en" ng-app="mewApp">
 <head>
   <meta charset="utf-8">
-  <title>MyEtherWallet.com</title>
+  <title>TriasWallet.com</title>
   <link rel="canonical" href="https://www.myetherwallet.com" />
   <meta name="description" content="MyEtherWallet.com is a free, open-source, client-side interface for generating Ethereum wallets &amp; more. Interact with the Ethereum blockchain easily &amp; securely. Double-check the URL ( myetherwallet.com ) before unlocking your wallet.">
   <meta name="author" content="">
@@ -50,22 +50,25 @@
       ng-cloak>
   <div class="tab-title">
     <div class="text">
-      <h1>Create New Wallet</h1>
+      <h1 translate="NAV_GenerateWallet">Create New Wallet</h1>
+      <div class="icon visible-xs-inline-block">
+        <i class="fas fa-wallet"></i>
+      </div>  
       <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance. </h2>
     </div>
-    <div class="icon">
+    <div class="icon hidden-xs">
       <i class="fas fa-wallet"></i>
     </div>    
   </div>
-  <article ng-class="!wallet && !showGetAddress? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
+  <article ng-class="!wallet && !showConfirmation? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
     <div class="step-title">
       <div class="num">1</div>
       <p class="text" aria-live="polite">
         Set Wallet Password
       </p>
-      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showGetAddress"></i>
+      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showConfirmation"></i>
     </div>
-    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showGetAddress">
+    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showConfirmation">
       <p class="intro">
         This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.
       </p>
@@ -186,21 +189,43 @@
       <p class="text" aria-live="polite">
         Save Keystore file
       </p>
-      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showGetAddress"></i>
+      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showConfirmation"></i>
     </div>
     <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
-      <h1 translate="GEN_Label_2">
-        Save your Keystore File (UTC / JSON)
-      </h1>
+
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not lose it!
+          </span> 
+          It cannot be recovered if you lose it.
+        </p>
+        <p class="GEN_Warning_2">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not share it!
+          </span> 
+          Your funds will be stolen if you use this file on a malicious/phishing site.
+        </p>
+        <p class="GEN_Warning_3">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Make a backup!
+          </span> 
+          Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
 
       <a tabindex="0" role="button"
-         class="btn btn-primary"
+         class="btn btn-default"
          href="{{blobEnc}}"
          download="{{encFileName}}"
          aria-label="{{'x_Download'|translate}} {{'x_Keystore'|translate}}"
          aria-describedby="x_KeystoreDesc"
          ng-click="downloaded()"
          rel="noopener noreferrer">
+        <i class="fas fa-download"></i>
         <span translate="x_Download">
           DOWNLOAD
         </span>
@@ -209,26 +234,14 @@
         </span>
       </a>
 
-      <div class="warn">
-        <p class="GEN_Warning_1">
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p class="GEN_Warning_2">
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p class="GEN_Warning_3">
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
       <p>
         <a tabindex="0"
            role="button"
-           class="btn btn-danger"
+           class="btn btn-primary pull-right"
            ng-class="fileDownloaded ? '' : 'disabled' "
            ng-click="continueToPaper()">
-            <span translate="GET_ConfButton">
-              I understand. Continue.
+            <span>
+              I’ve Saved Keystore
             </span>
         </a>
       </p>
@@ -287,46 +300,51 @@
       <p class="text" aria-live="polite">
         Save Private Key
       </p>
-      <i class="fas fa-check-circle success" ng-show="showGetAddress"></i>
+      <i class="fas fa-check-circle success" ng-show="showConfirmation"></i>
     </div>
     <section class="block__main gen__3--inner step-content" ng-show="showPaperWallet">
-
-      <h1 translate="GEN_Label_5"> Save your Private Key</h1>
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not lose it!
+          </span> 
+          It cannot be recovered if you lose it.
+        </p>
+        <p class="GEN_Warning_2">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not share it!
+          </span> 
+          Your funds will be stolen if you use this file on a malicious/phishing site.
+        </p>
+        <p class="GEN_Warning_3">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Make a backup!
+          </span> 
+          Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
       <textarea aria-label="{{'x_PrivKey'|translate}}"
              aria-describedby="{{'x_PrivKeyDesc'|translate}}"
              class="form-control"
              readonly="readonly"
-             rows="3"
-             style="max-width: 50rem;margin: auto;"
+             rows="2"
       >{{wallet.getPrivateKeyString()}}</textarea>
-      <br />
 
       <a tabindex="0"
          aria-label="{{'x_Print'|translate}}"
          aria-describedby="x_PrintDesc"
          role="button"
-         class="btn btn-primary"
-         ng-click="printQRCode()"
-         translate="x_Print">
-          PRINT
+         class="btn btn-default"
+         ng-click="printQRCode()">
+         <i class="fas fa-print"></i>
+          Print Paper Wallet
       </a>
 
-      <div class="warn">
-        <p>
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p>
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p>
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
-      <br />
-
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
-        <span translate="GEN_Label_3"> Save your Address </span> →
+      <a class="btn btn-primary pull-right" ng-click="confirm()">
+        <span>I’ve Saved Private Key</span>
       </a>
 
     </section>
@@ -370,24 +388,24 @@
 
   </article>
 
-  <article role="main" ng-class="showGetAddress ? 'block__wrap gen__3 step-card active':'block__wrap gen__4 step-card'" >
+  <article role="main" ng-class="showConfirmation ? 'block__wrap gen__4 step-card active':'block__wrap gen__4 step-card'" >
     <div class="step-title">
       <div class="num">4</div>
       <p class="text" aria-live="polite">
         Confirmation
       </p>
     </div>
-    <section class="block__main gen__3--inner step-content" ng-show="showGetAddress">
+    <section class="block__main gen__4--inner step-content" ng-show="showConfirmation">
 
-      <h1 >You’re all set!</h1>
+      <h1><i class="fas fa-check-circle"></i> You’re all set!</h1>
       <p class="intro">
         Make sure you’ve already properly saved your wallet password, Keystore file and Private Key. Remember there’s not way to recover any of them if you lost it, and you won’t be able to access your wallet.
       </p>
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
-        <span> Back To Home</span> 
-      </a>
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+      <a class="btn btn-primary pull-right" ng-click="globalService.currentTab=globalService.tabs.viewWalletInfo.id">
         <span> Check My Account</span>
+      </a>
+      <a class="btn btn-default pull-right" ng-click="globalService.currentTab=globalService.tabs.homepage.id">
+        <span> Back To Home</span> 
       </a>
 
     </section>
@@ -410,136 +428,126 @@
 
     <div class="row" ng-show="wallet!=null" ng-controller='viewWalletCtrl'>
       
-        <article class="col-sm-8 view-wallet-content">
+        
+<article ng-show="wallet!=null">
+  <wallet-balance-drtv></wallet-balance-drtv>
+</article>
 
-  <section class="block">
+<article role="main" ng-class="wallet!=null && wd?'block__wrap view__2 step-card active':'block__wrap view__2 step-card'" >
+  <div class="step-title">
+    <div class="num">2</div>
+    <p class="text" aria-live="polite">
+      Account Info
+    </p>
+  </div>
 
-    <div class="col-xs-11">
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_AddessDesc">
-          You may know this as your "Account #" or your "Public Key". It's what you send people so they can send you ETH. That icon is an easy way to recognize your address.
-        </p>
-        <h5 translate="x_Address">
-          Your Address:
-        </h5>
-      </div>
-      <input class="form-control"
-             type="text"
-             ng-value="wallet.getChecksumAddressString()"
-             readonly="readonly">
-    </div>
+  <section class="block__main view__2--inner step-content" ng-show="wallet!=null">
+    <article class="view-wallet-content">
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="account-help-icon">           
+            <h5 translate="x_Address">
+              Your Address:
+            </h5>
+            <img src="images/icon-help.svg" class="help-icon" />
+            <p class="account-help-text" translate="x_AddessDesc">
+              You may know this as your "Account #" or your "Public Key". It's what you send people so they can send you ETH. That icon is an easy way to recognize your address.
+              This Keystore / JSON file matches the format used by Mist & Geth so you can easily import it in the future. It is the recommended file to download and back up.
+            </p>
+          </div>
+        </div>
 
-    <div class="col-xs-1 address-identicon-container">
-      <div class="addressIdenticon"
-           title="Address Indenticon"
-           blockie-address="{{wallet.getAddressString()}}"
-           watch-var="wallet">
-      </div>
-    </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 address-identicon-container">
+            <div class="addressIdenticon"
+                 title="Address Indenticon"
+                 blockie-address="{{wallet.getAddressString()}}"
+                 watch-var="wallet">
+            </div>
+          </div>
+          <span class="col-lg-10 col-md-10 col-sm-10 col-xs-10 address">{{wallet.getChecksumAddressString()}}</span>
+          </div>         
+          <div class="row"> 
+            <a class="btn btn-primary" href="{{blobEnc}}" download="{{encFileName}}" ng-show='showEnc'>
+              <span translate="x_Download">
+                DOWNLOAD
+              </span>
+              <span translate="x_Keystore2">
+                Keystore File (UTC / JSON)
+              </span>
+            </a>
+          </div>
+        </div>
 
-    <div class="col-xs-12" ng-show='showEnc'>
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_KeystoreDesc">
-          This Keystore / JSON file matches the format used by Mist & Geth so you can easily import it in the future. It is the recommended file to download and back up.
-        </p>
-        <h5 translate="x_Keystore">
-          Keystore/JSON File (Recommended • Encrypted • Mist/Geth Format)
-        </h5>
-      </div>
-      <a class="btn btn-info btn-block" href="{{blobEnc}}" download="{{encFileName}}" translate="x_Download">
-        DOWNLOAD
-      </a>
-    </div>
-
-    <div class="col-xs-12" ng-show="wallet.type=='default'">
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_PrivKeyDesc">
-          This is the unencrypted text version of your private key, meaning no password is necessary. If someone were to find your unencrypted private key, they could access your wallet without a password. For this reason, encrypted versions are typically recommended.
-        </p>
-        <h5>
-          <span translate="x_PrivKey">
-            Private Key (unencrypted)
-          </span>
-        </h5>
-      </div>
-      <div class="input-group">
-        <input class="form-control no-animate"
-               type="{{pkeyVisible ? 'text' : 'password'}}"
-               ng-value="wallet.getPrivateKeyString()"
-               readonly="readonly">
-        <span tabindex="0"
-              aria-label="make private key visible"
-              role="button"
-              class="input-group-addon eye"
-              ng-click="showHidePkey()"></span>
-      </div>
-    </div>
-
-
-    <div class="col-xs-12" ng-show="wallet.type=='default'">
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_PrintDesc">
-          ProTip: If you cannot print this right now, click "Print" and save it as a PDF until you are able to get it printed. Remove it from your computer afterwards!
-        </p>
-        <h5 translate="x_Print">
-          Print Paper Wallet:
-        </h5>
-      </div>
-      <a class="btn btn-info btn-block" ng-click="printQRCode()" translate="x_Print">
-        Print Paper Wallet
-      </a>
-    </div>
-  </section>
-
-
-  <section class="block">
-
-    <div class="col-xs-6">
-
-      <h5 translate="x_Address">
-        Your Address:
-      </h5>
-      <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
-
-    </div>
-
-    <div class="col-xs-6">
-
-      <h5 ng-show="wallet.type=='default'">
-        <span translate="x_PrivKey">
-          Private Key (unencrypted)
-        </span>
-      </h5>
-
-      <div class="qr-pkey-container" ng-show="wallet.type=='default'">
-        <div class="qr-overlay" ng-show="!pkeyVisible"></div>
-        <div class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
-        <div class="input-group">
-          <input class="form-control no-animate"
-                 type="{{pkeyVisible ? 'text' : 'password'}}"
-                 ng-value="wallet.getPrivateKeyString()"
-                 readonly="readonly"
-                 style="display:none;width:0;height:0;padding:0">
-          <span tabindex="0"
-                aria-label="make private key visible"
-                role="button" class="input-group-addon eye"
-                ng-click="showHidePkey()"></span>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
+          <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
         </div>
       </div>
 
-    </div>
+      <hr>
 
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="account-help-icon">
+            <h5>
+              <span translate="x_PrivKey">
+                Private Key (unencrypted)
+              </span>
+            </h5>
+            <img src="images/icon-help.svg" class="help-icon" />
+            <p class="account-help-text" translate="x_PrivKeyDesc">
+              This is the unencrypted text version of your private key, meaning no password is necessary. If someone were to find your unencrypted private key, they could access your wallet without a password. For this reason, encrypted versions are typically recommended.
+              ProTip: If you cannot print this right now, click "Print" and save it as a PDF until you are able to get it printed. Remove it from your computer afterwards!
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" ng-show="wallet.type=='default'">
+          <div class="input-group row" style="width:100%;">
+            <input class="form-control no-animate"
+                   type="{{pkeyVisible ? 'text' : 'password'}}"
+                   ng-value="wallet.getPrivateKeyString()"
+                   readonly="readonly"
+                   style="height: 1.5rem;font-size: 1rem;font-family: MoskLight300;color: rgba(20,42,63,1);line-height: 1.5rem;background: transparent;border:none;padding: 0;">
+            <span tabindex="0"
+                  aria-label="make private key visible"
+                  role="button"
+                  class="input-group-addon eye"
+                  ng-click="showHidePkey()"
+                  style="background: transparent;width: 3rem;text-align: center; padding: 0;"></span>
+          </div>
+          <div class="row" style="margin-top: 1rem;">
+            <a class="btn btn-primary" ng-click="printQRCode()" translate="x_Print">
+              Print Paper Wallet
+            </a>
+          </div>          
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 text-right">
+          <div class="qr-overlay" ng-show="!pkeyVisible"></div>
+          <div class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
+          <div class="input-group">
+            <input class="form-control no-animate"
+                   type="{{pkeyVisible ? 'text' : 'password'}}"
+                   ng-value="wallet.getPrivateKeyString()"
+                   readonly="readonly"
+                   style="display:none;width:0;height:0;padding:0">
+            <span tabindex="0"
+                  aria-label="make private key visible"
+                  role="button" class="input-group-addon eye"
+                  ng-click="showHidePkey()"
+                  style="width: 100%; display: inherit;"></span>
+          </div>
+        </div>
+      </div>
+
+      <a class="btn btn-default pull-right" ng-click="globalService.currentTab=globalService.tabs.homepage.id">
+        <span> Back To Home</span> 
+      </a>
+    </article>
   </section>
-
-
-</article>
-
-<article class="col-sm-4">
-  <wallet-balance-drtv></wallet-balance-drtv>
 </article>
    
     </div>
