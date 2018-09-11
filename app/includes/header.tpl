@@ -107,18 +107,44 @@
         <!-- <p class="small visible-xs">3.21.22</p> -->
       </a>
     }
+
     <div class="language-change tagline">
-        <span class="dropdown">
-            <a href="https://www.trias.one" target="_blank" translate="HEADER_TriasProject">Trias Project</a>
-          </span>
-          <span class="dropdown">
-              <a href="https://monitor.trias.one" target="_blank" translate="HEADER_Monitor">Nodes Status Monitor</a>
-            </span>
-        <span class="dropdown">
+        <span class="dropdown hidden-xs">
+          <a href="https://www.trias.one" target="_blank" translate="HEADER_TriasProject">Trias Project</a>
+        </span>
+        <span class="dropdown hidden-xs">
+          <a href="https://monitor.trias.one" target="_blank" translate="HEADER_Monitor">Nodes Status Monitor</a>
+        </span>
+        <span class="dropdown hidden-xs">
           <a href="https://explorer.trias.one" target="_blank" translate="HEADER_Explorer">Blockchain Explorer</a>
         </span>
+
+        <span class="dropdown dropdown-header-links visible-xs-inline-block" ng-cloak>
+          <a tabindex="0" aria-haspopup="true" class="dropdown-toggle btn" ng-click="dropdownHeaderLinks = !dropdownHeaderLinks">
+            <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
+            <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
+            <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
+            <i class="fas fa-times icon-close" ng-show="dropdownHeaderLinks"></i>
+          </a>
+          <ul class="dropdown-menu" ng-show="dropdownHeaderLinks">
+            <li>
+              <a href="https://www.trias.one" target="_blank" translate="HEADER_TriasProject">Trias Project</a>
+            </li>
+            <li>
+              <a href="https://monitor.trias.one" target="_blank" translate="HEADER_Monitor">Nodes Status Monitor</a>
+            </li>
+            <li>
+              <a href="https://explorer.trias.one" target="_blank" translate="HEADER_Explorer">Blockchain Explorer</a>
+            </li>
+          </ul>
+        </span>
+        
         <span class="dropdown dropdown-lang" ng-cloak>
-            <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
+            <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle hidden-xs" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
+            <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle btn visible-xs" ng-click="dropdown = !dropdown">
+              <i class="fas fa-globe-americas" ng-show="!dropdown"></i>
+              <i class="fas fa-times icon-close" ng-show="dropdown"></i>
+            </a>
             <ul class="dropdown-menu" ng-show="dropdown">
               <!-- <li><a ng-class="{true:'active'}[curLang=='Català']"          ng-click="changeLanguage('ca','Català'         )"> Català          </a></li>
               <li><a ng-class="{true:'active'}[curLang=='Deutsch']"         ng-click="changeLanguage('de','Deutsch'        )"> Deutsch         </a></li>
@@ -144,7 +170,7 @@
               <li><a ng-class="{true:'active'}[curLang=='Tiếng Việt']"      ng-click="changeLanguage('vi','Tiếng Việt'     )"> Tiếng Việt      </a></li> -->
               <li><a ng-class="{true:'active'}[curLang=='简体中文']"         ng-click="changeLanguage('zhcn','简体中文'      )"> 简体中文         </a></li>
               <!-- <li><a ng-class="{true:'active'}[curLang=='繁體中文']"         ng-click="changeLanguage('zhtw','繁體中文'      )"> 繁體中文         </a></li> -->
-              <li role="separator" class="divider"></li>
+              <!-- <li role="separator" class="divider"></li> -->
               <!-- <li><a data-toggle="modal" data-target="#disclaimerModal" translate="FOOTER_4"> Disclaimer </a></li> -->
             </ul>
           </span>
