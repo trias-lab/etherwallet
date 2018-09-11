@@ -25,7 +25,7 @@ bity.prototype.refreshRates = function (callback) {
     });
 }
 bity.prototype.openOrder = function (orderInfo, callback) {
-    ajaxReq.http.post('http://192.144.140.64:8701/api/swap/order', JSON.stringify(orderInfo), bity.postConfig).then(function (data) {
+    ajaxReq.http.post('http://192.144.140.64:8701/api/swap/order/', JSON.stringify(orderInfo), bity.postConfig).then(function (data) {
         callback(data.data);
     }, function (data) {
         callback({ error: true, msg: "connection error", data: "" });
