@@ -69,6 +69,9 @@
     font-size:1rem;
     border-radius: 0.25rem;
     margin-bottom: 2.25rem;
+    .decrypt-drtv{
+      padding: 0;
+    }
     // padding: 36px;
     .swap-panel-tit{
       width:100%;
@@ -162,7 +165,7 @@
       width: 10rem;
       margin-right: 0;
     }
-    .dropdown {
+    .swap-panel-step1 .dropdown {
       display: inline-block;
       margin-left: 0;
       height: 2.375rem;
@@ -172,7 +175,7 @@
       border: .0625rem solid #cbd0d3;
       padding-left: .875rem;
       padding-right: .5rem;
-    }
+    } 
     .original-to-target{
       float: left;
       height: 100%;
@@ -382,10 +385,17 @@
 
 
 @media only screen and (max-width: 768px){
-   .swap-panel .swap-panel-warp .swap-panel-step1>div{
-          float: none !important;
+
+   .swap-panel .swap-panel-warp{
+     padding: 0!important;
+    .swap-panel-step1>div{
+      float: none !important;
+    }
+   } 
+   .dropdown-wallet-key {
+    margin-top: 1.25rem
    }
    .original-to-target{
       margin-top: 0 !important;
    }
-}
+  }
