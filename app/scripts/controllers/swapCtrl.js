@@ -226,15 +226,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
 
   $scope.updateBityEstimate = function (isFrom) {
     if (isFrom){
-      console.log(1)
-      console.log($scope.swapOrder.fromCoin)
-      console.log($scope.swapOrder.toCoin)
-      console.log($scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin])
-      // $scope.swapOrder.toVal = parseFloat(($scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin] * $scope.swapOrder.fromVal).toFixed(bity.decimals));
-      
+      // console.log( $scope.swapOrder.fromVal);
+      // console.log( $scope.swapOrder.toVal)
+      // console.log( $scope.swapOrder.fromCoin)
+      // console.log($scope.swapOrder.toCoin)
+      $scope.swapOrder.toVal = parseFloat(($scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin] * $scope.swapOrder.fromVal).toFixed(bity.decimals));
     } 
     else{
-      console.log(2)
       $scope.swapOrder.fromVal = parseFloat(($scope.swapOrder.toVal / $scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin]).toFixed(bity.decimals));
     }
     $scope.swapOrder.isFrom = isFrom;
