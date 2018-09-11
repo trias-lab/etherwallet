@@ -23,12 +23,11 @@ ethPrice.getETHvalue = function (callback) {
 }
 // http://localhost:8000/api/swap/rate/
 ethPrice.getRates = function (callback) {
-    // ajaxReq.http.get("http://192.144.140.64:8701/api/swap/rate/").then(function (data) {
-    //     callback(data['data']['objects']);
-    // });
-    ajaxReq.http.get(BITYRATEAPI).then(function (data) {
+    ajaxReq.http.get("http://192.144.140.64:8701/api/swap/rate/").then(function (data) {
         callback(data['data']['objects']);
     });
-    BITYRATEAPI
+    // ajaxReq.http.get(BITYRATEAPI).then(function (data) {
+    //     callback(data['data']['objects']);
+    // });
 }
 module.exports = ethPrice;

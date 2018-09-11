@@ -24,16 +24,16 @@ bity.prototype.refreshRates = function (callback) {
         if (callback) callback();
     });
 }
-// bity.prototype.openOrder = function (orderInfo, callback) {
-//     ajaxReq.http.post('http://192.144.140.64:8701/api/swap/order', JSON.stringify(orderInfo), bity.postConfig).then(function (data) {
-//         callback(data.data);
-//     }, function (data) {
-//         callback({ error: true, msg: "connection error", data: "" });
-//     });
-// }
 bity.prototype.openOrder = function (orderInfo, callback) {
-    bity.post('/order', orderInfo, callback);
+    ajaxReq.http.post('http://192.144.140.64:8701/api/swap/order', JSON.stringify(orderInfo), bity.postConfig).then(function (data) {
+        callback(data.data);
+    }, function (data) {
+        callback({ error: true, msg: "connection error", data: "" });
+    });
 }
+// bity.prototype.openOrder = function (orderInfo, callback) {
+//     bity.post('/order', orderInfo, callback);
+// }
 bity.prototype.getStatus = function (orderInfo, callback) {
     var _this = this;
     bity.post('/status', orderInfo, callback);
