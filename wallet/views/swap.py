@@ -1,12 +1,19 @@
 """
 index message
 """
-import datetime
 import time
 from django.http import JsonResponse
-from django.db.models import Q
-from collections import OrderedDict
+import json
+from wallet.utils.time_util import stamp2UTCdatetime
+import string
+import random
 
+_cache = {}
+
+def random_str(len):
+    base_list = string.ascii_letters+string.digits
+    random_list = [random.choice(base_list) for i in range(len)]
+    return ''.join(random_list)
 
 def rate(request):
     re_dict = {
@@ -30,6 +37,22 @@ def rate(request):
 
 
 def order(request):
+    try:
+        params = json.loads(request.body)
+    except Exception as e:
+        return JsonResponse({"error": True, "msg": "body should json type"})
+
+    if not params['amount']:
+        return JsonResponse({"error": True, "msg": "Need param amount"})
+    if not params['destAddress']:
+        return JsonResponse({"error": True, "msg": "Need param destAddress"})
+    if not params['pair']:
+        return JsonResponse({"error": True, "msg": "Need param pair"})
+    if not params['pair'] in ["TRIETH", "ETHTRI"]:
+        return JsonResponse({"error": True, "msg": "Not support pair"})
+
+    seconds = time.time()
+    timestamp = stamp2UTCdatetime(seconds)
     re_dict = {
         "error": False,
         "msg": "",
@@ -51,6 +74,24 @@ def order(request):
             }
         }
     }
+    re_dict["data"]["id"] = random_str(120)
+    re_dict["data"]["amount"] = params['amount']
+    re_dict["data"]["pair"] = params['pair']
+    re_dict["data"]["timestamp_created"] = timestamp
+    re_dict["data"]["input"]['amount'] = float(params['amount'])
+    re_dict["data"]["input"]['currency'] = params['pair'][3:]
+    if params['pair'] == "TRIETH":
+        re_dict["data"]["output"]['amount'] = float(params['amount']) * 2.2
+    else:
+        re_dict["data"]["output"]['amount'] = float(params['amount']) * 0.45
+    re_dict["data"]["output"]['currency'] = params['pair'][0:3]
+
+    _cache[ re_dict["data"]["id"] ] = {
+        "amount":float(params['amount']),
+        "pair":params['pair'],
+        "seconds":seconds
+    }
+
     response = JsonResponse(re_dict)
     response["Access-Control-Allow-Origin"] = '*'
     response["Access-Control-Allow-Method"] = 'POST'
@@ -59,6 +100,16 @@ def order(request):
 
 
 def status(request):
+    try:
+        params = json.loads(request.body)
+    except Exception as e:
+        return JsonResponse({"error": True, "msg": "body should json type"})
+
+    if not params['orderid']:
+        return JsonResponse({"error": True, "msg": "Need param orderid"})
+
+    seconds = time.time()
+    timestamp = stamp2UTCdatetime(seconds)
     re_dict = {
         "error": False,
         "msg": "",
@@ -77,6 +128,27 @@ def status(request):
             }
         }
     }
+    re_dict["data"]["id"] = params['orderid']
+
+    cache_obj = _cache.get(params['orderid'])
+    if cache_obj:
+        re_dict["data"]["input"]['amount'] = cache_obj["amount"]
+        re_dict["data"]["input"]['currency'] = cache_obj['pair'][3:]
+        if cache_obj['pair'] == "TRIETH":
+            re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 2.2
+        else:
+            re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 0.45
+        re_dict["data"]["output"]['currency'] = cache_obj['pair'][0:3]
+        elapsed = (int)(seconds - cache_obj["seconds"])
+        if elapsed >= 10 and elapsed < 20:
+            re_dict["data"]["status"] = "RCVE"
+        elif elapsed >= 20:
+            re_dict["data"]["status"] = "FILL"
+
+    for key in list(_cache):
+        elapsed = seconds - _cache[key]["seconds"]
+        if elapsed > 30:
+            _cache.pop(key)
 
     response = JsonResponse(re_dict)
     response["Access-Control-Allow-Origin"] = '*'
