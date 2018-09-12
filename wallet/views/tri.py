@@ -33,9 +33,6 @@ def tri(request):
         return JsonResponse(err)
 
     response = HttpResponse(response)
-    response["Access-Control-Allow-Origin"] = '*'
-    response["Access-Control-Allow-Method"] = 'POST'
-    response["Access-Control-Allow-Headers"] = 'X-CSRFToken, Content-Type'
     return response
 
 
