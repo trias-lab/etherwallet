@@ -38,7 +38,7 @@ def rate(request):
 
 def order(request):
     try:
-        params = json.loads(request.body)
+        params = json.loads(request.body.decode('utf-8'))
     except Exception as e:
         return JsonResponse({"error": True, "msg": "body should json type"})
 
@@ -101,7 +101,7 @@ def order(request):
 
 def status(request):
     try:
-        params = json.loads(request.body)
+        params = json.loads(request.body.decode('utf-8'))
     except Exception as e:
         return JsonResponse({"error": True, "msg": "body should json type"})
 
