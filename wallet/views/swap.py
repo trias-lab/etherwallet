@@ -42,13 +42,13 @@ def order(request):
     except Exception as e:
         return JsonResponse({"error": True, "msg": "body should json type"})
 
-    if not params['amount']:
+    if not params.get('amount'):
         return JsonResponse({"error": True, "msg": "Need param amount"})
-    if not params['destAddress']:
+    if not params.get('destAddress'):
         return JsonResponse({"error": True, "msg": "Need param destAddress"})
-    if not params['pair']:
+    if not params.get('pair'):
         return JsonResponse({"error": True, "msg": "Need param pair"})
-    if not params['pair'] in ["TRIETH", "ETHTRI"]:
+    if not (params.get('pair') in ["TRIETH", "ETHTRI"]):
         return JsonResponse({"error": True, "msg": "Not support pair"})
 
     seconds = time.time()
@@ -102,7 +102,7 @@ def status(request):
     except Exception as e:
         return JsonResponse({"error": True, "msg": "body should json type"})
 
-    if not params['orderid']:
+    if not params.get('orderid'):
         return JsonResponse({"error": True, "msg": "Need param orderid"})
 
     seconds = time.time()
