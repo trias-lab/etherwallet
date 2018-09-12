@@ -111,6 +111,7 @@
           <p class="list-row clearfix">
             <span>To Address</span>
             <span> {{parsedSignedTx.to}}</span>
+            
           </p>
           <p class="list-row clearfix">
             <span>From Address</span>

@@ -334,6 +334,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
         }, function (data) {
           if (data.error) $scope.notifier.danger(data.msg);
           else {
+            clearInterval(progressCheck);
             data = data.data;
             if (bity.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
             if (orderResult.progress.status == "OPEN" && bity.validStatus.indexOf(data.input.status) != -1) {
@@ -349,8 +350,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
               var url = orderResult.output.currency == 'BTC' ? bity.btcExplorer.replace("[[txHash]]", data.output.reference) : bity.ethExplorer.replace("[[txHash]]", data.output.reference)
               var bExStr = `<a href="${url}" target=" _blank" rel="noopener "> View your transaction </a>`;
               $scope.notifier.success(globalFuncs.successMsgs[2] + data.output.reference + "<br />" + bExStr);
+              console.log(222)
               clearInterval(progressCheck);
               clearInterval(timeRem);
+              
 
             } else if (bity.invalidStatus.indexOf(data.status) != -1) {
               orderResult.progress.status = "CANC";
