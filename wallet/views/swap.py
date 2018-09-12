@@ -51,7 +51,11 @@ def order(request):
             }
         }
     }
-    return JsonResponse(re_dict)
+    response = JsonResponse(re_dict)
+    response["Access-Control-Allow-Origin"] = '*'
+    response["Access-Control-Allow-Method"] = 'POST'
+    response["Access-Control-Allow-Headers"] = 'X-CSRFToken, Content-Type'
+    return response
 
 
 def status(request):
@@ -74,7 +78,11 @@ def status(request):
         }
     }
 
-    return JsonResponse(re_dict)
+    response = JsonResponse(re_dict)
+    response["Access-Control-Allow-Origin"] = '*'
+    response["Access-Control-Allow-Method"] = 'POST'
+    response["Access-Control-Allow-Headers"] = 'X-CSRFToken, Content-Type'
+    return response
 
 
 

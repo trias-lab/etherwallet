@@ -13,8 +13,8 @@ def tri(request):
     with open(CONF_JSON, 'r') as conf:
         rec = conf.read()
     records = json.loads(rec)
-    tri_ip = records['tri_ip']
-    tri_port = records['tri_port']
+    tri_ip = records['eth_ip']
+    tri_port = records['eth_port']
     url = "http://" + tri_ip + ":" + tri_port
     req = HttpReq.Request(url, headers=headers, data=postBody)
 
