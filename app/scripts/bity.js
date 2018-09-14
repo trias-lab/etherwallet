@@ -1,6 +1,7 @@
 'use strict';
 var bity = function () { }
-bity.SERVERURL = "http://192.144.140.64:8701";
+bity.SERVERURL = "http://1270.0.1:8701";
+// bity.SERVERURL = "http://192.144.140.64:8701";
 // bity.SERVERURL = "https://bity.myetherapi.com";
 bity.decimals = 6;
 bity.ethExplorer = 'https://etherscan.io/tx/[[txHash]]';
