@@ -54,7 +54,7 @@ nodes.nodeList = {
         tokenList: require("./tokens/triTokens.json"),
         abiList: require("./abiDefinitions/triAbi.json"),
         service: "TRI",
-        lib: new nodes.customNode("http://192.144.140.64:8701/api/tri/", "")
+        lib: new nodes.customNode("http://1270.0.1:8701/api/tri/", "")
     },
 	eth_mew: {
 		name: "ETH",
