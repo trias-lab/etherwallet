@@ -427,9 +427,7 @@
       }
   }
   .center-box{
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;      
+      padding: 0 10rem;      
   }
   .info{
       width: 100%;
@@ -481,13 +479,14 @@
       }
   }
 }
-
-@media screen and (max-width: 768px) {
+@media only screen and(max-width:@screen-md-max){
+  .common-footer .center-box{
+    padding: 0 12px;      
+  }
+}
+@media screen and (max-width: @screen-xs-max) {
 .common-footer{
-    background: url(../images/mobile/bg_footer_m@2x.jpg) no-repeat;
-    .center-box{
-        max-width: none;
-    }
+    background: url(../images/mobile/bg_footer_m@2x.jpg) no-repeat;    
     .contacts{
         height: 160px;
         line-height: 50px;
@@ -518,8 +517,7 @@
             float: none;
         }
     } 
-  }    
-  
+  }
 }
 
 
