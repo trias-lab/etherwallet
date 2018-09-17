@@ -1,6 +1,7 @@
 'use strict';
 var bity = function () { }
-bity.SERVERURL = "http://172.21.0.46:8701";
+// bity.SERVERURL = "http://172.21.0.46:8701";
+bity.SERVERURL = "http://wallet.trias.one";
 // bity.SERVERURL = "http://192.144.140.64:8701";
 // bity.SERVERURL = "https://bity.myetherapi.com";
 bity.decimals = 6;
