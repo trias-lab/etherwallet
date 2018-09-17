@@ -23,7 +23,7 @@ ethPrice.getETHvalue = function (callback) {
 }
 // http://localhost:8000/api/swap/rate/
 ethPrice.getRates = function (callback) {
-    ajaxReq.http.get("http://172.21.0.46:8701/api/swap/rate/").then(function (data) {
+    ajaxReq.http.get("http://wallet.trias.one/api/swap/rate/").then(function (data) {
         callback(data['data']['objects']);
     });
     // ajaxReq.http.get(BITYRATEAPI).then(function (data) {

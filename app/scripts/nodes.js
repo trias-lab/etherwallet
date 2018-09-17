@@ -54,7 +54,7 @@ nodes.nodeList = {
         tokenList: require("./tokens/triTokens.json"),
         abiList: require("./abiDefinitions/triAbi.json"),
         service: "TRI",
-        lib: new nodes.customNode("http://172.21.0.46:8701/api/tri/", "")
+        lib: new nodes.customNode("http://wallet.trias.one/api/tri/", "")
     },
 	eth_mew: {
 		name: "ETH",
