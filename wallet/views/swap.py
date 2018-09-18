@@ -20,15 +20,15 @@ def rate(request):
         "objects": [{
             "pair": "TRIETH",
             "rate": "0.450000",
-            "source": "ETH",
-            "target": "TRI",
+            "source": "TRI",
+            "target": "ETH",
             "timestamp": "2018-09-05T08:27:00.926076"
         },
             {
                 "pair": "ETHTRI",
                 "rate": "2.200000",
-                "source": "TRI",
-                "target": "ETH",
+                "source": "ETH",
+                "target": "TRI",
                 "timestamp": "2018-09-05T08:27:00.926076"
             }
         ]
@@ -65,11 +65,11 @@ def order(request):
             "timestamp_created": "2018-09-05T09:57:32.412800Z",
             "status": "OPEN",
             "input": {
-                "amount": "1.00000000",
-                "currency": "ETH"
+                "amount": "2.10000000",
+                "currency": "TRI"
             },
             "output": {
-                "amount": "2.100000",
+                "amount": "1.000000",
                 "currency": "TRI"
             }
         }
@@ -79,12 +79,12 @@ def order(request):
     re_dict["data"]["pair"] = params['pair']
     re_dict["data"]["timestamp_created"] = timestamp
     re_dict["data"]["input"]['amount'] = float(params['amount'])
-    re_dict["data"]["input"]['currency'] = params['pair'][3:]
+    re_dict["data"]["input"]['currency'] = params['pair'][0:3]
     if params['pair'] == "TRIETH":
-        re_dict["data"]["output"]['amount'] = float(params['amount']) * 2.2
-    else:
         re_dict["data"]["output"]['amount'] = float(params['amount']) * 0.45
-    re_dict["data"]["output"]['currency'] = params['pair'][0:3]
+    else:
+        re_dict["data"]["output"]['amount'] = float(params['amount']) * 2.1
+    re_dict["data"]["output"]['currency'] = params['pair'][3:]
 
     _cache[ re_dict["data"]["id"] ] = {
         "amount":float(params['amount']),
@@ -130,21 +130,25 @@ def status(request):
     cache_obj = _cache.get(params['orderid'])
     if cache_obj:
         re_dict["data"]["input"]['amount'] = cache_obj["amount"]
-        re_dict["data"]["input"]['currency'] = cache_obj['pair'][3:]
+        re_dict["data"]["input"]['currency'] = cache_obj['pair'][0:3]
         if cache_obj['pair'] == "TRIETH":
-            re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 2.2
-        else:
             re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 0.45
-        re_dict["data"]["output"]['currency'] = cache_obj['pair'][0:3]
+            re_dict["data"]["input"]['reference'] = "https://explorer.trias.one/translist/0x7278f03c8de47f5b66fc2f7835be0e23b8cb2570ad12e61645c26b5fcbd2bced"
+            re_dict["data"]["output"]['reference'] = "https://ropsten.etherscan.io/tx/0x8cf75bdfce39ab01a5565140c7dc10a886f40f746000b45772ce7a7e00d0d5b4"
+        else:
+            re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 2.1
+            re_dict["data"]["output"]['reference'] = "https://explorer.trias.one/translist/0x7278f03c8de47f5b66fc2f7835be0e23b8cb2570ad12e61645c26b5fcbd2bced"
+            re_dict["data"]["input"]['reference'] = "https://ropsten.etherscan.io/tx/0x8cf75bdfce39ab01a5565140c7dc10a886f40f746000b45772ce7a7e00d0d5b4"
+        re_dict["data"]["output"]['currency'] = cache_obj['pair'][3:]
         elapsed = (int)(seconds - cache_obj["seconds"])
-        if elapsed >= 10 and elapsed < 20:
+        if elapsed >= 60 and elapsed < 60*3:
             re_dict["data"]["status"] = "RCVE"
-        elif elapsed >= 20:
+        elif elapsed >= 60*10:
             re_dict["data"]["status"] = "FILL"
 
     for key in list(_cache):
         elapsed = seconds - _cache[key]["seconds"]
-        if elapsed > 30:
+        if elapsed > 60*15:
             _cache.pop(key)
 
     response = JsonResponse(re_dict)
