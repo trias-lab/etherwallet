@@ -6,5 +6,7 @@
   "mysql_user": "8lab",
   "mysql_password": "8lab",
   "mysql_database": "trias_wallet",
-  "request_interval": 0
+  "request_interval": 0,
+  "private_key_encrypt_pass" : "",
+  "etherscan_key" : ""
 }

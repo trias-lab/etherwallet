@@ -160,9 +160,10 @@ class Order(models.Model):
     create_time_stamp = models.IntegerField()
     rate = models.DecimalField(max_digits=19, decimal_places=6, blank=True, null=True)
     target_coin_address = models.CharField(max_length=100)
-    source_coin_payment_address = models.CharField(max_length=100, blank=True, null=True)
-    # transaction_in = models.ForeignKey('Transaction', models.DO_NOTHING, blank=True, null=True)
-    # transaction_out = models.ForeignKey('Transaction', models.DO_NOTHING, blank=True, null=True)
+    source_coin_payment_address = models.CharField(max_length=100)
+    source_coin_payment_amount = models.DecimalField(max_digits=19, decimal_places=6)
+    tx_in_hash = models.CharField(max_length=100, blank=True, null=True)
+    tx_out_hash = models.CharField(max_length=100, blank=True, null=True)
     is_finished = models.IntegerField(blank=True, null=True)
 
     class Meta:

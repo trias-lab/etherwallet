@@ -7,8 +7,11 @@ import json
 from wallet.utils.time_util import stamp2UTCdatetime
 import string
 import random
-
-_cache = {}
+from wallet.models import Address, BalanceChange, CoinExchangeList, Order, Transaction
+from wallet.utils.account_util import  DBOperation
+from wallet.utils.block_util import  ReqData
+from decimal import *
+from wallet.utils.logger import logger
 
 def random_str(len):
     base_list = string.ascii_letters+string.digits
@@ -16,23 +19,16 @@ def random_str(len):
     return ''.join(random_list)
 
 def rate(request):
-    re_dict = {
-        "objects": [{
-            "pair": "TRIETH",
-            "rate": "0.450000",
-            "source": "TRI",
-            "target": "ETH",
-            "timestamp": "2018-09-05T08:27:00.926076"
-        },
-            {
-                "pair": "ETHTRI",
-                "rate": "2.200000",
-                "source": "ETH",
-                "target": "TRI",
-                "timestamp": "2018-09-05T08:27:00.926076"
-            }
-        ]
-    }
+    all = CoinExchangeList.objects.all()
+    re_dict = { "objects": []}
+    for ce in all:
+        obj = {}
+        obj["pair"] = ce.source_coin_name + ce.target_coin_name
+        obj["rate"] = ce.rate
+        obj["source"] = ce.source_coin_name
+        obj["target"] = ce.target_coin_name
+        obj["timestamp"] = stamp2UTCdatetime(ce.rate_update_time_stamp)
+        re_dict["objects"].append(obj)
     return JsonResponse(re_dict)
 
 
@@ -51,50 +47,61 @@ def order(request):
     if not (params.get('pair') in ["TRIETH", "ETHTRI"]):
         return JsonResponse({"error": True, "msg": "Not support pair"})
 
-    seconds = time.time()
-    timestamp = stamp2UTCdatetime(seconds)
     re_dict = {
         "error": False,
         "msg": "",
         "data": {
-            "id": "69b968c0020a78c389f815e889720e6f279521eaa5ce81c2291b571c89f5209cabcee6d8b7edb099dc61a82e4a63d5968kZZkZcKDVNANFHPmP78Hw==",
-            "amount": "1",
-            "pair": "TRIETH",
-            "payment_address": "0x7D164c43a7dD36B1a309D0bfD6c66f63f77CBc27",
-            "validFor": 600,
-            "timestamp_created": "2018-09-05T09:57:32.412800Z",
-            "status": "OPEN",
-            "input": {
-                "amount": "2.10000000",
-                "currency": "TRI"
-            },
-            "output": {
-                "amount": "1.000000",
-                "currency": "TRI"
-            }
+            "input":{},
+            "output": {}
         }
     }
-    re_dict["data"]["id"] = random_str(120)
-    re_dict["data"]["amount"] = params['amount']
-    re_dict["data"]["pair"] = params['pair']
-    re_dict["data"]["timestamp_created"] = timestamp
-    re_dict["data"]["input"]['amount'] = float(params['amount'])
-    re_dict["data"]["input"]['currency'] = params['pair'][0:3]
-    if params['pair'] == "TRIETH":
-        re_dict["data"]["output"]['amount'] = float(params['amount']) * 0.45
-    else:
-        re_dict["data"]["output"]['amount'] = float(params['amount']) * 2.1
-    re_dict["data"]["output"]['currency'] = params['pair'][3:]
 
-    _cache[ re_dict["data"]["id"] ] = {
-        "amount":float(params['amount']),
-        "pair":params['pair'],
-        "seconds":seconds
-    }
+    try:
+        sourceCoin = params['pair'][0:3]
+        targetCoin = params['pair'][3:]
+        ce = CoinExchangeList.objects.filter(source_coin_name=sourceCoin, target_coin_name=targetCoin).first()
+        targetAmount = Decimal(params['amount']) * Decimal(ce.rate)
+        if not DBOperation.isBalanceSufficient(targetCoin, targetAmount):
+            re_dict["error"] = True
+            re_dict["msg"] = "insufficient balance for coin %s of amount %s" % (targetCoin, targetAmount)
+            response = JsonResponse(re_dict)
+            return response
 
-    response = JsonResponse(re_dict)
+        re_dict["data"]["id"] = random_str(100)
+        re_dict["data"]["amount"] = params['amount']
+        re_dict["data"]["pair"] = params['pair']
+        re_dict["data"]["payment_address"] = DBOperation.genNewAddress(sourceCoin, False)
+        re_dict["data"]["validFor"] = ce.order_valid_seconds
+        seconds = time.time()
+        timestamp = stamp2UTCdatetime(seconds)
+        re_dict["data"]["timestamp_created"] = timestamp
+        re_dict["data"]["status"] = "OPEN"
+        re_dict["data"]["input"]['amount'] = Decimal(params['amount'])
+        re_dict["data"]["input"]['currency'] = sourceCoin
+        re_dict["data"]["output"]['amount'] = targetAmount
+        re_dict["data"]["output"]['currency'] = targetCoin
+
+        order = Order()
+        order.order_id = re_dict["data"]["id"]
+        order.source_coin_name = sourceCoin
+        order.source_amount = re_dict["data"]["input"]['amount']
+        order.target_coin_name = targetCoin
+        order.target_amount = re_dict["data"]["output"]['amount']
+        order.create_time_stamp = seconds
+        order.rate = ce.rate
+        order.target_coin_address = params.get('destAddress')
+        order.source_coin_payment_address = re_dict["data"]["payment_address"]
+        order.source_coin_payment_amount = 0
+        order.transaction_in_id = 0
+        order.transaction_out_id = 0
+        order.is_finished = False
+        order.save()
+        logger.info("%s->%s insert order in db, id=%s" % (sourceCoin, targetCoin, order.id))
+        response = JsonResponse(re_dict)
+    except Exception as e:
+        logger.error(e)
+
     return response
-
 
 def status(request):
     try:
@@ -111,46 +118,51 @@ def status(request):
         "error": False,
         "msg": "",
         "data": {
-            "id": "69b968c0020a78c389f815e889720e6f279521eaa5ce81c2291b571c89f5209cabcee6d8b7edb099dc61a82e4a63d5968kZZkZcKDVNANFHPmP78Hw==",
+            "id": "",
             "status": "OPEN",
             "input": {
-                "amount": "1.00000000",
-                "currency": "ETH",
-                "reference": "https://ropsten.etherscan.io/tx/0x8cf75bdfce39ab01a5565140c7dc10a886f40f746000b45772ce7a7e00d0d5b4"
+                "amount": "",
+                "currency": "",
+                "reference": ""
             },
             "output": {
-                "amount": "2.100000",
-                "currency": "TRI",
-                "reference": "https://explorer.trias.one/translist/0x7278f03c8de47f5b66fc2f7835be0e23b8cb2570ad12e61645c26b5fcbd2bced"
+                "amount": "",
+                "currency": "",
+                "reference": ""
             }
         }
     }
     re_dict["data"]["id"] = params['orderid']
-
-    cache_obj = _cache.get(params['orderid'])
-    if cache_obj:
-        re_dict["data"]["input"]['amount'] = cache_obj["amount"]
-        re_dict["data"]["input"]['currency'] = cache_obj['pair'][0:3]
-        if cache_obj['pair'] == "TRIETH":
-            re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 0.45
-            re_dict["data"]["input"]['reference'] = "https://explorer.trias.one/translist/0x7278f03c8de47f5b66fc2f7835be0e23b8cb2570ad12e61645c26b5fcbd2bced"
-            re_dict["data"]["output"]['reference'] = "https://ropsten.etherscan.io/tx/0x8cf75bdfce39ab01a5565140c7dc10a886f40f746000b45772ce7a7e00d0d5b4"
+    try:
+        order = Order.objects.filter(order_id=params['orderid']).first()
+    except:
+        order = None
+    if not order:
+        re_dict["error"] = True
+        re_dict["msg"] = "can not find order"
+        response = JsonResponse(re_dict)
+        return response
+    re_dict["data"]["input"]['amount'] = str(order.source_amount)
+    re_dict["data"]["input"]['currency'] = order.source_coin_name
+    re_dict["data"]["output"]['amount'] = str(order.target_amount)
+    re_dict["data"]["output"]['currency'] = order.target_coin_name
+    if order.is_finished:
+        re_dict["data"]["input"]['reference'] = ReqData.getTransactionWebUrl(order.source_coin_name, order.tx_in_hash)
+        re_dict["data"]["output"]['reference'] = ReqData.getTransactionWebUrl(order.target_coin_name, order.tx_out_hash)
+        re_dict["data"]["status"] = "FILL"
+        response = JsonResponse(re_dict)
+        return response
+    if order.tx_in_hash:
+        if order.source_amount > order.source_coin_payment_amount:
+            re_dict["data"]["input"]['reference'] = ReqData.getTransactionWebUrl(order.source_coin_name, order.tx_in_hash)
+            re_dict["msg"] = "receive amount %s, less than required amount %s" % (order.source_coin_payment_amount, order.source_amount)
+            response = JsonResponse(re_dict)
+            return response
         else:
-            re_dict["data"]["output"]['amount'] = cache_obj['amount'] * 2.1
-            re_dict["data"]["output"]['reference'] = "https://explorer.trias.one/translist/0x7278f03c8de47f5b66fc2f7835be0e23b8cb2570ad12e61645c26b5fcbd2bced"
-            re_dict["data"]["input"]['reference'] = "https://ropsten.etherscan.io/tx/0x8cf75bdfce39ab01a5565140c7dc10a886f40f746000b45772ce7a7e00d0d5b4"
-        re_dict["data"]["output"]['currency'] = cache_obj['pair'][3:]
-        elapsed = (int)(seconds - cache_obj["seconds"])
-        if elapsed >= 60 and elapsed < 60*3:
+            re_dict["data"]["input"]['reference'] = ReqData.getTransactionWebUrl(order.source_coin_name, order.tx_in_hash)
             re_dict["data"]["status"] = "RCVE"
-        elif elapsed >= 60*10:
-            re_dict["data"]["status"] = "FILL"
-
-    for key in list(_cache):
-        elapsed = seconds - _cache[key]["seconds"]
-        if elapsed > 60*15:
-            _cache.pop(key)
-
+            response = JsonResponse(re_dict)
+            return response
     response = JsonResponse(re_dict)
     return response
 

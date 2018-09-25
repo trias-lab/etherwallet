@@ -1,0 +1,7 @@
+Django==1.9.7
+pycrypto
+eth_account
+mysqlclient
+requests
+
+

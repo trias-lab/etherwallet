@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from urllib import request as HttpReq
 import json
 from etherwallet.settings import CONF_JSON
+from wallet.utils.logger import logger
 
 def tri(request):
     postBody = request.body
@@ -21,7 +22,7 @@ def tri(request):
     try:
         response = HttpReq.urlopen(req).read()
     except Exception as e:
-        print('---exec', e)
+        logger.error(e)
         err = {
             "jsonrpc": "2.0",
             "id": 1,
