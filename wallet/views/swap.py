@@ -12,6 +12,7 @@ from wallet.utils.account_util import  DBOperation
 from wallet.utils.block_util import  ReqData
 from decimal import *
 from wallet.utils.logger import logger
+from wallet.utils.common_util import load_json
 
 def random_str(len):
     base_list = string.ascii_letters+string.digits
@@ -34,7 +35,7 @@ def rate(request):
 
 def order(request):
     try:
-        params = json.loads(request.body.decode('utf-8'))
+        params = load_json(request.body)
     except Exception as e:
         return JsonResponse({"error": True, "msg": "body should json type"})
 
@@ -105,7 +106,7 @@ def order(request):
 
 def status(request):
     try:
-        params = json.loads(request.body.decode('utf-8'))
+        params = load_json(request.body)
     except Exception as e:
         return JsonResponse({"error": True, "msg": "body should json type"})
 

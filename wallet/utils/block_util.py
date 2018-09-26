@@ -9,7 +9,7 @@ from wallet.utils.account_util import TRIAccount, ETHAccount, DBOperation, COIN_
 import traceback
 from decimal import *
 from . import logger as log
-
+from . import common_util
 
 logger = log.logger
 
@@ -30,16 +30,17 @@ class HttpReq:
                 retryTime += 1
                 continue
             return ret
+        return None
 
     @staticmethod
     def doGET(url):
         try:
             res = requests.get(url).text
-            result = json.loads(res)
+            result = common_util.load_json(res)
             ret = result["result"]
             return ret
         except Exception as e:
-            logger.error("GET url=%s, result=%s, e=%s" % (url, result, e))
+            logger.error("GET url=%s, e=%s" % (url, e))
             return None
 
     @staticmethod
@@ -47,11 +48,11 @@ class HttpReq:
         try:
             headers = {'Content-Type': 'application/json'}
             page = requests.post(url, headers=headers, data=data).text
-            result = json.loads(page)
+            result = common_util.load_json(page)
             ret = result["result"]
             return ret
         except Exception as e:
-            logger.error("GET url=%s, data=%s, result=%s, e=%s" % (url, data, result, e))
+            logger.error("POST url=%s, data=%s e=%s" % (url, data, e))
             return None
 
 
@@ -198,6 +199,9 @@ class Worker(threading.Thread):
     def run(self):
         while True:
             latest = self.reqData.latestBlockNumber()
+            if not latest:
+                time.sleep(2)
+                continue
             latest = int(latest, 16)
             if not self.checkedBlockNum:
                 self.checkedBlockNum = latest - self.checkStartBlockNum

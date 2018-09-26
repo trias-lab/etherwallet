@@ -6,6 +6,7 @@ from urllib import request as HttpReq
 import json
 from etherwallet.settings import CONF_JSON
 from wallet.utils.logger import logger
+from wallet.utils.common_util import load_json
 
 def tri(request):
     postBody = request.body
@@ -20,7 +21,7 @@ def tri(request):
                             'eth_sendRawTransaction',
                             'eth_estimateGas'])
     try:
-        reqDict = json.loads(postBody)
+        reqDict = load_json(postBody)
         method = reqDict["method"]
         if not method:
             raise (Exception("method not find"))
@@ -40,7 +41,7 @@ def tri(request):
 
     with open(CONF_JSON, 'r') as conf:
         rec = conf.read()
-    records = json.loads(rec)
+    records = load_json(rec)
     tri_ip = records['eth_ip']
     tri_port = records['eth_port']
     url = "http://" + tri_ip + ":" + tri_port
