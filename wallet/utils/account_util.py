@@ -105,7 +105,8 @@ class DBOperation:
             a.is_inner = is_inner
             a.save()
             return a.address
-        except:
+        except Exception as e:
+            logger.error("genNewAddress e %s" % e)
             return None
 
     @staticmethod
@@ -120,7 +121,8 @@ class DBOperation:
         try:
             a = Address.objects.filter(coin_name=coin_name, is_inner=True).first()
             return a.address
-        except:
+        except Exception as e:
+            logger.error("getInnerAddress e %s" % e)
             return None
 
     @staticmethod

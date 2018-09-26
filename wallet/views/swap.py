@@ -136,7 +136,8 @@ def status(request):
     re_dict["data"]["id"] = params['orderid']
     try:
         order = Order.objects.filter(order_id=params['orderid']).first()
-    except:
+    except Exception as e:
+        logger.error(e)
         order = None
     if not order:
         re_dict["error"] = True

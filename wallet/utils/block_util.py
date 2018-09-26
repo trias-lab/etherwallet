@@ -257,7 +257,8 @@ class Worker(threading.Thread):
         #check exists
         try:
             transaction = Transaction.objects.filter(tx_hash=tr["hash"]).first()
-        except:
+        except Exception as e:
+            logger.error("Transaction objects filter e %s" % e)
             transaction = None
         if transaction:
             logger.error("%s insert already exist order_in transaction in db, id=%s" % (self.coinName, transaction.id))
@@ -288,7 +289,8 @@ class Worker(threading.Thread):
         #insert balance change
         try:
             originalBalance = BalanceChange.objects.filter(coin_name=self.coinName).last().balance_now
-        except:
+        except Exception as e:
+            logger.error(e)
             originalBalance = 0
         try:
             balanceChange = BalanceChange()
@@ -373,7 +375,8 @@ class Worker(threading.Thread):
                 # insert balance change
                 try:
                     originalBalance = BalanceChange.objects.filter(coin_name=self.coinName).last().balance_now
-                except:
+                except Exception as e:
+                    logger.error(e)
                     originalBalance = 0
                 balanceChange = BalanceChange()
                 balanceChange.coin_name = self.coinName
@@ -444,7 +447,8 @@ class Worker(threading.Thread):
                 # insert balance change
                 try:
                     originalBalance = BalanceChange.objects.filter(coin_name=self.coinName).last().balance_now
-                except:
+                except Exception as e:
+                    logger.error(e)
                     originalBalance = 0
                 balanceChange = BalanceChange()
                 balanceChange.coin_name = self.coinName
@@ -479,7 +483,8 @@ class Worker(threading.Thread):
     def checkOrderOutAddress(self, toAddress, hash):
         try:
             a = Address.objects.filter(address=toAddress, is_inner=True).first()
-        except:
+        except Exception as e:
+            logger.error(e)
             a = None
         if not a:
             logger.error("%s order out dest address is not inner address, toAddress=%s, hash=%s" % (self.coinName, toAddress,hash))
@@ -562,7 +567,7 @@ class AllWorker:
         try:
             if cls._ethWorker:
                 return
-                logger.info("start eth worker thread")
+            logger.info("start eth worker thread")
             cls._ethWorker = Worker("ETH", ReqDataETH())
             cls._ethWorker.setDaemon(True)
             cls._ethWorker.start()
