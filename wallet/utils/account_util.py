@@ -5,7 +5,7 @@ from wallet.models import Address, BalanceChange, CoinExchangeList, Order, Trans
 import threading
 from . import block_util
 from . import logger as log
-
+import traceback
 
 logger = log.logger
 COIN_NAME_ETH = "ETH"
@@ -18,16 +18,20 @@ def pad(text, ch):
 
 class AESCrypt():
     def __init__(self, key):
-        self.key = pad(key, ' ')
+        if isinstance(key, str):
+            key = key.encode('utf-8')
+        self.key = pad(key, b' ')
         self.mode = AES.MODE_CBC
-        self.iv = "IV" * 8
+        self.iv = b"IV" * 8
 
     def encrypt(self, buffer):
         cryptor = AES.new(self.key, self.mode, self.iv)
         text = buffer.hex()
         if text[0:2] == '0x' or text[0:2] == '0X':
             text = text[2:]
-        pad_text = pad(text, '-')
+        if isinstance(text, str):
+            text = text.encode('utf-8')
+        pad_text = pad(text, b'-')
         enc_buffer = cryptor.encrypt(pad_text)
         hex_text = enc_buffer.hex()
         return hex_text
