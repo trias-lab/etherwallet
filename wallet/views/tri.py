@@ -19,14 +19,26 @@ def tri(request):
                             'eth_gasPrice',
                             'eth_getTransactionCount',
                             'eth_sendRawTransaction',
+                            'eth_call',
+                            'trace_call',
                             'eth_estimateGas'])
     try:
-        reqDict = load_json(postBody)
-        method = reqDict["method"]
-        if not method:
+        reqObject = load_json(postBody)
+        if isinstance(reqObject, dict):
+            method = reqObject["method"]
+            if not method:
+                raise (Exception("method not find"))
+            if not method in supportedMethods:
+                raise (Exception("method not supported %s" % method))
+        elif isinstance(reqObject, list):
+            for reqDict in reqObject:
+                method = reqDict["method"]
+                if not method:
+                    raise (Exception("method not find"))
+                if not method in supportedMethods:
+                    raise (Exception("method not supported %s" % method))
+        else:
             raise (Exception("method not find"))
-        if not method in supportedMethods:
-            raise (Exception("method not supported %s" % method))
     except Exception as e:
         logger.error(e)
         err = {
