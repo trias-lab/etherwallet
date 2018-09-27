@@ -155,6 +155,7 @@ def status(request):
         re_dict["data"]["output"]['reference'] = ReqData.getTransactionWebUrl(order.target_coin_name, order.tx_out_hash)
         re_dict["data"]["status"] = "FILL"
         re_dict["data"]["output"]["status"] = "FILL"
+        re_dict["data"]["input"]["status"] = "RCVE"
         response = JsonResponse(re_dict)
         return response
     if order.tx_in_hash:
