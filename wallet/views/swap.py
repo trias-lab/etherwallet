@@ -122,11 +122,13 @@ def status(request):
             "id": "",
             "status": "OPEN",
             "input": {
+                "status": "",
                 "amount": "",
                 "currency": "",
                 "reference": ""
             },
             "output": {
+                "status": "",
                 "amount": "",
                 "currency": "",
                 "reference": ""
@@ -152,6 +154,7 @@ def status(request):
         re_dict["data"]["input"]['reference'] = ReqData.getTransactionWebUrl(order.source_coin_name, order.tx_in_hash)
         re_dict["data"]["output"]['reference'] = ReqData.getTransactionWebUrl(order.target_coin_name, order.tx_out_hash)
         re_dict["data"]["status"] = "FILL"
+        re_dict["data"]["output"]["status"] = "FILL"
         response = JsonResponse(re_dict)
         return response
     if order.tx_in_hash:
@@ -163,6 +166,7 @@ def status(request):
         else:
             re_dict["data"]["input"]['reference'] = ReqData.getTransactionWebUrl(order.source_coin_name, order.tx_in_hash)
             re_dict["data"]["status"] = "RCVE"
+            re_dict["data"]["input"]["status"] = "RCVE"
             response = JsonResponse(re_dict)
             return response
     response = JsonResponse(re_dict)
