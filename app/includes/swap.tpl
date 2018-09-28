@@ -15,7 +15,10 @@
             <i class="fa fa-exchange" aria-hidden="true"></i>
         </div>
     </div>
-
+    <section class="row text-center" ng-show="showStage3Btc || showStage3Eth" style="margin-bottom: 30px;">
+        <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" style="background: #B00F23" ng-click="newSwap()"> End This Session</a>
+        </div>
+    </section>
     @@if (site === 'mew' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "mew" } ) } 
     @@if (site === 'cx' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "cx" } ) }
     

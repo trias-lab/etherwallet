@@ -30,12 +30,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
     // else return true;
 
   };
-
+  // 定时刷新汇率
   setInterval(function () {
     $scope.bity.refreshRates();
     // $scope.kyber.refreshRates();
     //$scope.checkKyberNetwork();
   }, 30000);
+
   $scope.priceTicker = {
     ETHBTC: 1,
     ETHREP: 1,
@@ -52,10 +53,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
   $scope.availableTokens = [];
   $scope.availableOptions = [...$scope.availableCoins, ...$scope.availableTokens];
 
+  // 设定初始值
   var initValues = function () {
+    //获取汇率
     $scope.bity.refreshRates(function () {
       $scope.setOrderCoin(true, "ETH");
     });
+
     $scope.kyberInit();
     $scope.kyberPriceTicker = {};
     Object.keys($scope.kyber.kyberRates).forEach(kkey => {
@@ -80,8 +84,8 @@ var swapCtrl = function ($scope, $sce, walletService) {
       swapRate: '',
       swapPair: ''
     };
-
   };
+
 
   /** kyberSwapOrder **/
   $scope.resetErrorShownStates = function () {
@@ -220,6 +224,9 @@ var swapCtrl = function ($scope, $sce, walletService) {
     $scope.updateBityEstimate(isFrom);
     $scope.dropdownFrom = $scope.dropdownTo = false;
   };
+
+  // Original 币种更新
+  // isFrom 来判断是 Original值还是  Target
   $scope.updateEstimate = function (isFrom) {
     if ($scope.checkIfKyber()) {
       $scope.updateKyberEstimate(isFrom);
@@ -304,7 +311,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       timeRemaining: '10:00',
       secsRemaining: orderResult.validFor - parseInt((new Date().getTime() - new Date(orderResult.timestamp_created).getTime()) / 1000),
       pendingStatusReq: false,
-      checkDelay: 1000
+      checkDelay: 10000
     };
     //定时器 用来计算交易
     var timeRem = setInterval(function () {
@@ -326,15 +333,17 @@ var swapCtrl = function ($scope, $sce, walletService) {
       }
     }, 1000);
     var progressCheck = setInterval(function () {
+      console.log(1+"status");
+      console.log(orderResult)
       if (!orderResult) clearInterval(progressCheck);
       if (!orderResult.progress.pendingStatusReq) {
+        console.log(2+"status")
         orderResult.progress.pendingStatusReq = true;
         $scope.bity.getStatus({
           orderid: orderResult.id
         }, function (data) {
           if (data.error) $scope.notifier.danger(data.msg);
           else {
-            clearInterval(progressCheck);
             data = data.data;
             if (bity.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
             if (orderResult.progress.status == "OPEN" && bity.validStatus.indexOf(data.input.status) != -1) {
@@ -350,7 +359,6 @@ var swapCtrl = function ($scope, $sce, walletService) {
               var url = orderResult.output.currency == 'BTC' ? bity.btcExplorer.replace("[[txHash]]", data.output.reference) : bity.ethExplorer.replace("[[txHash]]", data.output.reference)
               var bExStr = `<a href="${url}" target=" _blank" rel="noopener "> View your transaction </a>`;
               $scope.notifier.success(globalFuncs.successMsgs[2] + data.output.reference + "<br />" + bExStr);
-              console.log(222)
               clearInterval(progressCheck);
               clearInterval(timeRem);
               
@@ -374,8 +382,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
       $scope.parentTxConfig = {
         to: ethUtil.toChecksumAddress($scope.orderResult.payment_address),
         value: $scope.orderResult.input.amount,
-        sendMode: $scope.orderResult.input.currency == 'ETH' ? 'ether' : 'token',
-        tokensymbol: $scope.orderResult.input.currency == 'ETH' ? '' : $scope.orderResult.input.currency,
+        // sendMode: $scope.orderResult.input.currency == 'ETH' ? 'ether' : 'token',
+        // tokensymbol: $scope.orderResult.input.currency == 'ETH' ? '' : $scope.orderResult.input.currency,
+        sendMode:'ether',
+        tokensymbol:  '',
         readOnly: true
       }
       $scope.showStage3Eth = true;
