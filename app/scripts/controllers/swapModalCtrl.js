@@ -46,7 +46,6 @@ var swapModalCtrl = function ($scope, $sce, $rootScope) {
             }
             if (callback !== undefined) callback(resp);
         });
-        $scope.notifier.danger('哈哈,你在看啥子');
     }
 };
 

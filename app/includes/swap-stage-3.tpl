@@ -1,8 +1,6 @@
 <article>
-    <article class="swap-order" >
+    <article class="swap-order">
 
-
-        
         <!-- Title -->
         <!-- <section class="row text-center">
             <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" ng-click="newSwap()"> Start New Swap </a>
@@ -70,19 +68,17 @@
         <section style="overflow: hidden;" ng-show="orderResult.progress.status=='OPEN'">
             <h5>
                 <span translate="SWAP_order_CTA"> Please send </span>
-                <strong style="padding: 5px;background:#FEFEFE;display: inline-block; color: #5DB85C;"> {{orderResult.input.amount}}
+                <strong style="padding: 5px;background:#FEFEFE;display: inline-block; color: #5DB85C;">
+                    {{orderResult.input.amount}}
                     {{orderResult.input.currency}} </strong>
                 <span translate="SENDModal_Content_2"> to address </span>
-                <strong style="padding: 5px;background:#FEFEFE;display: inline-block;color: #5DB85C;" class="mono text-primary"> {{orderResult.payment_address}}
+                <strong style="padding: 5px;background:#FEFEFE;display: inline-block;color: #5DB85C;" class="mono text-primary">
+                    {{orderResult.payment_address}}
                 </strong>
             </h5>
             <p style="color:#142A3F">Your money will be transfered to a temperary address to complete the swap.</p>
         </section>
 
-        <section class="row text-center" ng-show="orderResult.progress.status=='OPEN'" style="margin-bottom: 30px;">
-                <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" style="background: #B00F23" ng-click="newSwap()"> End This Session</a>
-                </div>
-            </section>
         <!-- Swap CTA ETH -->
         <section class="swap-panel" ng-show="!wd || !isKyberSwap">
 
@@ -100,28 +96,26 @@
             </div>
 
 
-
         </section>
     </article>
     <!-- / Swap CTA ETH -->
 
 
     <!-- Swap CTA BTC -->
-    <section class="row block swap-address text-center" ng-show="showStage3Btc && orderResult.progress.status=='OPEN'">
+    <!-- <section class="row block swap-address text-center" ng-show="showStage3Btc && orderResult.progress.status=='OPEN'">
         <label translate="x_Address"> Your Address </label>
-        <div class="qr-code" qr-code="{{'bitcoin:'+orderResult.payment_address+'?amount='+orderResult.input.amount}}" watch-var="orderResult"></div>
-        <br/>
+        <div class="qr-code" qr-code="{{'bitcoin:'+orderResult.payment_address+'?amount='+orderResult.input.amount}}"
+            watch-var="orderResult"></div>
+        <br />
         <p class="text-danger">
-            Orders that take too long will have to be processed manually &amp; and may delay the amount of time it takes to receive your
+            Orders that take too long will have to be processed manually &amp; and may delay the amount of time it
+            takes to receive your
             coins.
-            <br/>
-            <a href="https://shapeshift.io/#/btcfee" target="_blank" rel="noopener noreferrer">Please use the recommended
+            <br />
+            <a href="https://shapeshift.io/#/btcfee" target="_blank" rel="noopener noreferrer">Please use the
+                recommended
                 TX fees seen here.</a>
         </p>
 
-    </section>
-
-
-</article>
-
+    </section> -->
 </article>
