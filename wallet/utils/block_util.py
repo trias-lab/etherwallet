@@ -10,6 +10,7 @@ import traceback
 from decimal import *
 from . import logger as log
 from . import common_util
+import django.db
 
 logger = log.logger
 
@@ -198,6 +199,7 @@ class Worker(threading.Thread):
 
     def run(self):
         while True:
+            django.db.close_old_connections()
             latest = self.reqData.latestBlockNumber()
             if not latest:
                 time.sleep(2)
