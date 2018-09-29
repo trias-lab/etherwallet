@@ -197,11 +197,12 @@ class Worker(threading.Thread):
         DBOperation.getInnerAddress(self.coinName)
         threading.Thread.__init__(self)
 
-    def run(self):
+    def doRun(self):
         while True:
             django.db.close_old_connections()
             latest = self.reqData.latestBlockNumber()
             if not latest:
+                logger.error("%s latest get fail" % self.coinName)
                 time.sleep(2)
                 continue
             latest = int(latest, 16)
@@ -213,7 +214,7 @@ class Worker(threading.Thread):
                 time.sleep(0.5)
                 continue
             for blockNum in range(self.checkedBlockNum+1, latest - self.recentBlockNumber):
-                if (blockNum % 10000) == 0:
+                if (blockNum % 1000) == 0:
                     logger.info("%s cur block %s, latest %s" % (self.coinName, blockNum, latest))
                 block = self.reqData.getBlockByNumber(blockNum)
                 for tr in block["transactions"]:
@@ -254,6 +255,11 @@ class Worker(threading.Thread):
             self.checkedBlockNum = latest - self.recentBlockNumber - 1
             self.checkDBPendingOrder()
 
+    def run(self):
+        try:
+            self.doRun()
+        except Exception as e:
+            logger.error(traceback.format_exc())
 
     def inertOrderInTransaction(self, tr, order):
         #check exists

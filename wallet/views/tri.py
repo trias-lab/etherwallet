@@ -40,7 +40,7 @@ def tri(request):
         else:
             raise (Exception("method not find"))
     except Exception as e:
-        logger.error(e)
+        logger.error("tri receive error, e=%s, body=%s" % (e, request.body))
         err = {
             "jsonrpc": "2.0",
             "id": 1,
