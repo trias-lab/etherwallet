@@ -170,6 +170,9 @@ def status(request):
             re_dict["data"]["input"]["status"] = "RCVE"
             response = JsonResponse(re_dict)
             return response
+    else:
+        re_dict["error"] = True
+        re_dict.pop("data")
     response = JsonResponse(re_dict)
     return response
 
