@@ -172,7 +172,8 @@ def status(request):
             return response
     else:
         re_dict["error"] = True
-        re_dict.pop("data")
+        re_dict["msg"] = {}
+        re_dict["data"] = ""
     response = JsonResponse(re_dict)
     return response
 
