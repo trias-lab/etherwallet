@@ -18,9 +18,12 @@ globalFuncs.printPaperWallets = function(strJson) {
 globalFuncs.getBlob = function(mime, str) {
     var str = (typeof str === 'object') ? JSON.stringify(str) : str;
     if (str == null) return '';
+    // Blob对象可以看做是存放二进制数据的容器，此外还可以通过Blob设置二进制数据的MIME类型。
     var blob = new Blob([str], {
         type: mime
     });
+    // URL.createObjectURL() 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的URL。
+    // 这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的URL 对象表示指定的 File 对象或 Blob 对象。
     return window.URL.createObjectURL(blob);
 };
 globalFuncs.getSuccessText = function(str) {
