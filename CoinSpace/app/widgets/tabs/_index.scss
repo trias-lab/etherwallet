@@ -120,7 +120,6 @@
   @extend .jigsaw-light;
   font-size: 14px;
   opacity: 0.3;
-
   @include breakpoint(portrait) {
     font-size: 18px;
   }
