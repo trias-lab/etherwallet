@@ -3,3 +3,13 @@
     {{>svg_refresh}}
   </div>
 {{/opening}}
+
+
+<div class="auth_trias_found">
+    <div class="by_trias_found">By Trias Foundation</div>
+    <div class="auth_header_title"> Please Enter your passphrase</div>
+    <div class="auth_header_conent">By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance.</div>
+</div>
+
+
+

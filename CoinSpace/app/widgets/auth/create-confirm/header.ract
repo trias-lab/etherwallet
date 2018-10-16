@@ -1,43 +1,20 @@
-<h2 class="_subtitle">{{translate("Your passphrase")}}</h2>
-<div id="js-passphrase" data-clipboard-text="{{passphrase}}" class="_passphrase">
-  <span>{{passphrase}}</span>
-  {{#if isClipboardEnabled}}
-    <div class="_copy">
-    {{#if isCopied}}
-      {{translate("Copied!")}}
-    {{else}}
-      {{translate("Copy to Clipboard")}}
-    {{/if}}
-    </div>
-  {{/if}}
+
+<div class="auth_trias_found">
+    <div class="by_trias_found">By Trias Foundation</div>
+    <div class="auth_header_title"> Your passphrase</div>
+    <div class="auth_header_conent">
+  
+    </div>  
 </div>
+
+
+
 
 <div class="passphrase__warning" class-alert="checked">
-  <div class="_bold">{{translate("Warning!")}}</div>
-  {{translate("Your passphrase will not be shown again.")}}<br />
-  {{translate("Without it you will lose access to your wallet.")}}</div>
-<div class="passphrase__accept" on-click="toggle-check">
-  <div id="check" class="_checkbox">
-    {{#checked}}
-      <div id="check" class="_check"></div>
-    {{/checked}}
-  </div>
-
-  <p class="_checktext">{{translate("I have written down or otherwise securely stored my passphrase")}}</p>
+  <div class="_bold"> <span>{{translate("Warning!")}} </span>  {{translate("Your passphrase will not be shown again.")}}</div>
+ <div class="_bold"><span>{{translate("Warning!")}} </span>   {{translate("Without it you will lose access to your wallet.")}}</div>
+  
 </div>
 
-<div class="passphrase__accept" on-click="toggle-terms-check">
-  <div id="check" class="_checkbox">
-    {{#termsChecked}}
-      <div id="check" class="_check"></div>
-    {{/termsChecked}}
-  </div>
 
-  <p class="_checktext">{{translate("I Agree To The Terms & Conditions")}}</p>
-</div>
 
-<div class="about__section">
-  <a class="about__listitem" onclick="window.open('https://www.coin.space/coinprivacypolicy.html', '_system'); return false;" href="">
-    <div class="about__listitem-title">{{translate("Terms of Use")}}</div>
-  </a>
-</div>

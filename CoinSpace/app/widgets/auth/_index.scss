@@ -68,10 +68,10 @@
       font-size: 24px;
     }
     .auth_header_conent {
-      font-size:15px;
-      font-family:MoskLight300;
-      color:rgba(255,255,255,1);
-      line-height:22px;
+      font-size: 15px;
+      font-family: MoskLight300;
+      color: rgba(255, 255, 255, 1);
+      line-height: 22px;
     }
   }
   ._img {
@@ -152,8 +152,7 @@
 
 .passphrase__accept {
   display: flex;
-  padding-top: 20px;
-  max-width: 240px;
+  padding-top: 20px; // max-width: 240px;
   margin: 0 auto;
   cursor: pointer;
   @include breakpoint(portrait) {
@@ -195,17 +194,33 @@
 
 .passphrase__warning {
   font-size: 15px;
-  background-color: $yellow;
-  color: darken($yellow, 25%);
-  padding: 10px;
+  // background-color: $yellow;
+  // color: darken($yellow, 25%);
+  color:#fff;
+  padding: 10px 0;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  text-align: left;
   ._bold {
-    font-weight: bold;
+    // font-weight: bold;
+    margin:8px 0;
+    >span{
+      display: inline-block;
+      text-align: center;
+      width: 76px;
+      height: 22px;
+      background:rgba(234,255,234,1);
+      border-radius:2px;
+      font-size:15px;
+      font-family:MoskBold700;
+      color:rgba(93,184,92,1);
+      line-height:22px;
+      margin-right: 10px;
+    }
   }
   &.alert {
-    background-color: #ff0000;
-    color: #fff;
+    // background-color: #ff0000;
+    color: #ff0000;
   }
   @include breakpoint(portrait) {
     font-size: 16px;
@@ -663,5 +678,26 @@
   @include breakpoint(portrait) {
     width: 45px;
     height: 45px;
+  }
+}
+
+._passphrase {
+  border: 1px solid rgba(203, 208, 211, 1);
+  ._passphrase_content {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-family: MoskLight300;
+    color: rgba(20, 42, 63, 1);
+    line-height: 24px;
+  }
+  ._copy {
+    background: rgba(246, 247, 249, 1);
+    border-radius: 0px 0px 4px 4px;
+    // border:1px solid rgba(203,208,211,1);
+    padding: 8px 16px;
+    font-size: 16px;
+    font-family: MoskLight300;
+    color: rgba(20, 42, 63, 1);
+    line-height: 24px;
   }
 }

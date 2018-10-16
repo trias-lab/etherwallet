@@ -1,3 +1,50 @@
+
+
+
+<div id="js-passphrase" data-clipboard-text="{{passphrase}}" class="_passphrase">
+  <div class="_passphrase_content">{{passphrase}}</div>
+  {{#if isClipboardEnabled}}
+    <div class="_copy">
+    {{#if isCopied}}
+      {{translate("Copied!")}}
+    {{else}}
+      {{translate("Copy to Clipboard")}}
+    {{/if}}
+    </div>
+  {{/if}}
+</div>
+
+
+
+<div class="passphrase__accept" on-click="toggle-check">
+  <div id="check" class="_checkbox">
+    {{#checked}}
+      <div id="check" class="_check"></div>
+    {{/checked}}
+  </div>
+
+  <p class="_checktext">{{translate("I have written down or otherwise securely stored my passphrase")}}</p>
+</div>
+
+<div class="passphrase__accept" on-click="toggle-terms-check">
+  <div id="check" class="_checkbox">
+    {{#termsChecked}}
+      <div id="check" class="_check"></div>
+    {{/termsChecked}}
+  </div>
+
+  <p class="_checktext">{{translate("I Agree To The Terms & Conditions")}}</p>
+</div>
+
+
+
+<div class="about__section">
+  <a class="about__listitem" onclick="window.open('https://www.coin.space/coinprivacypolicy.html', '_system'); return false;" href="">
+    <div class="about__listitem-title">{{translate("Terms of Use")}}</div>
+  </a>
+</div>
+
+
 {{#if setPin}}
 <div class="auth__btn" on-click="create-pin">{{translate("Set your PIN")}}</div>
 {{else}}
