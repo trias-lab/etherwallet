@@ -1,0 +1,3 @@
+[submodule "CoinSpace"]
+	path = CoinSpace
+	url = https://github.com/CoinSpace/CoinSpace
