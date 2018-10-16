@@ -1,0 +1,99 @@
+// main btn style
+.csbtn-base {
+  @include clickbtn;
+  display: block;
+  width: 100%;
+
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 18px;
+  padding-bottom: 15px;
+  border-radius: 2px;
+
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  background-color: $brand-green;
+  box-shadow: 0 2px 0 0 darken($brand-green, 10%);
+
+  transition: none;
+  position: relative;
+
+  &:active {
+    transform: translate(0px, 3px);
+    box-shadow: 0 0px 0 0;
+  }
+
+  &:hover {
+    color: white;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+}
+
+.csbtn {
+  @extend .csbtn-base;
+}
+
+.ethereum {
+  .csbtn {
+    background-color: $ethereal;
+    box-shadow: 0 2px 0 0 darken($ethereal, 10%);
+  }
+}
+
+.ripple {
+  .csbtn {
+    background-color: $ripple;
+    box-shadow: 0 2px 0 0 darken($ripple, 10%);
+  }
+}
+
+.stellar {
+  .csbtn {
+    background-color: $stellar;
+    box-shadow: 0 2px 0 0 darken($stellar, 10%);
+  }
+}
+
+.bitcoincash {
+  .csbtn {
+    background-color: $bitcoincash;
+    box-shadow: 0 2px 0 0 darken($bitcoincash, 10%);
+  }
+}
+
+.litecoin {
+  .csbtn {
+    background-color: $silver;
+    box-shadow: 0 2px 0 0 darken($silver, 10%);
+  }
+}
+
+.csbtn--red {
+  @extend .csbtn-base;
+
+  background-color: #da553e;
+  box-shadow: 0 3px 0 0 darken(#da553e, 10%);
+}
+
+.csbtn--yellow {
+  @extend .csbtn-base;
+
+  background-color: $yellow;
+  box-shadow: 0 3px 0 0 darken($yellow, 10%);
+  color: darken($yellow, 20%);
+
+  &:hover {
+    color: darken($yellow, 20%);
+  }
+}
+
+

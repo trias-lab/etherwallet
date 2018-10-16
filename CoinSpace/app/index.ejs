@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <title>Coin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta name="description" content="Coin Wallet is a free online bitcoin &amp;amp; litecoin wallet which you can use to make worldwide payments for free. We make paying with bitcoins easy and secure">
+  <meta name="keywords" content="Secure, shared wallet, bitcoin, litecoin, web wallet, coin">
+  <% if (process.env.BUILD_TYPE === 'phonegap') { %>
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' blob: gap:;
+    connect-src 'self' blob:
+    https://shapeshift.io
+    <%= process.env.API_BTC_URL %>
+    <%= process.env.API_BCH_URL %>
+    <%= process.env.API_LTC_URL %>
+    <%= process.env.API_ETH_URL %>
+    <%= process.env.API_XRP_URL %>
+    <%= process.env.API_XLM_URL %>
+    <%= process.env.SITE_URL %>;
+    font-src 'self';
+    img-src 'self' data: https://www.gravatar.com;
+    style-src 'self' 'unsafe-inline';
+    script-src 'self' blob: 'unsafe-eval' 'unsafe-inline';">
+  <% } %>
+  <link rel="apple-touch-icon" sizes="57x57" href="<%= require('./assets/icons/apple-touch-icon-57x57.png') %>">
+  <link rel="apple-touch-icon" sizes="60x60" href="<%= require('./assets/icons/apple-touch-icon-60x60.png') %>">
+  <link rel="apple-touch-icon" sizes="72x72" href="<%= require('./assets/icons/apple-touch-icon-72x72.png') %>">
+  <link rel="apple-touch-icon" sizes="76x76" href="<%= require('./assets/icons/apple-touch-icon-76x76.png') %>">
+  <link rel="apple-touch-icon" sizes="114x114" href="<%= require('./assets/icons/apple-touch-icon-114x114.png') %>">
+  <link rel="apple-touch-icon" sizes="120x120" href="<%= require('./assets/icons/apple-touch-icon-120x120.png') %>">
+  <link rel="apple-touch-icon" sizes="144x144" href="<%= require('./assets/icons/apple-touch-icon-144x144.png') %>">
+  <link rel="apple-touch-icon" sizes="152x152" href="<%= require('./assets/icons/apple-touch-icon-152x152.png') %>">
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= require('./assets/icons/apple-touch-icon-180x180.png') %>">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Coin">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= require('./assets/icons/favicon-32x32.png') %>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= require('./assets/icons/favicon-16x16.png') %>">
+  <link rel="shortcut icon" href="<%= require('./assets/icons/favicon.ico') %>">
+  <% if (process.env.BUILD_TYPE !== 'phonegap' && process.env.GOOGLE_GTM !== 'false') { %>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','<%= process.env.GOOGLE_GTM %>');</script>
+  <!-- End Google Tag Manager -->
+  <% } %>
+</head>
+<body>
+  <% if (process.env.BUILD_TYPE !== 'phonegap' && process.env.GOOGLE_GTM !== 'false') { %>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= process.env.GOOGLE_GTM %>"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <% } %>
+  <div id="geo-overlay" class="z-1000"></div>
+  <div id="general-purpose-overlay" class="z-1000"></div>
+  <div id="tooltip" class="z-9000"></div>
+  <div id="transaction-detail" class="z-9000"></div>
+  <div id="flash-modal" class="z-9000"></div>
+  <div id="app"></div>
+  <div id="auth" class="auth__modal current">
+    <div id="loader">
+      <% if (process.env.BUILD_TYPE !== 'phonegap') { %>
+      <div id="logo_animation">
+        <svg width="100%" height="180px" viewBox="0 0 81 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <path d="M51.4,20.9 C50.3,19.7 49.2,19.4 48.2,19.4 C45.1,19.4 43,21.8 43,24.9 C43,28.2 45.1,30.6 48.2,30.6 C49.4,30.6 50.6,30 51.6,28.7 L53.8,30.3 C52.4,32.2 50.3,33 48.1,33 C43.4,33 40,29.8 40,25 C40,20.1 43.4,16.9 48.1,16.9 C50.2,16.9 51.9,17.6 53.4,19.3 L51.4,20.9 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M59.5,22 C62.6,22 65.1,24.2 65.1,27.4 C65.1,30.6 62.6,32.8 59.5,32.8 C56.4,32.8 53.9,30.6 53.9,27.4 C53.9,24.2 56.4,22 59.5,22 Z M59.5,30.5 C61.4,30.5 62.5,29 62.5,27.4 C62.5,25.8 61.4,24.3 59.5,24.3 C57.6,24.3 56.5,25.8 56.5,27.4 C56.5,29 57.6,30.5 59.5,30.5 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M67.8,17.2 C68.7,17.2 69.5,17.9 69.5,18.8 C69.5,19.7 68.8,20.4 67.8,20.4 C66.8,20.4 66.2,19.7 66.2,18.8 C66.2,17.9 66.9,17.2 67.8,17.2 Z M66.5,22.2 L69.1,22.2 L69.1,32.6 L66.5,32.6 L66.5,22.2 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M71,22.2 L73.5,22.2 L73.5,23.9 C74,22.9 74.9,22 76.7,22 C79.5,22 80.5,24 80.5,26.1 L80.5,32.6 L77.9,32.6 L77.9,27.4 C77.9,26.3 77.8,24.4 76,24.4 C74.3,24.4 73.6,25.7 73.6,27 L73.6,32.7 L71,32.7 L71,22.2 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M21.1,0.8 C18.1,0.9 15.7,3.3 15.7,6.4 C15.8,9.4 18.2,11.8 21.3,11.8 C24.3,11.7 26.7,9.3 26.7,6.2 C26.6,3.2 24.1,0.8 21.1,0.8 Z M21.2,11.3 C18.4,11.4 16.1,9.2 16.1,6.4 C16,3.6 18.3,1.3 21,1.3 C23.8,1.2 26.1,3.5 26.1,6.2 C26.2,9 24,11.3 21.2,11.3 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M21.6,6.5 C21.4,6.5 21.3,6.5 21.3,6.5 L20.8,6.5 L20.8,7.8 C20.9,7.8 21,7.8 21.5,7.8 C22.2,7.8 22.5,7.5 22.5,7 C22.4,6.6 21.8,6.5 21.6,6.5 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M22.1,5.2 C22.1,4.7 21.5,4.7 21.2,4.7 C21,4.7 20.8,4.7 20.8,4.7 L20.8,5.9 L21.6,5.9 C21.8,5.9 22.1,5.7 22.1,5.2 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M21.1,1.7 C18.5,1.7 16.5,3.9 16.6,6.4 C16.6,9 18.8,11 21.3,10.9 C23.9,10.9 25.9,8.7 25.8,6.2 C25.7,3.7 23.6,1.6 21.1,1.7 Z M22,8.5 C22,8.5 21.9,8.5 21.9,8.5 L21.9,9.5 L21.3,9.5 L21.3,8.5 C21.2,8.5 21,8.5 20.9,8.5 L20.9,9.5 L20.3,9.5 L20.3,8.5 C19.6,8.5 19.1,8.5 19.1,8.5 L19,8 C19,8 19.4,8 19.5,8 C19.6,8 19.7,7.9 19.7,7.7 C19.7,7.5 19.7,5.1 19.6,5 C19.6,4.8 19.5,4.8 19.3,4.8 C19.1,4.8 18.8,4.8 18.8,4.8 L18.8,4.2 C18.8,4.2 19.4,4.2 20,4.2 L20,3.2 L20.6,3.2 L20.6,4.2 C20.7,4.2 20.9,4.2 21,4.2 L21,3.2 L21.6,3.2 L21.6,4.2 C22.2,4.2 23,4.5 23.1,5.1 C23.4,5.7 22.8,6 22.8,6 C22.8,6 23.6,6.2 23.7,7 C23.7,7.9 23.3,8.5 22,8.5 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M17.4,26.7 L17.4,24.6 C17.4,22.1 19.1,20.1 21.6,20.1 L31.2,20.1 L31.2,18.9 C31.2,16.4 29.2,14.4 26.8,14.4 L4.8,14.4 C2.4,14.4 0.4,16.4 0.4,18.9 L0.4,32.4 C0.4,34.9 2.4,36.9 4.8,36.9 L26.8,36.9 C29.2,36.9 31.2,34.9 31.2,32.4 L31.2,31.2 L21.6,31.2 C19.1,31.2 17.4,29.2 17.4,26.7 Z" fill="#575756" fill-rule="nonzero"></path>
+            <path d="M30.4,21.3 L22.3,21.3 C20.4,21.3 18.8,22.9 18.8,24.8 L18.8,26.4 C18.8,28.3 20.4,29.9 22.3,29.9 L30.4,29.9 C32.3,29.9 33.9,28.3 33.9,26.4 L33.9,24.8 C33.9,22.8 32.3,21.3 30.4,21.3 Z M22.4,27.5 C21.3,27.5 20.5,26.6 20.5,25.6 C20.5,24.5 21.4,23.7 22.4,23.7 C23.5,23.7 24.3,24.6 24.3,25.6 C24.3,26.7 23.5,27.5 22.4,27.5 Z" fill="#575756" fill-rule="nonzero"></path>
+            <path d="M11.5,9.8 C9.3,9.8 7.5,11.1 6.6,13 L7.1,13 C7.9,11.4 9.6,10.3 11.5,10.3 C13.5,10.3 15.2,11.4 16.1,13 L16.6,13 C15.7,11.1 13.8,9.8 11.5,9.8 Z" fill="#367D40" fill-rule="nonzero"></path>
+            <path d="M10.6,12 L11.2,12 L11.2,13 L11.6,13 L11.6,12 L12.2,12 L12.2,13 L15.6,13 C14.8,11.6 13.2,10.6 11.5,10.6 C9.8,10.6 8.3,11.6 7.6,13 L10.6,13 L10.6,12 Z" fill="#367D40" fill-rule="nonzero"></path>
+          </g>
+        </svg>
+      </div>
+      <% } %>
+      <div id="loader-message"></div>
+      <div class="preload jigsaw-light">a</div>
+      <div class="preload jigsaw-regular">a</div>
+      <div class="preload jigsaw-medium">a</div>
+      <div class="preload jigsaw-bold">a</div>
+    </div>
+  </div>
+
+  <% if (process.env.BUILD_TYPE !== 'phonegap') { %>
+  <div id="fb_web_ad">
+    <script type="text/javascript">
+      var data = {
+        placementid: '196605347445795_464018960704431',
+        format: '320x50',
+        testmode: <%= process.env.NODE_ENV !== 'production' %>,
+        onAdLoaded: function(element) {
+          document.body.classList.add('fb_web_ads');
+          element.style.display = 'block';
+        },
+        onAdError: function() {}
+      };
+    </script>
+    <script>
+      (function(a,b,c){var d="https://www.facebook.com",e="https://connect.facebook.net/en_US/fbadnw55.js",f={iframeLoaded:true,xhrLoaded:true},g=a.data,h=function(){if(Date.now)return Date.now();else return+new Date()},i=function(B){var C=d+"/audience_network/client_event",D={cb:h(),event_name:"ADNW_ADERROR",ad_pivot_type:"audience_network_mobile_web",sdk_version:"5.5.web",app_id:g.placementid.split("_")[0],publisher_id:g.placementid.split("_")[1],error_message:B},E=[];for(var F in D)E.push(encodeURIComponent(F)+"="+encodeURIComponent(D[F]));var G=C+"?"+E.join("&"),H=new XMLHttpRequest();H.open("GET",G,true);H.send();if(g.onAdError)g.onAdError("1000","Internal error.")},j=function(){if(b.currentScript)return b.currentScript;else{var B=b.getElementsByTagName("script");return B[B.length-1]}},k=function(B){try{return B.document.referrer}catch(C){}return""},l=function(){var B=a,C=[B];try{while(B!==B.parent&&B.parent.document)C.push(B=B.parent)}catch(D){}return C.reverse()},m=function(){var B=l();for(var C=0;C<B.length;C++){var D=B[C],E=D.ADNW||{};D.ADNW=E;if(!D.ADNW)continue;return E.v55=E.v55||{ads:[],window:D}}throw new Error("no_writable_global")},n=function(B){var C=B.indexOf("/",B.indexOf("://")+3);if(C===-1)return B;return B.substring(0,C)},o=function(B){return B.location.href||k(B)},p=function(B){if(B.sdkLoaded)return;var C=B.window.document,D=C.createElement("iframe");D.name="fbadnw";D.style.display="none";D.onload=function(){var E=D.contentDocument.createElement("script");E.src=e;E.async=true;D.contentDocument.body.appendChild(E)};C.body.appendChild(D);B.sdkLoaded=true},q=function(B){var C=/^https?:\/\/www\.google(\.com?)?.\w{2,3}$/;return!!B.match(C)},r=function(B){return!!B.match(/cdn\.ampproject\.org$/)},s=function(){var B=c.ancestorOrigins||[],C=B[B.length-1]||c.origin,D=B[B.length-2]||c.origin;if(q(C)&&r(D))return n(D);else return n(C)},t=function(B){try{return JSON.parse(B)}catch(A){i(A.message);throw A}},u=function(B,C,D){if(!B.iframe){var E=D.createElement("iframe");E.src=d+"/audiencenetwork/iframe/";E.style.display="none";D.body.appendChild(E);B.iframe=E;B.iframeAppendedTime=h();B.iframeData={}}C.iframe=B.iframe;C.iframeData=B.iframeData;C.tagJsIframeAppendedTime=B.iframeAppendedTime||0},v=function(B){var C=d+"/audiencenetwork/xhr/?sdk=5.5.web";for(var D in B)if(typeof B[D]!=="function")C+="&"+D+"="+encodeURIComponent(B[D]);var E=new XMLHttpRequest();E.open("GET",C,true);E.withCredentials=true;E.onreadystatechange=function(){if(E.readyState===4){var F=t(E.response);B.events.push({name:"xhrLoaded",source:B.iframe.contentWindow,data:F,postMessageTimestamp:h(),receivedTimestamp:h()})}};E.send()},w=function(B,C){var D=d+"/audiencenetwork/xhriframe/?sdk=5.5.web";for(var E in C)if(typeof C[E]!=="function")D+="&"+E+"="+encodeURIComponent(C[E]);var F=b.createElement("iframe");F.src=D;F.style.display="none";b.body.appendChild(F);C.iframe=F;C.iframeData={};C.tagJsIframeAppendedTime=h()},x=function(B){var C=function(event){try{var E=event.data;if(E.name in f)B.events.push({name:E.name,source:event.source,data:E.data})}catch(A){}},D=B.iframe.contentWindow.parent;D.addEventListener("message",C,false)},y=function(a){if(a.context&&a.context.sourceUrl)return true;try{return!!JSON.parse(decodeURI(a.name)).ampcontextVersion}catch(A){return false}},z=function(B){var C=h(),D=l()[0],E=j().parentElement,F=D!=a.top,G=D.$sf&&D.$sf.ext,H=o(D),I=m();p(I);var J={amp:y(D),events:[],tagJsInitTime:C,rootElement:E,iframe:null,tagJsIframeAppendedTime:I.iframeAppendedTime||0,url:H,domain:s(),channel:n(o(D)),width:screen.width,height:screen.height,pixelratio:a.devicePixelRatio,placementindex:I.ads.length,crossdomain:F,safeframe:!!G,placementid:g.placementid,format:g.format||"300x250",testmode:!!g.testmode,onAdLoaded:g.onAdLoaded,onAdError:g.onAdError};if(g.bidid)J.bidid=g.bidid;if(F||!c.ancestorOrigins)w(I,J);else{u(I,J,D.document);v(J)}x(J);J.rootElement.dataset.placementid=J.placementid;I.ads.push(J)};try{z()}catch(A){i(A.message||A);throw A}})(window,document,location);
+    </script>
+  </div>
+  <% } %>
+
+  <% if (process.env.BUILD_TYPE === 'phonegap') { %>
+  <script src="cordova.js"></script>
+  <% } %>
+</body>
+</html>
+

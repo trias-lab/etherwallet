@@ -1,0 +1,125 @@
+.set-details {
+  max-width: 400px;
+
+  @include breakpoint(portrait) {
+    max-width: 450px;
+  }
+
+  ._info {
+    @extend .jigsaw-light;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $grey;
+
+    @include breakpoint(portrait) {
+      font-size: 24px;
+    }
+  }
+
+  ._btn {
+    @extend .csbtn;
+    margin-top: 20px;
+    @include breakpoint(portrait) {
+      font-size: 24px;
+    }
+  }
+
+  ._btn--loading {
+    @extend .csbtn-base;
+    margin-top: 20px;
+    position: relative;
+    color: rgba(255,255,255, 0.3);
+    background-color: $brand-green;
+    box-shadow:inset 0 1px 1px 1px darken($brand-green, 20%);
+    transform: translate(0px, 3px);
+    display: flex;
+    justify-content: center;
+    padding-left: 4px;
+    padding-right: 4px;
+
+    @include breakpoint(portrait) {
+      font-size: 24px;
+    }
+
+    &:active {
+      box-shadow:inset 0 1px 1px 1px darken($brand-green, 20%);
+      transform: translate(0px, 3px);
+    }
+
+    &:hover {
+      color: rgba(255,255,255, 0.3);
+    }
+  }
+}
+
+.litecoin {
+  .set-details {
+    ._btn--loading {
+      background-color: $silver;
+      box-shadow:inset 0 1px 1px 1px darken($silver, 20%);
+    }
+  }
+}
+.ethereum {
+  .set-details {
+    ._btn--loading {
+      background-color: $ethereal;
+      box-shadow:inset 0 1px 1px 1px darken($ethereal, 20%);
+    }
+  }
+}
+.ripple {
+  .set-details {
+    ._btn--loading {
+      background-color: $ripple;
+      box-shadow:inset 0 1px 1px 1px darken($ripple, 20%);
+    }
+  }
+}
+.stellar {
+  .set-details {
+    ._btn--loading {
+      background-color: $stellar;
+      box-shadow:inset 0 1px 1px 1px darken($stellar, 20%);
+    }
+  }
+}
+.bitcoincash {
+  .set-details {
+    ._btn--loading {
+      background-color: $bitcoincash;
+      box-shadow:inset 0 1px 1px 1px darken($bitcoincash, 20%);
+    }
+  }
+}
+
+.set-details__field {
+  margin-bottom: 20px;
+  ._label {
+    @include noselect;
+    cursor: pointer;
+    display: block;
+    @include breakpoint(portrait) {
+      font-size: 18px;
+    }
+  }
+
+  ._input {
+    @extend .jigsaw-light;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 3px;
+
+    @include breakpoint(portrait) {
+      font-size: 24px;
+    }
+
+    &:active, &:focus {
+      outline: 0;
+      border: 1px solid #999;
+    }
+  }
+}
+

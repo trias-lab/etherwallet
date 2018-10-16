@@ -1,0 +1,14 @@
+.git
+.gitignore
+GPL-LICENSE.txt
+README.md
+docker-compose*
+Dockerfile
+node_modules
+app/**/node_modules
+npm-debug.log
+.DS_Store
+.idea/
+phonegap/
+.env.*
+.vscode/

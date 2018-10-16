@@ -1,0 +1,135 @@
+
+#tabs {
+  background-color: darken($brand-green, 20%);
+}
+
+.litecoin {
+  #tabs {
+    background-color: darken($silver, 20%);
+  }
+}
+.ethereum {
+  #tabs {
+    background-color: darken($ethereal, 20%);
+  }
+}
+.ripple {
+  #tabs {
+    background-color: darken($ripple, 20%);
+  }
+}
+.stellar {
+  #tabs {
+    background-color: darken($stellar, 20%);
+  }
+}
+.bitcoincash {
+  #tabs {
+    background-color: darken($bitcoincash, 20%);
+  }
+}
+
+#tabs .tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+#tabs .tabs .tab {
+  @include clickbtn;
+  display: block;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 100%;
+
+  text-align: center;
+
+  color: white;
+
+  @include breakpoint(portrait) {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+
+  &:hover {
+    .tab__icon, .tab__text {
+      opacity: 0.4;
+    }
+  }
+
+  &.active {
+    border-bottom: 4px solid darken($brand-green, 30%);
+    .tab__icon, .tab__text {
+      opacity: 1.0;
+    }
+  }
+}
+
+.litecoin {
+  #tabs .tabs .tab {
+    &.active {
+        border-bottom: 4px solid darken($silver, 30%);
+    }
+  }
+}
+.ethereum {
+  #tabs .tabs .tab {
+    &.active {
+        border-bottom: 4px solid darken($ethereal, 30%);
+    }
+  }
+}
+.ripple {
+  #tabs .tabs .tab {
+    &.active {
+        border-bottom: 4px solid darken($ripple, 30%);
+    }
+  }
+}
+.stellar {
+  #tabs .tabs .tab {
+    &.active {
+        border-bottom: 4px solid darken($stellar, 30%);
+    }
+  }
+}
+.bitcoincash {
+  #tabs .tabs .tab {
+    &.active {
+        border-bottom: 4px solid darken($bitcoincash, 30%);
+    }
+  }
+}
+
+#tabs .tabs .tab__icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  opacity: 0.3;
+
+  @include breakpoint(portrait) {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.tab__text {
+  display: block;
+  @extend .jigsaw-light;
+  font-size: 14px;
+  opacity: 0.3;
+
+  @include breakpoint(portrait) {
+    font-size: 18px;
+  }
+}
+
+.hide--portrait {
+  display: inline-block;
+  padding-left: 10px;
+  @include breakpoint(portrait) {
+    display: none;
+  }
+}

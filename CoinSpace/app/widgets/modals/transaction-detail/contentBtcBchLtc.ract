@@ -1,0 +1,52 @@
+{{#transaction}}
+<div class="modal _cancel">
+  <div class="modal__content transaction__detail _cancel">
+    <span class="modal__cancel" on-click="close">
+      {{>svg_close}}
+    </span>
+
+    <div class="_amount {{isReceived(this) ? 'green' : 'red'}}">
+      {{isReceived(this) ? '+' : ''}} {{toUnitString(amount)}}
+    </div>
+
+    {{#if isConfirmed(confirmations)}}
+      <div class='_time'>{{formatTimestamp(timestamp)}}</div>
+      <div class='_time'>{{formatConfirmations(confirmations)}}</div>
+    {{else}}
+      <div class='_time'>{{translate("pending confirmation")}}</div>
+    {{/if}}
+
+    <div class="detail__strings">
+
+      <h3 class="_title">{{translate("Transaction Id:")}}</h3>
+      {{#if isNetwork('bitcoin') || isNetwork('testnet')}}
+      <a href="" onclick="window.open('https://btc.coin.space/tx/{{id}}', '_system'); return false;" class="_value">{{id}}</a>
+      {{elseif isNetwork('bitcoincash')}}
+      <a href="" onclick="window.open('https://bch.coin.space/tx/{{id}}', '_system'); return false;" class="_value">{{id}}</a>
+      {{elseif isNetwork('litecoin')}}
+      <a href="" onclick="window.open('https://ltc.coin.space/tx/{{id}}', '_system'); return false;" class="_value">{{id}}</a>
+			{{/if}}
+
+      <h3 class="_title">{{translate("Transaction Fee:")}}</h3>
+      <code class="_value">{{toUnitString(fee)}}</code>
+
+      <h3 class="_title">{{translate("Inputs:")}}</h3>
+      <code class="_value">
+        {{#ins}}
+          <span class="_address">{{address ? address : translate("Unparsed address")}}</span>
+          <span class="_number">{{toUnitString(amount)}}</span>
+        {{/ins}}
+      </code>
+
+      <h3 class="_title">{{translate("Outputs:")}}</h3>
+      <code class="_value">
+        {{#outs}}
+          <span class="_address">{{address ? address : translate("Unparsed address")}}</span>
+          <span class="_number">{{toUnitString(amount)}}</span>
+        {{/outs}}
+      </code>
+    </div>
+
+  </div>
+</div>
+{{/transaction}}
