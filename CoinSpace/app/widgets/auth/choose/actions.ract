@@ -1,2 +1,2 @@
 <div class="auth__btn--choose fr" on-click="create-new-wallet" style="margin-left:12px">{{translate("Create new wallet")}}</div>
-<div class="auth__btn--existing fr" on-click="reveal-passphrase-input" >{{translate("Open existing wallet")}}</div>
+<div class="auth__btn--existing fr" on-click="reveal-passphrase-input" style="background:transparent;border:1px solid #5DB85C;color:#5DB85C">{{translate("Open existing wallet")}}</div>

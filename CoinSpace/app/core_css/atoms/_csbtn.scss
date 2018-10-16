@@ -3,13 +3,13 @@
   @include clickbtn;
   display: block;
   // width: 100%;
-float: left;
- padding: 7px 20px;
+  float: right;
+  padding: 7px 20px;
   border-radius: 2px;
 
   color: white;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
   background-color: $brand-green;
   box-shadow: 0 2px 0 0 darken($brand-green, 10%);
 

@@ -14,7 +14,7 @@
     padding-right: 10px;
     width: 540px;
   }
-  .auth_custom_bungroup{
+  .auth_custom_bungroup {
     padding: 20px 40px;
     background-color: #fff;
     border-radius: 0 0 4px 4px;
@@ -49,15 +49,30 @@
 .auth__header {
   text-align: center;
   margin: auto;
-  padding: 36px 28px;
+  padding: 28px 36px;
   color: #333;
   max-width: 520px;
   background-color: #68B74C;
   .auth_trias_found {
     text-align: left;
-    color:#fff;
-    .by_trias_found {}
-    .auth_header_title {}
+    color: #fff;
+    .by_trias_found {
+      margin-bottom: 56px;
+      font-size: 15px;
+      font-family: MoskLight300;
+      color: rgba(255, 255, 255, 1);
+      line-height: 22px;
+    }
+    .auth_header_title {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .auth_header_conent {
+      font-size:15px;
+      font-family:MoskLight300;
+      color:rgba(255,255,255,1);
+      line-height:22px;
+    }
   }
   ._img {
     width: 168px;
