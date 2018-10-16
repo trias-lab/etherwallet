@@ -85,7 +85,7 @@
             <div ng-class="orderResult.progress.status=='OPEN' && !wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
                 <div class="swap-pane-step">3</div>
                 <span>How would you like to access your wallet?</span>
-                <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='OPEN' && wd"></i>
+                <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE'"></i>
             </div>
             <div ng-show="orderResult.progress.status=='OPEN' && !wd">
                 @@if (site === 'mew' ) {

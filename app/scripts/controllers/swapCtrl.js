@@ -311,7 +311,8 @@ var swapCtrl = function ($scope, $sce, walletService) {
       timeRemaining: '10:00',
       secsRemaining: orderResult.validFor - parseInt((new Date().getTime() - new Date(orderResult.timestamp_created).getTime()) / 1000),
       pendingStatusReq: false,
-      checkDelay: 10000
+      checkDelay: 10000,
+      step:'OPEN'
     };
     //定时器 用来计算交易
     var timeRem = setInterval(function () {
@@ -333,32 +334,37 @@ var swapCtrl = function ($scope, $sce, walletService) {
       }
     }, 1000);
     var progressCheck = setInterval(function () {
-      console.log(1+"status");
-      console.log(orderResult)
-      if (!orderResult) clearInterval(progressCheck);
+       //if (!orderResult) clearInterval(progressCheck);
+    if (!$scope.orderResult || orderResult.id != $scope.orderResult.id) clearInterval(progressCheck);
       if (!orderResult.progress.pendingStatusReq) {
-        console.log(2+"status")
         orderResult.progress.pendingStatusReq = true;
         $scope.bity.getStatus({
           orderid: orderResult.id
         }, function (data) {
-          if (data.error) $scope.notifier.danger(data.msg);
+          orderResult.progress.pendingStatusReq = false;
+          if (data.error){
+            $scope.notifier.danger(data.msg);
+          }
           else {
             data = data.data;
             if (bity.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
             if (orderResult.progress.status == "OPEN" && bity.validStatus.indexOf(data.input.status) != -1) {
+              console.log(1)
               orderResult.progress.secsRemaining = 1;
               orderResult.progress.showTimeRem = false;
               orderResult.progress.status = "RCVE";
+              orderResult.progress.step = "RCVE";
               orderResult.progress.bar = getProgressBarArr(3, 5);
 
             } else if (orderResult.progress.status == "RCVE" && bity.validStatus.indexOf(data.output.status) != -1) {
               orderResult.progress.status = "FILL";
+              orderResult.progress.step = "FILL";
               orderResult.progress.bar = getProgressBarArr(5, 5);
               orderResult.progress.showTimeRem = false;
               var url = orderResult.output.currency == 'BTC' ? bity.btcExplorer.replace("[[txHash]]", data.output.reference) : bity.ethExplorer.replace("[[txHash]]", data.output.reference)
               var bExStr = `<a href="${url}" target=" _blank" rel="noopener "> View your transaction </a>`;
               $scope.notifier.success(globalFuncs.successMsgs[2] + data.output.reference + "<br />" + bExStr);
+              console.log(2)
               clearInterval(progressCheck);
               clearInterval(timeRem);
               
@@ -368,6 +374,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
               orderResult.progress.bar = getProgressBarArr(-1, 5);
               $scope.notifier.danger("Time has run out. If you have already sent, please wait 1 hour. If your order has not be processed after 1 hour, please press the orange 'Issue with your Swap?' button.");
               orderResult.progress.secsRemaining = 0;
+              console.log(3)
               clearInterval(progressCheck);
             }
             if (!$scope.$$phase) $scope.$apply();

@@ -33,7 +33,7 @@
             <div class="swap-panel-tit" ng-class="showStage3Eth && orderResult.progress.status=='OPEN' && wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
                 <div class="swap-pane-step">4</div>
                 <span>Transaction Detail</span>
-                <i class="fas fa-check-circle success" ng-show="showStage3Eth && orderResult.progress.status=='OPEN' && wd"></i>
+                <i class="fas fa-check-circle success" ng-show="showStage3Eth && orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE'"></i>
             </div>
 
             <!-- <article class="row" ng-show="wallet!=null"> -->
