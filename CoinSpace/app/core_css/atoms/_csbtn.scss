@@ -2,12 +2,9 @@
 .csbtn-base {
   @include clickbtn;
   display: block;
-  width: 100%;
-
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 18px;
-  padding-bottom: 15px;
+  // width: 100%;
+float: left;
+ padding: 7px 20px;
   border-radius: 2px;
 
   color: white;
@@ -96,4 +93,14 @@
   }
 }
 
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+
+.fl {
+  float: left;
+}
+
+.fr{
+  float: right;
+}
 

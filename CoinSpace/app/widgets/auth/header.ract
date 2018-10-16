@@ -1,3 +1,7 @@
-<div class="_img">
-  {{>svg_logo_stack}}
+
+
+<div class="auth_trias_found">
+    <div class="by_trias_found">By Trias Foundation</div>
+    <div class="auth_header_title"> welcome to Trias wallet</div>
+    <div class="auth_header_conent"> By using Trias Wallet. you'll be able to send and receive digital currency,swap between currencies and monitor your balace</div>
 </div>

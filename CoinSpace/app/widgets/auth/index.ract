@@ -4,7 +4,7 @@
       {{>header}}
     </div>
 
-    <div class="auth__btngroup">
+    <div class="auth__btngroup clearfix auth_custom_bungroup">
       {{>content}}
       {{>actions}}
     </div>
