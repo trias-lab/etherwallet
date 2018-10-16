@@ -33,6 +33,7 @@
     "helmet-csp": "^2.5.1",
     "in-app-purchase": "^1.10.1",
     "mongodb": "^3.0.3",
+    "node-sass": "^4.9.4",
     "retry": "^0.10.1"
   },
   "devDependencies": {
