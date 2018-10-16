@@ -2,7 +2,7 @@
     "Back to coin": "Вернуться на coin",
     "Create new wallet": "Создать новый кошелек",
     "Open existing wallet": "Открыть существующий кошелек",
-    "We are about to generate your very own passphrase": "Сейчас вы создадите личную фразу-пароль",
+    "We are about to generate your passphrase": "Сейчас вы создадите личную фразу-пароль",
     "This keeps your account secure, and lets you open your wallet on multiple devices.": "Это обеспечивает безопасность ваших счетов, и позволяет доступ к вашему кошельку с разных устройств.",
     "It is very important you write this down.": "Очень важно, чтобы вы это записали",
     "Generate passphrase": "Создать фразу-пароль",

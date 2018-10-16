@@ -2,7 +2,7 @@
     "Back to coin": "Back to coin",
     "Create new wallet": "สร้างกระเป๋าเงินใหม่",
     "Open existing wallet": "เปิดใช้กระเป๋าเงินที่มีอยู่",
-    "We are about to generate your very own passphrase": "เรากำลังจะสร้างวลีรหัสผ่านของคุณ",
+    "We are about to generate your passphrase": "เรากำลังจะสร้างวลีรหัสผ่านของคุณ",
     "This keeps your account secure, and lets you open your wallet on multiple devices.": "นี่จะทำให้บัญชีของคุณปลอดภัย และช่วยให้คุณเปิดใช้งานกระเป๋าเงินได้จากอุปกรณ์อื่นๆ ",
     "It is very important you write this down.": "มันสำคัญมากที่คุณจะต้องจดสิ่งนี้ไว้",
     "Generate passphrase": "สร้างวลีรหัสผ่าน",

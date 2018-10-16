@@ -2,7 +2,7 @@
     "Back to coin": "coinへ戻る",
     "Create new wallet": "新規ウォレットを作成",
     "Open existing wallet": "既存ウォレットを開く",
-    "We are about to generate your very own passphrase": "個人パスフレーズを作成します",
+    "We are about to generate your passphrase": "個人パスフレーズを作成します",
     "This keeps your account secure, and lets you open your wallet on multiple devices.": "このパスフレーズはあなたのアカウントを保護して、他の端末で同じウォレットを同期できるようにしてくれます",
     "It is very important you write this down.": "絶対になくさないでください。",
     "Generate passphrase": "パスフレーズを作成する",
