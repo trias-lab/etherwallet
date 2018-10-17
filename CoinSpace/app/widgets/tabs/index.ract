@@ -1,32 +1,22 @@
 <div class="tabs">
   <a id="send_tab" data-tab='send' class="tab" on-click="select">
-    <span class="tab__icon">
-      {{>svg_send}}
-    </span>
+    <i class="fas fa-envelope"></i>
     <span class="tab__text">{{translate("Send")}}</span>
   </a>
   <a id="receive_tab" data-tab='receive' class="tab" on-click="select">
-    <span class="tab__icon">
-      {{>svg_receive}}
-    </span>
+    <i class="fas fa-envelope-open"></i>
     <span class="tab__text">{{translate("Receive")}}</span>
   </a>
   <a id="exchange_tab" data-tab='exchange' class="tab" on-click="select">
-    <span class="tab__icon">
-      {{>svg_exchange}}
-    </span>
+    <i class="fas fa-exchange-alt"></i>
     <span class="tab__text">{{translate("Exchange")}}</span>
   </a>
   <a id="history_tab" data-tab='history' class="tab" on-click="select">
-    <span class="tab__icon">
-      {{>svg_history}}
-    </span>
+    <i class="fas fa-history"></i>
     <span class="tab__text">{{translate("History")}}</span>
   </a>
   <a id="tokens_tab" data-tab='tokens' class="tab" on-click="select">
-    <span class="tab__icon">
-      {{>svg_token}}
-    </span>
+    <i class="fas fa-coins"></i>
     <span class="tab__text">{{translate("Tokens")}}</span>
   </a>
 </div>

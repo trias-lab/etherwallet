@@ -1,7 +1,14 @@
 <div class="frame">
 
-  <div>
-      Trias Wallet by Trias-lab Foundation
+  <div class="header-top">
+      <div class="Wallet-nav">
+          Trias Wallet 
+          <i class="fas fa-thumbs-up"></i>
+          <span>
+              by Trias-lab Foundation
+          </span> 
+      </div>
+      
   </div>
   
   <div id="main" class="animate_in">

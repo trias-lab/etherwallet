@@ -1,49 +1,60 @@
 
 #tabs {
-  background-color: darken($brand-green, 20%);
+  width:100%;
+  height:48px;
+  border-bottom: 1px solid rgba(203,208,211,1);
+  background:#fff;
 }
 
 .litecoin {
   #tabs {
-    background-color: darken($silver, 20%);
+    background:#fff;
   }
 }
 .ethereum {
   #tabs {
-    background-color: darken($ethereal, 20%);
+    width:100%;
+    height:48px;
+    // background:linear-gradient(270deg,rgba(255,255,255,1) 0%,rgba(242,243,248,0.9) 100%);
+    background:#fff;
+    border-bottom: 1px solid rgba(203,208,211,1);
   }
 }
 .ripple {
   #tabs {
-    background-color: darken($ripple, 20%);
+    background:#fff;
   }
 }
 .stellar {
   #tabs {
-    background-color: darken($stellar, 20%);
+    background:#fff;
   }
 }
 .bitcoincash {
   #tabs {
-    background-color: darken($bitcoincash, 20%);
+    background:#fff;
   }
 }
 
 #tabs .tabs {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
+  width: 1080px;
+  margin:0 auto;
 }
 
 #tabs .tabs .tab {
   @include clickbtn;
-  display: block;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  width: 100%;
-
+  display: inline-block;
+  height:48px;
+  line-height: 48px;
+  // width: 100%;
+  margin-right:36px;
   text-align: center;
 
-  color: white;
+  font-size:16px;
+  font-family:MoskLight300;
+  color:rgba(113,124,136,1);
 
   @include breakpoint(portrait) {
     padding-bottom: 30px;
@@ -51,51 +62,47 @@
   }
 
   &:hover {
-    .tab__icon, .tab__text {
-      opacity: 0.4;
-    }
+    color:#5DB85C;
   }
 
   &.active {
-    border-bottom: 4px solid darken($brand-green, 30%);
-    .tab__icon, .tab__text {
-      opacity: 1.0;
-    }
+    // border-bottom: 4px solid darken($brand-green, 30%);
+    color:#5DB85C;
   }
 }
 
 .litecoin {
   #tabs .tabs .tab {
     &.active {
-        border-bottom: 4px solid darken($silver, 30%);
+      color:#5DB85C;
     }
   }
 }
 .ethereum {
   #tabs .tabs .tab {
     &.active {
-        border-bottom: 4px solid darken($ethereal, 30%);
+      color:#5DB85C;
     }
   }
 }
 .ripple {
   #tabs .tabs .tab {
     &.active {
-        border-bottom: 4px solid darken($ripple, 30%);
+      color:#5DB85C;
     }
   }
 }
 .stellar {
   #tabs .tabs .tab {
     &.active {
-        border-bottom: 4px solid darken($stellar, 30%);
+      color:#5DB85C;
     }
   }
 }
 .bitcoincash {
   #tabs .tabs .tab {
     &.active {
-        border-bottom: 4px solid darken($bitcoincash, 30%);
+      color:#5DB85C;
     }
   }
 }
@@ -116,10 +123,10 @@
 }
 
 .tab__text {
-  display: block;
+  // display: block;
   @extend .jigsaw-light;
-  font-size: 14px;
-  opacity: 0.3;
+  // font-size: 14px;
+  // opacity: 0.3;
   @include breakpoint(portrait) {
     font-size: 18px;
   }
