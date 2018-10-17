@@ -15,7 +15,7 @@ module.exports = function(el) {
     el: el,
     template: require('./index.ract'),
     data: {
-      transactions: [],
+      transactions: [{id:'1111',index:1,timestamp:'dsfafdasfaf',confirmations:'eqweqweqweqweqwe'}],
       formatTimestamp: function(timestamp) {
         var date = new Date(timestamp)
         return strftime('%b %d %l:%M %p', date)

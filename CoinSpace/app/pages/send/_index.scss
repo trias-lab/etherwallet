@@ -1,34 +1,54 @@
+.send_from_header {
+  height: 54px;
+  line-height: 54px;
+  background: linear-gradient(270deg, rgba(140, 199, 43, 1) 0%, rgba(93, 184, 92, 1) 100%);
+  border-radius: 4px 4px 0px 0px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  >.number {
+    width: 28px;
+    height: 28px;
+    background: rgba(213, 247, 201, 1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5DB85C;
+    margin-right: 12px;
+    margin-left: 20px;
+  }
+  .text {}
+}
+
+.send__form {
+  padding: 20px;
+}
 
 .send__address {
-
   display: flex;
   margin-bottom: 20px;
-
   .input__container {
     position: relative;
     margin-top: 5px;
   }
-
   .close__input {
-    ._icon{
+    ._icon {
       .svg-close {
         fill: #969594;
       }
     }
   }
-
   ._label {
     @include noselect;
     cursor: pointer;
     display: block;
     flex: 1;
     margin-right: 10px;
-
     @include breakpoint(portrait) {
       font-size: 20px;
     }
   }
-
   ._btn {
     @extend .csbtn;
     margin-top: 29px;
@@ -36,13 +56,11 @@
     width: 42px;
     height: 42px;
     position: relative;
-
     @include breakpoint(portrait) {
       margin-top: 35px;
       width: 59px;
       height: 59px;
     }
-
     ._icon {
       width: 30px;
       height: 30px;
@@ -51,7 +69,6 @@
       left: 50%;
       margin-top: -15px;
       margin-left: -15px;
-
       @include breakpoint(portrait) {
         width: 44px;
         height: 44px;
@@ -60,25 +77,21 @@
       }
     }
   }
-
   ._btn-qr {
     margin-right: 10px;
   }
-
   ._input {
     @extend .generic_box;
     @extend .jigsaw-light;
     padding-left: 10px;
     padding-right: 38px;
     border-radius: 2px;
-
     height: auto;
-
-    &:active, &:focus {
+    &:active,
+    &:focus {
       outline: 0;
       border: 1px solid #999;
     }
-
     @include breakpoint(portrait) {
       font-size: 26px;
       border-radius: 3px;
@@ -88,70 +101,77 @@
 }
 
 .send__amount {
-
   position: relative;
-
   margin-bottom: 20px;
   @include breakpoint(portrait) {
     margin-bottom: 40px;
   }
 
+  .send_amount_warp{
+    display: flex;
+    justify-content: space-between;
+  }
   ._label {
     @include noselect;
     cursor: pointer;
     display: block;
-
     @include breakpoint(portrait) {
       font-size: 20px;
       margin-top: 40px;
     }
   }
-
   ._currency {
     @include noselect;
     @extend .jigsaw-light;
-    position: absolute;
     z-index: 500;
     cursor: pointer;
+    height: 100%;
     display: block;
     text-align: right;
     font-size: 18px;
-    right: 10px;
-    top: 11px;
     opacity: 0.4;
-
+    padding: 0 6px;
+    position: absolute;
+    right: 6px;
+    top: 11px;
     @include breakpoint(portrait) {
       top: 14px;
     }
 
-    select {
+    ._currency_select {
       @extend .jigsaw-light;
       font-size: 18px;
       border: none;
       background-color: transparent;
-
+      height: 100%;
+      padding-top: 8px;
       &:focus {
         outline: none;
       }
-
       @include breakpoint(portrait) {
         font-size: 24px;
       }
     }
-
     &.dropdown {
-      top: 5px;
-      right: 3px;
+      // top: 5px;
+      // right: 3px;
       @include breakpoint(portrait) {
         top: 7px;
       }
     }
-
     @include breakpoint(portrait) {
       font-size: 24px;
     }
   }
 
+  ._currency_border{
+    position: absolute;
+    right: 0;
+    top: 0px;
+    background:rgba(246,247,249,1);
+    border-radius:4px;
+    border:1px solid rgba(203,208,211,1);
+  }
   ._currency--error {
     @include noselect;
     @extend .jigsaw-light;
@@ -164,26 +184,21 @@
     right: 10px;
     top: 9px;
     opacity: 0.4;
-
     select {
       @extend .jigsaw-light;
       padding-right: 20px;
       font-size: 18px;
       border: none;
       background-color: transparent;
-
       &:focus {
         outline: none;
       }
-
     }
-
     &.dropdown {
       top: 4px;
       right: 3px;
     }
   }
-
   ._input {
     @extend .generic_box;
     @extend .jigsaw-light;
@@ -196,15 +211,14 @@
     border-top-left-radius: 2px;
     position: relative;
     z-index: 200;
-
-    &:active, &:focus {
+    &:active,
+    &:focus {
       outline: 0;
       border: 1px solid #999;
     }
     &.fiat {
       padding-right: 70px;
     }
-
     @include breakpoint(portrait) {
       font-size: 26px;
       border-radius: 3px;
@@ -214,16 +228,18 @@
       }
     }
   }
-
   ._error {
     background-color: lighten(red, 40%);
     border: 1px solid red;
   }
-
 }
-
+.send__buttons{
+  padding: 0  20px 20px;
+  .send__btn{
+    padding: 7px 43px;
+  }
+}
 .send__optional {
-
   position: relative;
   margin-bottom: 10px;
   &.last {
@@ -232,7 +248,6 @@
   @include breakpoint(portrait) {
     margin-bottom: 40px;
   }
-
   ._label {
     @include noselect;
     cursor: pointer;
@@ -241,21 +256,18 @@
       font-size: 20px;
     }
   }
-
   ._input {
     @extend .generic_box;
     @extend .jigsaw-light;
     padding-left: 10px;
     padding-right: 38px;
     border-radius: 2px;
-
     height: auto;
-
-    &:active, &:focus {
+    &:active,
+    &:focus {
       outline: 0;
       border: 1px solid #999;
     }
-
     @include breakpoint(portrait) {
       font-size: 26px;
       border-radius: 3px;
@@ -273,16 +285,13 @@
     height: 26px;
     padding: 4px;
     opacity: 0.4;
-
     @include breakpoint(portrait) {
       width: 32px;
       height: 32px;
     }
-
     &:hover {
       opacity: 0.7;
     }
-
     .svg-help {
       fill: #333;
     }
@@ -292,8 +301,7 @@
 ._input-group {
   position: relative;
   margin-top: 5px;
-
-  & + ._input-group {
+  &+._input-group {
     margin-top: 0;
     ._input {
       margin-top: -1px;
@@ -307,10 +315,18 @@
     }
   }
 }
-
+._input-group_button{
+  margin-top: 5px;
+  width:38px;
+  height:38px;
+  background:rgba(20,42,63,1);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;justify-content: center;
+  align-items: center;
+}
 .send__btn {
   @extend .csbtn;
-
   @include breakpoint(portrait) {
     font-size: 26px;
     border-radius: 3px;

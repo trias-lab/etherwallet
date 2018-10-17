@@ -44,7 +44,7 @@
   .content {
 
     display: none;
-    padding: 20px;
+    // padding: 20px;
     width: 740px;
     margin:auto;
     &.current {
@@ -166,6 +166,11 @@
   .left-info,.right-from{
     float: left;
     min-height: 600px;
+    .content{
+      background:rgba(255,255,255,1);
+      border-radius:4px;
+      border:1px solid rgba(203,208,211,1)
+    }
   }
   .left-info{
     width:316px;

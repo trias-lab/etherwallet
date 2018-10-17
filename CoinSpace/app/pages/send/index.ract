@@ -1,5 +1,11 @@
 
+    <div class="send_from_header">
+        <div class="fl number">1 </div> 
+        <div class="text fl">Send TRI</div>
+    </div>
+  
   <div class="send__form">
+
     <form>
 
       <div class="send__address">
@@ -33,21 +39,26 @@
 
         <label class="_label" for="bitcoin">{{translate("Amount")}}</label>
 
-          <div class="_input-group">
+         <div class="send_amount_warp">
+         
+           <div class="_input-group">
             <input id="bitcoin" class="_input" type="number" min="0" step="any" on-keyup="bitcoin-to-fiat" on-enter="open-send" on-focus="focusAmountInput" on-blur="blurAmountInput">
-            <span class="_currency">{{denomination}}</span>
+            <div class="_currency">{{denomination}}</div>
           </div>
-
+    <div class="_input-group_button">
+    Or
+    </div>
           <div class="_input-group">
             <input id="fiat" class="_input fiat" type="number" min="0" step="any" on-keyup="fiat-to-bitcoin" on-enter="open-send" on-focus="focusAmountInput" on-blur="blurAmountInput">
-            <span class="_currency dropdown">
-              <select value="{{selectedFiat}}" tabindex="-1">
+            <span class="_currency dropdown  _currency_border">
+              <select class="_currency_select " value="{{selectedFiat}}" tabindex="-1">
                 {{#currencies}}
                   <option value="{{.}}">{{.}}</option>
                 {{/currencies}}
               </select>
             </span>
           </div>
+         </div>
 
       </div>
 
@@ -104,7 +115,7 @@
     </form>
   </div>
 
-  <div class="send__buttons">
+  <div class="send__buttons clearfix">
     {{^validating}}
       <div on-click="open-send" class="send__btn">{{translate("Confirm")}}</div>
     {{/validating}}
