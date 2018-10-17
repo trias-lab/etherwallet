@@ -23,10 +23,10 @@
     <!-- <span class="" on-click="close">
         {{>svg_close}}
       </span> -->
-      <div id="qr-canvas"></div>
+      
       <div class="detail__strings">
         <h3 class="_title">{{title}}:</h3>
-        <code class="_value">{{address}}</code>
+        <p class="_value">{{address}}</p>
         <!-- <div class="_actions">
         <a class="_btn" href="{{mailto()}}">
           <span class="_icon">
@@ -35,4 +35,8 @@
         </a>
         </div> -->
       </div>
+      <div class="qr-container">
+        <div id="qr-canvas"></div>
+      </div>
+      
 </div>
