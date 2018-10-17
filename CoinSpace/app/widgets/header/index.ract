@@ -1,10 +1,10 @@
 {{#menuOpen}}
-<div class="toggle_overlay" on-click="toggle"></div>
+<div class="toggle_overlay"></div>
 {{/menuOpen}}
 
 <div class="header">
 
-  <div id="menu_btn" class="header__toggle {{#menuOpen}}is_open{{/menuOpen}}" on-click="toggle">
+  <!-- <div id="menu_btn" class="header__toggle {{#menuOpen}}is_open{{/menuOpen}}" on-click="toggle">
     <span class="_icon">
       {{^menuOpen}}
         {{>svg_settings}}
@@ -13,7 +13,7 @@
         {{>svg_close}}
       {{/menuOpen}}
     </span>
-  </div>
+  </div> -->
 
   {{#if isSyncing}}
     <div class="header__balance">
