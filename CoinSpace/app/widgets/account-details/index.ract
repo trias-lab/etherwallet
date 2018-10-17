@@ -1,8 +1,7 @@
-
 <div id="details-preview">
   <div class="settings__avatar"></div>
   <h3 class="settings__name">{{user.firstName}}</h3>
-  <span class="settings__link" on-click="edit-details">{{translate("Change your details")}}</span>
+  <span class="settings__link setting-change" on-click="edit-details">{{translate("Change your details")}}</span>
 </div>
 
 <div id="details-edit">
@@ -14,20 +13,26 @@
 
   <div class="settings__input-group">
     <label class="_label">{{translate("Gravatar email")}}
-      <input value="{{user.email}}" type="email" class="_input" on-enter="submit-details"/>
+      <input value="{{user.email}}" type="email" class="_input" on-enter="submit-details" />
     </label>
-    <span class="_help" on-click="help">
+    <!-- <span class="_help" on-click="help">
       {{>svg_help}}
-    </span>
+    </span> -->
   </div>
 
-  {{^submitting}}
-    <div class="settings__btn" on-click="submit-details">{{translate("Submit")}}</div>
-  {{/submitting}}
-  {{#submitting}}
-    <div class="settings__btn--loading">{{translate("Submit")}}...</div>
-  {{/submitting}}
+  <div class="">
 
-  <div class="remove__btn" on-click="remove-account">{{translate("Remove account")}}</div>
+    <div class="btn-remove" on-click="remove-account">{{translate("Remove account")}}</div>
+    {{^submitting}}
+    <div class="btn-submit" on-click="submit-details">{{translate("Submit")}}</div>
+    {{/submitting}}
+
+    {{#submitting}}
+    <div class="settings__btn--loading btn-submit">{{translate("Submit")}}...</div>
+    {{/submitting}}
+  </div>
+
+
+
 
 </div>

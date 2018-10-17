@@ -1,7 +1,25 @@
 #account-details {
-  padding: 10px 20px;
-  .remove__btn {
-    @extend .csbtn--red;
-    margin-top: 20px;
+  // padding: 10px 20px;
+  margin:16px 0;
+  padding:16px;
+  background:rgba(255,255,255,1);
+  border-radius:4px;
+  border:1px solid rgba(203,208,211,1);
+  .btn-submit,.btn-remove{
+    width:284px;
+    height:38px;
+    background:rgba(93,184,92,1);
+    border-radius:4px;
+    border:1px solid rgba(93,184,92,1);
+    text-align: center;
+    line-height: 38px;
+    font-size:16px;
+    font-family:MoskLight300;
+    color:rgba(255,255,255,1);
+  }
+  .btn-remove{
+    background:rgba(255,255,255,1);
+    color: rgba(93,184,92,1); 
+    margin:24px 0 57px 0;
   }
 }
