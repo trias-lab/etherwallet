@@ -3,7 +3,7 @@
     {{^opening}}
       <label class="_label pin">
         {{#userExists}}
-          {{translate("Enter your PIN")}}:
+       
         {{/userExists}}
         {{^userExists}}
           {{translate("Set a PIN for quick access")}}:
