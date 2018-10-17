@@ -1,6 +1,13 @@
 {{#if isLoading}}
   {{>loader}}
 {{else}}
+
+
+   <div class="send_from_header">
+        <div class="fl number">1 </div> 
+        <div class="text fl">Swap</div>
+    </div>
+  
 <div class="exchange_create">
   <form>
 
@@ -102,6 +109,9 @@
       {{/if}}
     </div>
 
+
+  </form>
+
     <h3 class="_title">{{translate("Exchange rate")}}</h3>
     <div class="exchange__rate">
       {{#if isLoadingRate}}
@@ -110,9 +120,6 @@
         1 {{fromSymbol}} = {{rate}} {{toSymbol}}
       {{/if}}
     </div>
-
-  </form>
-
   <div class="confirm__buttons">
     {{#if isValidating}}
       <div class="confirm__btn--validating">

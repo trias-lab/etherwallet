@@ -1,13 +1,20 @@
 
+
+
 <div class="transactions">
+
+
+    <div class="send_from_header">
+        <div class="fl number">1 </div> 
+        <div class="text fl">Transaction History</div>
+    </div>
+  
   {{#loadingTx}}
     <div class="transactions__message">
       <div class="_message">{{translate("Loading transactions...")}}</div>
     </div>
   {{/loadingTx}}
-  {{#transactions.length}}
-    <h3 class="_title">{{translate("Your transaction history")}}</h3>
-  {{/transactions.length}}
+
   {{#each transactions: index}}
     <div class="transactions__item" title="{{id}}" data-index="{{index}}" on-click="show-detail">
 
@@ -35,7 +42,7 @@
   {{/each}}
 
   
-    <div class="loadmore__buttons">
+    <div class="loadmore__buttons clearfix">
       {{#if loadingMore}}
         <div class="send__btn--validating">
           <span class="_icon">

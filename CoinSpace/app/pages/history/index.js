@@ -15,7 +15,7 @@ module.exports = function(el) {
     el: el,
     template: require('./index.ract'),
     data: {
-      transactions: [{id:'1111',index:1,timestamp:'dsfafdasfaf',confirmations:'eqweqweqweqweqwe'}],
+      transactions: [],
       formatTimestamp: function(timestamp) {
         var date = new Date(timestamp)
         return strftime('%b %d %l:%M %p', date)
@@ -66,7 +66,7 @@ module.exports = function(el) {
 
   emitter.on('append-transactions', function(newTxs) {
     newTxs.forEach(function(tx) {
-      ractive.unshift('transactions', tx);
+      ractive.unshift('transactions', [{"address":"mrtbkita4kA5tPiiDgW9HGcRQTWne45sEj","txid":"95ea992dbd447495eeb67fece71e7f1d1cbe59f2b9a565aba947319d1878ee36","vout":1,"scriptPubKey":"76a9147cc1638179a188b5752ef2e5e128b18ac5d3a2ff88ac","amount":0.0989774,"satoshis":9897740,"height":1439003,"confirmations":4},{"address":"mhSMZr5RWAqpTEi96jz47tcuJVmpttujrs","txid":"95ea992dbd447495eeb67fece71e7f1d1cbe59f2b9a565aba947319d1878ee36","vout":0,"scriptPubKey":"76a914151199369e88bcde3d34f692ae89f7b2c9eab4f288ac","amount":0.001,"satoshis":100000,"height":1439003,"confirmations":4},{"address":"mhmTuhifZTvDs7mQRMFYBpDYL1dJn5Fb8S","txid":"4cedb625d23b4627fd5ceb0eb721e58dc48d7d9145ba4a30928a217e7b1efe97","vout":0,"scriptPubKey":"76a91418aecbcc3ad7c45a29a34c407e5ffdfd9004075b88ac","amount":0.001,"satoshis":100000,"height":1438970,"confirmations":37}]);
     })
     ractive.set('loadingTx', false)
   })
@@ -74,13 +74,13 @@ module.exports = function(el) {
   emitter.on('set-transactions', function(txs) {
     var wallet = getWallet();
     network = getTokenNetwork();
-    ractive.set('transactions', txs)
+    ractive.set('transactions', [{"address":"mrtbkita4kA5tPiiDgW9HGcRQTWne45sEj","txid":"95ea992dbd447495eeb67fece71e7f1d1cbe59f2b9a565aba947319d1878ee36","vout":1,"scriptPubKey":"76a9147cc1638179a188b5752ef2e5e128b18ac5d3a2ff88ac","amount":0.0989774,"satoshis":9897740,"height":1439003,"confirmations":4},{"address":"mhSMZr5RWAqpTEi96jz47tcuJVmpttujrs","txid":"95ea992dbd447495eeb67fece71e7f1d1cbe59f2b9a565aba947319d1878ee36","vout":0,"scriptPubKey":"76a914151199369e88bcde3d34f692ae89f7b2c9eab4f288ac","amount":0.001,"satoshis":100000,"height":1439003,"confirmations":4},{"address":"mhmTuhifZTvDs7mQRMFYBpDYL1dJn5Fb8S","txid":"4cedb625d23b4627fd5ceb0eb721e58dc48d7d9145ba4a30928a217e7b1efe97","vout":0,"scriptPubKey":"76a91418aecbcc3ad7c45a29a34c407e5ffdfd9004075b88ac","amount":0.001,"satoshis":100000,"height":1438970,"confirmations":37}])
     ractive.set('hasMore', wallet ? wallet.hasMoreTxs : false)
     ractive.set('loadingTx', false)
   })
 
   emitter.on('sync', function() {
-    ractive.set('transactions', [])
+    ractive.set('transactions', [{"address":"mrtbkita4kA5tPiiDgW9HGcRQTWne45sEj","txid":"95ea992dbd447495eeb67fece71e7f1d1cbe59f2b9a565aba947319d1878ee36","vout":1,"scriptPubKey":"76a9147cc1638179a188b5752ef2e5e128b18ac5d3a2ff88ac","amount":0.0989774,"satoshis":9897740,"height":1439003,"confirmations":4},{"address":"mhSMZr5RWAqpTEi96jz47tcuJVmpttujrs","txid":"95ea992dbd447495eeb67fece71e7f1d1cbe59f2b9a565aba947319d1878ee36","vout":0,"scriptPubKey":"76a914151199369e88bcde3d34f692ae89f7b2c9eab4f288ac","amount":0.001,"satoshis":100000,"height":1439003,"confirmations":4},{"address":"mhmTuhifZTvDs7mQRMFYBpDYL1dJn5Fb8S","txid":"4cedb625d23b4627fd5ceb0eb721e58dc48d7d9145ba4a30928a217e7b1efe97","vout":0,"scriptPubKey":"76a91418aecbcc3ad7c45a29a34c407e5ffdfd9004075b88ac","amount":0.001,"satoshis":100000,"height":1438970,"confirmations":37}])
     ractive.set('loadingTx', true)
   })
 
