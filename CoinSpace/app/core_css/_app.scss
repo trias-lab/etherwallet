@@ -2,8 +2,8 @@
 // structural style for the app
 
 #app {
-  display: none;
-  height: 100%;
+  display: block!important;
+  // height: 100%;
   &.current {
     display: block;
   }
