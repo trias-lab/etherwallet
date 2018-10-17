@@ -5,6 +5,7 @@ var globalService = function($http, $httpParamSerializerJQLike) {
   ajaxReq.http = $http
   ajaxReq.postSerializer = $httpParamSerializerJQLike
   ajaxReq.getETHvalue = nodes.ethPrice.getETHvalue
+  ajaxReq.getTRIRates = nodes.ethPrice.getTRIRates
   ajaxReq.getRates = nodes.ethPrice.getRates
 
   var tabs = {

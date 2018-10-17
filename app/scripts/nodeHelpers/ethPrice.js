@@ -5,6 +5,7 @@ var getValue = function (arr, pair) {
     for (var i in arr)
         if (arr[i].pair == pair) return arr[i].rate;
 }
+var TRIRATEAPI = "https://wallet.trias.one/api/swap/rate/";
 var BITYRATEAPI = "https://bity.com/api/v1/rate2/";
 var CCRATEAPI = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR,GBP,BTC,CHF,REP";
 ethPrice.getETHvalue = function (callback) {
@@ -21,13 +22,17 @@ ethPrice.getETHvalue = function (callback) {
         callback(priceObj);
     });
 }
-// http://localhost:8000/api/swap/rate/
-ethPrice.getRates = function (callback) {
-    ajaxReq.http.get("https://wallet.trias.one/api/swap/rate/").then(function (data) {
+
+ethPrice.getTRIRates = function (callback) {
+    ajaxReq.http.get(TRIRATEAPI).then(function (data) {
         callback(data['data']['objects']);
     });
-    // ajaxReq.http.get(BITYRATEAPI).then(function (data) {
-    //     callback(data['data']['objects']);
-    // });
+}
+
+// http://localhost:8000/api/swap/rate/
+ethPrice.getRates = function (callback) {
+    ajaxReq.http.get(BITYRATEAPI).then(function (data) {
+        callback(data['data']['objects']);
+    });
 }
 module.exports = ethPrice;

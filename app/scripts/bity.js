@@ -1,9 +1,6 @@
 'use strict';
 var bity = function () { }
-// bity.SERVERURL = "http://172.21.0.46:8701";
-bity.SERVERURL = "https://wallet.trias.one";
-// bity.SERVERURL = "http://192.144.140.64:8701";
-// bity.SERVERURL = "https://bity.myetherapi.com";
+bity.SERVERURL = "https://bity.myetherapi.com";
 bity.decimals = 6;
 bity.ethExplorer = 'https://etherscan.io/tx/[[txHash]]';
 bity.btcExplorer = 'https://blockchain.info/tx/[[txHash]]';
@@ -18,9 +15,9 @@ bity.prototype.refreshRates = function (callback) {
     ajaxReq.getRates(function (data) {
         _this.curRate = {};
         data.forEach(function (pair) {
-            // if (bity.mainPairs.indexOf(pair.pair.substring(3)) != -1) _this.curRate[pair.pair] = parseFloat(pair.rate_we_sell);
-            // else if (bity.mainPairs.indexOf(pair.pair.substring(0, 3)) != -1) _this.curRate[pair.pair] = parseFloat(pair.rate_we_buy);
-            // else _this.curRate[pair.pair] = parseFloat(pair.rate);
+            if (bity.mainPairs.indexOf(pair.pair.substring(3)) != -1) _this.curRate[pair.pair] = parseFloat(pair.rate_we_sell);
+            else if (bity.mainPairs.indexOf(pair.pair.substring(0, 3)) != -1) _this.curRate[pair.pair] = parseFloat(pair.rate_we_buy);
+            else _this.curRate[pair.pair] = parseFloat(pair.rate);
             _this.curRate[pair.pair] = parseFloat(pair.rate)
         });
         _this.priceLoaded = true;
