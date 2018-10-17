@@ -240,6 +240,17 @@
     <% if (process.env.BUILD_TYPE === 'phonegap') { %>
     <script src="cordova.js"></script>
     <% } %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+     $('.common-footer .toggle-button').click(function(){
+            if($(this).find('.toggle-box').css('display') === 'none'){
+                $('.toggle-box').hide();
+                $(this).find('.toggle-box').toggle();
+            }else{
+                $('.toggle-box').hide();
+            }
+        })
+    </script>
 </body>
 
 </html>
