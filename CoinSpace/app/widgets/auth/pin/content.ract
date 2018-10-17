@@ -1,13 +1,7 @@
 <div class="auth__pin">
   <div class="auth__input-group">
     {{^opening}}
-      <label class="_label pin">
-        {{#userExists}}
-       
-        {{/userExists}}
-        {{^userExists}}
-          {{translate("Set a PIN for quick access")}}:
-        {{/userExists}}
+      <label class="_label pin" style="text-align:center">
         <div class="pinfield {{#pinfocused}}is_focused{{/pinfocused}}">
           {{#boxes}}
             <div class="_box">
@@ -34,3 +28,28 @@
 
   </div>
 </div>
+
+
+
+
+{{^userExists}}
+  {{^opening}}
+  <div style="text-align:center;color:#5DB85C">
+  <span class="_link" on-click="back">{{translate("Review passphrase again")}}</span>
+  </div>
+  {{/opening}}
+{{/userExists}}
+
+{{#userExists}}
+  {{^opening}}
+    <div class="auth__altmsg">
+      <span class="_link" on-click="clear-credentials">{{translate("Open a different wallet")}}</span>
+    </div>
+  {{/opening}}
+
+  {{#opening}}
+    <div class="auth__altmsg">
+      <span>{{translate("This might take some time,")}}<br/> {{translate("please be patient.")}}</span>
+    </div>
+  {{/opening}}
+{{/userExists}}

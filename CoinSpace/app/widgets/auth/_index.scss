@@ -3,6 +3,8 @@
   &.current {
     display: flex;
     align-items: center;
+    background: url('./assets/img/img_bg_login.png') ;
+    background-size: cover;
   }
 }
 
@@ -26,8 +28,13 @@
   min-height: 100%;
   padding-top: 40px;
   padding-bottom: 40px;
+  position: relative;
 }
-
+#welcome_home{
+  position: absolute;
+  bottom: 0;
+  left:0;
+}
 .auth {
   margin: 0 auto;
   position: relative;

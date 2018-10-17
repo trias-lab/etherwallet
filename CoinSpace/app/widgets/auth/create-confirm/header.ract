@@ -1,6 +1,6 @@
 
 <div class="auth_trias_found">
-    <div class="by_trias_found">By Trias Foundation</div>
+      <div class="by_trias_found"> <i class="fa fa-thumbs-up fa-lg" style="margin-right:8px"></i>By Trias Foundation</div>
     <div class="auth_header_title"> Your passphrase</div>
     <div class="auth_header_conent">
   

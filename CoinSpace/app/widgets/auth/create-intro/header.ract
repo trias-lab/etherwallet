@@ -1,7 +1,7 @@
 
 
 <div class="auth_trias_found">
-    <div class="by_trias_found">By Trias Foundation</div>
+        <div class="by_trias_found"> <i class="fa fa-thumbs-up fa-lg" style="margin-right:8px"></i>By Trias Foundation</div>
     <div class="auth_header_title"> {{translate("We are about to generate your passphrase")}}</div>
     <div class="auth_header_conent">{{translate("This keeps your account secure, and lets you open your wallet on multiple devices.")}}{{translate("It is very important you write this down.")}}</div>
 </div>
