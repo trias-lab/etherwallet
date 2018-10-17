@@ -103,7 +103,7 @@
   // left: 0;
   // right: 0;
   // bottom: 0;
-  overflow: hidden;
+  // overflow: hidden;
 
   color: #333;
   background-color: white;
@@ -130,26 +130,25 @@
 
 #terms {
   @include clear;
-  position: relative;
+  // position: relative;
   background-color: #f2f2f2;
-  flex: 1; // take up full width
-  min-width: 0;
-  transition: transform .3s, opacity 0.3s, margin 0s;
-  transform: translateX(0);
-  box-shadow: -5px 0px 15px 0px rgba(25,25,25,0.3);
-  margin-top: -10000px;
-  opacity: 0;
-
+  // flex: 1; // take up full width
+  // min-width: 0;
+  // transition: transform .3s, opacity 0.3s, margin 0s;
+  // transform: translateX(0);
+  // box-shadow: -5px 0px 15px 0px rgba(25,25,25,0.3);
+  // margin-top: -10000px;
+  // opacity: 0;
   &.closed {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: translateX(273px);
-    overflow: hidden;
+    // position: fixed;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // transform: translateX(273px);
+    // overflow: hidden;
   }
-
+// 
   &.terms-open {margin-top: 0; opacity: 1;}
 
   @include breakpoint(portrait) {
@@ -166,8 +165,10 @@
   margin:73px auto;
   .left-info,.right-from{
     float: left;
+    min-height: 600px;
   }
   .left-info{
     width:316px;
+    margin-right: 24px;
   }
 }
