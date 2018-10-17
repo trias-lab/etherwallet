@@ -10,8 +10,8 @@ var isScanAvailable = process.env.BUILD_TYPE === 'phonegap'
 
 function encode(string, options) {
   options = options || {}
-  var width = options.width || 200
-  var height = options.height || 200
+  var width = options.width || 140
+  var height = options.height || 140
 
   var canvas = document.createElement('canvas')
   canvas.width = width

@@ -1,6 +1,10 @@
 .exchange_create {
   margin-bottom: 25px;
-
+  padding: 20px;
+  // >form{
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
   ._title {
     @include breakpoint(portrait) {
       font-size: 20px;
@@ -226,4 +230,9 @@
       }
     }
   }
+}
+
+
+._powered_by{
+  padding:  0 20px 20px;
 }

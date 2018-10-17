@@ -29,6 +29,10 @@ module.exports = function(el){
   emitter.on('wallet-ready', function(){
     ractive.set('address', getAddress())
     showQRcode()
+    // 显示钱包地址和二维码
+    showQr({
+      address: ractive.get('address')
+    })
   })
 
   emitter.on('update-balance', function() {
