@@ -1,13 +1,14 @@
 <!doctype html>
 <html>
+
 <head>
-  <title>Trias BTC Wallet</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
-  <meta name="description" content="Coin Wallet is a free online bitcoin &amp;amp; litecoin wallet which you can use to make worldwide payments for free. We make paying with bitcoins easy and secure">
-  <meta name="keywords" content="Secure, shared wallet, bitcoin, litecoin, web wallet, coin">
-  <% if (process.env.BUILD_TYPE === 'phonegap') { %>
-  <meta http-equiv="Content-Security-Policy" content="
+    <title>Trias BTC Wallet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="description" content="Coin Wallet is a free online bitcoin &amp;amp; litecoin wallet which you can use to make worldwide payments for free. We make paying with bitcoins easy and secure">
+    <meta name="keywords" content="Secure, shared wallet, bitcoin, litecoin, web wallet, coin">
+    <% if (process.env.BUILD_TYPE === 'phonegap') { %>
+    <meta http-equiv="Content-Security-Policy" content="
     default-src 'self' blob: gap:;
     connect-src 'self' blob:
     https://shapeshift.io
@@ -22,51 +23,77 @@
     img-src 'self' data: https://www.gravatar.com;
     style-src 'self' 'unsafe-inline';
     script-src 'self' blob: 'unsafe-eval' 'unsafe-inline';">
-  <% } %>
-  <link rel="apple-touch-icon" sizes="57x57" href="<%= require('./assets/icons/apple-touch-icon-57x57.png') %>">
-  <link rel="apple-touch-icon" sizes="60x60" href="<%= require('./assets/icons/apple-touch-icon-60x60.png') %>">
-  <link rel="apple-touch-icon" sizes="72x72" href="<%= require('./assets/icons/apple-touch-icon-72x72.png') %>">
-  <link rel="apple-touch-icon" sizes="76x76" href="<%= require('./assets/icons/apple-touch-icon-76x76.png') %>">
-  <link rel="apple-touch-icon" sizes="114x114" href="<%= require('./assets/icons/apple-touch-icon-114x114.png') %>">
-  <link rel="apple-touch-icon" sizes="120x120" href="<%= require('./assets/icons/apple-touch-icon-120x120.png') %>">
-  <link rel="apple-touch-icon" sizes="144x144" href="<%= require('./assets/icons/apple-touch-icon-144x144.png') %>">
-  <link rel="apple-touch-icon" sizes="152x152" href="<%= require('./assets/icons/apple-touch-icon-152x152.png') %>">
-  <link rel="apple-touch-icon" sizes="180x180" href="<%= require('./assets/icons/apple-touch-icon-180x180.png') %>">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Coin">
-  <link rel="icon" type="image/png" sizes="32x32" href="<%= require('./assets/icons/favicon-32x32.png') %>">
-  <link rel="icon" type="image/png" sizes="16x16" href="<%= require('./assets/icons/favicon-16x16.png') %>">
-  <link rel="shortcut icon" href="<%= require('./assets/icons/favicon.ico') %>">
-  <% if (process.env.BUILD_TYPE !== 'phonegap' && process.env.GOOGLE_GTM !== 'false') { %>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','<%= process.env.GOOGLE_GTM %>');</script>
-  <!-- End Google Tag Manager -->
-  <% } %>
+    <% } %>
+    <link rel="apple-touch-icon" sizes="57x57" href="<%= require('./assets/icons/apple-touch-icon-57x57.png') %>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%= require('./assets/icons/apple-touch-icon-60x60.png') %>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%= require('./assets/icons/apple-touch-icon-72x72.png') %>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%= require('./assets/icons/apple-touch-icon-76x76.png') %>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%= require('./assets/icons/apple-touch-icon-114x114.png') %>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%= require('./assets/icons/apple-touch-icon-120x120.png') %>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%= require('./assets/icons/apple-touch-icon-144x144.png') %>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%= require('./assets/icons/apple-touch-icon-152x152.png') %>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= require('./assets/icons/apple-touch-icon-180x180.png') %>">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Coin">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= require('./assets/icons/favicon-32x32.png') %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= require('./assets/icons/favicon-16x16.png') %>">
+    <link rel="shortcut icon" href="<%= require('./assets/icons/favicon.ico') %>">
+    <% if (process.env.BUILD_TYPE !== 'phonegap' && process.env.GOOGLE_GTM !== 'false') { %>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '<%= process.env.GOOGLE_GTM %>');</script>
+    <!-- End Google Tag Manager -->
+    <% } %>
 </head>
+
 <body>
-  <% if (process.env.BUILD_TYPE !== 'phonegap' && process.env.GOOGLE_GTM !== 'false') { %>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= process.env.GOOGLE_GTM %>"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <% } %>
-  <div>
-      <p>header start</p>
-  </div>
-  <div id="geo-overlay" class="z-1000"></div>
-  <div id="general-purpose-overlay" class="z-1000"></div>
-  <div id="tooltip" class="z-9000"></div>
-  <div id="transaction-detail" class="z-9000"></div>
-  <div id="flash-modal" class="z-9000"></div>
-  <div id="app"></div>
-  <div id="auth" class="auth__modal current">
-    <div id="loader">
-      <!-- <% if (process.env.BUILD_TYPE !== 'phonegap') { %>
+    <% if (process.env.BUILD_TYPE !== 'phonegap' && process.env.GOOGLE_GTM !== 'false') { %>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= process.env.GOOGLE_GTM %>" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <% } %>
+    <div id="header">
+        <div class="header-content">
+            <img src="<%= require('./assets/img/logo.png') %>" alt="" class="header-logo">
+            <ul class="header-link">
+                <li>
+                    <a href="https://www.trias.one/" target="blank">
+                        Trias Project
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://monitor.trias.one/" target="blank">
+                        Nodes Status Monitor
+                    </a>
+
+                </li>
+                <li>
+                    <a href=" https://explorer.trias.one/" target="blank">
+                        Blockchain Explorer
+                    </a>
+                </li>
+                <li>切换语言</li>
+            </ul>
+        </div>
+    </div>
+    <div id="geo-overlay" class="z-1000"></div>
+    <div id="general-purpose-overlay" class="z-1000"></div>
+    <div id="tooltip" class="z-9000"></div>
+    <div id="transaction-detail" class="z-9000"></div>
+    <div id="flash-modal" class="z-9000"></div>
+    <div id="app"></div>
+    <div id="auth" class="auth__modal current">
+        <div id="loader">
+            <!-- <% if (process.env.BUILD_TYPE !== 'phonegap') { %>
       <div id="logo_animation">
         <svg width="100%" height="180px" viewBox="0 0 81 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -86,133 +113,133 @@
         </svg>
       </div>
       <% } %> -->
-      <div id="loader-message"></div>
-      <div class="preload jigsaw-light">a</div>
-      <div class="preload jigsaw-regular">a</div>
-      <div class="preload jigsaw-medium">a</div>
-      <div class="preload jigsaw-bold">a</div>
+            <div id="loader-message"></div>
+            <div class="preload jigsaw-light">a</div>
+            <div class="preload jigsaw-regular">a</div>
+            <div class="preload jigsaw-medium">a</div>
+            <div class="preload jigsaw-bold">a</div>
+        </div>
     </div>
-  </div>
-  <div class="common-footer">
-      <div class="contacts">
-          <a target="blank" href="https://twitter.com/triaslab">
-              <span class="btn-icon">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-              </span>
-          </a>
-          <a target="blank" href="https://medium.com/@Triaslab">
-              <span class="btn-icon">
-                  <i class="fab fa-medium-m"></i>
-              </span>
-          </a>
-          <a class="wechat-button toggle-button" >
-              <span class="btn-icon">
-                  <i class="fa fa-weixin" aria-hidden="true"></i>
-              </span>
-              <div class='qrcode toggle-box'>
-                  <img src="<%= require('./assets/img/wechat-qrcode.jpg') %>" />
-              </div>
-          </a>
-          <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
-              <span class="btn-icon">
-                  <i class="fab fa-reddit-alien"></i>
-              </span>
-          </a>
-          <span class="telegram-button toggle-button">
-              <span class="btn-icon">
-                  <i class="fab fa-telegram-plane"></i>
-              </span>
-              <div class='telegram-box toggle-box'>
-                  <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
-                  <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
-                  <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
-              </div>
-          </span>
-          <a target="blank" href="https://0.plus/sp/triaslab">
-              <span class="btn-icon logo-biyong">
-                <i class="fas fa-envelope"></i>
-              </span>
-          </a>
-          <a target="blank" href="https://github.com/trias-lab/Documentation">
-              <span class="btn-icon">
-                  <i class="fa fa-github" aria-hidden="true"></i>
-              </span>
-          </a>                
-          <a class="email-button toggle-button">
-              <span class="btn-icon">
-                  <i class="fas fa-envelope"></i>
-              </span>
-              <div class='email-box toggle-box'>
-                  Email: contact@trias.one
-              </div>
-          </a>
-      </div>
-      <div class="info">
-          <div class="center-box clearfix">
-              <div class="intro pull-left">
-                  <img src="<%= require('./assets/img/logo.png') %>"  alt=""/>
-                  <P translate="FOOTER_TriasIntroduction">
-                    TRIAS aims to define a new-generation all-platform-supported 
-                    public chain system. Trustworthy and Reliable Intelligent 
-                    Autonomous Systems make people trust in machines.
-                  </P>
-              </div>
-      
-            <div class="links pull-right">
-                <div class="docs">
-                    <h2>
-                      About Us
-                    </h2>
-                    <div class="link">
-                        <a href="https://www.trias.one/aboutus/recent" target="blank" >
-                          Recent Events
-                        </a>
+    <div class="common-footer">
+        <div class="contacts">
+            <a target="blank" href="https://twitter.com/triaslab">
+                <span class="btn-icon">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </span>
+            </a>
+            <a target="blank" href="https://medium.com/@Triaslab">
+                <span class="btn-icon">
+                    <i class="fab fa-medium-m"></i>
+                </span>
+            </a>
+            <a class="wechat-button toggle-button">
+                <span class="btn-icon">
+                    <i class="fa fa-weixin" aria-hidden="true"></i>
+                </span>
+                <div class='qrcode toggle-box'>
+                    <img src="<%= require('./assets/img/wechat-qrcode.jpg') %>" />
+                </div>
+            </a>
+            <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
+                <span class="btn-icon">
+                    <i class="fab fa-reddit-alien"></i>
+                </span>
+            </a>
+            <span class="telegram-button toggle-button">
+                <span class="btn-icon">
+                    <i class="fab fa-telegram-plane"></i>
+                </span>
+                <div class='telegram-box toggle-box'>
+                    <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
+                    <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
+                    <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
+                </div>
+            </span>
+            <a target="blank" href="https://0.plus/sp/triaslab">
+                <span class="btn-icon logo-biyong">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </a>
+            <a target="blank" href="https://github.com/trias-lab/Documentation">
+                <span class="btn-icon">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                </span>
+            </a>
+            <a class="email-button toggle-button">
+                <span class="btn-icon">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <div class='email-box toggle-box'>
+                    Email: contact@trias.one
+                </div>
+            </a>
+        </div>
+        <div class="info">
+            <div class="center-box clearfix">
+                <div class="intro pull-left">
+                    <img src="<%= require('./assets/img/logo.png') %>" alt="" />
+                    <P translate="FOOTER_TriasIntroduction">
+                        TRIAS aims to define a new-generation all-platform-supported
+                        public chain system. Trustworthy and Reliable Intelligent
+                        Autonomous Systems make people trust in machines.
+                    </P>
+                </div>
+
+                <div class="links pull-right">
+                    <div class="docs">
+                        <h2>
+                            About Us
+                        </h2>
+                        <div class="link">
+                            <a href="https://www.trias.one/aboutus/recent" target="blank">
+                                Recent Events
+                            </a>
+                        </div>
+                        <div class="link">
+                            <a href="https://www.trias.one/aboutus/view" target="blank">
+                                View
+                            </a>
+                        </div>
+                        <div class="link">
+                            <a href="https://www.trias.one/aboutus/project" target="blank">
+                                Project Progress
+                            </a>
+                        </div>
                     </div>
-                    <div class="link">
-                        <a href="https://www.trias.one/aboutus/view" target="blank" >
-                          View
-                        </a>
-                    </div>
-                    <div class="link">
-                        <a href="https://www.trias.one/aboutus/project" target="blank">
-                          Project Progress
-                        </a>
+                </div>
+                <div class="links pull-right">
+                    <div class="docs">
+                        <h2>
+                            Products
+                        </h2>
+                        <div class="link">
+                            <a href="https://www.trias.one/" target="blank">
+                                Trias Project
+                            </a>
+                        </div>
+                        <div class="link">
+                            <a href="https://monitor.trias.one/" target="blank">
+                                Nodes Status Monitor
+                            </a>
+                        </div>
+                        <div class="link">
+                            <a href=" https://explorer.trias.one/" target="blank">
+                                Blockchain Explorer
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="links pull-right">
-              <div class="docs">
-                  <h2>
-                    Products
-                  </h2>
-                  <div class="link">
-                      <a href="https://www.trias.one/" target="blank" >
-                        Trias Project
-                      </a>
-                  </div>
-                  <div class="link">
-                      <a href="https://monitor.trias.one/" target="blank" >
-                        Nodes Status Monitor
-                      </a>
-                  </div>
-                  <div class="link">
-                      <a href=" https://explorer.trias.one/" target="blank">
-                        Blockchain Explorer
-                      </a>
-                  </div>              
-              </div>
+            <div class="center-box clearfix">
+                <hr />
+                <span class="pull-left">© 2018 Trias-lab Foundation. </span>
+                <!-- <span class="pull-right">All rights reserved.</span> -->
             </div>
-          </div>
-          <div class="center-box clearfix">
-              <hr/>
-              <span class="pull-left">© 2018 Trias-lab Foundation. </span>
-              <!-- <span class="pull-right">All rights reserved.</span> -->
-          </div> 
-      </div>                   
+        </div>
     </div>
-  <% if (process.env.BUILD_TYPE === 'phonegap') { %>
-  <script src="cordova.js"></script>
-  <% } %>
+    <% if (process.env.BUILD_TYPE === 'phonegap') { %>
+    <script src="cordova.js"></script>
+    <% } %>
 </body>
-</html>
 
+</html>
