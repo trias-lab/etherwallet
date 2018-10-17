@@ -1,6 +1,6 @@
 'use strict';
 
-var Ractive = require('widgets/modals/base')
+var Ractive = require('widgets/modals/base-qr')
 var translate = require('lib/i18n').translate
 var qrcode = require('lib/qrcode')
 var getTokenNetwork = require('lib/token').getTokenNetwork;
@@ -9,7 +9,7 @@ module.exports = function showTooltip(data){
   data.mailto = mailto
   data.title = data.title || translate('Your wallet address')
   var ractive = new Ractive({
-    el: document.getElementById('tooltip'),
+    el: document.getElementById('receive'),
     partials: {
       content: require('./content.ract'),
     },

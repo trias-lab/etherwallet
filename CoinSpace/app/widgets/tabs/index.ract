@@ -3,10 +3,10 @@
     <i class="fas fa-envelope"></i>
     <span class="tab__text">{{translate("Send")}}</span>
   </a>
-  <a id="receive_tab" data-tab='receive' class="tab" on-click="select">
+  <!-- <a id="receive_tab" data-tab='receive' class="tab" on-click="select">
     <i class="fas fa-envelope-open"></i>
     <span class="tab__text">{{translate("Receive")}}</span>
-  </a>
+  </a> -->
   <a id="exchange_tab" data-tab='exchange' class="tab" on-click="select">
     <i class="fas fa-exchange-alt"></i>
     <span class="tab__text">{{translate("Exchange")}}</span>

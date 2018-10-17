@@ -21,13 +21,13 @@
     <div class="btc-content clearfix">
         <div class="left-info">
             <div id="header"></div>
+            <div id="receive" class=""></div>
             <div id="sidebar" class="animate_in"></div>
             <!-- <div id="terms" class="animate_in closed"></div> -->
         </div>
        
         <div class="right-from">
             <div id="send" class="content"></div>
-            <div id="receive" class="content"></div>
             <div id="exchange" class="content"></div>
             <div id="history" class="content"></div>
             <div id="tokens" class="content"></div>

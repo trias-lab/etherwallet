@@ -1,0 +1,3 @@
+<div class="" tabindex="-1" on-click="cancel" on-escape="cancel">
+  {{>content}}
+</div>

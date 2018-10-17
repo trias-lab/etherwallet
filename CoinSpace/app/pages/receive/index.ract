@@ -11,7 +11,7 @@
 
 <div class="qr-code" id="qr_canvas"></div>
 
-<div class="receive__label">
+<!-- <div class="receive__label">
 {{^broadcasting}}
   <h3 class="_title">{{translate("Mecto")}}</h3>
 {{/broadcasting}}
@@ -21,7 +21,7 @@
 <span class="_help" on-click="help-mecto">
   {{>svg_help}}
 </span>
-</div>
-<div class="geo__box">
+</div> -->
+<!-- <div class="geo__box">
   <span class="_btn {{#broadcasting}}is_broadcasting{{/broadcasting}}{{#connecting}}is_connecting{{/connecting}}" on-click="toggle-broadcast">{{translate(btn_message)}}</span>
-</div>
+</div> -->
