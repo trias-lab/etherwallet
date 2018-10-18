@@ -96,7 +96,7 @@
         1 {{fromSymbol}} = {{rate}} {{toSymbol}}
       {{/if}}
     </div>
-  <div class="confirm__buttons">
+  <div class="confirm__buttons clearfix">
     {{#if isValidating}}
       <div class="confirm__btn--validating">
         <span class="_icon">
