@@ -383,3 +383,6 @@ td {
   }
 }
 
+.ethereum .csbtn, .ethereum .auth__btn, .ethereum .auth__btn--choose, .ethereum .auth__btn--loading, .ethereum .auth__btn--existing, .ethereum .settings__btn, .ethereum .set-details ._btn, .set-details .ethereum ._btn, .ethereum .confirm__inputs ._send, .confirm__inputs .ethereum ._send, .ethereum .import_private_key ._content ._private_key_group ._btn, .import_private_key ._content ._private_key_group .ethereum ._btn, .ethereum .import_private_key ._inputs ._transfer, .import_private_key ._inputs .ethereum ._transfer, .ethereum .export_private_keys ._show_btn, .export_private_keys .ethereum ._show_btn, .ethereum .export_private_keys ._export_btn, .export_private_keys .ethereum ._export_btn, .ethereum .remove_ads ._buy_btn, .remove_ads .ethereum ._buy_btn, .ethereum .detail__strings ._actions ._btn, .detail__strings ._actions .ethereum ._btn, .ethereum .send__address ._btn, .send__address .ethereum ._btn, .ethereum .send__btn, .ethereum .address__box ._btn, .address__box .ethereum ._btn, .ethereum .geo__box ._btn, .geo__box .ethereum ._btn, .ethereum .exchange_create .exchange__address ._btn, .exchange_create .exchange__address .ethereum ._btn, .ethereum .exchange_create .confirm__btn, .exchange_create .ethereum .confirm__btn, .ethereum #history .loadmore__btn, #history .ethereum .loadmore__btn {
+  box-shadow : none !important;
+}
