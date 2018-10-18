@@ -38,6 +38,7 @@ module.exports = function(el) {
           return tx.outs[0].address;
         }
       },
+
       isReceived: function(tx) {
         if (network === 'ethereum' || network === 'ripple') {
           return tx.to === getWallet().addressString;
@@ -83,7 +84,10 @@ module.exports = function(el) {
     ractive.set('transactions', [])
     ractive.set('loadingTx', true)
   })
-
+  emitter.on('cccccccc', function() {
+    ractive.set('transactions', [])
+    ractive.set('loadingTx', true)
+  })
   ractive.on('show-detail', function(context) {
     var index = context.node.getAttribute('data-index')
     var data = {
@@ -94,6 +98,7 @@ module.exports = function(el) {
       isFailed: ractive.get('isFailed'),
       isConfirmed: ractive.get('isConfirmed'),
       toUnitString: ractive.get('toUnitString'),
+      index:index,
       isNetwork: function(str) {
         return str === network
       }

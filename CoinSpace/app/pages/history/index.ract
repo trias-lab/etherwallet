@@ -1,66 +1,101 @@
-
-
-
 <div class="transactions">
 
 
-    <div class="send_from_header">
-        <div class="fl number">1 </div> 
-        <div class="text fl">Transaction History</div>
-    </div>
-  
+  <div class="send_from_header">
+    <div class="fl number">1 </div>
+    <div class="text fl">Transaction History</div>
+  </div>
+
   {{#loadingTx}}
-    <div class="transactions__message">
-      <div class="_message">{{translate("Loading transactions...")}}</div>
+  <div class="transactions__message">
+    <div class="_message">{{translate("Loading transactions...")}}</div>
+  </div>
+  {{/loadingTx}} {{#each transactions: index}}
+  <div class="transactions__item" title="{{id}}" data-index="{{index}}" on-click="show-detail">
+
+    {{#if isFailed(this)}}
+    <div class="_address">{{translate("Failed")}}</div>
+    {{else}}
+    <div class="_address">
+      <div>
+        <span style="color:#BBEBBA;font-size:18px">Txhash: </span> {{isReceived(this) ? translate('Received') : getToAddress(this)}}</div>
     </div>
-  {{/loadingTx}}
-
-  {{#each transactions: index}}
-    <div class="transactions__item" title="{{id}}" data-index="{{index}}" on-click="show-detail">
-
-      <div class="_detail">
-
-        <div class="_amount {{isReceived(this) ? 'green' : 'red'}}">
-          {{isReceived(this) ? '+' : ''}} {{toUnitString(amount)}}
+    <div class="_address_detail">
+      <div class="_address_detail_warp">
+        <div class="">
+          <div>
+            <i class="fa fa-handshake-o" aria-hidden="true"></i>Amount</div>
+          <div> {{isReceived(this) ? '+' : ''}} {{toUnitString(amount)}}</div>
         </div>
-
-        {{#if isConfirmed(confirmations)}}
-          <span class='_time'>{{formatTimestamp(timestamp)}}</span>
-          <span class='_time'>{{formatConfirmations(confirmations)}}</span>
-        {{else}}
-          <span class='_time'>{{translate("pending confirmation")}}</span>
-        {{/if}}
+        <div class="">
+          <div>
+            <i class="fa fa-calendar" aria-hidden="true"></i>Time</div>
+          <div>{{formatTimestamp(timestamp)}}</div>
+        </div>
 
       </div>
-      {{#if isFailed(this)}}
-        <div class="_address">{{translate("Failed")}}</div>
-      {{else}}
-        <div class="_address">{{isReceived(this) ? translate('Received') : getToAddress(this)}}</div>
+      <div class="_address_detail_warp">
+        <div class="">
+          <div>
+            <i class="fa fa-handshake-o" aria-hidden="true"></i>Fees</div>
+          <div>{{toUnitString(fee)}}</div>
+        </div>
+        <div class="">
+          <div>
+            <i class="fa fa-calendar" aria-hidden="true"></i>Status</div>
+          <div>{{formatConfirmations(confirmations)}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="_address_detail_content">
+      <div style="margin-top:0">
+
+        <div class="fl">Input </div>
+        <div class="_address_detail_warp2">
+          {{#ins}}
+          <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
+          <div class="_input_value"> {{toUnitString(amount)}} </div>
+          {{/ins}}
+          <div>
+          </div>
+        </div>
+      </div>
+
+
+        <div>
+
+          <div class="fl">Output </div>
+          <div class="_address_detail_warp2">
+            {{#outs}}
+            <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
+            <div class="_input_value"> {{toUnitString(amount)}} </div>
+            {{/outs}}
+          </div>
+        </div>
+      </div>
       {{/if}}
 
+
     </div>
-  {{/each}}
- {{#if (hasMore && !loadingTx)}}
+    {{/each}} {{#if (hasMore && !loadingTx)}}
     <div class="loadmore__buttons">
       {{#if loadingMore}}
-        <div class="send__btn--validating">
-          <span class="_icon">
-            {{>svg_refresh}}
-          </span>
-        </div>
+      <div class="send__btn--validating">
+        <span class="_icon">
+          {{>svg_refresh}}
+        </span>
+      </div>
       {{else}}
       <div on-click="load-more" class="loadmore__btn">{{translate("Load more")}}</div>
       {{/if}}
     </div>
-  {{/if}}
-  {{^transactions}}
-    {{^loadingTx}}
-      <div class="transactions__message">
-        <div class="_icon">
-          {{>svg_help}}
-        </div>
-        <div class="_message">{{translate("You do not have any transactions yet")}}</div>
+    {{/if}} {{^transactions}} {{^loadingTx}}
+    <div class="transactions__message">
+      <div class="_icon">
+        {{>svg_help}}
       </div>
-    {{/loadingTx}}
-  {{/transactions}}
-</div>
+      <div class="_message">{{translate("You do not have any transactions yet")}}</div>
+    </div>
+    {{/loadingTx}} {{/transactions}}
+  </div>

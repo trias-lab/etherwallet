@@ -1,30 +1,23 @@
-
 #history {
-
   .green {
     color: $green;
   }
-
   .red {
     color: $red;
   }
-
   .loadmore__buttons {
     margin-top: 20px;
     @include breakpoint(portrait) {
       margin-top: 40px;
     }
   }
-
   .loadmore__btn {
     @extend .csbtn;
-
     @include breakpoint(portrait) {
       font-size: 26px;
       border-radius: 3px;
     }
   }
-
   .loadmore__btn--validating {
     @extend .csbtn-base;
     position: relative;
@@ -58,62 +51,114 @@
 }
 
 .transactions {
- ._title {
-  padding-bottom: 5px;
-
-  @include breakpoint(portrait) {
-    font-size: 20px;
+  ._title {
+    padding-bottom: 5px;
+    @include breakpoint(portrait) {
+      font-size: 20px;
+    }
   }
- }
+}
+
+#history {
+  border: none;
 }
 
 .transactions__item {
-  padding: 0 20px;
+  // padding: 0 20px;
   @include clear;
   @include clickbtn;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid darken($grey--light, 10%);
-
+  // border-top: 1px solid darken($grey--light, 10%);
+  color: #fff;
   @include breakpoint(portrait) {
     padding-top: 30px;
     padding-bottom: 30px;
   }
-
   ._address {
     @include ellipsis();
     @include media-obj;
     @extend .jigsaw-light;
     padding-top: 13px;
     font-size: 21px;
-
+    padding: 14px 22px;
+    background: linear-gradient(270deg, rgba(147, 208, 47, 1) 0%, rgba(102, 195, 102, 1) 100%);
+    border-radius: 3px 3px 0px 0px;
     @include breakpoint(portrait) {
       padding-top: 18px;
       font-size: 26px;
     }
   }
-
+  ._address_detail_content {
+    background: #fff;
+    color: #142A3F;
+    font-size: 14px;
+    border: 1px solid #A2A2A2;
+    border-top: none;
+    padding-top: 8px;
+    >div {
+      width: 696px;
+      line-height: 32px;
+      background: rgba(246, 247, 249, 1);
+      border-radius: 2px;
+      margin: 8px 22px;
+      display: flex;
+      justify-content: flex-start;
+      >div {
+        flex: 1;
+        padding: 0 10px;
+      }
+      ._address_detail_warp1{
+        flex: 1;
+      }
+      ._address_detail_warp2{
+        flex: 3;
+      }
+      ._input_address {
+        float: left;
+      }
+      ._input_value {
+        float: right;
+        color:#5DB85C;
+      }
+    }
+ 
+  }
+  ._address_detail {
+    width: 740px;
+    height: 72px;
+    background: linear-gradient(270deg, rgba(140, 199, 43, 1) 0%, rgba(92, 184, 92, 1) 100%);
+    border-radius: 4px 4px 0px 0px;
+    padding: 14px 22px;
+    ._address_detail_warp {
+      display: flex;
+      >div {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        >div {
+          flex: 1;
+        }
+      }
+    }
+  }
   ._expandBtn {
     @include clickbtn;
     font-size: 16px;
     opacity: 0.4;
   }
-
   ._detail {
     float: right;
     text-align: right;
     margin-left: 10px;
   }
-
   ._amount {
     @extend .jigsaw-light;
     font-size: 24px;
-
     @include breakpoint(portrait) {
       font-size: 32px;
     }
   }
-
   ._time {
     display: block;
     font-size: 14px;
@@ -123,14 +168,12 @@
       font-size: 16px;
     }
   }
-
 }
 
 .transactions__message {
   padding: 40px;
   color: $grey;
   text-align: center;
-
   ._icon {
     @include icon(80px, 80px, block);
     margin: 0 auto;
@@ -139,7 +182,6 @@
       fill: $grey;
     }
   }
-
   ._message {
     font-size: 24px;
     line-height: 1.2;
@@ -147,10 +189,11 @@
       font-size: 32px;
     }
   }
-
 }
 
-.ethereum, .ripple, .stellar {
+.ethereum,
+.ripple,
+.stellar {
   .transactions__item {
     ._amount {
       font-size: 18px;
