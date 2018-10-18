@@ -99,6 +99,9 @@ router.delete('/account', restrict, function(req, res) {
 
 router.get('/fees', function(req, res) {
   var network = req.query.network || 'bitcoin'
+  if(network == 'testnet') {
+    network = 'bitcoin'
+  }
   fee.getFromCache(network).then(function(fees) {
     delete fees._id;
     res.status(200).send(fees);
