@@ -28,11 +28,6 @@
           </div>
         {{/qrScannerAvailable}}
 
-        <div class="_btn" on-click="open-geo">
-          <span class="_icon">
-            {{>svg_mecto}}
-          </span>
-        </div>
       </div>
 
       <div class="send__amount">

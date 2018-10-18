@@ -40,9 +40,8 @@
 
     </div>
   {{/each}}
-
-  
-    <div class="loadmore__buttons clearfix">
+ {{#if (hasMore && !loadingTx)}}
+    <div class="loadmore__buttons">
       {{#if loadingMore}}
         <div class="send__btn--validating">
           <span class="_icon">
@@ -53,6 +52,7 @@
       <div on-click="load-more" class="loadmore__btn">{{translate("Load more")}}</div>
       {{/if}}
     </div>
+  {{/if}}
   {{^transactions}}
     {{^loadingTx}}
       <div class="transactions__message">

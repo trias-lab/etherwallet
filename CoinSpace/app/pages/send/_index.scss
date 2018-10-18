@@ -44,7 +44,6 @@
     cursor: pointer;
     display: block;
     flex: 1;
-    margin-right: 10px;
     @include breakpoint(portrait) {
       font-size: 20px;
     }
