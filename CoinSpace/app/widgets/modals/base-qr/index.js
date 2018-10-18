@@ -13,7 +13,7 @@ var Modal = Ractive.extend({
   onrender: function(){
 
     var self = this
-    var fadeEl = self.find('.js__fadeEl')
+    var fadeEl = self.find('.js__fadeEl-qr')
 
     fadeIn(fadeEl, self.get('fadeInDuration'), function() {
       fadeEl.focus()
