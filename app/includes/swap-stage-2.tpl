@@ -49,8 +49,8 @@
       />
 
 
-      <section class="row text-center">
-        <a ng-click="openOrder()" class="btn btn-primary btn-lg"><span translate="SWAP_start_CTA"> Start Swap </span></a>
+      <section class="row text-center" ng-if="swapOrder.toAddress">
+        <a ng-click="startKyber()" class="btn btn-primary btn-lg"><span translate="SWAP_start_CTA"> Start Swap </span></a>
       </section>
     </section>
     <!-- /Your Address -->

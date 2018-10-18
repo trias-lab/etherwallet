@@ -18,6 +18,7 @@
                 <p translate="SWAP_Warning_2">
                     Please add more funds to your wallet or access a different wallet.
                 </p>
+                <a ng-click="returnToStart()" class="btn btn-primary btn-lg"><span> Return to Swap Selector </span></a>
             </div>
             <wallet-balance-drtv></wallet-balance-drtv>
             <div ng-show="checkTxPage" ng-click="checkTxReadOnly=!checkTxReadOnly" class="small text-right text-gray-lighter">
@@ -29,7 +30,7 @@
         <!-- </article> -->
         <!-- / Sidebar -->
         <!-- Content -->
-        <div class="swap-panel" ng-class="wallet!=null ? 'step-card active':'step-card'">
+        <div class="swap-panel" ng-class="wallet!=null && hasEnoughBalance() ? 'step-card active':'step-card'">
             <div class="swap-panel-tit" ng-class="showStage3Eth && orderResult.progress.status=='OPEN' && wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
                 <div class="swap-pane-step">4</div>
                 <span>Transaction Detail</span>

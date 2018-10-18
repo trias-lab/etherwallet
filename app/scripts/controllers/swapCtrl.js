@@ -430,30 +430,30 @@ var swapCtrl = function ($scope, $sce, walletService) {
   }
 
 
-  // Start swap
-  $scope.openOrder = function () {
-    //如果接受的币种不是BTC &&  是一个错误的地址  或者 接受的币种是BTC && 是比特币的地址
-    if (($scope.swapOrder.toCoin != 'BTC' && $scope.Validator.isValidAddress($scope.swapOrder.toAddress)) || ($scope.swapOrder.toCoin == 'BTC' && $scope.Validator.isValidBTCAddress($scope.swapOrder.toAddress))) {
-      var order = {
-        amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal, //根据是否是发送方,选择数量
-        mode: $scope.swapOrder.isFrom ? 0 : 1,                                               //应该是后台区分的一个参数
-        pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,                           //哪种币转哪种币 eg: EHTTRI
-        destAddress: $scope.swapOrder.toAddress                                              //目的地址
-      }
-      $scope.bity.openOrder(order, function (data) {
-        if (!data.error) {
-          $scope.orderResult = data.data;
-          $scope.orderResult.swapOrder = $scope.swapOrder;
-          var orderResult = $scope.orderResult;
-          saveOrderToStorage(orderResult);
-          processOrder();
-        } else $scope.notifier.danger(data.msg);
-        if (!$scope.$$phase) $scope.$apply();
-      });
-    } else {
-      $scope.notifier.danger(globalFuncs.errorMsgs[5]);
-    }
-  }
+  // Start swap for bity
+  // $scope.openOrder = function () {
+  //   //如果接受的币种不是BTC &&  是一个错误的地址  或者 接受的币种是BTC && 是比特币的地址
+  //   if (($scope.swapOrder.toCoin != 'BTC' && $scope.Validator.isValidAddress($scope.swapOrder.toAddress)) || ($scope.swapOrder.toCoin == 'BTC' && $scope.Validator.isValidBTCAddress($scope.swapOrder.toAddress))) {
+  //     var order = {
+  //       amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal, //根据是否是发送方,选择数量
+  //       mode: $scope.swapOrder.isFrom ? 0 : 1,                                               //应该是后台区分的一个参数
+  //       pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,                           //哪种币转哪种币 eg: EHTTRI
+  //       destAddress: $scope.swapOrder.toAddress                                              //目的地址
+  //     }
+  //     $scope.bity.openOrder(order, function (data) {
+  //       if (!data.error) {
+  //         $scope.orderResult = data.data;
+  //         $scope.orderResult.swapOrder = $scope.swapOrder;
+  //         var orderResult = $scope.orderResult;
+  //         saveOrderToStorage(orderResult);
+  //         processOrder();
+  //       } else $scope.notifier.danger(data.msg);
+  //       if (!$scope.$$phase) $scope.$apply();
+  //     });
+  //   } else {
+  //     $scope.notifier.danger(globalFuncs.errorMsgs[5]);
+  //   }
+  // }
 
   //=========================================================================================================================================================
   ////////////////////////// KYBER //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
