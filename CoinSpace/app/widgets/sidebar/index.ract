@@ -29,8 +29,8 @@
 
   <div class="_link_group">
     {{#isEnabledImportExport}}
-    <span class="settings__link" on-click="import-private-key">{{translate("Transfer paper wallet / private key")}}</span>
-    <span class="settings__link" on-click="export-private-keys">{{translate("Export private keys")}}</span>
+    <span class="settings__link" on-click="import-private-key"><i class="fa fa-external-link-alt"></i> &nbsp; {{translate("Transfer paper wallet / private key")}}</span>
+    <span class="settings__link" on-click="export-private-keys"> <i class="fa fa-external-link-alt"></i> &nbsp; {{translate("Export private keys")}}</span>
     {{/isEnabledImportExport}}
   </div>
   

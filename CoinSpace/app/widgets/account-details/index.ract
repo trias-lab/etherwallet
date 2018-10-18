@@ -1,6 +1,11 @@
 <div id="details-preview">
-  <div class="settings__avatar"></div>
-  <h3 class="settings__name">{{user.firstName}}</h3>
+  <div class="clearfix ">
+    <div class="settings__avatar"></div>
+    <div class="right-info">
+      <h3 class="settings__name">{{user.firstName}}</h3>
+      <p class="setting_email">{{user.email}}</p>
+    </div>
+  </div>
   <span class="settings__link setting-change" on-click="edit-details">{{translate("Change your details")}}</span>
 </div>
 
@@ -22,14 +27,16 @@
 
   <div class="">
 
-    <div class="btn-remove" on-click="remove-account">{{translate("Remove account")}}</div>
     {{^submitting}}
     <div class="btn-submit" on-click="submit-details">{{translate("Submit")}}</div>
     {{/submitting}}
-
     {{#submitting}}
     <div class="settings__btn--loading btn-submit">{{translate("Submit")}}...</div>
     {{/submitting}}
+
+    <div class="btn-remove" on-click="remove-account">{{translate("Remove account")}}</div>
+
+
   </div>
 
 

@@ -17,9 +17,16 @@
     font-family:MoskLight300;
     color:rgba(255,255,255,1);
   }
+  .btn-submit{
+    margin-top:48px;
+  }
   .btn-remove{
     background:rgba(255,255,255,1);
     color: rgba(93,184,92,1); 
-    margin:24px 0 57px 0;
+    border:1px solid rgba(255,255,255,1);
+    // margin:24px 0 57px 0;
   }
+}
+.settings__avatar,.right-info{
+  float: left;
 }
