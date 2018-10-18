@@ -492,7 +492,7 @@
   color: #333;
   text-align: center;
   ._link {
-    color: #333;
+    color: #fff;
     font-size: 14px;
     display: inline-block;
     padding: 5px;
@@ -707,5 +707,31 @@
     font-family: MoskLight300;
     color: rgba(20, 42, 63, 1);
     line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #landing_el.current {
+    width: auto;
+    .auth__header {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .auth_custom_bungroup {
+      padding: 24px 12px;
+      & > div {
+        width: 100%;
+      }
+    }
+    .passphrase__warning ._bold > span {
+      display: block;
+      margin-bottom: 4px;
+    }
+    ._passphrase ._copy {
+      text-align: center
+    }
+    #passphraseField {
+      margin-bottom: 36px;
+    }
   }
 }

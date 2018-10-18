@@ -383,6 +383,20 @@ td {
   }
 }
 
-.ethereum .csbtn, .ethereum .auth__btn, .ethereum .auth__btn--choose, .ethereum .auth__btn--loading, .ethereum .auth__btn--existing, .ethereum .settings__btn, .ethereum .set-details ._btn, .set-details .ethereum ._btn, .ethereum .confirm__inputs ._send, .confirm__inputs .ethereum ._send, .ethereum .import_private_key ._content ._private_key_group ._btn, .import_private_key ._content ._private_key_group .ethereum ._btn, .ethereum .import_private_key ._inputs ._transfer, .import_private_key ._inputs .ethereum ._transfer, .ethereum .export_private_keys ._show_btn, .export_private_keys .ethereum ._show_btn, .ethereum .export_private_keys ._export_btn, .export_private_keys .ethereum ._export_btn, .ethereum .remove_ads ._buy_btn, .remove_ads .ethereum ._buy_btn, .ethereum .detail__strings ._actions ._btn, .detail__strings ._actions .ethereum ._btn, .ethereum .send__address ._btn, .send__address .ethereum ._btn, .ethereum .send__btn, .ethereum .address__box ._btn, .address__box .ethereum ._btn, .ethereum .geo__box ._btn, .geo__box .ethereum ._btn, .ethereum .exchange_create .exchange__address ._btn, .exchange_create .exchange__address .ethereum ._btn, .ethereum .exchange_create .confirm__btn, .exchange_create .ethereum .confirm__btn, .ethereum #history .loadmore__btn, #history .ethereum .loadmore__btn {
+.ethereum .csbtn, .ethereum .auth__btn, .ethereum .auth__btn--choose, .ethereum .auth__btn--loading,
+ .ethereum .auth__btn--existing, .ethereum .settings__btn, .ethereum .set-details ._btn, .set-details .ethereum ._btn, 
+ .ethereum .confirm__inputs ._send, .confirm__inputs .ethereum ._send, 
+ .ethereum .import_private_key ._content ._private_key_group ._btn, 
+ .import_private_key ._content ._private_key_group .ethereum ._btn, 
+ .ethereum .import_private_key ._inputs ._transfer, .import_private_key ._inputs .ethereum ._transfer, 
+ .ethereum .export_private_keys ._show_btn, .export_private_keys .ethereum ._show_btn, 
+ .ethereum .export_private_keys ._export_btn, .export_private_keys .ethereum ._export_btn, 
+ .ethereum .remove_ads ._buy_btn, .remove_ads .ethereum ._buy_btn, .ethereum .detail__strings ._actions ._btn, 
+ .detail__strings ._actions .ethereum ._btn, .ethereum .send__address ._btn, .send__address .ethereum ._btn, 
+ .ethereum .send__btn, .ethereum .address__box ._btn, .address__box .ethereum ._btn, .ethereum .geo__box ._btn, 
+ .geo__box .ethereum ._btn, .ethereum .exchange_create .exchange__address ._btn, 
+ .exchange_create .exchange__address .ethereum ._btn, .ethereum .exchange_create .confirm__btn, 
+ .exchange_create .ethereum .confirm__btn, .ethereum #history .loadmore__btn, #history .ethereum .loadmore__btn,
+ .csbtn-base, .csbtn, .auth__btn, .auth__btn--choose, .auth__btn--loading, .auth__btn--existing, .settings__btn, .set-details ._btn, .confirm__inputs ._send, .import_private_key ._content ._private_key_group ._btn, .import_private_key ._inputs ._transfer, .export_private_keys ._show_btn, .export_private_keys ._export_btn, .remove_ads ._buy_btn, .detail__strings ._actions ._btn, .send__address ._btn, .send__btn, .address__box ._btn, .geo__box ._btn, .exchange_create .exchange__address ._btn, .exchange_create .confirm__btn, .exchange_awaiting_deposit .address__box ._btn, #history .loadmore__btn, .csbtn--red, .confirm__inputs ._report, .confirm__remove_account ._inputs ._remove, .confirm__remove_token ._inputs ._remove, .csbtn--yellow, .geo__noresults ._btn, .settings__btn--loading, .set-details ._btn--loading, .confirm__inputs ._cancel, .confirm__inputs ._send--sending, .confirm__remove_account ._inputs ._cancel, .confirm__remove_account ._inputs ._remove--processing, .confirm__remove_token ._inputs ._cancel, .confirm__remove_token ._inputs ._remove--processing, .add_ethereum_token ._content ._contract_address_group ._btn, .add_ethereum_token ._inputs ._cancel, .add_ethereum_token ._inputs ._add, .add_ethereum_token ._inputs ._add--processing, .import_private_key ._inputs ._cancel, .import_private_key ._inputs ._transfer--processing, .remove_ads ._buy_btn--loading, .send__btn--validating, .exchange_create .confirm__btn--validating, #history .loadmore__btn--validating {
   box-shadow : none !important;
 }
