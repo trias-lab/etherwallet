@@ -109,6 +109,9 @@
         </label>
       
       </div>
+        <div class="col-xs-12 clearfix text-center" ng-if="isKyberRateSwap">
+          <span> 1 {{swapOrder.fromCoin}} = {{kyber.kyberRates[swapOrder.fromCoin + "/" + swapOrder.toCoin] | number: 6}} {{swapOrder.toCoin}}</span><!-- todo: restrict the rate shown to token decimal is less than 6 -->
+      </div>
     </div>
 
     
