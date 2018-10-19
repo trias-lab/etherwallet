@@ -208,8 +208,8 @@
 }
 
 @media only screen and(max-width:768px){
-  .frame{
-    // margin-left:316px;
+  .frame-showWallet{
+    margin-left:316px;
   }
   .left-info{
     position: absolute;
@@ -217,6 +217,9 @@
     left: 0;
     display: none; 
     top: 76px;
+  }
+  .left-info-showWallet{
+    display: block
   }
   .header-top .Wallet-nav{
     height:82px;
@@ -236,4 +239,5 @@
   }
 
 }
+
 
