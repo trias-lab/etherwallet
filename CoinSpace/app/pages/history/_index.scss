@@ -68,15 +68,14 @@
   @include clear;
   @include clickbtn;
   padding-top: 20px;
-  padding-bottom: 20px;
-  // border-top: 1px solid darken($grey--light, 10%);
+  padding-bottom: 20px; // border-top: 1px solid darken($grey--light, 10%);
   color: #fff;
   @include breakpoint(portrait) {
     padding-top: 30px;
     padding-bottom: 30px;
   }
   ._address {
-    @include ellipsis();
+    // @include ellipsis();
     @include media-obj;
     @extend .jigsaw-light;
     padding-top: 13px;
@@ -97,21 +96,28 @@
     border-top: none;
     padding-top: 8px;
     >div {
-      width: 696px;
+      // width: 696px;
       line-height: 32px;
       background: rgba(246, 247, 249, 1);
       border-radius: 2px;
       margin: 8px 22px;
       display: flex;
       justify-content: flex-start;
+      overflow: hidden;
       >div {
         flex: 1;
         padding: 0 10px;
+        overflow: hidden;
+        >div {
+          // text-overflow: ellipsis;
+          // white-space: nowrap;
+          // overflow: hidden;
+        }
       }
-      ._address_detail_warp1{
+      ._address_detail_warp1 {
         flex: 1;
       }
-      ._address_detail_warp2{
+      ._address_detail_warp2 {
         flex: 3;
       }
       ._input_address {
@@ -119,14 +125,13 @@
       }
       ._input_value {
         float: right;
-        color:#5DB85C;
+        color: #5DB85C;
       }
     }
- 
   }
   ._address_detail {
-    width: 740px;
-    height: 72px;
+    // width: 740px;
+    // height: 72px;
     background: linear-gradient(270deg, rgba(140, 199, 43, 1) 0%, rgba(92, 184, 92, 1) 100%);
     border-radius: 4px 4px 0px 0px;
     padding: 14px 22px;
@@ -138,6 +143,9 @@
         justify-content: flex-start;
         >div {
           flex: 1;
+          i {
+            margin-right: 8px;
+          }
         }
       }
     }
@@ -199,6 +207,46 @@
       font-size: 18px;
       @include breakpoint(portrait) {
         font-size: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .transactions__item ._address_detail_content > div {
+    ._input_address, ._input_value{
+      float: none;
+      @include ellipsis();
+  
+    } 
+  }
+  #main .content{
+    width: 100%;
+  }
+  .transactions__item {
+
+    ._address{
+      >div{
+        word-wrap : break-word ;
+        >span{
+          display: block;
+        }
+      }
+    }
+    ._address_detail {
+      ._address_detail_warp {
+        display: block;
+        word-wrap : break-word ;
+        >div {
+          width: 100%;
+          >div {
+            flex: 1;
+            i {
+              margin-right: 8px;
+            }
+          }
+        }
       }
     }
   }
