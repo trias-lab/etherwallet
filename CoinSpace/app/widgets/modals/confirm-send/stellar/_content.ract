@@ -25,7 +25,7 @@
 
     </div>
 
-    <div class="confirm__inputs">
+    <div class="confirm__inputs confirm__input">
       <div class="_cancel">{{translate("Cancel")}}</div>
       {{#if sending}}
         <div class="_send--sending">
