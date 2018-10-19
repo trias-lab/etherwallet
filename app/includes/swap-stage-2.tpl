@@ -40,17 +40,26 @@
       <i class="fas fa-check-circle success" ng-show="!showStage1"></i>
     </div>
     <section class="row swap-panel-warp" ng-show="showStage2">
-      <label><span translate="SWAP_rec_add">Your Receiving Address</span> <strong>({{swapOrder.toCoin}})</strong></label>
+      <label><span translate="SWAP_rec_add">Your Receiving Address</span> 
+        <strong ng-if="!isKyberSwap">({{swapOrder.toCoin}})</strong>
+        <strong ng-if="isKyberSwap">({{kyberSwapOrder.toCoin}})</strong>
+      </label>
       <div class="form-group" ng-show="swapOrder.toCoin!='BTC'">
-        <address-field placeholder="0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D" var-name="swapOrder.toAddress"></address-field>
+        <address-field ng-if="!isKyberSwap" placeholder="0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D" var-name="swapOrder.toAddress"></address-field>
+        <!-- todo should I just wait for the wallet unlock and not ask for an address first.  then if wallet uplock calculation proves false at send tx.  present option to return to start???-->
+        <address-field ng-if="isKyberSwap" placeholder="0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D"
+                       var-name="kyberSwapOrder.toAddress"></address-field>
       </div>
-      <input class="form-control swap-panel-input" ng-show="swapOrder.toCoin=='BTC'" type="text" placeholder="1DECAF2uSpFTP4L1fAHR8GCLrPqdwdLse9"
+<!--       <input class="form-control swap-panel-input" ng-show="swapOrder.toCoin=='BTC'" type="text" placeholder="1DECAF2uSpFTP4L1fAHR8GCLrPqdwdLse9"
         ng-model="swapOrder.toAddress" style="width: 100%" ng-class="Validator.isValidBTCAddress(swapOrder.toAddress) ? 'is-valid' : 'is-invalid'"
-      />
+      /> -->
 
 
-      <section class="row text-center" ng-if="swapOrder.toAddress">
+      <section class="row text-center" ng-if="kyberSwapOrder.toAddress">
         <a ng-click="startKyber()" class="btn btn-primary btn-lg"><span translate="SWAP_start_CTA"> Start Swap </span></a>
+      </section>
+      <section class="row text-center" ng-if="swapOrder.toAddress">
+        <a ng-click="openTriOrder()" class="btn btn-primary btn-lg"><span translate="SWAP_start_CTA"> Start Swap </span></a>
       </section>
     </section>
     <!-- /Your Address -->
