@@ -72,9 +72,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
         $scope.setOrderCoin(true, "ETH");
       });
     }else{
-      $scope.kyber.refreshRates(function () {
-        $scope.setOrderCoin(true, "ETH");
-      });
+      $scope.kyber.refreshRates();
     }
 
     $scope.kyberInit();
@@ -100,7 +98,23 @@ var swapCtrl = function ($scope, $sce, walletService) {
       toAddress: '',
       swapRate: '',
       swapPair: ''
+    }
+    // init kyber swap order
+    $scope.kyberSwapOrder = {
+      fromCoin: "ETH",
+      toCoin: getCurNodeKey() == 'tri'?"TRI":$scope.availableToOptions[1],
+      isFrom: true,
+      fromVal: '',
+      toVal: '',
+      toAddress: '',
+      swapRate: '',
+      swapPair: ''
     };
+    // if current node is not TRI, set order coin.
+    if (getCurNodeKey() !== 'tri') {
+      $scope.setOrderCoin(true, "ETH");
+    }
+
   };
 
 
@@ -163,7 +177,6 @@ var swapCtrl = function ($scope, $sce, walletService) {
   };
 
   $scope.setOrderCoin = function (isFrom, coin) {
-
     if(getCurNodeKey() == 'tri'){ // if current node is TRI
       let triOptions = ["ETH", "TRI"];
       $scope.availableFromOptions = triOptions;
@@ -182,6 +195,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       $scope.setTriOrderCoin(isFrom);
 
     } else {
+
       $scope.kyberSwapRateDisplay();
       let kyberOptions = $scope.availableTokens;
       // if one of the original coin options is selected
@@ -251,7 +265,6 @@ var swapCtrl = function ($scope, $sce, walletService) {
 
   // Estimate value
   $scope.updateEstimate = function (isFrom) {
-    console.log("$scope.checkIfKyber():",$scope.checkIfKyber())
     if ($scope.checkIfKyber()) {
       $scope.updateKyberEstimate(isFrom);
     } else {
@@ -368,17 +381,17 @@ var swapCtrl = function ($scope, $sce, walletService) {
     if (!$scope.orderResult || orderResult.id != $scope.orderResult.id) clearInterval(progressCheck);
       if (!orderResult.progress.pendingStatusReq) {
         orderResult.progress.pendingStatusReq = true;
-        $scope.bity.getStatus({
+        $scope.tri.getStatus({
           orderid: orderResult.id
         }, function (data) {
           orderResult.progress.pendingStatusReq = false;
           if (data.error){
-            $scope.notifier.danger(data.msg);
+            // $scope.notifier.danger(JSON.stringify(data.msg));  // TODO: msg={}?? if error=true, msg should not be empty
           }
           else {
             data = data.data;
-            if (bity.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
-            if (orderResult.progress.status == "OPEN" && bity.validStatus.indexOf(data.input.status) != -1) {
+            if (tri.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
+            if (orderResult.progress.status == "OPEN" && tri.validStatus.indexOf(data.input.status) != -1) {
               console.log(1)
               orderResult.progress.secsRemaining = 1;
               orderResult.progress.showTimeRem = false;
@@ -386,12 +399,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
               orderResult.progress.step = "RCVE";
               orderResult.progress.bar = getProgressBarArr(3, 5);
 
-            } else if (orderResult.progress.status == "RCVE" && bity.validStatus.indexOf(data.output.status) != -1) {
+            } else if (orderResult.progress.status == "RCVE" && tri.validStatus.indexOf(data.output.status) != -1) {
               orderResult.progress.status = "FILL";
               orderResult.progress.step = "FILL";
               orderResult.progress.bar = getProgressBarArr(5, 5);
               orderResult.progress.showTimeRem = false;
-              var url = orderResult.output.currency == 'BTC' ? bity.btcExplorer.replace("[[txHash]]", data.output.reference) : bity.ethExplorer.replace("[[txHash]]", data.output.reference)
+              // var url = orderResult.output.currency == 'BTC' ? tri.btcExplorer.replace("[[txHash]]", data.output.reference) : tri.ethExplorer.replace("[[txHash]]", data.output.reference)
+              var url = tri.triExplorer.replace("[[txHash]]", data.output.reference)
               var bExStr = `<a href="${url}" target=" _blank" rel="noopener "> View your transaction </a>`;
               $scope.notifier.success(globalFuncs.successMsgs[2] + data.output.reference + "<br />" + bExStr);
               console.log(2)
@@ -399,7 +413,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
               clearInterval(timeRem);
               
 
-            } else if (bity.invalidStatus.indexOf(data.status) != -1) {
+            } else if (tri.invalidStatus.indexOf(data.status) != -1) {
               orderResult.progress.status = "CANC";
               orderResult.progress.bar = getProgressBarArr(-1, 5);
               $scope.notifier.danger("Time has run out. If you have already sent, please wait 1 hour. If your order has not be processed after 1 hour, please press the orange 'Issue with your Swap?' button.");
@@ -454,6 +468,30 @@ var swapCtrl = function ($scope, $sce, walletService) {
   //     $scope.notifier.danger(globalFuncs.errorMsgs[5]);
   //   }
   // }
+
+  // open order for ETH/TRI swap
+  $scope.openTriOrder = function () {
+    if ( $scope.Validator.isValidAddress($scope.swapOrder.toAddress)){
+      var order = {
+        amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal, //根据是否是发送方,选择数量
+        mode: $scope.swapOrder.isFrom ? 0 : 1,                                               //应该是后台区分的一个参数
+        pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,                           //哪种币转哪种币 eg: EHTTRI
+        destAddress: $scope.swapOrder.toAddress                                              //目的地址
+      }
+      $scope.tri.openOrder(order, function (data) {
+        if (!data.error) {
+          $scope.orderResult = data.data;
+          $scope.orderResult.swapOrder = $scope.swapOrder;
+          var orderResult = $scope.orderResult;
+          saveOrderToStorage(orderResult);
+          processOrder();
+        } else $scope.notifier.danger(data.msg);
+        if (!$scope.$$phase) $scope.$apply();
+      });
+    } else {
+      $scope.notifier.danger(globalFuncs.errorMsgs[5]);
+    }
+  }
 
   //=========================================================================================================================================================
   ////////////////////////// KYBER //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
