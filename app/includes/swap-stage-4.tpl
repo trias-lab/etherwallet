@@ -18,8 +18,9 @@
                 <p translate="SWAP_Warning_2">
                     Please add more funds to your wallet or access a different wallet.
                 </p>
-                <a ng-click="returnToStart()" class="btn btn-primary btn-lg"><span> Return to Swap Selector </span></a>
             </div>
+            <a ng-click="returnToStart()" class="btn btn-primary btn-lg" style="margin-bottom:36px;" ><span> Return to Swap Selector </span></a>
+
             <wallet-balance-drtv></wallet-balance-drtv>
             <div ng-show="checkTxPage" ng-click="checkTxReadOnly=!checkTxReadOnly" class="small text-right text-gray-lighter">
                 <small translate="X_Advanced">
