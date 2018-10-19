@@ -122,6 +122,9 @@
   }
 }
 
+#tabs .tabs #tokens_tab{
+  display: none;
+}
 .tab__text {
   // display: block;
   @extend .jigsaw-light;
@@ -139,3 +142,11 @@
     display: none;
   }
 }
+
+@media only screen and(max-width:768px){
+  #tabs .tabs{
+    width:90%;
+  }
+  
+}
+

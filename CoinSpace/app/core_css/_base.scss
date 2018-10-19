@@ -18,9 +18,16 @@ hr {
   margin:0;
   padding:0;
 }
-
+body,
+h1,h2,h3,h4,h5,h6,
+p,blockquote,pre,
+dl,dd,ol,ul,
+form,fieldset,legend,
+table,th,td,caption,
+figure,div,button.input
+hr 
 pre {
-  overflow: auto;
+  outline: 0;
 }
 
 audio, video, summary {

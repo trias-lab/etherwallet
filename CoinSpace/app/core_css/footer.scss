@@ -197,7 +197,12 @@
   }
   @media only screen and(max-width:768px){
     .common-footer .center-box{
-      padding: 0 12px;      
+      padding: 0 12px;     
+      width: 100%; 
+    }
+    .header-content{
+        width:90%;
+        overflow: hidden;
     }
   }
   @media screen and (max-width: 768px) {
