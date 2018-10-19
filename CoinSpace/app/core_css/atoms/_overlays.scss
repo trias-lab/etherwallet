@@ -47,12 +47,14 @@
   @include clickbtn;
   position: absolute;
   top: 0px;
-  right: 0px;
-  width: 45px;
-  height: 45px;
-  padding: 10px;
+  right: -40px;
+  width: 30px;
+  height: 30px;
+  padding: 1px;
   z-index: 1000;
-
+  border: 2px solid rgba(255,255,255,1);
+  border-radius: 50%;
+  background:rgba(20,42,63,1);
 
   @include breakpoint(portrait) {
     width: 50px;
@@ -62,7 +64,7 @@
   }
 
   .svg-close {
-    fill: $grey;
+    fill: rgba(255,255,255,1);
   }
 }
 

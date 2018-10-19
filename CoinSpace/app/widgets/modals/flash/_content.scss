@@ -1,8 +1,8 @@
 
 
 .flash {
-  text-align: center;
-  width: 300px;
+  text-align: left;
+  width: 476px;
 
   @include breakpoint(portrait) {
     width: 400px;
@@ -11,16 +11,17 @@
 
 .flash__header {
   @include clickbtn;
-  padding-left: 20px;
-  padding-right: 20px;
+  // padding-left: 20px;
+  // padding-right: 20px;
 }
 
 .flash__icon {
   width: 120px;
   height: 120px;
   display: block;
-  margin: 0 auto;
+  // margin: 0 auto;
   position: relative;
+  margin-left: -15px;
 
   @include breakpoint(portrait) {
     width: 150px;
@@ -49,7 +50,7 @@
 .flash__message {
   color: #a8a7a9;
   font-size: 18px;
-  max-width: 200px;
+  // max-width: 200px;
   margin: 0 auto;
 
   @include breakpoint(portrait) {
