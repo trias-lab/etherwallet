@@ -37,12 +37,12 @@
       <div class="_address_detail_warp">
         <div class="">
           <div>
-            <i class="fa fa-handshake-o" aria-hidden="true"></i>Fees</div>
+            <i class="fa fa-money-bill-wave" aria-hidden="true"></i>Fees</div>
           <div>{{toUnitString(fee)}}</div>
         </div>
         <div class="">
           <div>
-            <i class="fa fa-calendar" aria-hidden="true"></i>Status</div>
+            <i class="fa fa-fingerprint" aria-hidden="true"></i>Status</div>
           <div>{{formatConfirmations(confirmations)}}</div>
         </div>
       </div>
@@ -51,7 +51,7 @@
     <div class="_address_detail_content">
       <div style="margin-top:0">
 
-        <div class="fl">Input </div>
+        <div class="fl"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="color:#5DB85C;margin-right:5px"></i>Input  </div>
         <div class="_address_detail_warp2">
           {{#ins}}
           <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
@@ -65,7 +65,7 @@
 
         <div>
 
-          <div class="fl">Output </div>
+          <div class="fl"><i class="fa fa-arrow-circle-left" aria-hidden="true" style="color:#5DB85C;margin-right:5px"></i>Output </div>
           <div class="_address_detail_warp2">
             {{#outs}}
             <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
