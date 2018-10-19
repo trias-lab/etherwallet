@@ -65,29 +65,29 @@
 
 
         <!-- Swap CTA -->
-        <section style="overflow: hidden;" ng-show="orderResult.progress.status=='OPEN'">
+        <section style="overflow: hidden;" ng-show="orderResult.progress.status=='OPEN' || showStage3Kyber">
             <h5>
                 <span translate="SWAP_order_CTA"> Please send </span>
                 <strong style="padding: 5px;background:#FEFEFE;display: inline-block; color: #5DB85C;">
-                    {{orderResult.input.amount}}
-                    {{orderResult.input.currency}} </strong>
+                    {{!isKyberSwap? orderResult.input.amount : kyberOrderResult.input.amount}}
+                    {{!isKyberSwap? orderResult.input.currency : kyberOrderResult.input.currency}} </strong>
                 <span translate="SENDModal_Content_2"> to address </span>
                 <strong style="padding: 5px;background:#FEFEFE;display: inline-block;color: #5DB85C;" class="mono text-primary">
-                    {{orderResult.payment_address}}
+                    {{!isKyberSwap ? orderResult.payment_address : parsedKyberTx.to}}
                 </strong>
             </h5>
             <p style="color:#142A3F">Your money will be transfered to a temperary address to complete the swap.</p>
         </section>
 
         <!-- Swap CTA ETH -->
-        <section class="swap-panel" ng-show="!wd || !isKyberSwap">
+        <section class="swap-panel">
 
-            <div ng-class="orderResult.progress.status=='OPEN' && !wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
+            <div ng-class="(orderResult.progress.status=='OPEN' || showStage3Kyber) ?'swap-panel-tit':'swap-panel-tit not-slect'">
                 <div class="swap-pane-step">3</div>
                 <span>How would you like to access your wallet?</span>
-                <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE'"></i>
+                <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE' || showStage4Kyber"></i>
             </div>
-            <div ng-show="orderResult.progress.status=='OPEN' && !wd">
+            <div ng-show="orderResult.progress.status=='OPEN' || showStage3Kyber">
                 @@if (site === 'mew' ) {
                 <wallet-decrypt-drtv></wallet-decrypt-drtv>
                 } @@if (site === 'cx' ) {
@@ -97,6 +97,15 @@
 
 
         </section>
+
+         <!-- Included Because sendTxCtrl.js looks for it via querySelector and throws if it is not present (and destroys the layout in the process)-->
+        <div id="sendTransaction"></div>
+
+               @@if (site === 'mew' ) { @@include(
+               './swap-kyber-modal.tpl', { "site": "mew" } ) }
+               <!--todo implement (custom swap modal) with content comming from swapCtrl -->
+               @@if (site === 'cx' ) { @@include(
+               './swap-kyber-modal.tpl', { "site": "cx" } ) }
     </article>
     <!-- / Swap CTA ETH -->
 
