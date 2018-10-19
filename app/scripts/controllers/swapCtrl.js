@@ -916,6 +916,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
 
     try {
       $scope.showStage2Kyber = true;
+      $scope.showStage2 = true;
       $scope.kyberOrderResult.input = {
         amount: $scope.swapOrder.fromVal,
         currency: $scope.swapOrder.fromCoin
@@ -956,10 +957,12 @@ var swapCtrl = function ($scope, $sce, walletService) {
       if ($scope.availableTokens.indexOf($scope.kyberSwapOrder.fromCoin) >= 0) {
 
         $scope.showStage2Kyber = false;
+        $scope.showStage2 = false;
         $scope.showStage3Kyber = true;
         $scope.startKyberTokenSwap();
       } else {
         $scope.showStage2Kyber = false;
+        $scope.showStage2 = false;
         $scope.showStage3Kyber = true;
         $scope.startKyberEthSwap();
       }
