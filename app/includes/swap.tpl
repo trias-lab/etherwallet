@@ -15,21 +15,31 @@
             <i class="fa fa-exchange" aria-hidden="true"></i>
         </div>
     </div>
-    <section class="row text-center" ng-show="showStage3Btc || showStage3Eth" style="margin-bottom: 30px;">
+    <section class="row text-center" ng-show="showStage3Btc || showStage3Eth || showStage3 || showStage3Kyber" style="margin-bottom: 30px;">
         <div class="col-xs-3 text-left"><a class="btn btn-danger btn-xs" style="background: #B00F23" ng-click="newSwap()"> End This Session</a>
         </div>
     </section>
     @@if (site === 'mew' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "mew" } ) } 
     @@if (site === 'cx' ) { @@include( '../includes/swap-stage-1.tpl', { "site": "cx" } ) }
-    
+
     @@if (site === 'mew' ) { @@include( '../includes/swap-stage-2.tpl',{ "site": "mew" } ) } 
     @@if (site === 'cx' ) { @@include( '../includes/swap-stage-2.tpl', { "site": "cx" } ) }
-    
+        
     @@if (site=== 'mew' ) { @@include( '../includes/swap-stage-3.tpl', { "site": "mew" } ) } 
     @@if (site === 'cx' ) { @@include( '../includes/swap-stage-3.tpl',{ "site": "cx" } ) }
     
-    @@if (site=== 'mew' ) { @@include( '../includes/swap-stage-4.tpl', { "site": "mew" } ) } 
-    @@if (site === 'cx' ) { @@include( '../includes/swap-stage-4.tpl',{ "site": "cx" } ) }
+    <div ng-show="!isKyberSwap">
+        
+        @@if (site=== 'mew' ) { @@include( '../includes/swap-stage-4.tpl', { "site": "mew" } ) } 
+        @@if (site === 'cx' ) { @@include( '../includes/swap-stage-4.tpl',{ "site": "cx" } ) }
+    </div>
+
+    <div ng-show="isKyberSwap">
+
+        @@if (site === 'mew' ) { @@include( '../includes/swap-kyber-stage-4.tpl',{ "site": "mew" } ) } 
+        @@if (site === 'cx' ) { @@include( '../includes/swap-kyber-stage-4.tpl', { "site": "cx" } ) }
+    </div>
+    
    
     <!-- @@if (site === 'mew' ) { @@include( '../includes/swap-kyber.tpl', { "site": "mew" } ) }  -->
     <!-- @@if (site === 'cx' ) { @@include( '../includes/swap-kyber.tpl', { "site": "cx" } ) } -->
