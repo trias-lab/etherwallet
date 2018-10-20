@@ -100,7 +100,6 @@
         </section>
 
          <!-- Included Because sendTxCtrl.js looks for it via querySelector and throws if it is not present (and destroys the layout in the process)-->
-        <div id="sendTransaction"></div>
 
                @@if (site === 'mew' ) { @@include(
                './swap-kyber-modal.tpl', { "site": "mew" } ) }
