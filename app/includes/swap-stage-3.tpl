@@ -82,12 +82,13 @@
         <!-- Swap CTA ETH -->
         <section class="swap-panel">
 
-            <div ng-class="(orderResult.progress.status=='OPEN' || showStage3Kyber) ?'swap-panel-tit':'swap-panel-tit not-slect'">
+            <div ng-class="(orderResult.progress.status=='OPEN' || showStage3Kyber) && wallet== null && walletKyber==null?'swap-panel-tit':'swap-panel-tit not-slect'" ng-click="wd = !wd">
                 <div class="swap-pane-step">3</div>
                 <span>How would you like to access your wallet?</span>
-                <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE' || showStage4Kyber"></i>
+                <!-- <i class="fas fa-check-circle success" ng-show="orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE' || showStage4Kyber"></i> -->
+                <i class="fas fa-plus-square" ng-show="wd && (orderResult.progress.status=='OPEN' || showStage3Kyber)"></i><i class="fas fa-minus-square" ng-show="!wd && (orderResult.progress.status=='OPEN' || showStage3Kyber)"></i>
             </div>
-            <div ng-show="orderResult.progress.status=='OPEN' || showStage3Kyber">
+            <div ng-show="!wd && (orderResult.progress.status=='OPEN' || showStage3Kyber)">
                 @@if (site === 'mew' ) {
                 <wallet-decrypt-drtv></wallet-decrypt-drtv>
                 } @@if (site === 'cx' ) {

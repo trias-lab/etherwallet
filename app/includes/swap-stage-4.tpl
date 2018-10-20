@@ -8,9 +8,12 @@
     </div> -->
 
     <section class="" ng-show="!isKyberSwap " ng-controller='sendTxCtrl'>
+
+    <!-- similar to sendTx-content.tpl --- START -->
+
         <!-- Sidebar -->
         <!-- <article class="row" ng-show="wallet!=null"> -->
-        <section ng-show="showStage3Eth && orderResult.progress.status=='OPEN' && wd">
+        <section ng-show="wallet!=null && showStage3Eth && orderResult.progress.status=='OPEN' && wd">
             <div class="block block--danger" ng-show="wallet!=null && globalService.currentTab==globalService.tabs.swap.id && !hasEnoughBalance()">
                 <h5 translate="SWAP_Warning_1">
                     Warning! You do not have enough funds to complete this swap.
@@ -29,8 +32,8 @@
         <!-- </article> -->
         <!-- / Sidebar -->
         <!-- Content -->
-        <div class="swap-panel" ng-class="wallet!=null && hasEnoughBalance() ? 'step-card active':'step-card'">
-            <div class="swap-panel-tit" ng-class="showStage3Eth && orderResult.progress.status=='OPEN' && wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
+        <div class="swap-panel">
+            <div class="swap-panel-tit" ng-class="wallet!=null && hasEnoughBalance() && showStage3Eth && orderResult.progress.status=='OPEN' && wd ?'swap-panel-tit':'swap-panel-tit not-slect'">
                 <div class="swap-pane-step">4</div>
                 <span>Transaction Detail</span>
                 <i class="fas fa-check-circle success" ng-show="showStage3Eth && orderResult.progress.status=='FILL'||orderResult.progress.status=='RCVE'"></i>
@@ -39,7 +42,7 @@
             <!-- <article class="row" ng-show="wallet!=null"> -->
             <!-- If unlocked with address only -->
 
-            <div class="swap-panel-warp" ng-show="showStage3Eth && orderResult.progress.status=='OPEN' && wd">
+            <div class="swap-panel-warp" ng-show="wallet!=null && hasEnoughBalance() && showStage3Eth && orderResult.progress.status=='OPEN' && wd">
                 <article class="block" ng-show="wallet.type=='addressOnly'">
                     <div class="row form-group">
                         <h4 translate="SEND_ViewOnly">
@@ -285,6 +288,8 @@
             </div>
 
         </div>
+
+    <!-- similar to sendTx-content.tpl --- END -->
 
         <!-- @@if (site === 'mew' ) { @@include( './sendTx-content.tpl', { "site": "mew" } ) }
         @@if (site === 'cx' ) { @@include( './sendTx-content.tpl',{ "site": "cx" } ) }  -->
