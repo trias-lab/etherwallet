@@ -2,7 +2,7 @@
   <div class="modal__content confirm {{#success}}_success{{/success}} {{#error}}_error{{/error}}">
 
   {{#confirmation}}
-
+    <div class="fa-icon"><i class="fas fa-exclamation-triangle"></i></div>
     <h3 class="confirm__header">{{translate("Confirm transaction")}}</h3>
 
     <div class="confirm__transaction">
@@ -11,33 +11,33 @@
         <span class="_value">{{amount}}</span>
         <span class="_currency">{{denomination}}</span>
       </div>
-
-      {{#if isBitcoin}}
-      	<div class="_dynamic-fee">
-      		<span class="_fee">{{feeSign}}{{fee}} {{denomination}} {{translate("transaction fee")}}</span>
-					<select class="js-fee-dropdown" value="{{fee}}">
-						<option value="{{feeMinimum}}">{{feeSign}}{{feeMinimum}} {{denomination}} - {{translate("minimum")}}</option>
-						<option value="{{feeHour}}" selected>{{feeSign}}{{feeHour}} {{denomination}} - {{translate("default")}}</option>
-						<option value="{{feeFastest}}">{{feeSign}}{{feeFastest}} {{denomination}} - {{translate("fastest")}}</option>
-					</select>
-      	</div>
-      {{else}}
-				<span class="_fee">{{feeSign}}{{fee}} {{denomination}} {{translate("transaction fee")}}</span>
-			{{/if}}
-
-      <span class="_icon">
+      <div class="fa-icon-2"></div>
+    
+      <!-- <span class="_icon">
         {{>svg_sendto}}
-      </span>
+      </span> -->
       {{#importTxOptions}}
       <span class="_info_medium">{{translate("Your wallet address")}}</span>
       {{/importTxOptions}}
       <span class="_address">{{to}}</span>
       <span class="_info_medium">{{alias}}</span>
 
+      {{#if isBitcoin}}
+      <div class="_dynamic-fee">
+        <span class="_fee">{{feeSign}}{{fee}} {{denomination}} {{translate("transaction fee")}}</span>
+        <select class="js-fee-dropdown" value="{{fee}}">
+          <option value="{{feeMinimum}}">{{feeSign}}{{feeMinimum}} {{denomination}} - {{translate("minimum")}}</option>
+          <option value="{{feeHour}}" selected>{{feeSign}}{{feeHour}} {{denomination}} - {{translate("default")}}</option>
+          <option value="{{feeFastest}}">{{feeSign}}{{feeFastest}} {{denomination}} - {{translate("fastest")}}</option>
+        </select>
+      </div>
+      {{else}}
+        <span class="_fee">{{feeSign}}{{fee}} {{denomination}} {{translate("transaction fee")}}</span>
+      {{/if}}
+
     </div>
 
     <div class="confirm__inputs confirm__input">
-      <div class="_cancel">{{translate("Cancel")}}</div>
       {{#if sending}}
         <div class="_send--sending">
           <span class="_icon">
@@ -47,6 +47,7 @@
       {{else}}
         <div class="_send" on-click="send">{{translate("Send")}}</div>
       {{/if}}
+      <div class="_cancel">{{translate("Cancel")}}</div>
     </div>
 
   {{/confirmation}}
@@ -58,6 +59,11 @@
   {{#error}}
     {{>error}}
   {{/error}}
-
+  <div class="confirm__inputs success_confirm__inputs">
+    <div class="_cancel modal__cancel" on-click="close">
+      {{>svg_close}}
+    </div>
+  </div>
+  
   </div>
 </div>
