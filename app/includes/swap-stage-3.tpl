@@ -71,9 +71,9 @@
                 <strong style="padding: 5px;background:#FEFEFE;display: inline-block; color: #5DB85C;">
                     {{!isKyberSwap? orderResult.input.amount : kyberOrderResult.input.amount}}
                     {{!isKyberSwap? orderResult.input.currency : kyberOrderResult.input.currency}} </strong>
-                <span translate="SENDModal_Content_2"> to address </span>
-                <strong style="padding: 5px;background:#FEFEFE;display: inline-block;color: #5DB85C;" class="mono text-primary">
-                    {{!isKyberSwap ? orderResult.payment_address : parsedKyberTx.to}}
+                <span ng-show="!isKyberSwap" translate="SENDModal_Content_2"> to address </span>
+                <strong ng-show="!isKyberSwap" style="padding: 5px;background:#FEFEFE;display: inline-block;color: #5DB85C;" class="mono text-primary">
+                    {{orderResult.payment_address}}
                 </strong>
             </h5>
             <p style="color:#142A3F">Your money will be transfered to a temperary address to complete the swap.</p>
@@ -99,6 +99,35 @@
 
         </section>
 
+        <section class="row" ng-show="showStage3Kyber && wallet!=null " ng-controller="sendTxCtrl">
+            <h5 class="row text-center">
+                Wallet Unlocked!
+            </h5>  <!-- todo: add translate -->
+
+            <section class="row text-center" ng-if="kyberReturnToStart">
+                <h5 class="text-warning">The swap value of {{kyberSwapOrder.fromVal}} {{kyberSwapOrder.fromCoin}} is Greater
+                                         than your current {{kyberSwapOrder.fromCoin}} Balance of
+                                         {{userTokenBalanceChecked}} {{kyberSwapOrder.fromCoin}}</h5>
+                <a ng-click="returnToStart()" class="btn btn-primary btn-lg"><span> Return to Swap Selector </span></a>
+                <!-- todo: add translate -->
+            </section>
+            <section class="row text-center" ng-show="wallet!=null && !balanceOk">
+                <br/>
+                <h6 ng-show="!kyberReturnToStart"> Processing</h6>
+            <span ng-show="!kyberReturnToStart"> <span ng-repeat="tick in indicatorhacked track by $index">{{tick}}</span></span>
+            </section>
+            <section class="row text-center" ng-show="wallet!=null && balanceOk">
+                <a ng-click="openKyberOrder(wallet)" class="btn btn-primary btn-lg"><span
+                        translate="SWAP_start_CTA"> Start Swap </span></a>
+
+<!--{{kyberSwapOrder.toAddress}}-->
+                <!--{{wallet.getAddressString()}}-->
+                <div ng-if="kyberSwapOrder.toAddress.toLowerCase() != wallet.getAddressString().toLowerCase() ">
+                    <h4 style="color: red">WAIT! The Address you are sending to is not the wallet address you unlocked. <br> If this is not what you intended please review your receiving address.</h4>
+                    <a ng-click="returnToSetDestinationAddress()" class="btn btn-primary btn-lg"><span> Return to Set Receiving Address </span></a>
+                </div>
+            </section>
+
          <!-- Included Because sendTxCtrl.js looks for it via querySelector and throws if it is not present (and destroys the layout in the process)-->
 
                @@if (site === 'mew' ) { @@include(
@@ -106,25 +135,8 @@
                <!--todo implement (custom swap modal) with content comming from swapCtrl -->
                @@if (site === 'cx' ) { @@include(
                './swap-kyber-modal.tpl', { "site": "cx" } ) }
+        </section>
     </article>
     <!-- / Swap CTA ETH -->
 
-
-    <!-- Swap CTA BTC -->
-    <!-- <section class="row block swap-address text-center" ng-show="showStage3Btc && orderResult.progress.status=='OPEN'">
-        <label translate="x_Address"> Your Address </label>
-        <div class="qr-code" qr-code="{{'bitcoin:'+orderResult.payment_address+'?amount='+orderResult.input.amount}}"
-            watch-var="orderResult"></div>
-        <br />
-        <p class="text-danger">
-            Orders that take too long will have to be processed manually &amp; and may delay the amount of time it
-            takes to receive your
-            coins.
-            <br />
-            <a href="https://shapeshift.io/#/btcfee" target="_blank" rel="noopener noreferrer">Please use the
-                recommended
-                TX fees seen here.</a>
-        </p>
-
-    </section> -->
 </article>

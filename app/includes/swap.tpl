@@ -35,7 +35,7 @@
     </div>
 
     <div ng-show="isKyberSwap">
-
+        <!-- kyber TOKEN => ETH swap flow -->
         @@if (site === 'mew' ) { @@include( '../includes/swap-kyber-stage-4.tpl',{ "site": "mew" } ) } 
         @@if (site === 'cx' ) { @@include( '../includes/swap-kyber-stage-4.tpl', { "site": "cx" } ) }
     </div>
