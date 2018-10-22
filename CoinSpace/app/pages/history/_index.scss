@@ -178,6 +178,17 @@
   }
 }
 
+.transactions__item_no_data{
+  ._address{
+    background:linear-gradient(270deg,rgba(149,159,165,1) 0%,rgba(124,134,141,1) 100%) !important; 
+    >div>span{
+      color:#CBD0D3 !important; 
+    }
+  }
+  ._address_detail{
+    background:linear-gradient(270deg,rgba(162,170,175,1) 0%,rgba(145,153,158,1) 100%)!important; 
+  }
+}
 .transactions__message {
   padding: 40px;
   color: $grey;

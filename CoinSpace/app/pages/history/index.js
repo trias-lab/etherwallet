@@ -84,10 +84,7 @@ module.exports = function(el) {
     ractive.set('transactions', [])
     ractive.set('loadingTx', true)
   })
-  emitter.on('cccccccc', function() {
-    ractive.set('transactions', [])
-    ractive.set('loadingTx', true)
-  })
+
   ractive.on('show-detail', function(context) {
     var index = context.node.getAttribute('data-index')
     var data = {

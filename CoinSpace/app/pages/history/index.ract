@@ -10,16 +10,17 @@
   <div class="transactions__message">
     <div class="_message">{{translate("Loading transactions...")}}</div>
   </div>
-  {{/loadingTx}} {{#each transactions: index}}
-  <div class="transactions__item" title="{{id}}" data-index="{{index}}" on-click="show-detail">
+  {{/loadingTx}} 
+  {{#each transactions: index}}
+  <div class="{{confirmations > 0 ? 'transactions__item' : 'transactions__item  transactions__item_no_data'}}" title="{{id}}" data-index="{{index}}" on-click="show-detail">
 
     {{#if isFailed(this)}}
     <div class="_address">{{translate("Failed")}}</div>
     {{else}}
     <div class="_address">
       <div>
-        <span style="color:#BBEBBA;font-size:18px">Txhash: </span> {{isReceived(this) ? translate('Received') : getToAddress(this)}}</div>
-    </div>
+        <span style="color:#BBEBBA;font-size:18px">Txhash: </span> {{isReceived(this) ? translate('Received') : getToAddress(this)}} <i class="{{confirmations > 0 ? 'fa':'fa fa-spinner fa-pulse fr'}}" aria-hidden="true"></i></div>
+      </div>
     <div class="_address_detail">
       <div class="_address_detail_warp">
         <div class="">
@@ -43,7 +44,7 @@
         <div class="">
           <div>
             <i class="fa fa-fingerprint" aria-hidden="true"></i>Status</div>
-          <div>{{formatConfirmations(confirmations)}}</div>
+            <div>{{confirmations > 0? formatConfirmations(confirmations): 'Pending...'}} </div>
         </div>
       </div>
     </div>
