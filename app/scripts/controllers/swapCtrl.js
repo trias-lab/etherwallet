@@ -756,6 +756,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // if user cap is below the entered amount allow the user to go back and change their inputs
   $scope.returnToStart = function () {
     $scope.showStage1 = true;
+    $scope.showStage2 = false;
     $scope.showStage2Kyber = false;
     $scope.showStage3Kyber = false;
     $scope.showStage4Kyber = false;
@@ -769,6 +770,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // If the destination address does not match the unlocked wallet address allow the user to return to check they entered the correct address.
   $scope.returnToSetDestinationAddress = function () {
     $scope.showStage1 = false;
+    $scope.showStage2 = true;
     $scope.showStage2Kyber = true;
     $scope.showStage3Kyber = false;
     $scope.showStage4Kyber = false;
@@ -982,9 +984,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // Stage 3 'Start Swap'. Based on selected swap pair determine which processing flow to follow
   $scope.openKyberOrder = function (wallet) {
     $scope.wallet = walletService.wallet;
+    // TOKEN => ETH
     if ($scope.availableTokens.indexOf($scope.swapOrder.fromCoin) >= 0) {
       $scope.checkForResetApproveTokenKyber();
-    } else {
+    } else {  // ETH => TOKEN
       $scope.openKyberEthOrder();
     }
   };
