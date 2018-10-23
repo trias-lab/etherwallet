@@ -1,0 +1,1 @@
+webpackJsonp([20],{366:function(e,o,r){"use strict";var n=r(132).translate,t=n("Sorry, Coin Wallet did not load.")+"<br/><br/>"+n("Try updating your browser, or switching out of private browsing mode. If all else fails, download Chrome for your device.");document.getElementById("loader-message").innerHTML=t}});

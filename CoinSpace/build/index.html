@@ -35,7 +35,7 @@
         })(window, document, 'script', 'dataLayer', '1234');</script>
     <!-- End Google Tag Manager -->
     
-<link href="/assets/css/all.58301b3f.css" rel="stylesheet"></head>
+<link href="/assets/css/all.fd1660fa.css" rel="stylesheet"></head>
 
 <body>
     
@@ -66,6 +66,37 @@
                     </a>
                 </li>
                 <li>切换语言</li>
+            </ul>
+            <ul class="header-link-phone">
+                <li>
+                    <div class="icon-phone-nav toggle-user-wallet">
+                        <i class="fa fa-user fa-lg"></i>
+                    </div>
+                </li>
+                <li>
+                    <div class="icon-phone-nav toggle-other-link">
+                        <i class="fa fa-bars fa-lg"></i>
+                    </div>
+                    <div class="select-list-box select-list-toggle">
+                        <p>
+                            <a href="https://www.trias.one/" target="blank">
+                                Trias Project
+                            </a>
+                        </p>
+
+                        <p>
+                            <a href="https://monitor.trias.one/" target="blank">
+                                Nodes Status Monitor
+                            </a>
+
+                        </p>
+                        <p>
+                            <a href=" https://explorer.trias.one/" target="blank">
+                                Blockchain Explorer
+                            </a>
+                        </p>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -141,7 +172,7 @@
             </span>
             <a target="blank" href="https://0.plus/sp/triaslab">
                 <span class="btn-icon logo-biyong">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope" style="color:transparent"></i>
                 </span>
             </a>
             <a target="blank" href="https://github.com/trias-lab/Documentation">
@@ -222,6 +253,31 @@
         </div>
     </div>
     
-<script type="text/javascript" src="/assets/js/loader.4c7c09c4.js"></script></body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        
+        (function(){
+            // 底部点击事件
+            $('.common-footer .toggle-button').click(function () {
+                if ($(this).find('.toggle-box').css('display') === 'none') {
+                    $('.toggle-box').hide();
+                    $(this).find('.toggle-box').toggle();
+                } else {
+                    $('.toggle-box').hide();
+                }
+            })
+            // 下拉其他项目导航链接
+            $('.toggle-other-link').click(function(){
+                $('.select-list-toggle').toggle()
+            })
+            // 显示钱包信息和用户设置
+            $('.toggle-user-wallet').click(function(){
+                $('.frame').toggleClass('frame-showWallet')
+                $('.left-info').toggleClass('left-info-showWallet')
+            })
+        })()
+
+    </script>
+<script type="text/javascript" src="/assets/js/loader.02a75949.js"></script></body>
 
 </html>
