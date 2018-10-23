@@ -99,24 +99,24 @@
 
         </section>
 
-        <section class="row" ng-show="showStage3Kyber && wallet!=null " ng-controller="sendTxCtrl">
-            <h5 class="row text-center">
+        <section ng-show="showStage3Kyber && wallet!=null " ng-controller="sendTxCtrl">
+            <h5 class="text-center">
                 Wallet Unlocked!
             </h5>  <!-- todo: add translate -->
 
-            <section class="row text-center" ng-if="kyberReturnToStart">
+            <section class="text-center" ng-if="kyberReturnToStart">
                 <h5 class="text-warning">The swap value of {{kyberSwapOrder.fromVal}} {{kyberSwapOrder.fromCoin}} is Greater
                                          than your current {{kyberSwapOrder.fromCoin}} Balance of
                                          {{userTokenBalanceChecked}} {{kyberSwapOrder.fromCoin}}</h5>
                 <a ng-click="returnToStart()" class="btn btn-primary btn-lg"><span> Return to Swap Selector </span></a>
                 <!-- todo: add translate -->
             </section>
-            <section class="row text-center" ng-show="wallet!=null && !balanceOk">
+            <section class="text-center" ng-show="wallet!=null && !balanceOk">
                 <br/>
                 <h6 ng-show="!kyberReturnToStart"> Processing</h6>
             <span ng-show="!kyberReturnToStart"> <span ng-repeat="tick in indicatorhacked track by $index">{{tick}}</span></span>
             </section>
-            <section class="row text-center" ng-show="wallet!=null && balanceOk">
+            <section class="text-center" ng-show="wallet!=null && balanceOk">
                 <a ng-click="openKyberOrder(wallet)" class="btn btn-primary btn-lg"><span
                         translate="SWAP_start_CTA"> Start Swap </span></a>
 

@@ -87,7 +87,8 @@
 
 
       <div  class="original-to-target"> 
-          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          <i class="fa fa-arrow-right hidden-xs" aria-hidden="true"></i>
+          <i class="fa fa-arrow-down visible-xs" aria-hidden="true"></i>
       </div>
 
       <div style="float:right;width: 42%">
