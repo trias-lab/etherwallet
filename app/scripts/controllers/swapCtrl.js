@@ -437,10 +437,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
       $scope.parentTxConfig = {
         to: ethUtil.toChecksumAddress($scope.orderResult.payment_address),
         value: $scope.orderResult.input.amount,
-        sendMode: $scope.orderResult.input.currency == 'ETH' ? 'ether' : 'token',
-        tokensymbol: $scope.orderResult.input.currency == 'ETH' ? '' : $scope.orderResult.input.currency,
-        // sendMode:'ether',
-        // tokensymbol:  '',
+        // sendMode: $scope.orderResult.input.currency == 'ETH' ? 'ether' : 'token',
+        // tokensymbol: $scope.orderResult.input.currency == 'ETH' ? '' : $scope.orderResult.input.currency,
+        sendMode:'ether',
+        tokensymbol:  '',
         readOnly: true
       }
       $scope.showStage3Eth = true;
