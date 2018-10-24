@@ -10,17 +10,21 @@
   <div class="transactions__message">
     <div class="_message">{{translate("Loading transactions...")}}</div>
   </div>
-  {{/loadingTx}} 
+  {{/loadingTx}}
   {{#each transactions: index}}
-  <div class="{{confirmations > 0 ? 'transactions__item' : 'transactions__item  transactions__item_no_data'}}" title="{{id}}" data-index="{{index}}" on-click="show-detail">
+  <div class="{{confirmations > 0 ? 'transactions__item' : 'transactions__item  transactions__item_no_data'}}" title="{{id}}"
+    data-index="{{index}}" >
 
     {{#if isFailed(this)}}
     <div class="_address">{{translate("Failed")}}</div>
     {{else}}
     <div class="_address">
       <div>
-        <span style="color:#BBEBBA;font-size:18px">Txhash: </span> {{isReceived(this) ? translate('Received') : getToAddress(this)}} <i class="{{confirmations > 0 ? 'fa':'fa fa-spinner fa-pulse fr'}}" aria-hidden="true"></i></div>
+        <span style="color:#BBEBBA;font-size:18px">Txhash: </span> {{isReceived(this) ? translate('Received') : getToAddress(this)}}
+        <i class="{{confirmations > 0 ? 'fa':'fa fa-spinner fa-pulse fr'}}"
+          aria-hidden="true"></i>
       </div>
+    </div>
     <div class="_address_detail">
       <div class="_address_detail_warp">
         <div class="">
@@ -44,7 +48,7 @@
         <div class="">
           <div>
             <i class="fa fa-fingerprint" aria-hidden="true"></i>Status</div>
-            <div>{{confirmations > 0? formatConfirmations(confirmations): 'Pending...'}} </div>
+          <div>{{confirmations > 0? formatConfirmations(confirmations): 'Pending...'}} </div>
         </div>
       </div>
     </div>
@@ -52,7 +56,8 @@
     <div class="_address_detail_content">
       <div style="margin-top:0">
 
-        <div class="fl"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="color:#5DB85C;margin-right:5px"></i>Input  </div>
+        <div class="fl">
+          <i class="fa fa-arrow-circle-right" aria-hidden="true" style="color:#5DB85C;margin-right:5px"></i>Input </div>
         <div class="_address_detail_warp2">
           {{#ins}}
           <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
@@ -64,39 +69,60 @@
       </div>
 
 
-        <div>
+      <div>
 
-          <div class="fl"><i class="fa fa-arrow-circle-left" aria-hidden="true" style="color:#5DB85C;margin-right:5px"></i>Output </div>
-          <div class="_address_detail_warp2">
-            {{#outs}}
-            <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
-            <div class="_input_value"> {{toUnitString(amount)}} </div>
-            {{/outs}}
-          </div>
+        <div class="fl">
+          <i class="fa fa-arrow-circle-left" aria-hidden="true" style="color:#5DB85C;margin-right:5px"></i>Output </div>
+        <div class="_address_detail_warp2">
+          {{#outs}}
+          <div class="_input_address"> {{address ? address : translate("Unparsed address")}} </div>
+          <div class="_input_value"> {{toUnitString(amount)}} </div>
+          {{/outs}}
         </div>
       </div>
-      {{/if}}
-
-
     </div>
-    {{/each}} {{#if (hasMore && !loadingTx)}}
-    <div class="loadmore__buttons">
-      {{#if loadingMore}}
-      <div class="send__btn--validating">
-        <span class="_icon">
-          {{>svg_refresh}}
-        </span>
-      </div>
-      {{else}}
-      <div on-click="load-more" class="loadmore__btn">{{translate("Load more")}}</div>
-      {{/if}}
-    </div>
-    {{/if}} {{^transactions}} {{^loadingTx}}
-    <div class="transactions__message">
-      <div class="_icon">
-        {{>svg_help}}
-      </div>
-      <div class="_message">{{translate("You do not have any transactions yet")}}</div>
-    </div>
-    {{/loadingTx}} {{/transactions}}
+    {{/if}}
   </div>
+  {{/each}} 
+  {{#if (hasMore && !loadingTx)}}
+  <div class="loadmore__buttons">
+    {{#if loadingMore}}
+    <div class="send__btn--validating">
+      <span class="_icon">
+        {{>svg_refresh}}
+      </span>
+    </div>
+    {{else}}
+    <div on-click="load-more" class="loadmore__btn">{{translate("Load more")}}</div>
+    {{/if}}
+  </div>
+  {{/if}} {{^transactions}} {{^loadingTx}}
+  <div class="transactions__message">
+    <div class="_icon">
+      {{>svg_help}}
+    </div>
+    <div class="_message">{{translate("You do not have any transactions yet")}}</div>
+  </div>
+  {{/loadingTx}} {{/transactions}}
+</div>
+<div class="page_btn clear"> 
+  <span class="page_box"> 
+      <a class="prev">Previous</a>
+      <span class="num"><span class="current_page">1</span><span style="padding:0 3px;">/</span><span class="total"></span></span>
+      <a class="next">Next</a> 
+  </span> 
+  <div class="select-group cutom_select fl"> 
+    <div class="input-group">
+      <input type="text" name="selected"  readonly="readonly" placeholder="请输入产品名称" id="use_idList" value="5"/>
+  
+      <span class="input-group-add"><i class="fa fa-caret-down"></i> </span>
+    <span class="input-group-page">  /Page</span>
+    </div>
+    <ul class="select">
+    </ul>
+  </div>
+</div> 
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
