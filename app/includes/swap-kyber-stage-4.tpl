@@ -11,16 +11,17 @@
         </section>
 
         <!-- Order Info -->
-        <section class="row order-info-wrap">
+<!--         <section class="row order-info-wrap">
             <div class="col-sm-6 order-info">
-                <h4><!--{{kyberOrderResult.output.amount | number: receiveDecimals}}--> {{kyberSwapOrder.fromVal * kyberSwapOrder.swapRate | number: receiveDecimals}} {{kyberOrderResult.output.currency}}</h4>
+                <h4> -->
+                    <!--{{kyberOrderResult.output.amount | number: receiveDecimals}}--> <!-- {{kyberSwapOrder.fromVal * kyberSwapOrder.swapRate | number: receiveDecimals}} {{kyberOrderResult.output.currency}}</h4>
                 <p translate="SWAP_rec_amt">Amount to receive</p>
             </div>
             <div class="col-sm-6 order-info">
                 <h4>{{kyberSwapOrder.swapRate | number: 6}} {{kyberSwapOrder.swapPair}}</h4>
                 <p translate="SWAP_your_rate">Your rate</p>
             </div>
-        </section>
+        </section> -->
 
 
         <!-- Swap Progress -->
