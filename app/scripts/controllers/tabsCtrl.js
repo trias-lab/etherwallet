@@ -323,5 +323,11 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     angular.element(document.querySelectorAll('.nav-scroll')[0]).bind('scroll', $scope.setOnScrollArrows);
     globalFuncs.changeHash = $scope.setHash;
 
+
+    $scope.toggleWalletShow = false;
+    $scope.toggleWallet = function(){
+        $scope.toggleWalletShow = !$scope.toggleWalletShow
+    }
+
 };
 module.exports = tabsCtrl;
