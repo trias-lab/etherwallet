@@ -1,33 +1,7 @@
 .exchange_awaiting_deposit {
-  margin-bottom: 25px;
-
   .exchange_header {
     position: relative;
-    ._back {
-      cursor: pointer;
-      user-select: none;
-      color: #999;
-      display: inline-block;
-      margin-left: -10px;
-      margin-bottom: 5px;
-      @include breakpoint(portrait) {
-        font-size: 20px;
-      }
-      ._icon {
-        width: 25px;
-        height: 25px;
-        background-size: 25px 25px;
-        @include breakpoint(portrait) {
-          width: 30px;
-          height: 30px;
-          background-size: 30px 30px;
-        }
-        display: inline-block;
-        vertical-align: top;
-        background: url('./assets/img/arrow-left.svg');
-        opacity: 0.6;
-      }
-    }
+   
     ._subtitle {
       font-size: 24px;
       line-height: 1.2;
@@ -42,6 +16,7 @@
   }
 
   .instructions {
+    margin: 20px;
     @extend .jigsaw-regular;
     @include wrapdat;
     @include breakpoint(portrait) {
@@ -52,12 +27,14 @@
   }
 
   ._title {
+    margin: 20px;
     @include breakpoint(portrait) {
       font-size: 20px;
     }
   }
 
   .address__box {
+    margin: 20px;
     @extend .generic_box;
     margin-top: 5px;
     margin-bottom: 20px;
@@ -126,11 +103,43 @@
   }
 
   ._market_info {
+    margin:20px;
     @extend .jigsaw-regular;
     margin-bottom: 5px;
     @include breakpoint(portrait) {
       font-size: 20px;
       margin-bottom: 10px;
+    }
+  }
+
+  ._back {
+    cursor: pointer;
+    float: right;
+    user-select: none;
+    color: #999;
+    width: 120px;
+    line-height: 38px;
+    margin: 20px;
+    background-color: #5DB85C;
+    box-shadow: 0 2px 0 0 #459d44;
+    text-align: center;
+    color:#fff;
+    @include breakpoint(portrait) {
+      font-size: 20px;
+    }
+    ._icon {
+      width: 25px;
+      height: 25px;
+      background-size: 25px 25px;
+      @include breakpoint(portrait) {
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+      }
+      display: inline-block;
+      vertical-align: top;
+      background: url('./assets/img/arrow-left.svg');
+      opacity: 0.6;
     }
   }
 }

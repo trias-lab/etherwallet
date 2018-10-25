@@ -1,10 +1,10 @@
-<div class="exchange_awaiting_deposit">
+<div class="exchange_awaiting_deposit clearfix">
 
-  <div class="exchange_header">
-    <div class="_back" on-click="cancel">
-      <span class="_icon"></span> {{translate("Cancel")}}
-    </div>
-    <h2 class="_subtitle">{{translate("Awaiting deposit...")}}</h2>
+  <div class="exchange_header send_from_header">
+
+      <div class="fl number">2 </div>
+      <div class="text fl">{{translate("Awaiting deposit...")}}</div>
+ 
   </div>
 
   <div class="instructions">
@@ -56,6 +56,11 @@
       {{minerFee}} {{toSymbol}}
     {{/if}}
   </div>
-
+  <div class="_back fr" on-click="cancel">
+      {{translate("Cancel")}}
+      </div>
 </div>
+
+
+
 {{>footer}}

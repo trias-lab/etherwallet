@@ -1,33 +1,7 @@
 .exchange_complete {
   margin-bottom: 25px;
-
   .exchange_header {
     position: relative;
-    ._back {
-      cursor: pointer;
-      user-select: none;
-      color: #999;
-      display: inline-block;
-      margin-left: -10px;
-      margin-bottom: 5px;
-      @include breakpoint(portrait) {
-        font-size: 20px;
-      }
-      ._icon {
-        width: 25px;
-        height: 25px;
-        background-size: 25px 25px;
-        @include breakpoint(portrait) {
-          width: 30px;
-          height: 30px;
-          background-size: 30px 30px;
-        }
-        display: inline-block;
-        vertical-align: top;
-        background: url('./assets/img/arrow-left.svg');
-        opacity: 0.6;
-      }
-    }
     ._subtitle {
       font-size: 24px;
       line-height: 1.2;
@@ -39,7 +13,6 @@
       }
     }
   }
-
   ._message {
     text-align: center;
     @extend .jigsaw-regular;
@@ -48,9 +21,40 @@
       font-size: 20px;
     }
   }
-
   ._complete_icon {
     text-align: center;
   }
-
+  ._back {
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    color: #999;
+    margin-bottom: -4px;
+    padding: 0 12px;
+    height: 38px;
+    width:140px;
+    line-height: 38px;
+    background: #5db85c;
+    border-radius: 4px;
+    border: 1px solid #5db85c;
+    margin: 20px auto 0;
+    color:#000;
+    @include breakpoint(portrait) {
+      font-size: 20px;
+    }
+    ._icon {
+      width: 25px;
+      height: 25px;
+      background-size: 25px 25px;
+      @include breakpoint(portrait) {
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+      }
+      display: inline-block;
+      vertical-align: middle;
+      background: url('./assets/img/arrow-left.svg');
+      opacity: 0.6;
+    }
+  }
 }

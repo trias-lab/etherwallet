@@ -18,11 +18,17 @@ function login(wallet_id, pin, callback) {
   }, callback)
   setTimeout(function () {
     //实现分页思路:
-    function setNum(num) {
-      var pageSize = num; //每页显示数据条数
-      var currentPage = 1; //当前页数
-      var totalSize = $(".transactions__item").length; //获取总数据
-      var totalPage = Math.round(totalSize / pageSize); //计算总页数
+    var num;
+    var pageSize; //每页显示数据条数
+    var currentPage = 1; //当前页数
+    var totalSize = $(".transactions__item").length; //获取总数据
+    var totalPage;
+
+    function setNum() {
+      currentPage = 1;
+      num = $('#use_idList').val()
+      pageSize = num; //每页显示数据条数
+      totalPage = Math.round(totalSize / pageSize); //计算总页数
       $.each($('.transactions__item'), function (index) {
         if (index < num) {
           $(this).show();
@@ -30,49 +36,48 @@ function login(wallet_id, pin, callback) {
           $(this).hide();
         }
       });
-      // $(".transactions__item:gt(3)").hide(); //设置首页显示4条数据
-      // $(".transactions__item:gt("+num-1+")").hide(); //设置首页显示4条数据
       $(".total").text(totalPage); //设置总页数
       $(".current_page").text(currentPage); //设置当前页数
-
-      //实现下一页
-      $(".next").click(function () {
-        if (currentPage == totalPage) { //当前页数==最后一页，禁止下一页
-          return false;
-        } else { //不是最后一页，显示应该显示的数据.
-          $(".current_page").text(++currentPage); //当前页数先+1
-          var start = pageSize * (currentPage - 1);
-          var end = pageSize * currentPage;
-          $.each($('.transactions__item'), function (index, item) {
-            if (index >= start && index < end) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          });
-        }
-      });
-      //实现上一页
-      $(".prev").click(function () {
-        if (currentPage == 1) { //当前页数==1，禁止上一页
-          return false;
-        } else {
-          $(".current_page").text(--currentPage); //当前页数先-1
-          var start = pageSize * (currentPage - 1);
-          var end = pageSize * currentPage;
-          $.each($('.transactions__item'), function (index, item) {
-            if (index >= start && index < end) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          });
-        }
-      });
     }
-    var num = $('#use_idList').val()
-    console.log(num+"-----------------------------")
-    setNum(num);
+    setNum();
+
+
+    //实现下一页
+    $(".next").click(function () {
+      if (currentPage == totalPage) { //当前页数==最后一页，禁止下一页
+        return false;
+      } else { //不是最后一页，显示应该显示的数据.
+        $(".current_page").text(++currentPage); //当前页数先+1
+        var start = pageSize * (currentPage - 1);
+        var end = pageSize * currentPage;
+        $.each($('.transactions__item'), function (index, item) {
+          if (index >= start && index < end) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      }
+    });
+    //实现上一页
+    $(".prev").click(function () {
+      if (currentPage == 1) { //当前页数==1，禁止上一页
+        return false;
+      } else {
+        $(".current_page").text(--currentPage); //当前页数先-1
+        var start = pageSize * (currentPage - 1);
+        var end = pageSize * currentPage;
+        $.each($('.transactions__item'), function (index, item) {
+          if (index >= start && index < end) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      }
+    });
+
+
 
     var productName;
     var pdtObj = {};
@@ -96,9 +101,7 @@ function login(wallet_id, pin, callback) {
       $('.cutom_select ul.select').css({
         'display': 'none'
       });
-      var num1 = $('#use_idList').val()
-      console.log(num1)
-      setNum(num1);
+      setNum();
     });
     //输入框获取的产品名称
     function getProductName(value) {
