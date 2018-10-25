@@ -253,6 +253,73 @@
         }
     }
   }
+
+  .toggle-wallet{
+      position: relative;
+      
+      p.current-wallet-name{
+        width:133px;
+        height:30px;
+        background:rgba(42,83,41,1);
+        border-radius:15px;
+        border:1px solid rgba(93,184,92,1);
+        line-height: 30px;
+        text-align: center;
+        font-size:16px;
+        font-family:MoskMedium500;
+        color:rgba(246,246,246,1);
+        i{
+            margin-left: 8px;
+        }
+      }
+      p.current-wallet-name-phone{
+        background: transparent;
+        color: #dae1e9;
+        padding: 8px 2px;
+        position: relative;
+        cursor: pointer;
+        height: 26px;
+        width: 48px;
+        height: 38px;
+        border-radius: 4px;
+        border: 1px solid #313b44;
+        text-align: center;
+      }
+      .pick-wallet-list{
+          position: absolute;
+          display: none;
+          z-index: 9;
+          width:160px;
+          border-radius:4px;
+          top:52px;
+          right:0;
+          background: #2b2f37;
+          -webkit-box-shadow: 0 4px 10px 0 rgba(0,0,0,.8);
+          box-shadow: 0 4px 10px 0 rgba(0,0,0,.8);
+          padding:16px 24px;
+          p{
+              line-height: 36px;
+              a{
+                font-size:16px;
+                font-family:MoskMedium500;
+                color: #f6f6f6;
+              }
+          }
+      }
+      .pick-wallet-list:after{
+        content: '';
+        position: absolute;
+        top: -13px;
+        right: 12px;
+        height: 0px;
+        width: 0px;
+        border-top: 5px solid transparent;
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+        border-bottom: 9px solid #2b2f37;
+      }
+  }
+
   @media only screen and(max-width:768px){
     .common-footer .center-box{
       padding: 0 12px;     

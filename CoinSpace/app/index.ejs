@@ -81,7 +81,18 @@
                         Blockchain Explorer
                     </a>
                 </li>
-                <li>切换语言</li>
+                <li>
+                    <div class="toggle-wallet">
+                        <p class="current-wallet-name">BTC Wallet 
+                            <i class="fa fa-caret-down"></i>
+                        </p>
+                        <div class="pick-wallet-list">
+                            <p><a href="">ETH Wallet</a></p>
+                            <p><a href="">BTC Wallet</a></p>
+                        </div>
+                    </div>
+                </li>
+                <!-- <li>切换语言</li> -->
             </ul>
             <ul class="header-link-phone">
                 <li>
@@ -111,6 +122,17 @@
                                 Blockchain Explorer
                             </a>
                         </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="toggle-wallet">
+                        <p class="current-wallet-name-phone">
+                            <i class="fa fa-coins"></i>
+                        </p>
+                        <div class="pick-wallet-list">
+                            <p><a href="">ETH Wallet</a></p>
+                            <p><a href="">BTC Wallet</a></p>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -292,6 +314,13 @@
             $('.toggle-user-wallet').click(function(){
                 $('.frame').toggleClass('frame-showWallet')
                 $('.left-info').toggleClass('left-info-showWallet')
+            })
+            // 切换其他钱包
+            $('.header-link').find('div.toggle-wallet').click(function(){
+                $(this).find('div.pick-wallet-list').toggle();
+            })
+            $('.header-link-phone').find('div.toggle-wallet').click(function(){
+                $(this).find('div.pick-wallet-list').toggle();
             })
         })()
 

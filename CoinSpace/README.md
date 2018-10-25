@@ -79,3 +79,25 @@ IAP_GOOGLE_PUBLIC_KEY=1234
 
 ２、运行
 npm run client
+
+## 测试币（本地）
+
+１、修改.env.loc文件，
+将API_BTC_URL 改为 http://192.168.1.89/api/
+连接的wifi是TPLINKBLACKBOX_5G_test。
+
+2 把网址后面的参数改为testnet，如
+http://127.0.0.1:8000/?network=testnet
+
+
+下面这个网站可以免费领比特币测试币，不过有时候不好用，可以翻墙试试
+https://testnet-faucet.mempool.co/
+
+也可以先用这个种子，首页选择 打开现有钱包，输入：
+spoon orbit jeans pumpkin trouble across lady spike harvest mystery bean owner
+1234
+测试转账的时候，可以自己转给自己，转账金额可以填的比较小，如0.001
+
+
+下面这个网站可以查询测试币余额
+https://live.blockcypher.com/btc-testnet/
