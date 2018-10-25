@@ -196,7 +196,11 @@ var sendTxCtrl = function ($scope, $sce, walletService, $rootScope) {
     }
 
     var isEnough = function (valA, valB) {
-        return new BigNumber(valA).lte(new BigNumber(valB));
+        if(valA && valB){
+           return new BigNumber(valA).lte(new BigNumber(valB)); 
+        }else{
+            return false;
+        }
     }
     //检查是否有足够的资产
     $scope.hasEnoughBalance = function () {
