@@ -5,6 +5,12 @@
   //   display: flex;
   //   justify-content: space-between;
   // }
+  form{
+    background:rgba(246,247,249,1);
+border-radius:2px;
+padding: 24px 12px;
+margin-bottom: 8px;
+  }
   ._title {
     @include breakpoint(portrait) {
       font-size: 20px;

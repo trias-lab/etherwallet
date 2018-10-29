@@ -5,7 +5,7 @@
 
    <div class="send_from_header">
         <div class="fl number">1 </div> 
-        <div class="text fl">Swap</div>
+        <div class="text fl">Exchange Detail</div>
     </div>
   
 <div class="exchange_create">
@@ -13,7 +13,7 @@
 
     <div class="exchange__address from">
       <div class="_exchange_group">
-        <label class="_label" for="exchange_return_address">{{translate("From")}}</label>
+        <label class="_label" for="exchange_return_address">Original Address</label>
         <div class="_select_container">
           {{fromSymbol}}
           <select class="js-from-symbol-select" value="{{fromSymbol}}">
@@ -55,7 +55,7 @@
 
     <div class="exchange__address">
       <div class="_exchange_group">
-        <label for="exchange_to_address" class="_label">{{translate("To")}}</label>
+        <label for="exchange_to_address" class="_label">Target Address</label>
         <div class="_select_container">
           {{toSymbol}}
           <select class="js-to-symbol-select" value="{{toSymbol}}">
@@ -88,8 +88,9 @@
 
   </form>
 
-    <h3 class="_title">{{translate("Exchange rate")}}</h3>
     <div class="exchange__rate">
+      <span class="_title">{{translate("Exchange rate")}}:</span>
+      
       {{#if isLoadingRate}}
         {{translate("Loading...")}}
       {{else}}
