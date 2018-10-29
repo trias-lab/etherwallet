@@ -90,7 +90,6 @@
       display: block;
       padding-right: 40px;
     }
-  
     @include breakpoint(portrait) {
       font-size: 26px;
       border-radius: 3px;
@@ -208,15 +207,23 @@
   }
   .swap_detail_content {
     padding-bottom: 36px;
-    .swap_detail_content_l {}
+    display: flex;
+    .swap_detail_content_l {
+      flex: 1;
+    }
     .swap_detail_content_r {
       // width: 60%;
       float: right;
+      flex: 2;
       width: 338px;
+      >div:first-child {
+        border-top: 1px solid #CBD0D3;
+      }
       >div {
         border-bottom: 1px solid #CBD0D3;
         display: flex;
         justify-content: flex-start;
+        line-height: 27px;
         >div:nth-child(2n) {
           margin-left: 10px;
           width: auto;
@@ -262,5 +269,40 @@
     font-family: MoskMedium500;
     color: rgba(20, 42, 63, 1);
     line-height: 22px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .swap_detail {
+    padding-bottom: 16px;
+    .swap_detail_title{
+      padding-bottom: 20px;
+    }
+    #swap_qr-canvas{
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .swap_detail_content {
+      padding: 10px;
+      flex-direction: column;
+      .swap_detail_content_r{
+        width: auto;
+      }
+    }
+  }
+  ._back{
+    width: 90%;
+    margin-top: 0 !important;
+  }
+  .instructions{
+    .instructions_min,.instructions_max, .instructions_min::after,.instructions_max::after{
+      font-size: 12px !important;
+    }
+    .instructions_min::after{
+    left: 0 !important;
+    }
+    .instructions_max::after{
+      right: 0 !important;
+    }
   }
 }

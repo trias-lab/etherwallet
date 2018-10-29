@@ -23,7 +23,9 @@
   <div class="swap_detail">
     <div class="swap_detail_title">Please Transfer to Deposite Address!</div>
     <div class="swap_detail_content clearfix">
-      <div class="swap_detail_content_l"></div>
+      <div class="swap_detail_content_l">
+              <div id="swap_qr-canvas"></div>
+      </div>
       <div class="swap_detail_content_r">
 
         <div>
@@ -44,11 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="_btn" on-click="show-qr">
-      <span class="_icon">
-        {{>svg_expand}}
-      </span>
-    </div>
+   
     <div class="instructions_next"></div>
   </div>
 

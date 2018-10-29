@@ -41,6 +41,7 @@ module.exports = function(el) {
       isLoadingMarketInfo: true
     });
     showQRcode();
+    showQRcode1();
     shapeshift.marketInfo(context.depositSymbol, context.toSymbol).then(function(data) {
       ractive.set('isLoadingMarketInfo', false);
       ractive.set('depositMax', data.limit);
@@ -76,6 +77,8 @@ module.exports = function(el) {
     }
   })
 
+
+
   function showQRcode() {
     if (ractive.get('isPhonegap')) {
       var canvas = ractive.find('#deposit_qr_canvas');
@@ -86,6 +89,16 @@ module.exports = function(el) {
       var qr = qrcode.encode(name + ':' + ractive.get('depositAddress'));
       canvas.appendChild(qr);
     }
+  }
+
+  function showQRcode1(){
+    var canvas1 = ractive.find('#swap_qr-canvas');
+      while (canvas1.hasChildNodes()) {
+        canvas1.removeChild(canvas1.firstChild);
+      }
+    var name = ractive.get('depositCoinName').toLowerCase();
+    var qr = qrcode.encode(name + ':' + ractive.get('depositAddress'));
+    canvas1.appendChild(qr)
   }
 
   return ractive;
