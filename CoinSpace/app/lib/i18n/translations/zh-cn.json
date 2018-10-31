@@ -3,7 +3,7 @@
     "Create new wallet": "新建电子钱包",
     "Open existing wallet": "打开现有钱包",
     "We are about to generate your passphrase": "我们将为您生成您的钱包安全种子",
-    "This keeps your account secure, and lets you open your wallet on multiple devices.": "为保证您的帐户安全，并让您在多个设备上打开您的钱包,",
+    "This keeps your account secure, and lets you open your wallet on multiple devices.": "为保证您的帐户安全，并让您在多个设备上打开您的钱包，",
     "It is very important you write this down.": "请您一定将安全种子写下来并安全保管。",
     "Generate passphrase": "生成安全种子",
     "Go back": "返回",

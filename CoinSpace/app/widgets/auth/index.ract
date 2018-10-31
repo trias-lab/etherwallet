@@ -9,9 +9,9 @@
       {{>actions}}
     </div>
 
-    <div class="auth__footer">
+    <!-- <div class="auth__footer">
       {{>footer}}
-    </div>
+    </div> -->
   </div>
 </div>
 

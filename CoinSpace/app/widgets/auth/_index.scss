@@ -228,7 +228,7 @@
   }
   &.alert {
     // background-color: #ff0000;
-    color: #ff0000;
+    color: #fff;
   }
   @include breakpoint(portrait) {
     font-size: 16px;
@@ -262,18 +262,18 @@
 
 .auth__btn--inactive {
   display: block;
-  width: 100%;
   margin-bottom: 5px;
-  padding-top: 18px;
-  padding-bottom: 15px;
   user-select: none;
-  text-align: center;
-  font-size: 18px;
+  float: right;
+  padding: 7px 20px;
   border-radius: 2px;
+
+  text-align: center;
+  font-size: 17px;
   color: rgba(255, 255, 255, 0.3);
   background-color: $brand-green;
-  box-shadow: inset 0 1px 1px 1px darken($brand-green, 20%);
-  transform: translate(0px, 3px);
+  // box-shadow: inset 0 1px 1px 1px darken($brand-green, 20%);
+  // transform: translate(0px, 3px);
   @include breakpoint(portrait) {
     font-size: 20px;
     padding: 22px 30px 20px 30px;
