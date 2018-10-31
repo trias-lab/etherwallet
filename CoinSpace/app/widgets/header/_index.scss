@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
-  background-color: darken($brand-green, 30%);
+  // background-color: darken($brand-green, 30%);
+  background: url('./assets/img/img_img_loginBox@2x.png');
+  background-size: cover;
   color: white;
   padding-top: 12px;
   padding-bottom: 12px;
