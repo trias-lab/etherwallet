@@ -46,7 +46,7 @@
 
 
 {{#if setPin}}
-<div class="auth__btn auth__btn_custom" on-click="create-pin">{{translate("Set your PIN")}}</div>
+<div class="auth__btn" on-click="create-pin">{{translate("Set your PIN")}}</div>
 {{else}}
-<div class="auth__btn--inactive" >{{translate("Set your PIN")}}</div>
+<div class="auth__btn auth__btn--inactive" >{{translate("Set your PIN")}}</div>
 {{/if}}
