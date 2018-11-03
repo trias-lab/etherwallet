@@ -816,6 +816,9 @@ HEADER_TriasProject				:  'Trias Project',
 HEADER_Monitor					:  'Nodes Status Monitor',
 HEADER_Explorer					:  'Blockchain Explorer',
 
+ETH_Wallet						:  'ETH Wallet',
+BTC_Wallet						:  'BTC Wallet',
+
 FOOTER_RecentEvents				:  'Recent Events',
 FOOTER_View						:  'View',
 FOOTER_Project					:  'Project Progress',

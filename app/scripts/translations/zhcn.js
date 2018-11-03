@@ -882,6 +882,8 @@ HELP_Contact_Title          : 'Ways to Get in Touch 联系方式',
 HEADER_TriasProject				:  'Trias 项目',
 HEADER_Monitor					:  '节点状态 Monitor',
 HEADER_Explorer					:  '区块链浏览器',
+ETH_Wallet						:  'ETH 钱包',
+BTC_Wallet						:  'BTC 钱包',
 
 FOOTER_RecentEvents				:  '近期活动',
 FOOTER_View						:  '技术观点',
