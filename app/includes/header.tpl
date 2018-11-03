@@ -121,16 +121,6 @@
           <span class="dropdown hidden-xs">
             <a href="https://explorer.trias.one" target="_blank" translate="HEADER_Explorer">Blockchain Explorer</a>
           </span>
-          <div class="toggle-wallet toggle-wallet-pc">
-            <p class="current-wallet-name" ng-click = "toggleWallet()">BTC Wallet
-              <i class="fa fa-caret-down"></i>
-            </p>
-            <div class="pick-wallet-list" ng-show = "toggleWalletShow">
-              <p><a href="">ETH Wallet</a></p>
-              <p><a href="">BTC Wallet</a></p>
-            </div>
-          </div>
-
           <span class="dropdown dropdown-header-links visible-xs-inline-block" ng-cloak>
             <a tabindex="0" aria-haspopup="true" class="dropdown-toggle btn" ng-click="dropdownHeaderLinks = !dropdownHeaderLinks">
               <div class="hyphen" ng-show="!dropdownHeaderLinks"></div>
@@ -151,16 +141,18 @@
             </ul>
           </span>
 
-          <div class="toggle-wallet toggle-wallet-phone">
-            <p class="current-wallet-name-phone" ng-click = "toggleWallet()">
-                <i class="fa fa-coins"></i>
-            </p>
-            <div class="pick-wallet-list" ng-show = "toggleWalletShow">
-                <p><a href="">ETH Wallet</a></p>
-                <p><a href="">BTC Wallet</a></p>
-            </div>
-        </div>
-
+          <span class="dropdown dropdown-wallet" ng-cloak>
+            <a tabindex="0" aria-haspopup="true" aria-expanded="false"
+              class="dropdown-toggle hidden-xs" ng-click="dropdownWallet = !dropdownWallet" >ETH Wallet<i class="caret"></i></a>
+            <a tabindex="0" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn visible-xs" ng-click="dropdownWallet = !dropdownWallet">
+              <i class="fas fa-wallet" ng-show="!dropdownWallet"></i>
+              <i class="fas fa-times icon-close" ng-show="dropdownWallet"></i>
+            </a>
+            <ul class="dropdown-menu" ng-show="dropdownWallet">
+              <li><a class="active" href="" translate="ETH_Wallet"> ETH Wallet </a></li>
+              <li><a href="https://btcwallet.trias.one" translate="BTC_Wallet"> BTC Wallet </a></li>
+            </ul>
+          </span>
 
           <span class="dropdown dropdown-lang" ng-cloak>
             <a tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}"
