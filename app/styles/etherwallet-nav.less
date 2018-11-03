@@ -322,7 +322,7 @@
     .dropdown{
       padding-left: 2rem;
     }
-    .dropdown-lang{
+    .dropdown-wallet, .dropdown-lang{
       .dropdown-menu > li > a {
         position: relative;
         padding: 8px 12px;
@@ -336,7 +336,21 @@
           background: transparent;
         }
       }
-    }    
+    }
+    @media (min-width: @screen-xs-max){
+      .dropdown-wallet>a{
+        width: 133px;
+        height: 30px;
+        background: #2a5329;
+        border-radius: 15px;
+        border: 1px solid #5db85c;
+        text-align: center;
+        font-size: 16px;
+        font-family: MoskMedium500;
+        color: #f6f6f6;
+        margin: 0;
+      } 
+    }       
   }
   .dropdown-header-links{
     .btn{
@@ -356,7 +370,7 @@
   @media (max-width: @screen-xs-max){
     .language-change{
       flex-direction: row;
-      .dropdown-lang{
+      .dropdown-wallet, .dropdown-lang{
         padding-left: 8px;
       }
     }    
