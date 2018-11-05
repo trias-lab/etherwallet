@@ -35,7 +35,7 @@
         })(window, document, 'script', 'dataLayer', '1234');</script>
     <!-- End Google Tag Manager -->
     
-<link href="/assets/css/all.fd1660fa.css" rel="stylesheet"></head>
+<link href="/assets/css/all.f62b1d7c.css" rel="stylesheet"></head>
 
 <body>
     
@@ -65,7 +65,18 @@
                         Blockchain Explorer
                     </a>
                 </li>
-                <li>切换语言</li>
+                <li>
+                    <div class="toggle-wallet">
+                        <p class="current-wallet-name">BTC Wallet 
+                            <i class="fa fa-caret-down"></i>
+                        </p>
+                        <div class="pick-wallet-list">
+                            <p><a href="https://wallet.trias.one/">ETH Wallet</a></p>
+                            <p><a href="https://btcwallet.trias.one">BTC Wallet</a></p>
+                        </div>
+                    </div>
+                </li>
+                <!-- <li>切换语言</li> -->
             </ul>
             <ul class="header-link-phone">
                 <li>
@@ -95,6 +106,17 @@
                                 Blockchain Explorer
                             </a>
                         </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="toggle-wallet">
+                        <p class="current-wallet-name-phone">
+                            <i class="fa fa-coins"></i>
+                        </p>
+                        <div class="pick-wallet-list">
+                            <p><a href="https://wallet.trias.one">ETH Wallet</a></p>
+                            <p><a href="https://btcwallet.trias.one">BTC Wallet</a></p>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -275,9 +297,16 @@
                 $('.frame').toggleClass('frame-showWallet')
                 $('.left-info').toggleClass('left-info-showWallet')
             })
+            // 切换其他钱包
+            $('.header-link').find('div.toggle-wallet').click(function(){
+                $(this).find('div.pick-wallet-list').toggle();
+            })
+            $('.header-link-phone').find('div.toggle-wallet').click(function(){
+                $(this).find('div.pick-wallet-list').toggle();
+            })
         })()
 
     </script>
-<script type="text/javascript" src="/assets/js/loader.02a75949.js"></script></body>
+<script type="text/javascript" src="/assets/js/loader.7a4a5935.js"></script></body>
 
 </html>
