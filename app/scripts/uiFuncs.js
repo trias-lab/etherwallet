@@ -81,7 +81,8 @@ uiFuncs.signTxLedger = function(app, eTx, rawTx, txData, old, callback) {
             // EIP155 support. check/recalc signature v value.
             var rv = parseInt(v, 16);
             var cv = rawTx.chainId * 2 + 35;
-            if (rv !== cv && ((rv & cv) !== rv)) {
+            var rvcv = rv & cv;
+            if (rv !== cv && rvcv !== rv) {
                 cv += 1; // add signature v bit.
             }
             v = cv.toString(16);
