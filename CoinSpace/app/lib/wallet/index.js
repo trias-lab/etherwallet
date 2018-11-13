@@ -49,24 +49,31 @@ function createWallet(passphrase, network, callback) {
   var message = passphrase ? 'Decoding seed phrase' : 'Generating'
   emitter.emit('wallet-opening', message)
 
-  var data = {passphrase: passphrase}
-  if(!passphrase){
-   data.entropy = rng(128 / 8).toString('hex')
+  var data = {
+    passphrase: passphrase
+  }
+  if (!passphrase) {
+    data.entropy = rng(128 / 8).toString('hex')
   }
 
-  worker.onmessage = function(e) {
+  worker.onmessage = function (e) {
     assignSeedAndId(e.data.seed)
 
     mnemonic = e.data.mnemonic
-    auth.exist(id, function(err, userExists){
-      if(err) return callback(err);
+    auth.exist(id, function (err, userExists) {
+      if (err) return callback(err);
 
-      callback(null, {userExists: userExists, mnemonic: mnemonic})
+      callback(null, {
+        userExists: userExists,
+        mnemonic: mnemonic
+      })
     })
   }
 
-  worker.onerror = function(e) {
-    return callback({message: e.message.replace("Uncaught Error: ", '')})
+  worker.onerror = function (e) {
+    return callback({
+      message: e.message.replace("Uncaught Error: ", '')
+    })
   }
 
   worker.postMessage(data)
@@ -81,7 +88,7 @@ function callbackError(err, callbacks) {
 
 function setPin(pin, network, done, txSyncDone) {
   var callbacks = [done, txSyncDone]
-  auth.register(id, pin, function(err, token) {
+  auth.register(id, pin, function (err, token) {
     if (err) return callbackError(err, callbacks);
 
     savePin(pin);
@@ -90,7 +97,7 @@ function setPin(pin, network, done, txSyncDone) {
     emitter.emit('wallet-opening', 'Synchronizing Wallet');
     emitter.emit('db-init');
 
-    emitter.once('db-ready', function(err) {
+    emitter.once('db-ready', function (err) {
       if (err) return callbackError(err, callbacks);
       initWallet(network, done, txSyncDone);
     });
@@ -110,7 +117,7 @@ function openWalletWithPin(pin, network, done, txSyncDone) {
   var credentials = walletDb.getCredentials();
   var id = credentials.id
   var encryptedSeed = credentials.seed
-  auth.login(id, pin, function(err, token) {
+  auth.login(id, pin, function (err, token) {
     if (err) {
       if (err.message === 'user_deleted') {
         walletDb.deleteCredentials();
@@ -124,34 +131,37 @@ function openWalletWithPin(pin, network, done, txSyncDone) {
     emitter.emit('wallet-opening', 'Synchronizing Wallet');
     emitter.emit('db-init');
 
-    emitter.once('db-ready', function(err) {
+    emitter.once('db-ready', function (err) {
       if (err) return callbackError(err, callbacks);
       initWallet(network, done, txSyncDone);
     });
   })
 }
 
-function savePin(pin){
-    if (availableTouchId) window.localStorage.setItem('_pin_cs', AES.encrypt(pin, 'pinCoinSpace'));
+function savePin(pin) {
+  if (availableTouchId) window.localStorage.setItem('_pin_cs', AES.encrypt(pin, 'pinCoinSpace'));
 }
 
-function setAvailableTouchId(){
-    availableTouchId = true
+function setAvailableTouchId() {
+  availableTouchId = true
 }
 
-function getPin(){
-    var pin = window.localStorage.getItem('_pin_cs')
-    return pin ? AES.decrypt(pin, 'pinCoinSpace') : null
+function getPin() {
+  var pin = window.localStorage.getItem('_pin_cs')
+  return pin ? AES.decrypt(pin, 'pinCoinSpace') : null
 }
 
-function resetPin(){
-    window.localStorage.removeItem('_pin_cs')
+function resetPin() {
+  window.localStorage.removeItem('_pin_cs')
 }
 
 function assignSeedAndId(s) {
   seed = s
   id = crypto.createHash('sha256').update(seed).digest('hex')
-  emitter.emit('wallet-init', {seed: seed, id: id})
+  emitter.emit('wallet-init', {
+    seed: seed,
+    id: id
+  })
 }
 
 function initWallet(networkName, done, txDone) {
@@ -164,10 +174,10 @@ function initWallet(networkName, done, txDone) {
   var options = {
     networkName: networkName,
     done: done,
-    txDone: function(err) {
-      if(err) return txDone(err)
+    txDone: function (err) {
+      if (err) return txDone(err)
       var txObjs = wallet.getTransactionHistory()
-      txDone(null, txObjs.map(function(tx) {
+      txDone(null, txObjs.map(function (tx) {
         return parseHistoryTx(tx)
       }))
     }
@@ -184,23 +194,18 @@ function initWallet(networkName, done, txDone) {
     options.internalAccount = accounts.internalAccount;
     options.minConf = 4;
     convert.setDecimals(8);
-  } else if (networkName === 'ripple') {
-    options.seed = seed;
-    options.txsPerPage = 20;
-    convert.setDecimals(0);
-  } else if (networkName === 'stellar') {
+  } else if (networkName === 'ripple' || networkName === 'stellar') {
     options.seed = seed;
     options.txsPerPage = 20;
     convert.setDecimals(0);
   }
-
   wallet = new Wallet[networkName](options);
   wallet.denomination = token ? denomination(token) : denomination(networkName);
 }
 
 function isValidWalletToken(token) {
   var walletTokens = db.get('walletTokens') || [];
-  var isFound = _.find(walletTokens, function(item) {
+  var isFound = _.find(walletTokens, function (item) {
     return _.isEqual(token, item);
   });
   return !!isFound;
@@ -267,10 +272,10 @@ function getDynamicFees() {
     params: {
       network: wallet.networkName
     },
-  }).then(function(data) {
+  }).then(function (data) {
     cache.put('fees', data, 10 * 60 * 1000)
     return data;
-  }).catch(function() {
+  }).catch(function () {
     return {};
   });
 }
