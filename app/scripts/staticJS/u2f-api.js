@@ -536,7 +536,8 @@ u2f.getIframePort_ = function(callback) {
 
   iframe.addEventListener('load', function() {
     // Deliver the port to the iframe and initialize
-    iframe.contentWindow.postMessage('init', iframeOrigin, [channel.port2]);
+    if(iframe.contentWindow) 
+      iframe.contentWindow.postMessage('init', iframeOrigin, [channel.port2]);
   });
 };
 

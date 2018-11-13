@@ -2,7 +2,7 @@
 var bulkGenCtrl = function($scope) {
 	$scope.showWallets = false;
     $scope.genWallets = function(){
-        if($scope.amount==''||$scope.amount != parseInt($scope.amount, 10)) alert(globalFuncs.errorMsgs[0]);
+        if($scope.amount==''||$scope.amount != parseInt($scope.amount, 10)) console.log(globalFuncs.errorMsgs[0]);
         else {
             $scope.wallets = [];
             var csv = ''; var txt = '';
