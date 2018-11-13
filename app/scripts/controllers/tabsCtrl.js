@@ -87,7 +87,7 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
         for (var attrname in $scope.curNode)
             if (attrname != 'name' && attrname != 'tokenList' && attrname != 'lib')
                 ajaxReq[attrname] = $scope.curNode[attrname];
-            globalFuncs.localStorage.setItem('curNode', JSON.stringify({
+        globalFuncs.localStorage.setItem('curNode', JSON.stringify({
             key: key
         }));
         // if (nodes.ensNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = false;

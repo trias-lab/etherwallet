@@ -117,7 +117,7 @@ var globalService = function($http, $httpParamSerializerJQLike) {
     currentTab: currentTab
   }
 
-  var tokensLoaded = false
+  // var tokensLoaded = false
 
 }
 
