@@ -23,11 +23,11 @@ tri.prototype.refreshRates = function (callback) {
     });
 }
 tri.prototype.openOrder = function (orderInfo, callback) {
-    var _this = this;
+    // var _this = this;
     tri.post('/api/swap/order/', orderInfo, callback);
 }
 tri.prototype.getStatus = function (orderInfo, callback) {
-    var _this = this;
+    // var _this = this;
     tri.post('/api/swap/status/', orderInfo, callback);
 }
 tri.postConfig = {

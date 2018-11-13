@@ -50,7 +50,7 @@ LedgerEth.prototype.getAddress = function(path, callback, boolDisplay, boolChain
 	splitPath.forEach(function (element, index) {
 		buffer.writeUInt32BE(element, 6 + 4 * index);
 	});
-	var self = this;
+	// var self = this;
 	var localCallback = function(response, error) {
 		if (typeof error != "undefined") {
 			callback(undefined, error);
@@ -164,7 +164,7 @@ LedgerEth.prototype.signPersonalMessage_async = function(path, messageHex, callb
   var offset = 0;
   var message = new Buffer(messageHex, 'hex');
   var apdus = [];
-  var response = [];
+  // var response = [];
   var self = this;
   while (offset != message.length) {
     var maxChunkSize = (offset == 0 ? (150 - 1 - splitPath.length * 4 - 4) : 150)
@@ -189,7 +189,7 @@ LedgerEth.prototype.signPersonalMessage_async = function(path, messageHex, callb
     apdus.push(buffer.toString('hex'));
     offset += chunkSize;
   }
-  var self = this;
+  // var self = this;
   var localCallback = function(response, error) {
     if (typeof error != "undefined") {
       callback(undefined, error);

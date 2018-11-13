@@ -25,11 +25,9 @@ bity.prototype.refreshRates = function (callback) {
     });
 }
 bity.prototype.openOrder = function (orderInfo, callback) {
-    var _this = this;
     bity.post('/api/swap/order/', orderInfo, callback);
 }
 bity.prototype.getStatus = function (orderInfo, callback) {
-    var _this = this;
     bity.post('/api/swap/status/', orderInfo, callback);
 }
 bity.prototype.requireLogin = function (callback) {

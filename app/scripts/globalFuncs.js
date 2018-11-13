@@ -16,10 +16,10 @@ globalFuncs.printPaperWallets = function(strJson) {
     win.document.write("<script>generateWallets();</script>");
 };
 globalFuncs.getBlob = function(mime, str) {
-    var str = (typeof str === 'object') ? JSON.stringify(str) : str;
-    if (str == null) return '';
+    var _str = (typeof str === 'object') ? JSON.stringify(str) : str;
+    if (_str == null) return '';
     // Blob对象可以看做是存放二进制数据的容器，此外还可以通过Blob设置二进制数据的MIME类型。
-    var blob = new Blob([str], {
+    var blob = new Blob([_str], {
         type: mime
     });
     // URL.createObjectURL() 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的URL。
@@ -313,14 +313,14 @@ globalFuncs.saveTokenToLocal = function(localToken, callback) {
         var storedTokens = globalFuncs.localStorage.getItem("localTokens", null) != null ? JSON.parse(globalFuncs.localStorage.getItem("localTokens")) : [];
 
         // catch if TOKEN SYMBOL is already in storedTokens
-        for (var i = 0; i < storedTokens.length; i++){
+        for (let i = 0; i < storedTokens.length; i++){
             if (storedTokens[i].symbol.toLowerCase().replace(/ /g, '') === localToken.symbol.toLowerCase().replace(/ /g, '')) {
               throw Error('Unable to add a custom token with the same symbol as an existing custom token. Try clicking the "Load Tokens" button, or choosing a different token symbol')
             }
         }
 
         // catch if CONTRACT ADDRESS is already in storedTokens
-        for (var i = 0; i < storedTokens.length; i++){
+        for (let i = 0; i < storedTokens.length; i++){
             if (storedTokens[i].contractAddress.toLowerCase().replace(/ /g, '') === localToken.contractAdd.toLowerCase().replace(/ /g, '')) {
               throw Error('Unable to add custom token. It has the same address as custom token ' + storedTokens[i].symbol + '. Try clicking the "Load Tokens" button to see it. :)')
             }
@@ -366,7 +366,7 @@ globalFuncs.removeTokenFromLocal = function(symbol, tokenObj) {
     globalFuncs.localStorage.setItem("localTokens", JSON.stringify(storedTokens));
     if (!tokenObj) return;
     // remove from tokenObj so it removes from display
-    for (var i = 0; i < tokenObj.length; i++)
+    for (let i = 0; i < tokenObj.length; i++)
         if (tokenObj[i].symbol === symbol) {
             tokenObj.splice(i, 1);
             break;

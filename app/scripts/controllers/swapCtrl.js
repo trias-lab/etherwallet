@@ -732,7 +732,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
         } else {
           $scope.sendDecimals = 6;
 
-          let fromDecimalsToUse = $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals < bity.decimals ? $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals : bity.decimals;
+          // let fromDecimalsToUse = $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals < bity.decimals ? $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals : bity.decimals;
           let _fromVal = $scope.swapOrder.toVal / finalRate;
           $scope.swapOrder.fromVal = parseFloat((_fromVal).toFixed(bity.decimals));
         }
@@ -1181,8 +1181,8 @@ var swapCtrl = function ($scope, $sce, walletService) {
       switch ($scope.kyberOrderResult.progress.status) {
         case "APPROVE_TOKENS":
           // Generate the content to populate the modal that prompts of user for approval
-          $scope.parseKyberSignedTx($scope.kyberTransaction.tokenTx.signedTx);
-          $scope.kyberModal.open();
+          // $scope.parseKyberSignedTx($scope.kyberTransaction.tokenTx.signedTx);
+          // $scope.kyberModal.open();
         case "RESET_TOKEN_APPROVAL":
           // Generate the content to populate the modal that prompts of user for approval
           $scope.parseKyberSignedTx($scope.kyberTransaction.tokenTx.signedTx);
@@ -1471,9 +1471,9 @@ var swapCtrl = function ($scope, $sce, walletService) {
     return parsedKyberTx;
   };
 
-  var applyScope = function () {
-    if (!$scope.$$phase) $scope.$apply();
-  };
+  // var applyScope = function () {
+  //   if (!$scope.$$phase) $scope.$apply();
+  // };
 
   $scope.$watch(function () {
     if (walletService.wallet == null) return null;

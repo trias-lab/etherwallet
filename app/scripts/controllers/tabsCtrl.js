@@ -47,7 +47,7 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
             step: 1
         }
 
-        var curNode = globalFuncs.localStorage.getItem('curNode', null);
+        // var curNode = globalFuncs.localStorage.getItem('curNode', null);
 
         ethFuncs.gasAdjustment = $scope.gas.value;
         $scope.gasPriceMsg = ethFuncs.gasAdjustment < 41 ? true : false
@@ -83,8 +83,8 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
         $scope.dropdownNode = false;
         Token.popTokens = $scope.curNode.tokenList;
         ajaxReq['key'] = key;
-        for (var attrname in $scope.curNode.lib) ajaxReq[attrname] = $scope.curNode.lib[attrname];
-        for (var attrname in $scope.curNode)
+        for (let attrname in $scope.curNode.lib) ajaxReq[attrname] = $scope.curNode.lib[attrname];
+        for (let attrname in $scope.curNode)
             if (attrname != 'name' && attrname != 'tokenList' && attrname != 'lib')
                 ajaxReq[attrname] = $scope.curNode[attrname];
         globalFuncs.localStorage.setItem('curNode', JSON.stringify({
@@ -232,9 +232,9 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     }
 
     $scope.setErrorMsgLanguage = function() {
-        for (var i = 0; i < globalFuncs.errorMsgs.length; i++) $scope.setLanguageVal('ERROR_' + i, 'errorMsgs', i);
-        for (var i = 0; i < globalFuncs.successMsgs.length; i++) $scope.setLanguageVal('SUCCESS_' + (i + 1), 'successMsgs', i);
-        for (var i = 0; i < globalFuncs.phishingWarning.length; i++) $scope.setLanguageVal('PHISHING_Warning_' + (i + 1), 'phishingWarning', i);
+        for (let i = 0; i < globalFuncs.errorMsgs.length; i++) $scope.setLanguageVal('ERROR_' + i, 'errorMsgs', i);
+        for (let i = 0; i < globalFuncs.successMsgs.length; i++) $scope.setLanguageVal('SUCCESS_' + (i + 1), 'successMsgs', i);
+        for (let i = 0; i < globalFuncs.phishingWarning.length; i++) $scope.setLanguageVal('PHISHING_Warning_' + (i + 1), 'phishingWarning', i);
     }
 
     $scope.setGethErrMsgLanguage = function() {

@@ -62,11 +62,11 @@ var offlineTxCtrl = function($scope, $sce, walletService) {
 
     $scope.setTokens = function() {
         $scope.tokenObjs = [];
-        for (var i = 0; i < $scope.tokens.length; i++) {
+        for (let i = 0; i < $scope.tokens.length; i++) {
             $scope.tokenObjs.push(new Token($scope.tokens[i].address, '', $scope.tokens[i].symbol, $scope.tokens[i].decimal, $scope.tokens[i].type));
         }
         var storedTokens = globalFuncs.localStorage.getItem("localTokens", null) != null ? JSON.parse(globalFuncs.localStorage.getItem("localTokens")) : [];
-        for (var i = 0; i < storedTokens.length; i++) {
+        for (let i = 0; i < storedTokens.length; i++) {
             $scope.tokenObjs.push(new Token(storedTokens[i].contractAddress, '', globalFuncs.stripTags(storedTokens[i].symbol), storedTokens[i].decimal, storedTokens[i].type));
         }
     }

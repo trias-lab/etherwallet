@@ -5,10 +5,10 @@
   var randseed = new Array(4); // Xorshift: [x, y, z, w] 32 bit values
 
   function seedrand(seed) {
-    for (var i = 0; i < randseed.length; i++) {
+    for (let i = 0; i < randseed.length; i++) {
       randseed[i] = 0;
     }
-    for (var i = 0; i < seed.length; i++) {
+    for (let i = 0; i < seed.length; i++) {
       randseed[i%4] = ((randseed[i%4] << 5) - randseed[i%4]) + seed.charCodeAt(i);
     }
   }

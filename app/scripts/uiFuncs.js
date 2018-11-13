@@ -338,7 +338,7 @@ uiFuncs.notifier = {
         var id = Date.now();
         alert = this.buildAlert(id, type, msg);
         this.alerts[id] = alert
-        var that = this;
+        // var that = this;
         if (duration > 0) { // Support permanent messages
             setTimeout(alert.close, duration);
         }

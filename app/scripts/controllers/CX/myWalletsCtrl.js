@@ -60,7 +60,7 @@ var myWalletsCtrl = function($scope, $sce, $timeout, walletService) {
 
 	function scrollContent () {
 		$scope.loadingTokens = true;
-		const loadTokens = $timeout(function(){
+		$timeout(function(){
 			$scope.nextPage($scope.qtyPerPage);
 		}, 500);
 		$scope.loadTokens = false;
