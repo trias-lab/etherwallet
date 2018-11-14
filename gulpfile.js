@@ -26,6 +26,7 @@ const app          = './app/';
 const dist         = './dist/';
 const dist_CX      = './chrome-extension/';
 
+const Server       = require('karma').Server;
 
 // Error / Success Handling
 let onError = function(err) {
@@ -417,3 +418,10 @@ gulp.task('build', ['js', 'html', 'styles', 'copy']);
 gulp.task('build-debug', ['js-debug', 'html', 'styles', 'watchJSDebug', 'watchLess', 'watchPAGES', 'watchTPL', 'watchCX'])
 
 gulp.task('default', ['build', 'watch']);
+
+gulp.task('test', function(done){
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        // singleRun: true
+    },done).start();
+})
