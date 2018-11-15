@@ -48,6 +48,7 @@ function shift(options) {
     data: data
   };
   if (shapeShiftToken) {
+    requestData.headers = {Authorization: 'Bearer '+ shapeShiftToken}
     return request(requestData).then(function(data) {
       if (data.error) throw new Error(data.error);
       return {
