@@ -1,8 +1,10 @@
 'use strict';
 
 var request = require('lib/request');
-var urlRoot = 'http://192.168.1.176:8002';
+var urlRoot = 'https://shapeshift.io';
 var prioritySymbols = ['BTC', 'BCH', 'ETH', 'LTC', 'XRP', 'XLM'];
+var localServerRoot = window.urlRoot;
+var shapeShiftToken = '';
 
 function getCoins() {
   return request({
@@ -35,25 +37,43 @@ function validateAddress(address, symbol) {
 function shift(options) {
   var data = {
     withdrawal: options.toAddress,
-    pair: (options.fromSymbol + '_' + options.toSymbol).toLowerCase(),
-    apiKey: process.env.SHAPESHIFT_API_KEY
+    pair: (options.fromSymbol + '_' + options.toSymbol).toLowerCase()
   };
   if (options.returnAddress) {
     data.returnAddress = options.returnAddress;
   }
-  return request({
+  var requestData = {
     url: urlRoot + '/shift',
     method: 'post',
     data: data
-  }).then(function(data) {
-    if (data.error) throw new Error(data.error);
-    return {
-      depositAddress: data.deposit,
-      depositSymbol: data.depositType,
-      toAddress: data.withdrawal,
-      toSymbol: data.withdrawalType
-    };
-  });
+  };
+  if (shapeShiftToken) {
+    return request(requestData).then(function(data) {
+      if (data.error) throw new Error(data.error);
+      return {
+        depositAddress: data.deposit,
+        depositSymbol: data.depositType,
+        toAddress: data.withdrawal,
+        toSymbol: data.withdrawalType
+      };
+    });
+  } else {
+    return request({
+      url: localServerRoot + '/shapeShift/getToken'
+    }).then(function(token) {
+      shapeShiftToken = token.token;
+      requestData.headers = {Authorization: 'Bearer '+ shapeShiftToken}
+      return request(requestData).then(function(data) {
+        if (data.error) throw new Error(data.error);
+        return {
+          depositAddress: data.deposit,
+          depositSymbol: data.depositType,
+          toAddress: data.withdrawal,
+          toSymbol: data.withdrawalType
+        };
+      });
+    });
+  }
 }
 
 function txStat(depositAddress) {

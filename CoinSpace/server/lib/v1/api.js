@@ -11,6 +11,7 @@ var fee = require('./fee');
 var ticker = require('./ticker');
 var ethereumTokens = require('./ethereumTokens');
 var iap = require('./iap');
+var shapeShift = require('./shapeShift');
 
 var router = express.Router();
 
@@ -165,6 +166,14 @@ router.put('/location', restrict, function(req, res) {
 router.delete('/location', restrict, function(req, res) {
   geo.remove(req.body.id).catch(console.error);
   res.status(200).send();
+});
+
+router.get('/shapeShift/getToken', function(req, res) {
+  shapeShift.getToken(req.query.id).then(function(token) {
+    res.status(200).json(token);
+  }).catch(function(err) {
+    res.status(400).send(err);
+  });
 });
 
 router.use(function(err, req, res, next) {
