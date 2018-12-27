@@ -20,7 +20,7 @@ npm install
 
 3 修改配置文件
 .env.example .env.loc
-要在根目录下新建一个文件.env.loc
+要在conf目录下新建一个文件.env.loc
 修改为如下内容：
 DB_CONNECT=mongodb://localhost:27017
 DB_NAME=coinSpace
