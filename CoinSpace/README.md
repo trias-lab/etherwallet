@@ -14,6 +14,9 @@ sudo apt-get install mongodb
 安装完应该自动启动。如果需要手动启动，输入
 sudo service mongodb start
 
+若上一步mongo启动不起来，需要手动输入
+ /usr/bin/mongod 
+
 2 安装依赖
 cd CoinSpace/
 npm install
