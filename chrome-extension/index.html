@@ -484,9 +484,10 @@
         This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.
       </p>
       <div class="input-label">
-        Set wallet password
+        Set wallet password (at least 9 characters)
       </div>
-      <input name="password"
+      <div class="input-group" style="max-width: inherit;">
+        <input name="password"
            class="form-control"
            type="{{showPass && 'password' || 'text'}}"
            placeholder="{{'GEN_Placeholder_1' | translate }}"
@@ -494,12 +495,13 @@
            ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
            aria-label="{{'GEN_Label_1' | translate}}"
            />
-<!--         <span tabindex="0"
+        <span tabindex="0"
             aria-label="make password visible"
             role="button"
             class="input-group-addon eye"
-            ng-click="showPass=!showPass"> -->
-      </span>
+            ng-click="showPass=!showPass">
+        </span>
+      </div>      
       <a tabindex="0"
          role="button"
          class="btn btn-primary"
