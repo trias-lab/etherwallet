@@ -55,6 +55,36 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     setGasValues();
     $scope.gasChanged();
 
+    function findParentByClass(ele,name){ 
+        if(ele.className.indexOf(name) !== -1){return true} 
+            for (var i=0,n=ele; n=n.parentNode; i++){ 
+                if(n.className.indexOf(name) !== -1){return true} 
+                if(n==document.body){return false}
+            } 
+    }
+    document.body.addEventListener('click', function(e){
+        if($scope.dropdownNode && !findParentByClass(e.target, 'dropdown-node')) {
+            $scope.dropdownNode = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownGasPrice && !findParentByClass(e.target, 'dropdown-gas')) {
+            $scope.dropdownGasPrice = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownNode && !findParentByClass(e.target, 'dropdown-node')) {
+            $scope.dropdownNode = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownWallet && !findParentByClass(e.target, 'dropdown-wallet')) {
+            $scope.dropdownWallet = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownLang && !findParentByClass(e.target, 'dropdown-lang')) {
+            $scope.dropdownLang = false;
+            $scope.$apply();
+        }
+    })
+
     function makeNewNode(key) {
       var curNode;
       if ($scope.nodeList[key]) {
@@ -266,7 +296,7 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
             $scope.setParityErrMsgLanguage();
         $scope.curLang = value;
         $scope.setArrowVisibility();
-        $scope.dropdown = false;
+        $scope.dropdownLang = false;
         globalFuncs.localStorage.setItem('language', JSON.stringify({
             key: key,
             value: value
