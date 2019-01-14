@@ -16,6 +16,24 @@ var swapCtrl = function ($scope, $sce, walletService) {
   $scope.toExclude = [];
   $scope.fromExclude = [];
 
+  function findParentByClass(ele,name){ 
+    if(ele.className.indexOf(name) !== -1){return true} 
+        for (var i=0,n=ele; n=n.parentNode; i++){ 
+            if(n.className.indexOf(name) !== -1){return true} 
+            if(n==document.body){return false}
+        } 
+  }
+  document.body.addEventListener('click', function(e){
+    if($scope.dropdownFrom && !findParentByClass(e.target, 'dropdown-from')) {
+        $scope.dropdownFrom = false;
+        $scope.$apply();
+    }
+    if($scope.dropdownTo && !findParentByClass(e.target, 'dropdown-to')) {
+        $scope.dropdownTo = false;
+        $scope.$apply();
+    }
+  })
+
   // Geyt current node key
   var getCurNodeKey = function(){
     return JSON.parse(globalFuncs.localStorage.getItem('curNode', null)).key;

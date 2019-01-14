@@ -70,8 +70,8 @@
           <input id="original" class="form-control swap-panel-input" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(true)"
             ng-model="swapOrder.fromVal" ng-click="resetErrorShownStates()" ng-class="Validator.isPositiveNumber(swapOrder.fromVal)  && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'"
           />
-          <div class="dropdown" ng-click="dropdownFrom = !dropdownFrom">
-              {{swapOrder.fromCoin}}<i class="caret"></i>
+          <div class="dropdown dropdown-from">
+              <a class="dropdown-toggle" ng-click="dropdownFrom = !dropdownFrom">{{swapOrder.fromCoin}}<i class="caret"></i></a>
               <ul class="dropdown-menu dropdown-menu-right" ng-show="dropdownFrom">
                 <li ng-repeat="coin in availableFromOptions track by $index" ng-show="showInFromList(coin)">
                   <a ng-class="{true:'active'}[coin == swapOrder.fromCoin]" ng-click="setOrderCoin(true, coin)"> {{coin}} </a>
@@ -99,8 +99,8 @@
             ng-model="swapOrder.toVal" ng-click="resetErrorShownStates()" ng-class="Validator.isPositiveNumber(swapOrder.toVal) && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'"
           />
 
-          <div class="dropdown"  ng-click="dropdownTo = !dropdownTo">
-              {{swapOrder.toCoin}}<i class="caret"></i>
+          <div class="dropdown dropdown-to">
+              <a class="dropdown-toggle" ng-click="dropdownTo = !dropdownTo">{{swapOrder.toCoin}}<i class="caret"></i></a>
               <ul class="dropdown-menu dropdown-menu-right" ng-show="dropdownTo">
                 <li ng-repeat="coin in availableToOptions track by $index" ng-show="showInToList(coin)">
                   <a ng-class="{true:'active'}[coin == swapOrder.toCoin]" ng-click="setOrderCoin(false, coin)"> {{coin}} </a>
