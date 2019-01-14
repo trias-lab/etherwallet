@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 const common = require('./webpack.common.js');
 
 const dotEnv = new Dotenv({
-  path: '.env.loc',
+  path: './conf/.env.loc',
   safe: true
 });
 
