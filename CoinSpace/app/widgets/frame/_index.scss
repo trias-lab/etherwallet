@@ -190,6 +190,7 @@
     color:rgba(20,42,63,1);
     height:100px;
     line-height: 100px;
+    position: relative;
     i{
       width:16px;
       height:24px;
@@ -205,6 +206,13 @@
     }
   }
   
+}
+
+.select-language{
+  right: 0;
+  position: absolute;
+  top: -53px;
+  z-index: 999;
 }
 
 @media only screen and(max-width:768px){
@@ -225,6 +233,7 @@
     height:82px;
     line-height:82px;
     width:90%;
+    position: relative;
   }
   .btc-content{
     width:90%;

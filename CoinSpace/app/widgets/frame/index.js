@@ -13,11 +13,16 @@ var initHistory = require('pages/history')
 var initTokens = require('pages/tokens')
 var Hammer = require('hammerjs')
 var ads = require('lib/ads')
-
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function(el){
   var ractive = new Ractive({
     el: el,
-    template: require('./index.ract')
+    template: require('./index.ract'),
+    data:{
+      languageName:language.getLanguage(),
+      translate:translate,
+    }
   })
 
   // widgets
@@ -102,6 +107,35 @@ module.exports = function(el){
 
     header.toggleIcon(open)
   })
+
+  ractive.on('language-change',function(){
+    $('.select-language .pick-wallet-list').toggle();
+  })
+  ractive.on('language-select',function(context){
+    var languageName = context.node.textContent
+    $('.select-language .pick-wallet-list').hide();
+    if(languageName =="中文" || languageName == "Chinese"){
+
+        var translation = require('lib/i18n/translations/zh-cn.json')
+
+        changeLocales('zh-cn',translation)
+        
+
+    }else{
+
+      var translation = require('lib/i18n/translations/en.json')
+
+      changeLocales('en',translation)
+    }
+  })
+
+  function changeLocales (languageName,translation){
+      translate.registerTranslations(languageName, translation)
+
+      translate.setLocale(languageName)
+      ractive.set('languageName', languageName);
+    return ractive.set('translate', function(translation){ return translate(translation)})
+  }
 
   return ractive
 }
