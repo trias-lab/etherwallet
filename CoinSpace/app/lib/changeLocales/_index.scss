@@ -1,0 +1,252 @@
+
+.frame {
+  display: block;
+  width: 100%;
+  // min-height: 100%;
+  // overflow: hidden;
+  // position: relative;
+}
+
+#main {
+  @include clear;
+  // position: relative;
+  background-color: $background;
+  // flex: 1; // take up full width
+  min-width: 0;
+
+  // transition: transform .3s, opacity 0.3s, margin 0s;
+  // transform: translateX(0);
+  // box-shadow: -5px 0px 15px 0px rgba(25,25,25,0.3);
+  // -webkit-transition-delay: 0s, 0s, 0s;
+  //    -moz-transition-delay: 0s, 0s, 0s;
+  //     -ms-transition-delay: 0s, 0s, 0s;
+  //      -o-transition-delay: 0s, 0s, 0s;
+  //         transition-delay: 0s, 0s, 0s;
+
+  &.closed {
+    // position: fixed;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // transform: translateX(273px);
+    overflow: hidden;
+  }
+
+  &.terms-open {transform: translateX(0); opacity: 0; margin-left: 10000px;
+    -webkit-transition-delay: 0s, 0s, 0.3s;
+       -moz-transition-delay: 0s, 0s, 0.3s;
+        -ms-transition-delay: 0s, 0s, 0.3s;
+         -o-transition-delay: 0s, 0s, 0.3s;
+            transition-delay: 0s, 0s, 0.3s;
+  }
+
+  .content {
+
+    display: none;
+    // padding: 20px;
+    width: 740px;
+    margin:auto;
+    &.current {
+      display: block;
+    }
+    @include breakpoint(portrait) {
+      // padding: 40px;
+    }
+  }
+
+  @include breakpoint(portrait) {
+    &.closed {
+      transform: translateX(320px);
+    }
+  }
+}
+
+.main__iphone_x {
+  @include iphone-x-top;
+  background-color: darken($brand-green, 30%);
+}
+.litecoin {
+  .main__iphone_x {
+    background-color: darken($silver, 30%);
+  }
+}
+.ethereum {
+  .main__iphone_x {
+    background-color: darken($ethereal, 30%);
+  }
+}
+.ripple {
+  .main__iphone_x {
+    background-color: darken($ripple, 30%);
+  }
+}
+.stellar {
+  .main__iphone_x {
+    background-color: darken($stellar, 30%);
+  }
+}
+.bitcoincash {
+  .main__iphone_x {
+    background-color: darken($bitcoincash, 30%);
+  }
+}
+
+#sidebar {
+  // display: none;
+  // flex-direction: column;
+  // min-height: 100%;
+  width: 316px;
+
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // overflow: hidden;
+
+  color: #333;
+  background-color: white;
+
+
+  // transform: translateX(-100%);
+  // transition: transform .3s ease;
+
+  &.animating {
+    position: fixed;
+    bottom: auto;
+  }
+
+  &.open {
+    // transform: translateX(0);
+    // position: relative;
+    display: block;
+  }
+
+  @include breakpoint(portrait) {
+    width: 320px;
+  }
+}
+
+#terms {
+  @include clear;
+  // position: relative;
+  background-color: #f2f2f2;
+  // flex: 1; // take up full width
+  // min-width: 0;
+  // transition: transform .3s, opacity 0.3s, margin 0s;
+  // transform: translateX(0);
+  // box-shadow: -5px 0px 15px 0px rgba(25,25,25,0.3);
+  // margin-top: -10000px;
+  // opacity: 0;
+  &.closed {
+    // position: fixed;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // transform: translateX(273px);
+    // overflow: hidden;
+  }
+// 
+  &.terms-open {margin-top: 0; opacity: 1;}
+
+  @include breakpoint(portrait) {
+    &.closed {
+      transform: translateX(320px);
+    }
+  }
+}
+
+
+
+.btc-content{
+  width:1080px;
+  margin:73px auto;
+  .left-info,.right-from{
+    float: left;
+    min-height: 600px;
+    .content{
+      background:rgba(255,255,255,1);
+      border-radius:4px;
+      border:1px solid rgba(203,208,211,1)
+    }
+  }
+  .left-info{
+    width:316px;
+    margin-right: 24px;
+  }
+}
+.header-top{
+  width:100%;
+  background: url(./assets/img/bg_top.jpg) no-repeat;
+  background-size: cover;
+  
+  .Wallet-nav{
+    width:1080px;
+    margin:0 auto;
+    font-size:30px;
+    font-family:MoskLight300;
+    color:rgba(20,42,63,1);
+    height:100px;
+    line-height: 100px;
+    position: relative;
+    i{
+      width:16px;
+      height:24px;
+      font-size:16px;
+      color:rgba(92,184,92,1);
+      line-height:24px;
+      margin-left:10px;
+    }
+    span{
+      font-size:16px;
+      font-family:MoskLight300;
+      color:rgba(20,42,63,1);
+    }
+  }
+  
+}
+
+.select-language{
+  right: 0;
+  position: absolute;
+  top: -53px;
+  z-index: 999;
+}
+
+@media only screen and(max-width:768px){
+  .frame-showWallet{
+    margin-left:316px;
+  }
+  .left-info{
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    display: none; 
+    top: 76px;
+  }
+  .left-info-showWallet{
+    display: block
+  }
+  .header-top .Wallet-nav{
+    height:82px;
+    line-height:82px;
+    width:90%;
+    position: relative;
+  }
+  .btc-content{
+    width:90%;
+    margin:48px auto;
+    overflow: hidden;
+  }
+  .transactions__item{
+    padding:  10px 0 !important;
+  }
+  .right-from{
+    width: 100%;
+  }
+
+}
+
+

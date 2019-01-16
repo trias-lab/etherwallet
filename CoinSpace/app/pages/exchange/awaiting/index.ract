@@ -6,5 +6,10 @@
     {{>svg_refresh}}
   </span>
 
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>
 {{>footer}}

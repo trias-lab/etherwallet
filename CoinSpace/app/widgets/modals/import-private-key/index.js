@@ -9,6 +9,10 @@ var showInfo = require('widgets/modals/flash').showInfo;
 var getWallet = require('lib/wallet').getWallet;
 var getDynamicFees = require('lib/wallet').getDynamicFees;
 var toUnitString = require('lib/convert').toUnitString;
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
+
 
 var ractive;
 
@@ -18,9 +22,16 @@ function open() {
     partials: {
       content: require('./_content.ract')
     },
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
       isLoading: false,
       qrScannerAvailable: qrcode.isScanAvailable,
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     }
   });
 

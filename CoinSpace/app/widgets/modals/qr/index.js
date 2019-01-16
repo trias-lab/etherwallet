@@ -1,15 +1,26 @@
 'use strict';
 
 var Ractive = require('widgets/modals/base-qr')
-var translate = require('lib/i18n').translate
 var qrcode = require('lib/qrcode')
 var getTokenNetwork = require('lib/token').getTokenNetwork;
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function showTooltip(data){
   data.mailto = mailto
-  data.title = data.title || translate('Your wallet address')
+  data.title = data.title || 'Your wallet address'
+
+
+  // // add translate user change 
+  data.languageName = language.getLanguage()
+  data.translate = translate
+  data.translation = {}
+  
   var ractive = new Ractive({
     el: document.getElementById('receive'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     partials: {
       content: require('./content.ract'),
     },

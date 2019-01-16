@@ -1,0 +1,12 @@
+<!--  add translate user change  -->
+<div class="select-language toggle-wallet" style="display:none">
+    <p class="current-wallet-name" on-click="language-change">
+        {{translate(languageName)}}
+
+        <i class="fa fa-caret-down"></i>
+    </p>
+    <div class="pick-wallet-list">
+        <p><a on-click="language-select">{{translate('en')}}</a></p>
+        <p><a on-click="language-select">{{translate('zh-cn')}}</a></p>
+    </div>
+</div>

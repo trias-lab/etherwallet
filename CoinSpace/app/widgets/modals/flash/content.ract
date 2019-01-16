@@ -20,4 +20,9 @@
       <p class="flash__link"><a href="{{href}}" target="_blank">{{translate(linkText)}}</a></p>
     {{/href}}
   </div>
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>

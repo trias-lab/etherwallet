@@ -2,6 +2,10 @@
 
 var Ractive = require('widgets/modals/base')
 
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
+
 var defaults = {
   error: {
     error: true,
@@ -27,10 +31,18 @@ function openModal(type, data) {
     isOpen = false;
   }
 
+   // // add translate user change 
+   data.languageName = language.getLanguage()
+   data.translate = translate
+   data.translation = {}
+
   var ractive = new Ractive({
     el: document.getElementById('flash-modal'),
     partials: {
       content: require('./content.ract')
+    },
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
     },
     data: data
   })

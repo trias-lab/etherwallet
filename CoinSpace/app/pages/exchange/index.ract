@@ -10,4 +10,9 @@
   <div id="exchange_complete" class="step"></div>
   <div id="exchange_error" class="step"></div>
 
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>

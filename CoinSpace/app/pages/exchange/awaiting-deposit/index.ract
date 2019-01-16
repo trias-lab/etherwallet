@@ -59,6 +59,12 @@
   <div class="_back fr" on-click="cancel">
     Cancel Swap
   </div>
+
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>
 
 

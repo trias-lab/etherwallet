@@ -16,7 +16,9 @@ var getDestinationInfo = require('lib/wallet').getDestinationInfo;
 var resolveTo = require('lib/openalias/xhr.js').resolveTo;
 var qrcode = require('lib/qrcode');
 var bchaddr = require('bchaddrjs');
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function(el){
   var selectedFiat = '';
   var defaultFiat = 'USD';
@@ -24,6 +26,9 @@ module.exports = function(el){
   var ractive = new Ractive({
     el: el,
     template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
       currencies: [],
       selectedFiat: defaultFiat,
@@ -36,7 +41,11 @@ module.exports = function(el){
       gasLimit: '',
       destinationTag: '',
       invoiceId: '',
-      memo: ''
+      memo: '',
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     }
   })
 

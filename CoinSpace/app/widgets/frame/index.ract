@@ -19,6 +19,7 @@
                     <p><a on-click="language-select">{{translate('zh-cn')}}</a></p>
                 </div>
             </div>
+
         </div>
 
 

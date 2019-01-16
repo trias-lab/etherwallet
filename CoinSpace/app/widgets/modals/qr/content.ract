@@ -25,7 +25,7 @@
       </span> -->
       
       <div class="detail__strings">
-        <h3 class="_title">{{title}}:</h3>
+        <h3 class="_title">{{translate(title)}}:</h3>
         <p class="_value">{{address}}</p>
         <!-- <div class="_actions">
         <a class="_btn" href="{{mailto()}}">
@@ -39,4 +39,9 @@
         <div id="qr-canvas"></div>
       </div>
       
+      <ChangeLocales 
+        languageName = "{{languageName}}"
+        translate = "{{translate}}"
+        translation = "{{translation}}"
+      />
 </div>

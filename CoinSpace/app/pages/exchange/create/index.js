@@ -12,11 +12,17 @@ var showTooltip = require('widgets/modals/tooltip');
 var showError = require('widgets/modals/flash').showError;
 var _ = require('lodash');
 var db = require('lib/db');
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 
 module.exports = function(el) {
   var ractive = new Ractive({
     el: el,
     template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
       isLoading: true,
       isLoadingRate: true,
@@ -30,7 +36,11 @@ module.exports = function(el) {
       coins: [],
       isGeoEnabled: function(symbol) {
         return Object.keys(geo.networks).indexOf(symbol) !== -1;
-      }
+      },
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     },
     partials: {
       loader: require('../loader.ract'),

@@ -121,5 +121,12 @@
         </span>
       </div>
     {{/validating}}
+
+
+    <ChangeLocales 
+      languageName = "{{languageName}}"
+      translate = "{{translate}}"
+      translation = "{{translation}}"
+    />
   </div>
 

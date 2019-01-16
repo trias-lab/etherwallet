@@ -19,4 +19,9 @@
     <i class="fas fa-coins"></i>
     <span class="tab__text">{{translate("Tokens")}}</span>
   </a>
+ <ChangeLocales 
+  languageName = "{{languageName}}"
+  translate = "{{translate}}"
+  translation = "{{translation}}"
+/>
 </div>

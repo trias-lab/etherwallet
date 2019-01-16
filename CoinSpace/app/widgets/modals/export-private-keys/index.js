@@ -4,7 +4,9 @@ var Ractive = require('widgets/modals/base');
 var getWallet = require('lib/wallet').getWallet;
 var showInfo = require('widgets/modals/flash').showInfo;
 var isOpen = false;
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 function open() {
   if (isOpen) return;
   isOpen = true;
@@ -14,6 +16,9 @@ function open() {
     partials: {
       content: require('./content.ract')
     },
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
       isShown: false,
       privateKeys: '',
@@ -21,6 +26,10 @@ function open() {
       onDismiss: function() {
         isOpen = false;
       },
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     }
   });
 

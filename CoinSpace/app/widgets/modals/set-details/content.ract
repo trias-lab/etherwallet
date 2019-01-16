@@ -20,4 +20,10 @@
       <div class="_btn--loading">{{translate("Save")}}...</div>
     {{/submitting}}
   </div>
+
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>

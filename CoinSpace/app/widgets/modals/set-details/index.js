@@ -5,7 +5,9 @@ var db = require('lib/db')
 var emitter = require('lib/emitter')
 var showError = require('widgets/modals/flash').showError
 var setUsername = require('lib/wallet').setUsername
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 function fetchDetails(callback){
   var userInfo = db.get('userInfo');
   var name = userInfo.firstName
@@ -22,8 +24,17 @@ function fetchDetails(callback){
 
 function openModal(data){
   var ractive = new Ractive({
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     partials: {
       content: require('./content.ract')
+    },
+    data:{
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     }
   })
 

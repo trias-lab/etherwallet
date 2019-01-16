@@ -22,5 +22,11 @@
   <div class="_back" on-click="done">
       End this seesion
     </div>
+
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>
 {{>footer}}

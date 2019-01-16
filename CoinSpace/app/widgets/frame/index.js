@@ -15,6 +15,7 @@ var Hammer = require('hammerjs')
 var ads = require('lib/ads')
 var language = require('lib/i18n')
 var translate = require('counterpart')
+
 module.exports = function(el){
   var ractive = new Ractive({
     el: el,
@@ -22,6 +23,10 @@ module.exports = function(el){
     data:{
       languageName:language.getLanguage(),
       translate:translate,
+      translation:{},
+    },
+    components :{
+      changeLocales : changeLocales
     }
   })
 
@@ -60,12 +65,14 @@ module.exports = function(el){
       if (currentPage === tabs.tokens) {
         emitter.emit('change-tab', 'history')
       } else if (currentPage === tabs.history) {
-        emitter.emit('change-tab', 'exchange')
+        emitter.emit('change-tab', 'exchange') 
       } else if (currentPage === tabs.exchange) {
         emitter.emit('change-tab', 'receive')
       } else if (currentPage === tabs.receive) {
         emitter.emit('change-tab', 'send')
       }
+
+
     })
   }
 
@@ -114,12 +121,18 @@ module.exports = function(el){
   ractive.on('language-select',function(context){
     var languageName = context.node.textContent
     $('.select-language .pick-wallet-list').hide();
+
+    emitter.emit('changeLocales',languageName)
+
+  })
+
+  emitter.on('changeLocales',function(languageName){
+
     if(languageName =="中文" || languageName == "Chinese"){
 
-        var translation = require('lib/i18n/translations/zh-cn.json')
+      var translation = require('lib/i18n/translations/zh-cn.json')
 
-        changeLocales('zh-cn',translation)
-        
+      changeLocales('zh-cn',translation)
 
     }else{
 
@@ -127,6 +140,7 @@ module.exports = function(el){
 
       changeLocales('en',translation)
     }
+  
   })
 
   function changeLocales (languageName,translation){

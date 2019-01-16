@@ -1,7 +1,9 @@
 'use strict';
 
 var Ractive = require('widgets/modals/base')
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function(data) {
   var content = null;
   if (data.isNetwork('ethereum')) {
@@ -14,9 +16,16 @@ module.exports = function(data) {
   } else {
     content = require('./contentBtcBchLtc.ract')
   }
+  // // add translate user change 
+  data.languageName = language.getLanguage()
+  data.translate = translate
+  data.translation = {}
 
   var ractive = new Ractive({
     el: document.getElementById('transaction-detail'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     partials: {
       content: content
     },

@@ -7,12 +7,23 @@ var importPrivateKey = require('widgets/modals/import-private-key');
 var exportPrivateKeys = require('widgets/modals/export-private-keys');
 var getWallet = require('lib/wallet').getWallet;
 
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
+
 module.exports = function(el) {
   var ractive = new Ractive({
     el: el,
     template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
-      isEnabledImportExport: true
+      isEnabledImportExport: true,
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     }
   });
 

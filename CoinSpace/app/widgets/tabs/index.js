@@ -2,11 +2,22 @@
 
 var Ractive = require('lib/ractive')
 var emitter = require('lib/emitter')
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function(el){
   var ractive = new Ractive({
     el: el,
-    template: require('./index.ract')
+    template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
+    data:{
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
+    }
   })
 
   var tabElements = {
@@ -47,6 +58,7 @@ module.exports = function(el){
     emitter.emit('change-tab', context.node.dataset.tab)
     highlightTab(context.node);
   })
+
 
   return ractive
 }

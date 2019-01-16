@@ -33,5 +33,9 @@
     <span class="settings__link" on-click="export-private-keys"> <i class="fa fa-external-link-alt"></i> &nbsp; {{translate("Export private keys")}}</span>
     {{/isEnabledImportExport}}
   </div>
-  
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>

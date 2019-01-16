@@ -11,12 +11,23 @@ var db = require('lib/db');
 var shapeshift = require('lib/shapeshift');
 var showError = require('widgets/modals/flash').showError;
 
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
+
 module.exports = function(el) {
   var ractive = new Ractive({
     el: el,
     template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
-      isLoading: true
+      isLoading: true,
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     },
     partials: {
       loader: require('./loader.ract')

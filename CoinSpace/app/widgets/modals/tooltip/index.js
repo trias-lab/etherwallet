@@ -1,6 +1,9 @@
 'use strict';
 
 var Ractive = require('widgets/modals/base')
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 
 module.exports = function showTooltip(data){
 
@@ -8,8 +11,16 @@ module.exports = function showTooltip(data){
     data.bottomLink = false
   }
 
+  // // add translate user change 
+  data.languageName = language.getLanguage()
+  data.translate = translate
+  data.translation = {}
+
   var ractive = new Ractive({
     el: document.getElementById('tooltip'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     partials: {
       content: require('./content.ract'),
     },

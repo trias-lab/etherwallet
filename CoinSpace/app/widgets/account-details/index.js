@@ -9,12 +9,17 @@ var Avatar = require('lib/avatar')
 var db = require('lib/db')
 var setUsername = require('lib/wallet').setUsername
 var showRemoveConfirmation = require('widgets/modals/confirm-remove-account')
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function init(el) {
 
   var ractive = new Ractive({
     el: el,
     template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
       start_open: true,
       user: {
@@ -23,7 +28,11 @@ module.exports = function init(el) {
       },
       editingName: false,
       editingEmail: false,
-      animating: false
+      animating: false,
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     }
   })
 

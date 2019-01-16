@@ -8,11 +8,16 @@ var db = require('lib/db');
 var shapeshift = require('lib/shapeshift');
 var showError = require('widgets/modals/flash').showError;
 var translate = require('lib/i18n').translate;
-
+// add translate user change 
+var language = require('lib/i18n')
+var translate = require('counterpart')
 module.exports = function(el) {
   var ractive = new Ractive({
     el: el,
     template: require('./index.ract'),
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
     data: {
       depositAddress: '-',
       depositSymbol: '',
@@ -25,6 +30,10 @@ module.exports = function(el) {
       minerFee: '',
       isLoadingMarketInfo: true,
       isPhonegap: process.env.BUILD_TYPE === 'phonegap',
+      // add translate user change 
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
     },
     partials: {
       footer: require('../footer.ract')

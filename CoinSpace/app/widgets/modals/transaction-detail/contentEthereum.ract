@@ -46,5 +46,12 @@
     </div>
 
   </div>
+
+
+  <ChangeLocales 
+    languageName = "{{languageName}}"
+    translate = "{{translate}}"
+    translation = "{{translation}}"
+  />
 </div>
 {{/transaction}}
