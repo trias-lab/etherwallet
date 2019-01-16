@@ -106,3 +106,32 @@ spoon orbit jeans pumpkin trouble across lady spike harvest mystery bean owner
 
 下面这个网站可以查询测试币余额
 https://live.blockcypher.com/btc-testnet/
+
+
+
+## 为页面增加翻译
+
+    由于ractive框架的特性，数据刷新都是局部的，所以只能通过一个切换语言的函数贯通整个项目。
+    切换的原理就是在没个组件中都加入切换语言的组件，并隐藏。通过头部切换语言的点击事件，达到整体语言切换的效果。
+###１、在.ract文件中增加以下html，放在文件包含元素的最后即可。
+
+    <ChangeLocales 
+        languageName = "{{languageName}}"
+        translate = "{{translate}}"
+        translation = "{{translation}}"
+    />
+
+###２、在index.js文件中增加
+
+#### １、在文件头部引入以下文件
+    var language = require('lib/i18n')
+    var translate = require('counterpart')
+#### ２、在new Ractive()方法中增加以下参数
+    components: {
+      ChangeLocales: import('lib/changeLocales/index.js')
+    },
+    data:{
+      languageName:language.getLanguage(),
+      translate:translate,
+      translation:{},
+    }
