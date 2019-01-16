@@ -10,8 +10,8 @@
 
             <div class="select-language toggle-wallet">
                 <p class="current-wallet-name" on-click="language-change">
-                    {{translate(languageName)}}
-
+                    <!-- {{translate(languageName)}} -->
+                    <i class="fas fa-globe-americas"></i>
                     <i class="fa fa-caret-down"></i>
                 </p>
                 <div class="pick-wallet-list">

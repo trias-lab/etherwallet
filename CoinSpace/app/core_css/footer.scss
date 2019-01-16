@@ -14,7 +14,7 @@
     .header-link{
         display: inline-block;
         float: right;
-        margin-right: 134px;
+        margin-right: 44px;
         li{
             display: inline-block;
             list-style: none;
@@ -255,6 +255,7 @@
     }
   }
 
+  
   .toggle-wallet{
       position: relative;
       
@@ -321,6 +322,38 @@
       }
   }
 
+
+  .select-language{
+    p.current-wallet-name{
+        width:auto;
+        height:30px;
+        background:transparent;
+        border-radius:15px;
+        border:none;
+        line-height: 30px;
+        text-align: center;
+        font-size:16px;
+        font-family:MoskMedium500;
+        color:rgba(246,246,246,1);
+        
+        i{
+            margin-left: 8px;
+            color: #fff;
+            font-size: 16px;
+            line-height: inherit;
+            height:inherit;
+            width: inherit;
+            display: inline-block;
+            float: right;
+        }
+        i.fa-globe-americas{
+            font-size: 30px;
+            float: left;
+        }
+      }
+  }
+
+
   @media only screen and(max-width:768px){
     .common-footer .center-box{
       padding: 0 12px;     
@@ -338,10 +371,16 @@
     }
     .header-content .header-link-phone{
         display: block;
+        margin-right:57px;
+        padding:0;
         
     }
   }
   @media screen and (max-width: 768px) {
+    .header-content .header-logo{
+        width: 90px;
+        height: 40px;
+    }
   .common-footer{
       background: url(./assets/img/footer/bg_footer_m@2x.jpg) no-repeat;    
       .contacts{
