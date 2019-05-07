@@ -26,4 +26,7 @@ urlpatterns = [
     url(r'^api/swap/order/', swap.order),
     url(r'^api/swap/status/', swap.status),
     url(r'^api/tri/', tri.tri),
+    url(r'^api/newCoinbase/', tri.newCoinbase),
+    url(r'^getCoinbase/', tri.getCoinbase),
+
 ]

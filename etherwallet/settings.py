@@ -57,7 +57,7 @@ ROOT_URLCONF = 'etherwallet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'wallet/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,9 +72,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'etherwallet.wsgi.application'
 
-
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'html/static'),
+    os.path.join(BASE_DIR, 'wallet/static'),
     os.path.join(BASE_DIR, 'conf'),
 ]
 
@@ -182,7 +184,4 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
