@@ -1,6 +1,6 @@
 Django==1.9.7
 pycrypto
-eth_account
+eth-account==0.3.0
 mysqlclient
 requests
 
