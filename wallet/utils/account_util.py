@@ -9,7 +9,7 @@ import traceback
 
 logger = log.logger
 COIN_NAME_ETH = "ETH"
-COIN_NAME_TRI = "TRI"
+COIN_NAME_TRI = "TRY"
 
 def pad(text, ch):
     while len(text) % 16 != 0:

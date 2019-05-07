@@ -4,7 +4,7 @@ nodes.customNode = require("./nodeHelpers/customNode");
 nodes.infuraNode = require("./nodeHelpers/infura");
 nodes.metamaskNode = require("./nodeHelpers/metamask");
 nodes.nodeTypes = {
-	TRI: "TRI",
+	TRY: "TRY",
 	ETH: "ETH",
 	ETC: "ETC",
 	Ropsten: "ROPSTEN ETH",
@@ -45,15 +45,15 @@ nodes.customNodeObj = {
 };
 nodes.nodeList = {
 	tri: {
-        name: "TRI",
+        name: "TRY",
         blockExplorerTX: "https://explorer.trias.one/translist/[[txHash]]",
         blockExplorerAddr: "https://explorer.trias.one/address/[[address]]",
-        type: nodes.nodeTypes.TRI,
+        type: nodes.nodeTypes.TRY,
         eip155: true,
         chainId: 15,
         tokenList: require("./tokens/triTokens.json"),
         abiList: require("./abiDefinitions/triAbi.json"),
-        service: "TRI",
+        service: "TRY",
         lib: new nodes.customNode("https://wallet.trias.one/api/tri/", "")
     },
 	eth_mew: {

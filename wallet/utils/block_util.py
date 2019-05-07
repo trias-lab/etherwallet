@@ -588,7 +588,7 @@ class AllWorker:
             if cls._triWorker:
                 return
             logger.info("start tri worker thread")
-            cls._triWorker = Worker("TRI", ReqDataTRI())
+            cls._triWorker = Worker("TRY", ReqDataTRI())
             cls._triWorker.setDaemon(True)
             cls._triWorker.start()
         except Exception as e:
