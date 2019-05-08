@@ -250,3 +250,46 @@ If you can think of any other features or run into bugs, let us know. You can fo
 - 10/28/17: [MyEtherWallet - New Contract Interaction Tools](https://www.reddit.com/r/ethereum/comments/7961ml/myetherwallet_new_contract_interaction_tools/)
 
 #### MyEtherWallet.com & MyEtherWallet CX are licensed under The MIT License (MIT).
+
+# Backend
+  Backend provide tri(v1) rpc call and tri(v1)/eth swap function.
+
+## Requirements
+ - python: 3.4 or later.
+ - Django: 1.9.7 or later.
+ - requests
+ - pycrypto
+ - eth_account
+ - mysqlclient
+
+## log files
+ - sudo mkdir /var/log/trias
+ - sudo touch /var/log/trias/wallet.log
+ - sudo touch /var/log/trias/wallet_request.log
+ - sudo chmod 777 /var/log/trias/wallet.log
+ - sudo chmod 777 /var/log/trias/wallet_request.log
+
+## change config file
+config file path is conf/conf.json
+ - replace eth_ip value with trias public chain node's ip. for example "192.168.1.1"
+ - replace eth_port value with trias public chain node's rpc port number. for example "8545"
+ - replace mysql_ip value with your mysql database server's ip. for example "192.168.1.1"
+ - replace mysql_port value with your mysql database server's port number. for example "3306"
+ - replace mysql_user value with your mysql user name. for example "user"
+ - replace mysql_password value with your mysql user password. for example "pass"
+ - replace mysql_database value with your mysql database name. for example "db"
+ - replace request_interval value with your rpc request interval seconds. for example "5"
+ - replace private_key_encrypt_pass value with private key aes encrypt passwod. for example "password"
+ - replace etherscan_key value with your etherscan api key. please refer to https://etherscan.io/apis
+
+## Contributions
+Install dependencies: 
+
+```
+pip3 install -r requirements.txt
+```
+
+Next,
+- start the django server: 
+
+`python3 manage.py runserver`

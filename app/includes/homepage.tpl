@@ -17,11 +17,11 @@
 
   <div class="tab-title nav-card" ng-click="globalService.currentTab=globalService.tabs.sendTransaction.id">
     <div class="text">
-      <h1 translate="NAV_SendTRI">Send TRI</h1>
+      <h1 translate="NAV_SendTRI">Send TRY</h1>
       <div class="icon visible-xs-inline-block">
         <i class="fas fa-envelope"></i>
       </div>  
-      <h2>Send TRI to another Trias Wallet address. Be absolutely sure about what you’re doing, check the everything twice before initiating the transaction. </h2>
+      <h2>Send TRY to another Trias Wallet address. Be absolutely sure about what you’re doing, check the everything twice before initiating the transaction. </h2>
     </div>
     <div class="icon hidden-xs">
       <i class="fas fa-envelope"></i>
@@ -34,7 +34,7 @@
       <div class="icon visible-xs-inline-block">
         <i class="fas fa-exchange-alt"></i>
       </div>   
-      <h2>We offering you the ability to swap for other cryptocurrencies. You can also use this feature to send TRI directly to non-Trias addresses.</h2>
+      <h2>We offering you the ability to swap for other cryptocurrencies. You can also use this feature to send TRY directly to non-Trias addresses.</h2>
     </div>
     <div class="icon hidden-xs">
       <i class="fas fa-exchange-alt"></i>

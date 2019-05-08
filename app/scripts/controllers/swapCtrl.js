@@ -12,7 +12,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   $scope.isKyberSwap = false;
 
   // $scope.bityOptions = ["ETH", "REP", "BTC"];
-  $scope.triOptions = [ "TRI"];
+  $scope.triOptions = [ "TRY"];
   $scope.toExclude = [];
   $scope.fromExclude = [];
 
@@ -77,13 +77,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
   };
 
   // $scope.availableCoins = ["ETH", "BTC", "REP"];
-  $scope.availableCoins = ["ETH"];   //TODO: + TRI ?
+  $scope.availableCoins = ["ETH"];   //TODO: + TRY ?
   $scope.availableTokens = [];
   $scope.availableOptions = [...$scope.availableCoins, ...$scope.availableTokens];
 
   // 设定初始值
   var initValues = function () {
-    // if current node is TRI, use tri.refreshRates to get ETH/TRI rates
+    // if current node is TRY, use tri.refreshRates to get ETH/TRY rates
     // otherwise, use kyber rates
     if(getCurNodeKey()=='tri'){
       $scope.tri.refreshRates(function () {
@@ -109,7 +109,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
     $scope.orderResult = null;
     $scope.swapOrder = {
       fromCoin: "ETH",
-      toCoin: getCurNodeKey() == 'tri'?"TRI":$scope.availableToOptions[1],
+      toCoin: getCurNodeKey() == 'tri'?"TRY":$scope.availableToOptions[1],
       isFrom: true,
       fromVal: '',
       toVal: '',
@@ -120,7 +120,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
     // init kyber swap order
     $scope.kyberSwapOrder = {
       fromCoin: "ETH",
-      toCoin: getCurNodeKey() == 'tri'?"TRI":$scope.availableToOptions[1],
+      toCoin: getCurNodeKey() == 'tri'?"TRY":$scope.availableToOptions[1],
       isFrom: true,
       fromVal: '',
       toVal: '',
@@ -128,7 +128,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       swapRate: '',
       swapPair: ''
     };
-    // if current node is not TRI, set order coin.
+    // if current node is not TRY, set order coin.
     if (getCurNodeKey() !== 'tri') {
       $scope.setOrderCoin(true, "ETH");
     }
@@ -179,7 +179,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       else if (($scope.swapOrder.toCoin == "BTC" && $scope.swapOrder.toVal > bity.max) || ($scope.swapOrder.fromCoin == "BTC" && $scope.swapOrder.fromVal > bity.max)) return errors.greaterThanMax;
       else if (($scope.swapOrder.toCoin == "ETH" && $scope.swapOrder.toVal * $scope.bity.curRate['ETHBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "ETH" && $scope.swapOrder.fromVal * $scope.bity.curRate['ETHBTC'] > bity.max)) return errors.greaterThanMax;
       else if (($scope.swapOrder.toCoin == "REP" && $scope.swapOrder.toVal * $scope.bity.curRate['REPBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "REP" && $scope.swapOrder.fromVal * $scope.bity.curRate['REPBTC'] > bity.max)) return errors.greaterThanMax;
-      // else if (($scope.swapOrder.toCoin == "TRI" && $scope.swapOrder.toVal * $scope.bity.curRate['TRIBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "TRI" && $scope.swapOrder.fromVal * $scope.bity.curRate['TRIBTC'] > bity.max)) return errors.greaterThanMax;
+      // else if (($scope.swapOrder.toCoin == "TRY" && $scope.swapOrder.toVal * $scope.bity.curRate['TRIBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "TRY" && $scope.swapOrder.fromVal * $scope.bity.curRate['TRIBTC'] > bity.max)) return errors.greaterThanMax;
       return errors.noErrors;
     }
     var vResult = verify();
@@ -195,13 +195,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
   };
 
   $scope.setOrderCoin = function (isFrom, coin) {
-    if(getCurNodeKey() == 'tri'){ // if current node is TRI
-      // only support TRI -> ETH
-      let triOptions = ["TRI"];
+    if(getCurNodeKey() == 'tri'){ // if current node is TRY
+      // only support TRY -> ETH
+      let triOptions = ["TRY"];
       $scope.availableFromOptions = triOptions;
       $scope.availableToptions = ["ETH"];
       $scope.swapOrder.toCoin = 'ETH'
-      $scope.swapOrder.fromCoin = 'TRI';
+      $scope.swapOrder.fromCoin = 'TRY';
 
       // if one of the from options is selected, update the to options
       // if (isFrom){
@@ -210,7 +210,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       //   triOptions.forEach((_item) => {
       //     if (_item != coin ) $scope.availableToOptions.push(_item)
       //   })
-      //   $scope.swapOrder.toCoin = coin=='TRI'? 'ETH':'TRI'
+      //   $scope.swapOrder.toCoin = coin=='TRY'? 'ETH':'TRY'
       //   $scope.swapOrder.fromCoin = coin;
       // }
 
@@ -270,7 +270,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
     
   };
 
-  // TODO: do something for TRI swap order?
+  // TODO: do something for TRY swap order?
   $scope.setTriOrderCoin = function (isFrom) {
     $scope.swapOrder.swapRate = $scope.tri.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin];
     $scope.swapOrder.swapPair = $scope.swapOrder.fromCoin + "/" + $scope.swapOrder.toCoin;
@@ -491,7 +491,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   //   }
   // }
 
-  // open order for ETH/TRI swap
+  // open order for ETH/TRY swap
   $scope.openTriOrder = function () {
     if ( $scope.Validator.isValidAddress($scope.swapOrder.toAddress)){
       var order = {
