@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^api/tri/', tri.tri),
     url(r'^api/newCoinbase/', tri.newCoinbase),
     url(r'^api/getCoinbase/', tri.getCoinbase),
-
+    url(r'^api/cssCoinbase/', tri.cssCoinbase),
 ]

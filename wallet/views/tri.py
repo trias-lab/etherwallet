@@ -16,7 +16,7 @@ from wallet.utils.tx_cli import new_coinbase_tx, new_utxo_transaction
 from hexbytes import HexBytes
 import sys
 from django.shortcuts import render
-from etherwallet.settings import records
+from etherwallet.settings import records, BASE_DIR
 import eth_account
 
 UTXO_URL = records['utxo_url']
@@ -298,3 +298,12 @@ def utxoGetUnspendOutput(fromAddress, amount):
 
 def getCoinbase(request):
     return render(request, 'get_coinbase.html')
+
+def cssCoinbase(request):
+    path = os.path.join(BASE_DIR, 'wallet/static/css/get_coinbase.css')
+    css_file = open(path, 'rb')
+    response = HttpResponse(content=css_file)
+    response['Content-Type'] = 'text/css'
+    return response
+
+
