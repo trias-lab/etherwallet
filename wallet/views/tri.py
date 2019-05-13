@@ -138,10 +138,12 @@ def eth_sendRawTransaction(reqDict):
     }
     if not resp:
         return ret
-
     tx = new_utxo_transaction(txn.sender.lower(), toAddr.lower(), int(txn.value), resp['accumulated'], resp['unspent_outs'])
-    if not tx:
-        return ret
+	if not tx:
+        ret.code = -32000
+        ret.message = "sender doesn't have enough funds to send tx. The upfront cost is: %s and the sender's account only has: %s" %(int(txn.value), resp['accumulated'])	
+	    ret.result = ""
+	    return ret
     ret['result'] = tx.ID
     logger.info('eth_sendRawTransaction tx.ID=%s' % tx.ID)
     trans = tx.serialize().replace('"', "'", -1)
