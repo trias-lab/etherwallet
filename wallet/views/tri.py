@@ -134,16 +134,18 @@ def eth_sendRawTransaction(reqDict):
     ret = {
         "id": reqDict['id'],
         "jsonrpc": "2.0",
-        "result": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+        "error": {
+            "code": -1,
+        }
     }
     if not resp:
+        ret["error"]['message'] = "get utxo error"
         return ret
     tx = new_utxo_transaction(txn.sender.lower(), toAddr.lower(), int(txn.value), resp['accumulated'], resp['unspent_outs'])
-	if not tx:
-        ret.code = -32000
-        ret.message = "sender doesn't have enough funds to send tx. The upfront cost is: %s and the sender's account only has: %s" %(int(txn.value), resp['accumulated'])	
-	    ret.result = ""
-	    return ret
+    if not tx:
+        ret["error"]['message'] =  "sender doesn't have enough funds to send tx"
+        return ret
+    ret.pop('error')
     ret['result'] = tx.ID
     logger.info('eth_sendRawTransaction tx.ID=%s' % tx.ID)
     trans = tx.serialize().replace('"', "'", -1)
@@ -292,9 +294,6 @@ def utxoGetUnspendOutput(fromAddress, amount):
     url = UTXO_URL + '/find_spendable_outputs?from_address=' + fromAddress.lower() + '&amount=' + str(amount)
     resp = requests.get(url)
     resp = json.loads(resp.content.decode("utf-8"))
-    if resp['code'] != 'success':
-        logger.error('utxoGetUnspendOutput resp error: %s' % resp)
-        return None
     logger.info('utxoGetUnspendOutput resp=%s, url=%s' % (resp, url))
     return resp
 
