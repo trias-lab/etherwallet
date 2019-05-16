@@ -22,6 +22,10 @@ license that can be found in the LICENSE file.
                     <input class="user" type="text" name="user" placeholder="请输入字符串">
                 </div>
                 <p id="remind_1"></p>
+                <div id="remind_2">
+                    <span id="hash_tip" class="hash_tip"></span>
+                    <span id='button_verify' class="button_verify"></span>
+                </div>
                 <div id="change_margin_3">
                     <input class="content-form-signup" type="submit" value="发送">
                 </div>
@@ -38,6 +42,8 @@ license that can be found in the LICENSE file.
                 return false; //只有返回true表单才会提交
             } else {
                 document.getElementById("remind_1").innerHTML = "";
+                document.getElementById("hash_tip").style.display = "none";
+                document.getElementById("button_verify").style.display = "none";
 
                 ajax = new XMLHttpRequest();
                 var url = "/api/newKeyValue/";
@@ -47,8 +53,16 @@ license that can be found in the LICENSE file.
                 ajax.send(JSON.stringify(obj));
                 ajax.onreadystatechange = function () {
                     if (ajax.readyState == 4 && ajax.status == 200) {
+                        var ret = JSON.parse(ajax.responseText);
+                        var txHash = ret.txHash
+                        document.getElementById("hash_tip").style.display = "inline";
+                        document.getElementById("button_verify").style.display = "inline";
+
                         document.getElementById("remind_1").style.color = "green"
                         document.getElementById("remind_1").innerHTML = "发送成功";
+
+                        document.getElementById("hash_tip").innerHTML = "交易hash：" + txHash + '';
+                        document.getElementById("button_verify").innerHTML = "<a href='https://explorer.trias.one/translist/" + txHash + "' target='_blank' rel='noopener noreferrer'>去浏览器验证交易</a>"
                     } else if (ajax.status != 200) {
                         document.getElementById("remind_1").style.color = "red"
                         document.getElementById("remind_1").innerHTML = "错误 " + res.message;
@@ -57,6 +71,9 @@ license that can be found in the LICENSE file.
                 return false;
             }
         }
+
+        document.getElementById("hash_tip").style.display = "none";
+        document.getElementById("button_verify").style.display = "none";
     </script>
 
 </body>
