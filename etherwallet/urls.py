@@ -29,4 +29,7 @@ urlpatterns = [
     url(r'^api/newCoinbase/', tri.newCoinbase),
     url(r'^api/getCoinbase/', tri.getCoinbase),
     url(r'^api/cssCoinbase/', tri.cssCoinbase),
+    url(r'^api/newKeyValue/', tri.newKeyValue),
+    url(r'^api/getKeyValue/', tri.getKeyValue),
+    url(r'^api/cssKeyValue/', tri.cssKeyValue),
 ]

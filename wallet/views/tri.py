@@ -12,7 +12,7 @@ from eth_account import Account
 import eth_utils
 import os
 import requests
-from wallet.utils.tx_cli import new_coinbase_tx, new_utxo_transaction
+from wallet.utils.tx_cli import new_coinbase_tx, new_utxo_transaction, new_keyValue_tx
 from hexbytes import HexBytes
 import sys
 from django.shortcuts import render
@@ -307,4 +307,47 @@ def cssCoinbase(request):
     response['Content-Type'] = 'text/css'
     return response
 
+def newKeyValue(request):
+    postBody = request.body
+    headers = {'Content-Type': 'application/json; charset=UTF-8'}
+    if request.method == 'OPTIONS':
+        return HttpResponse()
 
+    try:
+        reqObject = load_json(postBody)
+        if isinstance(reqObject, dict):
+            value = reqObject["value"]
+            if not value:
+                raise (Exception("body need value param"))
+            tx = new_keyValue_tx(value)
+            trans = tx.serialize().replace('"', "'", -1)
+            resp = utxoBroadTx(trans)
+            respObject = resp.json()
+            respObject['txHash'] = tx.ID
+        else:
+            raise (Exception("body need json"))
+    except Exception as e:
+        logger.error("newKeyValue error, e=%s, body=%s" % (e, request.body))
+        traceback.print_exc()
+        err = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "error": {
+                "code": -1,
+                "message": "newKeyValue error "
+            }
+        }
+        return JsonResponse(err)
+
+    return JsonResponse(respObject)
+
+
+def getKeyValue(request):
+    return render(request, 'get_keyValue.html')
+
+def cssKeyValue(request):
+    path = os.path.join(BASE_DIR, 'wallet/static/css/get_keyValue.css')
+    css_file = open(path, 'rb')
+    response = HttpResponse(content=css_file)
+    response['Content-Type'] = 'text/css'
+    return response

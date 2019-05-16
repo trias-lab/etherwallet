@@ -19,6 +19,13 @@ def new_coinbase_tx(to_address):
 
     return tx
 
+def new_keyValue_tx(value):
+    txin = TxInput("", -1, None, "0", "www.trias.one")
+    txout = TxOutput(value, 'www.trias.one')
+    tx = Transaction(None, [txin], [txout])
+    tx.hash()
+
+    return tx
 
 def new_utxo_transaction(from_address, to_address, amount, accumulated, unspent_outs):
     if accumulated < int(amount):

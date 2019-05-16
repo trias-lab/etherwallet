@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+Copyright 2018 The Go Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="/api/cssKeyValue/">
+	<title>发送字符串交易</title>
+</head>
+
+<body>
+
+    <div class="content" id="get_coinbase_content">
+        <h1 class="content-title">发送字符串交易</h1>
+        <div class="content-form">
+            <form method="post" action="" onsubmit="return submitTest()">
+                <div id="change_margin_1">
+                    <input class="user" type="text" name="user" placeholder="请输入字符串">
+                </div>
+                <p id="remind_1"></p>
+                <div id="change_margin_3">
+                    <input class="content-form-signup" type="submit" value="发送">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitTest() {
+            var value = document.getElementsByTagName("input")[0].value;
+            if (!value) {
+                document.getElementById("remind_1").style.color = "red"
+                document.getElementById("remind_1").innerHTML = "请输入字符串";
+                return false; //只有返回true表单才会提交
+            } else {
+                document.getElementById("remind_1").innerHTML = "";
+
+                ajax = new XMLHttpRequest();
+                var url = "/api/newKeyValue/";
+                ajax.open("POST", url, true);
+                ajax.setRequestHeader("Content-Type", "application/json");
+                var obj = {'value':encodeURIComponent(value)}
+                ajax.send(JSON.stringify(obj));
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        document.getElementById("remind_1").style.color = "green"
+                        document.getElementById("remind_1").innerHTML = "发送成功";
+                    } else if (ajax.status != 200) {
+                        document.getElementById("remind_1").style.color = "red"
+                        document.getElementById("remind_1").innerHTML = "错误 " + res.message;
+                    }
+                }
+                return false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
