@@ -88,11 +88,41 @@ body {
 }
 
 /*输入框无内容便提示*/
-#remind_1,
-#remind_2 {
+#remind_1{
     width: 76%;
     margin: 0 auto 2px;
     text-align: left;
     font-size: .2em;
     color: #f00;
+}
+
+#remind_2{
+    width: 76%;
+    margin: 0 auto 2px;
+    padding: 0;
+}
+
+.hash_tip {
+    margin: 0 0px 0 0px;
+    padding: 0;
+    text-align: left;
+    font-size: 1em;
+    color: green;
+}
+
+.button_verify {
+    padding: 0 1rem;
+    height: 2.38rem;
+    border-radius: .25rem;
+    font-size: 1rem;
+    font-family: MoskLight300;
+    line-height: 2.38rem;
+    background-color: #fff;
+    text-decoration: none;
+    color: green;
+    cursor: pointer;
+}
+
+.button_verify > a {
+    color: green;
 }

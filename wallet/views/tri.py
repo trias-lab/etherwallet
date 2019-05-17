@@ -21,6 +21,7 @@ import eth_account
 
 UTXO_URL = records['utxo_url']
 
+#eth interface
 def eth_blockNumber(reqDict):
     height = utxoGetLatestHeight();
     ret = {
@@ -149,7 +150,7 @@ def eth_sendRawTransaction(reqDict):
     ret['result'] = tx.ID
     logger.info('eth_sendRawTransaction tx.ID=%s' % tx.ID)
     trans = tx.serialize().replace('"', "'", -1)
-    resp = utxoBroadTx(trans)
+    resp = utxoBroadTx(trans, tx.ID)
     return ret
 
 def eth_call(reqDict):
@@ -225,53 +226,33 @@ def tri(request):
             "id": 1,
             "error": {
                 "code": -1,
-                "message": "not support method " + method
+                "message": "execute " + method + " failed, please try later",
             }
         }
         return JsonResponse(err)
 
     return JsonResponse(retObject, safe=False)
 
-def newCoinbase(request):
-    postBody = request.body
-    headers = {'Content-Type': 'application/json; charset=UTF-8'}
-    if request.method == 'OPTIONS':
-        return HttpResponse()
 
-    try:
-        reqObject = load_json(postBody)
-        if isinstance(reqObject, dict):
-            address = reqObject["address"]
-            if not address:
-                raise (Exception("body need address param"))
-            tx = new_coinbase_tx(address.lower())
-            trans = tx.serialize().replace('"', "'", -1)
-            resp = utxoBroadTx(trans)
-        else:
-            raise (Exception("body need json"))
-    except Exception as e:
-        logger.error("newCoinbase error, e=%s, body=%s" % (e, request.body))
-        traceback.print_exc()
-        err = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "error": {
-                "code": -1,
-                "message": "newCoinbase error "
-            }
-        }
-        return JsonResponse(err)
+#utxo interface
+def utxoGetTxByHash(hash):
+    url = UTXO_URL + '/get_tx_by_hash?hash=' + hash
+    resp = requests.get(url)
+    resp = json.loads(resp.content.decode("utf-8"))
+    logger.info('utxoGetTxByHash resp=%s, url=%s' % (resp, url))
+    return resp
 
-    return HttpResponse(resp)
-
-
-def utxoBroadTx(rawTx):
+def utxoBroadTx(rawTx, txID):
+    resp = utxoGetTxByHash(txID)
+    if resp['code'] == 'success':
+        logger.info('txID already exist in blockchain, txID=' + txID)
+        return resp
     url = UTXO_URL + '/broadcast_tx'
     data = {'tx': rawTx}
     logger.info('utxoBroadTx, rawTx=%s' % rawTx)
     resp = requests.post(url, data)
     logger.info('utxoBroadTx, resp=%s' % resp)
-    return resp
+    return resp.json()
 
 def utxoGetLatestHeight():
     url = UTXO_URL + '/get_latest_block_height'
@@ -297,6 +278,40 @@ def utxoGetUnspendOutput(fromAddress, amount):
     logger.info('utxoGetUnspendOutput resp=%s, url=%s' % (resp, url))
     return resp
 
+#coinbase transaction
+def newCoinbase(request):
+    postBody = request.body
+    headers = {'Content-Type': 'application/json; charset=UTF-8'}
+    if request.method == 'OPTIONS':
+        return HttpResponse()
+
+    try:
+        reqObject = load_json(postBody)
+        if isinstance(reqObject, dict):
+            address = reqObject["address"]
+            if not address:
+                raise (Exception("body need address param"))
+            tx = new_coinbase_tx(address.lower())
+            trans = tx.serialize().replace('"', "'", -1)
+            resp = utxoBroadTx(trans, tx.ID)
+            resp['txHash'] = tx.ID
+        else:
+            raise (Exception("body need json"))
+    except Exception as e:
+        logger.error("newCoinbase error, e=%s, body=%s" % (e, request.body))
+        traceback.print_exc()
+        err = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "error": {
+                "code": -1,
+                "message": "newCoinbase error "
+            }
+        }
+        return JsonResponse(err)
+
+    return JsonResponse(resp)
+
 def getCoinbase(request):
     return render(request, 'get_coinbase.html')
 
@@ -307,6 +322,8 @@ def cssCoinbase(request):
     response['Content-Type'] = 'text/css'
     return response
 
+
+#key value transaction
 def newKeyValue(request):
     postBody = request.body
     headers = {'Content-Type': 'application/json; charset=UTF-8'}
@@ -321,9 +338,8 @@ def newKeyValue(request):
                 raise (Exception("body need value param"))
             tx = new_keyValue_tx(value)
             trans = tx.serialize().replace('"', "'", -1)
-            resp = utxoBroadTx(trans)
-            respObject = resp.json()
-            respObject['txHash'] = tx.ID
+            resp = utxoBroadTx(trans, tx.ID)
+            resp['txHash'] = tx.ID
         else:
             raise (Exception("body need json"))
     except Exception as e:
@@ -339,7 +355,7 @@ def newKeyValue(request):
         }
         return JsonResponse(err)
 
-    return JsonResponse(respObject)
+    return JsonResponse(resp)
 
 
 def getKeyValue(request):
