@@ -28,22 +28,31 @@ def new_keyValue_tx(value):
     return tx
 
 def new_utxo_transaction(from_address, to_address, amount, accumulated, unspent_outs):
-    if accumulated < int(amount):
+    if (not accumulated) or (accumulated < int(amount)):
        return None
 
     try:
+        total = 0
         tx_inputs = []
         for tx_id in unspent_outs.keys():
-            for tx_out_index in unspent_outs[tx_id]:
-                tx_input = TxInput(tx_id, tx_out_index, "", from_address)
+            for vout in unspent_outs[tx_id]:
+                tx_input = TxInput(tx_id, vout.index, "", from_address, from_address)
                 tx_inputs.append(tx_input)
+                total += int(vout.value)
+                if total >=  int(amount):
+                    break
+            if total >= int(amount):
+                break
+
+        if total < int(amount):
+            return None
 
         tx_outputs = []
         tx_out = TxOutput(int(amount), to_address)
         tx_outputs.append(tx_out)
 
-        if accumulated > int(amount):
-            tx_outputs.append(TxOutput(accumulated - int(amount), from_address))
+        if total > int(amount):
+            tx_outputs.append(TxOutput(total - int(amount), from_address))
 
         tx = Transaction(None, tx_inputs, tx_outputs)
         tx.hash()
