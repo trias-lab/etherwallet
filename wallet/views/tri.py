@@ -131,7 +131,7 @@ def eth_sendRawTransaction(reqDict):
     #logger.info('s: %s' % txn.s)
     #logger.info('sender: %s' % txn.sender)
 
-    resp = utxoGetUnspendOutput(txn.sender.lower(), int(txn.value))
+    resp = utxoGetUnspendOutput(txn.sender.lower())
     ret = {
         "id": reqDict['id'],
         "jsonrpc": "2.0",
@@ -139,9 +139,10 @@ def eth_sendRawTransaction(reqDict):
             "code": -1,
         }
     }
-    if not resp:
+    if (not resp) or (resp['code'] != 'success'):
         ret["error"]['message'] = "get utxo error"
         return ret
+
     tx = new_utxo_transaction(txn.sender.lower(), toAddr.lower(), int(txn.value), resp['accumulated'], resp['unspent_outs'])
     if not tx:
         ret["error"]['message'] =  "sender doesn't have enough funds to send tx"
@@ -271,8 +272,8 @@ def utxoGetBalance(address):
     logger.info('utxoGetBalance resp=%s, url=%s' % (resp, url))
     return resp['balance']
 
-def utxoGetUnspendOutput(fromAddress, amount):
-    url = UTXO_URL + '/find_spendable_outputs?from_address=' + fromAddress.lower() + '&amount=' + str(amount)
+def utxoGetUnspendOutput(fromAddress):
+    url = UTXO_URL + '/find_all_spendable_outputs?from_address=' + fromAddress.lower()
     resp = requests.get(url)
     resp = json.loads(resp.content.decode("utf-8"))
     logger.info('utxoGetUnspendOutput resp=%s, url=%s' % (resp, url))
@@ -281,22 +282,18 @@ def utxoGetUnspendOutput(fromAddress, amount):
 #coinbase transaction
 def newCoinbase(request):
     postBody = request.body
+    #logger.info('newCoinbase, request.body=%s %s' % (request.method, request.body))
     headers = {'Content-Type': 'application/json; charset=UTF-8'}
-    if request.method == 'OPTIONS':
+    if request.method == 'OPTIONS' or request.method == 'GET':
         return HttpResponse()
 
     try:
-        reqObject = load_json(postBody)
-        if isinstance(reqObject, dict):
-            address = reqObject["address"]
-            if not address:
-                raise (Exception("body need address param"))
-            tx = new_coinbase_tx(address.lower())
-            trans = tx.serialize().replace('"', "'", -1)
-            resp = utxoBroadTx(trans, tx.ID)
-            resp['txHash'] = tx.ID
-        else:
-            raise (Exception("body need json"))
+        url = UTXO_URL + '/broadcast_tx'
+        data = {'tx':postBody}
+        logger.info('newCoinbase, rawTx=%s' % data)
+        resp = requests.post(url, data)
+        logger.info('newCoinbase, resp=%s' % resp.json())
+        return JsonResponse(resp.json())
     except Exception as e:
         logger.error("newCoinbase error, e=%s, body=%s" % (e, request.body))
         traceback.print_exc()
@@ -312,16 +309,8 @@ def newCoinbase(request):
 
     return JsonResponse(resp)
 
-def getCoinbase(request):
+def getCoinbase(request, hasSlash):
     return render(request, 'get_coinbase.html')
-
-def cssCoinbase(request):
-    path = os.path.join(BASE_DIR, 'wallet/static/css/get_coinbase.css')
-    css_file = open(path, 'rb')
-    response = HttpResponse(content=css_file)
-    response['Content-Type'] = 'text/css'
-    return response
-
 
 #key value transaction
 def newKeyValue(request):
@@ -358,12 +347,27 @@ def newKeyValue(request):
     return JsonResponse(resp)
 
 
-def getKeyValue(request):
+def getKeyValue(request, hasSlash):
     return render(request, 'get_keyValue.html')
 
-def cssKeyValue(request):
-    path = os.path.join(BASE_DIR, 'wallet/static/css/get_keyValue.css')
-    css_file = open(path, 'rb')
-    response = HttpResponse(content=css_file)
-    response['Content-Type'] = 'text/css'
+def files(request, fileName):
+    index = fileName.find('.js.map')
+    if index != -1:
+        return HttpResponse()
+    path = os.path.join(BASE_DIR, 'wallet/static/files/' + fileName)
+    if not os.path.exists(path):
+        logger.error("files not exist %s" % path)
+        return HttpResponse()
+    file = open(path, 'rb')
+    response = HttpResponse(content=file)
+    index = fileName.rfind('.')
+    postfix = fileName[index+1:]
+    types = {
+        'js':'application/javascript',
+        'css':'text/css',
+        'wasm':'application/wasm',
+        'html':'text/html',
+    }
+    response['Content-Type'] = types[postfix]
     return response
+

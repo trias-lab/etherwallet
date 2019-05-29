@@ -8,7 +8,7 @@ license that can be found in the LICENSE file.
 
 <head>
 	<meta charset="utf-8">
-    <link rel="stylesheet" href="/api/cssKeyValue/">
+    <link rel="stylesheet" href="/api/files/get_keyValue.css">
 	<title>发送字符串交易</title>
 </head>
 
@@ -46,7 +46,7 @@ license that can be found in the LICENSE file.
                 document.getElementById("button_verify").style.display = "none";
 
                 ajax = new XMLHttpRequest();
-                var url = "/api/newKeyValue/";
+                var url = "/api/newKeyValue";
                 ajax.open("POST", url, true);
                 ajax.setRequestHeader("Content-Type", "application/json");
                 var obj = {'value':encodeURIComponent(value)}
