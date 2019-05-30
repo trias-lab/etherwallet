@@ -121,7 +121,7 @@ Transaction.prototype.hash = function() {
         hasher.update( plain );
         tx_hash = CryptoApi.encoder.toHex(hasher.finalize()).toUpperCase();
     }
-    console.log('plain ' + plain);
+    //console.log('plain ' + plain);
     //console.log('hash ' + tx_hash);
 
     this.ID = tx_hash;

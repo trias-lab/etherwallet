@@ -30,17 +30,17 @@ WebAssembly.instantiateStreaming(fetch(wasmUrl), go.importObject).then((result) 
 function CreateAcc() {
     var password = "1234qwer";
     triacc.CreateAcc(password, function (rs) {
-        console.log('rs:' + rs)
+        //console.log('rs:' + rs)
         rss = rs
         triacc.Load4Data(rss, password, function () {
             console.log("load acc from data succ")
             triacc.GetCurrentAcc(function (addr) {
                 currentaddr = addr
-                console.log('addr:' + addr)
+                //console.log('addr:' + addr)
                 setTimeout(function () {
                     triacc.GetPrivkeyA(function (privA) {
                         curPrivA=privA
-                        console.log('curPrivA: ' + curPrivA)
+                        //console.log('curPrivA: ' + curPrivA)
                         afterCreateAcc();
                     })
                 }, 0)
@@ -78,7 +78,7 @@ function new_normal_coinbase_tx(to_address) {
 function createCoinBaseTransactionWithAddress(toAddress, isPrivate, callback) {
     if (isPrivate) {
         triacc.CreateShieldAddr(toAddress, function (sdata) {
-            console.log('sdata', sdata)
+            //console.log('sdata', sdata)
             var saddrpkey=JSON.parse(sdata)
             if (!saddrpkey.Shieldaddr || !saddrpkey.Shieldaddr.length ||
                 !saddrpkey.ShieldpKey || !saddrpkey.ShieldpKey.length)  {
@@ -90,7 +90,7 @@ function createCoinBaseTransactionWithAddress(toAddress, isPrivate, callback) {
                 var buffer = tx.serialize();
                 buffer = buffer.replace(/"/g, "'");
                 var txBuffer = encodeURIComponent(buffer);
-                console.log('txBuffer', txBuffer);
+                //console.log('txBuffer', txBuffer);
                 sendCoinbase(txBuffer, tx.ID, callback)
             },0)
         });
@@ -99,7 +99,7 @@ function createCoinBaseTransactionWithAddress(toAddress, isPrivate, callback) {
         var buffer = tx.serialize();
         buffer = buffer.replace(/"/g, "'");
         var txBuffer = encodeURIComponent(buffer);
-        console.log('txBuffer', txBuffer);
+        //console.log('txBuffer', txBuffer);
         sendCoinbase(txBuffer, tx.ID, callback)
     }
 }
