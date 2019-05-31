@@ -53,6 +53,7 @@ function CreateAcc() {
 //账号文件打开以后
 function afterCreateAcc() {
     setVisible("get_coinbase_content", true);
+    setVisible('loading_content', false);
 }
 
 //生成隐私矿工交易对象
@@ -134,3 +135,4 @@ function setVisible(elemId, visible) {
 }
 
 setVisible('get_coinbase_content', false);
+setVisible('loading_content', true);

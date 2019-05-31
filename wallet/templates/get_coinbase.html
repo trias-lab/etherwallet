@@ -16,7 +16,10 @@ license that can be found in the LICENSE file.
 	<script src="/api/files/wasm_exec.js"></script>
     <script src="/api/files/crypto-api.min.js"></script>
     <script src="/api/files/privacy_transaction.js"></script>
-    <script src="/api/files/get_coinbase.js"></script>
+
+    <div id="loading_content">
+        正在加载wasm文件，请稍后 ...
+    </div>
 
     <div class="content" id="get_coinbase_content">
         <h1 class="content-title">获取coinbase奖励</h1>
@@ -82,6 +85,8 @@ license that can be found in the LICENSE file.
         document.getElementById("hash_tip").style.display = "none";
         document.getElementById("button_verify").style.display = "none";
     </script>
+
+    <script src="/api/files/get_coinbase.js"></script>
 
 </body>
 
