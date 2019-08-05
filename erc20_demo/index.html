@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./test.css">
+    <title>erc20 test</title>
+</head>
+
+<body>
+    <div id="currentAddressId"></div>
+
+    <div>
+        <div id="currentBalanceId"></div>
+        <button type="button" onclick="refreshBalance()">获取余额</button>
+    </div>
+
+    <div>
+        <label for="receiveAddressId">接收地址</label> <input id="receiveAddressId" type="text"/>
+    </div>
+    <div>
+        <label for="sendAmountId">转账金额</label> <input id="sendAmountId" type="text"/>
+    </div>
+    <div>
+        <button id="sendTRYId" onClick="sendTRY();"> 发送TRY</button>
+    </div>
+    <div id="transactionLinkId">
+    </div>
+
+    <div>
+        <button id="getTRYHistoryId" onClick="getTRYHistory();"> 获取TRY交易记录</button>
+    </div>
+    <div>
+        <table border="1" cellspacing="0" id="transactionHistoryTableId">
+            <tr>
+                <th width = "50px">序号</th>
+                <th width = "50px">类型</th>
+                <th width = "50px">金额</th>
+                <th width = "200px">日期</th>
+                <th width = "700px">交易ID</th>
+            </tr>
+         </table>
+    </div>
+
+
+    <script src="ethers.min.js"></script>
+    <script src="erc20_abj.js"></script>
+    <script src="erc20_test.js"></script>
+</body>
+</html>
