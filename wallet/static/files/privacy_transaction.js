@@ -7,13 +7,14 @@ function TxInput(tx_id, tx_output_index, signature, address, pub_key) {
     this.pub_key = pub_key
 }
 
-function TxOutput(value, shield_addr, shield_pkey) {
+function TxOutput(value, shield_addr, shield_pkey, value_encrypt) {
     this.value = value;
     this.shield_addr = shield_addr;
     this.shield_pkey = shield_pkey;
+    this.value_encrypt = value_encrypt
 }
 
-function Transaction(ID, vin, vout, timestamp) {
+function Transaction(ID, vin, vout, timestamp, prove_data) {
     this.ID = ID;
     this.Vin = vin;
     this.Vout = vout;
@@ -22,6 +23,7 @@ function Transaction(ID, vin, vout, timestamp) {
     } else {
         this.timestamp = parseInt(new Date().getTime());
     }
+    this.prove_data = prove_data
 }
 
 Transaction.prototype.getSignedID = function(tx_copy, fromAddress, index) {
@@ -50,9 +52,10 @@ Transaction.fromString = function(s) {
     ret.Vout = []
     for(i=0; i<obj.Vout.length; i++) {
         var vout = obj.Vout[i];
-        var retVout = new TxOutput(vout.value, vout.pub_key_hash, vout.shield_pkey);
+        var retVout = new TxOutput(vout.value, vout.pub_key_hash, vout.shield_pkey, vout.value_encrypt);
         ret.Vout.push( retVout )
     }
+    ret.prove_data = obj.prove_data
     return ret;
 }
 
@@ -89,14 +92,16 @@ Transaction.prototype.serialize = function() {
         k = {};
         k['value'] = vout.value;
         k['pub_key_hash'] = vout.shield_addr;
-        k['shield_pkey'] = vout.shield_pkey;
+        k['shield_pkey'] = vout.shield_pkey || "";
+        k['value_encrypt'] = vout.value_encrypt || "";
         vouts.push( k );
     }
     var data = {
         "ID": this.ID,
         "Vin": vins,
         "Vout": vouts,
-        "timestamp": this.timestamp
+        "timestamp": this.timestamp,
+        "prove_data": this.prove_data || ""
     }
     //var buffer = JSON.stringify(data);
     var buffer = sortedJsonStringify(data)
@@ -121,7 +126,7 @@ Transaction.prototype.hash = function() {
         hasher.update( plain );
         tx_hash = CryptoApi.encoder.toHex(hasher.finalize()).toUpperCase();
     }
-    //console.log('plain ' + plain);
+    console.log('plain ' + plain);
     //console.log('hash ' + tx_hash);
 
     this.ID = tx_hash;
@@ -161,10 +166,10 @@ Transaction.prototype.trimmed_copy = function() {
     }
     for(let i=0; i<this.Vout.length; i++) {
         vout = this.Vout[i];
-        tx_out = new TxOutput(vout.value, vout.shield_addr, vout.shield_pkey);
+        tx_out = new TxOutput(vout.value, vout.shield_addr, vout.shield_pkey, vout.value_encrypt);
         tx_outputs.push( tx_out );
     }
-    var tx_copy = new Transaction(this.ID, tx_inputs, tx_outputs, this.timestamp);
+    var tx_copy = new Transaction(this.ID, tx_inputs, tx_outputs, this.timestamp, this.prove_data);
     return tx_copy;
 }
 
@@ -261,6 +266,63 @@ var sortedJsonStringify = function (obj, opts) {
     })({ '': obj }, '', obj, 0);
 };
 
+/**
+ * @description 科学计数法转为string
+ * @param {string, number} param
+ */
+function scientificNotationToString(param) {
+    if (!String.prototype.padStart) {
+        String.prototype.padStart = function padStart(targetLength,padString) {
+            targetLength = targetLength>>0; //truncate if number or convert non-number to 0;
+            padString = String((typeof padString !== 'undefined' ? padString : ' '));
+            if (this.length > targetLength) {
+                return String(this);
+            }
+            else {
+                targetLength = targetLength-this.length;
+                if (targetLength > padString.length) {
+                    padString += padString.repeat(targetLength/padString.length); //append to original to ensure we are longer than needed
+                }
+                return padString.slice(0,targetLength) + String(this);
+            }
+        };
+    }
+    if (!String.prototype.padEnd) {
+        String.prototype.padEnd = function padEnd(targetLength, padString) {
+            targetLength = targetLength >> 0; //floor if number or convert non-number to 0;
+            padString = String(typeof padString !== 'undefined' ? padString : ' ');
+            if (this.length > targetLength) {
+                return String(this);
+            } else {
+                targetLength = targetLength - this.length;
+                if (targetLength > padString.length) {
+                    padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
+                }
+                return String(this) + padString.slice(0, targetLength);
+            }
+        };
+    }
+
+    let strParam = String(param)
+    let flag = /e/.test(strParam)
+    if (!flag) return param
+
+    // 指数符号 true: 正，false: 负
+    let sysbol = true
+    if (/e-/.test(strParam)) {
+        sysbol = false
+    }
+    // 指数
+    let index = Number(strParam.match(/\d+$/)[0])
+    // 基数
+    let basis = strParam.match(/^[\d\.]+/)[0].replace(/\./, '')
+
+    if (sysbol) {
+        return basis.padEnd(index + 1, 0)
+    } else {
+        return basis.padStart(index + basis.length, 0).replace(/^0/, '0.')
+    }
+}
 
 if (typeof process !== "undefined") {
     module.exports.Transaction = Transaction;

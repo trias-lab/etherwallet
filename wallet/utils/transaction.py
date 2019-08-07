@@ -9,7 +9,7 @@ from .txoutput import TxOutput
 
 
 class Transaction:
-    def __init__(self, ID, vin, vout, timestamp=None):
+    def __init__(self, ID, vin, vout, timestamp=None, prove_data=None):
         self.ID = ID
         self.Vin = vin
         self.Vout = vout
@@ -17,6 +17,7 @@ class Transaction:
             self.timestamp = timestamp
         else:
             self.timestamp = int(round(time.time() * 1000))
+        self.prove_data = prove_data
 
     def is_coinbase(self):
         is_base = False
@@ -44,6 +45,7 @@ class Transaction:
                 k['value'] = vout.value
                 k['shield_pkey'] = vout.shield_pkey
                 k['pub_key_hash'] = vout.pub_key_hash
+                k['value_encrypt'] = vout.value_encrypt
                 vouts.append(k)
         except Exception as e:
             print(e)
@@ -52,7 +54,8 @@ class Transaction:
             "ID": self.ID,
             "Vin": vins,
             "Vout": vouts,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
+            "prove_data":self.prove_data
         }
 
         return json.dumps(data, sort_keys=True)
@@ -75,11 +78,11 @@ class Transaction:
                 tx_inputs.append(tx_in)
 
             for vout in self.Vout:
-                tx_out = TxOutput(vout.value, vout.pub_key_hash, vout.shield_pkey)
+                tx_out = TxOutput(vout.value, vout.pub_key_hash, vout.shield_pkey, vout.value_encrypt)
                 tx_outputs.append(tx_out)
         except Exception as e:
             print(e)
 
-        tx_copy = Transaction(self.ID, tx_inputs, tx_outputs, self.timestamp)
+        tx_copy = Transaction(self.ID, tx_inputs, tx_outputs, self.timestamp, self.prove_data)
         return tx_copy
 
