@@ -109,31 +109,49 @@ function removeAllTokenConflicts(conflictWithDefaultTokens, localTokens) {
   saveToLocalStorage("localTokens", deDuplicatedTokens)
 }
 
-Wallet.prototype.setBalance = function(callback) {
+Wallet.prototype.setBalance = async function(callback) {
     var parentObj = this;
-    this.balance = this.usdBalance = this.eurBalance = this.btcBalance = this.chfBalance = this.repBalance =  this.gbpBalance = 'loading';
-    ajaxReq.getBalance(parentObj.getAddressString(), function(data) {
-        if (data.error) parentObj.balance = data.msg;
-        else {
-            parentObj.balance = etherUnits.toEther(data.data.balance, 'wei');
-            ajaxReq.getETHvalue(function(data) {
-                parentObj.usdPrice   = etherUnits.toFiat('1', 'ether', data.usd);
-                parentObj.gbpPrice   = etherUnits.toFiat('1', 'ether', data.gbp);
-                parentObj.eurPrice   = etherUnits.toFiat('1', 'ether', data.eur);
-                parentObj.btcPrice   = etherUnits.toFiat('1', 'ether', data.btc);
-                parentObj.chfPrice   = etherUnits.toFiat('1', 'ether', data.chf);
-                parentObj.repPrice   = etherUnits.toFiat('1', 'ether', data.rep);
+    var network = globalFuncs.getDefaultTokensAndNetworkType().networkType;
+    var nodeKey = JSON.parse(globalFuncs.localStorage.getItem('curNode', null)).key;
+    var currentAddress = this.getAddressString()
+    // var currentAddress = '0x10aAE3635324ED530b5399984552a020E6D2cD77'
 
-                parentObj.usdBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.usd);
-                parentObj.gbpBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.gbp);
-                parentObj.eurBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.eur);
-                parentObj.btcBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.btc);
-                parentObj.chfBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.chf);
-                parentObj.repBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.rep);
-                if(callback) callback();
-            });
+    this.balance = this.usdBalance = this.eurBalance = this.btcBalance = this.chfBalance = this.repBalance =  this.gbpBalance = 'loading';
+    if(network === 'try'){
+        if(nodeKey === 'tri'){  //mainnet
+            var provider = ethers.getDefaultProvider('mainnet');
+            var contractAddress = "0xe431a4c5db8b73c773e06cf2587da1eb53c41373";
+        }else{  // ropsten
+            var provider = ethers.getDefaultProvider('ropsten');
+            var contractAddress = "0xe906c9fa6c5239e9ea8a9bb2ff656e146ff5142c";
         }
-    });
+        const contract = new ethers.Contract(contractAddress, ajaxReq.abiList, provider);
+        var balance = await contract.balanceOf(currentAddress);
+        parentObj.balance = parseFloat(balance)/ 10**18;
+    } else {
+        ajaxReq.getBalance(parentObj.getAddressString(), function(data) {
+            if (data.error) parentObj.balance = data.msg;
+            else {
+                parentObj.balance = etherUnits.toEther(data.data.balance, 'wei');
+                ajaxReq.getETHvalue(function(data) {
+                    parentObj.usdPrice   = etherUnits.toFiat('1', 'ether', data.usd);
+                    parentObj.gbpPrice   = etherUnits.toFiat('1', 'ether', data.gbp);
+                    parentObj.eurPrice   = etherUnits.toFiat('1', 'ether', data.eur);
+                    parentObj.btcPrice   = etherUnits.toFiat('1', 'ether', data.btc);
+                    parentObj.chfPrice   = etherUnits.toFiat('1', 'ether', data.chf);
+                    parentObj.repPrice   = etherUnits.toFiat('1', 'ether', data.rep);
+    
+                    parentObj.usdBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.usd);
+                    parentObj.gbpBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.gbp);
+                    parentObj.eurBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.eur);
+                    parentObj.btcBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.btc);
+                    parentObj.chfBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.chf);
+                    parentObj.repBalance = etherUnits.toFiat(parentObj.balance, 'ether', data.rep);
+                    if(callback) callback();
+                });
+            }
+        });
+    }
 }
 Wallet.prototype.getBalance = function() {
     return this.balance;
