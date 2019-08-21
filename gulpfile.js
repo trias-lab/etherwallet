@@ -18,7 +18,7 @@ const rename       = require('gulp-rename');
 const runSequence  = require('run-sequence');
 const shell        = require('gulp-shell');
 const source       = require('vinyl-source-stream');
-const uglify       = require('gulp-uglify');
+const uglify       = require('gulp-uglify-es').default;
 const zip          = require('gulp-zip');
 const html2js      = require('html2js-browserify');
 
