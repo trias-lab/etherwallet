@@ -39,7 +39,7 @@ var globalService = function($http, $httpParamSerializerJQLike) {
   },
   sendTransaction: {
     id: 4,
-    name: "NAV_SendTRI",
+    name: "NAV_SendTokens",
     url: "send-transaction",
     mew: true,
     cx: true

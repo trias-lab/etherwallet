@@ -12,11 +12,11 @@
 
   <div class="tab-title">
     <div class="text">
-      <h1 translate="NAV_SendTRI">Send TRY</h1>
+      <h1 translate="NAV_SendTokens">Send Tokens</h1>
       <div class="icon visible-xs-inline-block">
         <i class="fas fa-envelope"></i>
       </div>  
-      <h2>Send TRY to another Trias Wallet address. 
+      <h2>Send Tokens to another wallet address. 
         Be absolutely sure about what you’re doing, 
         check the everything twice before initiating the transaction.</h2>
     </div>
