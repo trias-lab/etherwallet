@@ -4,8 +4,6 @@ nodes.customNode = require("./nodeHelpers/customNode");
 nodes.infuraNode = require("./nodeHelpers/infura");
 nodes.metamaskNode = require("./nodeHelpers/metamask");
 nodes.nodeTypes = {
-	TRY: "TRY",
-	TRYRopsten: "ROPSTEN TRY",
 	ETH: "ETH",
 	ETC: "ETC",
 	Ropsten: "ROPSTEN ETH",
@@ -45,30 +43,30 @@ nodes.customNodeObj = {
 	lib: null
 };
 nodes.nodeList = {
-	tri: {
-        name: "TRY",
-        blockExplorerTX: "https://etherscan.io/tx/[[txHash]]",
-        blockExplorerAddr: "https://etherscan.io/address/[[address]]",
-        type: nodes.nodeTypes.TRY,
-        eip155: true,
-        chainId: 15,
-        tokenList: require("./tokens/triTokens.json"),
-        abiList: require("./abiDefinitions/erc20Abi.json"),
-        service: "Trias Mainnet",
-        lib: new nodes.customNode("https://wallet.trias.one/api/tri/", "")
-	},
-	tri_ropsten: {
-        name: "TRY",        
-		blockExplorerTX: "https://ropsten.etherscan.io/tx/[[txHash]]",
-		blockExplorerAddr: "https://ropsten.etherscan.io/address/[[address]]",
-		type: nodes.nodeTypes.TRYRopsten,
-		eip155: true,
-        chainId: 15,
-		tokenList: require("./tokens/triTokens.json"),
-        abiList: require("./abiDefinitions/erc20Abi.json"),
-        service: "Ropsten",
-        lib: new nodes.customNode("https://wallet.trias.one/api/tri/", "")
-    },
+	// tri: {
+    //     name: "TRY",
+    //     blockExplorerTX: "https://etherscan.io/tx/[[txHash]]",
+    //     blockExplorerAddr: "https://etherscan.io/address/[[address]]",
+    //     type: nodes.nodeTypes.TRY,
+    //     eip155: true,
+    //     chainId: 15,
+    //     tokenList: require("./tokens/triTokens.json"),
+    //     abiList: require("./abiDefinitions/erc20Abi.json"),
+    //     service: "Trias Mainnet",
+    //     lib: new nodes.customNode("https://wallet.trias.one/api/tri/", "")
+	// },
+	// tri_ropsten: {
+    //     name: "TRY",        
+	// 	blockExplorerTX: "https://ropsten.etherscan.io/tx/[[txHash]]",
+	// 	blockExplorerAddr: "https://ropsten.etherscan.io/address/[[address]]",
+	// 	type: nodes.nodeTypes.TRYRopsten,
+	// 	eip155: true,
+    //     chainId: 15,
+	// 	tokenList: require("./tokens/triTokens.json"),
+    //     abiList: require("./abiDefinitions/erc20Abi.json"),
+    //     service: "Ropsten",
+    //     lib: new nodes.customNode("https://wallet.trias.one/api/tri/", "")
+    // },
 	eth_mew: {
 		name: "ETH",
 		blockExplorerTX: "https://etherscan.io/tx/[[txHash]]",

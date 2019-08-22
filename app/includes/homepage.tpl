@@ -17,11 +17,11 @@
 
   <div class="tab-title nav-card" ng-click="globalService.currentTab=globalService.tabs.sendTransaction.id">
     <div class="text">
-      <h1 translate="NAV_SendTokens">Send Tokens</h1>
+      <h1 translate="NAV_SendTokens">Send ETH & Tokens</h1>
       <div class="icon visible-xs-inline-block">
         <i class="fas fa-envelope"></i>
       </div>  
-      <h2>Send Tokens to another Trias Wallet address. Be absolutely sure about what you’re doing, check the everything twice before initiating the transaction. </h2>
+      <h2>Send ETH or Tokens to another Trias Wallet address. Be absolutely sure about what you’re doing, check the everything twice before initiating the transaction. </h2>
     </div>
     <div class="icon hidden-xs">
       <i class="fas fa-envelope"></i>

@@ -281,7 +281,7 @@ NAV_Multisig                : 'Multisig ',
 NAV_MyWallets               : '我的钱包 ',
 NAV_Offline                 : '离线发送 ',
 NAV_SendTRI               	: '发送TRY币 ', //combined these tabs
-NAV_SendTokens              : 'Send Tokens ',
+NAV_SendTokens              : '发送ETH & 代币',
 NAV_SignMsg                 : 'Sign Message ',
 NAV_Swap                    : 'Swap ',
 NAV_ViewAccount             : '查看账户信息',

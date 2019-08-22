@@ -3,4 +3,10 @@
 "symbol":"💥 PLASMA",
 "decimal":6,
 "type":"default"
+},
+{
+"address":"0xe906c9fa6c5239e9ea8a9bb2ff656e146ff5142c",
+"symbol":"ROPSTEN TRY",
+"decimal":18,
+"type":"default"
 }]

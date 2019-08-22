@@ -1,9 +1,4 @@
 <aside ng-controller="walletBalanceCtrl">
-
-
-
-
-
   <!-- Account Address -->
   <div class="block">
     <h5>Account Info</h5>
@@ -61,11 +56,6 @@
       </ul>
     </div>
   </div>
-
-
-
-
-
 
   <!-- Slider Thingy -->
   <!-- Hardware Wallets -->
@@ -129,21 +119,17 @@
     <a ng-click="slide=2"> &bull; </a>
   </div> -->
 
-
-
-
   <!-- Token Balances -->
-  <!-- <div class="block token-balances">
+  <div class="block token-balances">
     <h5 translate="sidebar_TokenBal">Token Balances</h5>
 
-      <a href="https://myetherwallet.github.io/knowledge-base/send/adding-new-token-and-sending-custom-tokens.html"
+      <!-- <a href="https://myetherwallet.github.io/knowledge-base/send/adding-new-token-and-sending-custom-tokens.html"
          rel="noopener noreferrer"
          target="_blank">
          How to See Your Tokens
-      </a>
-    </h5>
+      </a>-->
 
-    <p>
+    <!-- <p>
       You can also view your Balances on
       <a ng-show="ajaxReq.type != 'CUS'"
          href="{{ajaxReq.blockExplorerAddr.replace('[[address]]', wallet.getAddressString())}}"
@@ -165,39 +151,7 @@
     </a>
     <a class="btn btn-warning btn-xs" ng-click="showAllTokens=false" ng-show="showAllTokens==true">
       Only Show Balances
-    </a>
-    <a class="btn btn-default btn-xs" ng-click="customTokenField=!customTokenField">
-      <span translate="SEND_custom">Add Custom Token</span>
-    </a>
-
-    <br ng-show="customTokenField" />
-
-    <div class="custom-token-fields" ng-show="customTokenField">
-      <div class="row">
-        <address-field
-          placeholder="{{ ajaxReq.type=='ETH' ? 'mewtopia.eth' : '0xDECAF9CD2367cdbb726E904cD6397eDFcAe6068D' }}"
-          var-name="localToken.contractAdd"
-          labelTranslated="TOKEN_Addr">
-        </address-field>
-      </div>
-
-      <label translate="TOKEN_Symbol"> Token Symbol: </label>
-      <input class="form-control input-sm"
-             type="text"
-             ng-model="localToken.symbol"
-             ng-class="localToken.symbol!='' ? 'is-valid' : 'is-invalid'" />
-
-      <label translate="TOKEN_Dec"> Decimals: </label>
-      <input class="form-control input-sm"
-             type="text"
-             ng-model="localToken.decimals"
-             ng-class="Validator.isPositiveNumber(localToken.decimals) ? 'is-valid' : 'is-invalid'" />
-
-      <button class="btn btn-primary btn-xs" ng-click="saveTokenToLocal()" translate="x_Save">Save</button>
-    </div>
-
-    <br />
-    <br />
+    </a> -->
 
     <table class="account-info">
       <tr ng-class="token.type!=='default' ? 'custom-token' : ''"
@@ -218,8 +172,7 @@
         </td>
       </tr>
     </table>
-
-  </div> -->
+  </div>
 
 
 
