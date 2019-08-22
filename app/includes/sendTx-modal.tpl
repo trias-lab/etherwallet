@@ -110,7 +110,10 @@
         <div class="transaction-list">
           <p class="list-row clearfix">
             <span>To Address</span>
-            <span> {{parsedSignedTx.to}}</span>
+            <span> {{parsedSignedTx.to}}
+              <br />
+              <em><small>If sending tokens, this should be the token contract address.</small></em>
+            </span>
             
           </p>
           <p class="list-row clearfix">
