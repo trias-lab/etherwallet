@@ -122,14 +122,15 @@
 
           <span class="dropdown dropdown-wallet" ng-cloak>
             <a tabindex="0" aria-haspopup="true" aria-expanded="false"
-              class="dropdown-toggle hidden-xs" ng-click="dropdownWallet = !dropdownWallet" >ETH Wallet<i class="caret"></i></a>
+              class="dropdown-toggle hidden-xs" ng-click="dropdownWallet = !dropdownWallet" >ETH/TRY Wallet<i class="caret"></i></a>
             <a tabindex="0" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn visible-xs" ng-click="dropdownWallet = !dropdownWallet">
               <i class="fas fa-wallet" ng-show="!dropdownWallet"></i>
               <i class="fas fa-times icon-close" ng-show="dropdownWallet"></i>
             </a>
             <ul class="dropdown-menu" ng-show="dropdownWallet">
-              <li><a class="active" href="" translate="ETH_Wallet"> ETH Wallet </a></li>
-              <li><a href="https://btcwallet.trias.one" translate="BTC_Wallet"> BTC Wallet </a></li>
+              <li><a class="active" href=""> ETH/TRY Wallet </a></li>
+              <li><a href="https://wallet.trias.one/" target="_blank" > Testnet Wallet </a></li>
+              <li><a href="https://btcwallet.trias.one" translate="BTC_Wallet" target="_blank" > BTC Wallet </a></li>
             </ul>
           </span>
 
