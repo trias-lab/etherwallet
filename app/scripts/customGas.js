@@ -36,7 +36,7 @@ msg:        'Depository Network (DEPO) Token sale - Sign Up at https://depositor
 },{
 // CryptFillCoin (CFC) Token sale
 to:         '0xC510840609575a10e893aF8b87A903865dF6677c',
-gasLimit:   210000,
+gasLimit:   520000,
 data:       '',
 msg:        'CryptFillCoin (CFC) token sale - Sign Up at https://cryptfillcoin.com and buy your tokens.'
 },{
@@ -54,7 +54,7 @@ msg:        'Ethernet.Cash (ENC) token sale - https://ethernet.cash get up to 50
 },{
 // Merculet (MVP) Token sale
 to:         '0x8a77e40936bbc27e80e9a3f526368c967869c86d',
-gasLimit:   210000,
+gasLimit:   520000,
 data:       '',
 msg:        'Merculet (MVP) token sale - You must have registered at https://merculet.io and followed the instructions to purchase tokens here.'
 },{
@@ -421,7 +421,7 @@ msg:        'EDU Token Sale by OS.University - https://os.university/'
 },{
   // Brickblock (BBK) Token sale
   to:         '0x4a6058666cf1057eac3cd3a5a614620547559fc9',
-  gasLimit:   210000,
+  gasLimit:   520000,
   data:       '',
   msg:        'Brickblock (BBK) Token Sale. Official sale website:https://www.brickblock.io'
 },{
@@ -433,7 +433,7 @@ msg:        'OAK Token Sale by The Acorn Collective - https://aco.ai/'
 },{
 // Distributed Credit Chain (DCC) Token Sale
 to:         '0x5f95c334f23eeab920ef753b995831a3c7138808',
-gasLimit:   210000,
+gasLimit:   520000,
 data:       '',
 msg:        'DCC Token Sale by The Distributed Credit Chain - https://dcc.finance/'
 }]

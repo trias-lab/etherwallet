@@ -167,7 +167,7 @@
                             <label translate="TRANS_gas">
                                 Gas Limit:
                             </label>
-                            <input type="text" class="form-control" placeholder="21000" ng-model="tx.gasLimit" ng-change="gasLimitChanged=true" ng-disabled="tx.readOnly || checkTxReadOnly"
+                            <input type="text" class="form-control" placeholder="52000" ng-model="tx.gasLimit" ng-change="gasLimitChanged=true" ng-disabled="tx.readOnly || checkTxReadOnly"
                                 ng-class="Validator.isPositiveNumber(tx.gasLimit) ? 'is-valid' : 'is-invalid'" />
                         </div>
                     </section>

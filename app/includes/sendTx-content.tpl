@@ -205,7 +205,7 @@
           </label>
           <input type="text"
                 class="form-control"
-                placeholder="21000"
+                placeholder="52000"
                 ng-model="tx.gasLimit"
                 ng-change="gasLimitChanged=true"
                 ng-disabled="tx.readOnly || checkTxReadOnly"
