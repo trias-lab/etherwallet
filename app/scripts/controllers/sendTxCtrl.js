@@ -183,6 +183,10 @@ var sendTxCtrl = function ($scope, $sce, walletService, $rootScope) {
             estObj.data = $scope.wallet.tokenObjs[$scope.tokenTx.id].getData($scope.tokenTx.to, $scope.tokenTx.value).data;
             estObj.value = '0x00';
         }
+        // fix error of parameter value
+        if(estObj.value.substr(2,1) === "0"){
+            estObj.value = '0x' + estObj.value.slice(3);
+        }
         ethFuncs.estimateGas(estObj, function (data) {
 
             if (!data.error) {
