@@ -1226,7 +1226,7 @@
           </label>
           <input type="text"
                 class="form-control"
-                placeholder="21000"
+                placeholder="52000"
                 ng-model="tx.gasLimit"
                 ng-change="gasLimitChanged=true"
                 ng-disabled="tx.readOnly || checkTxReadOnly"
@@ -2653,7 +2653,7 @@
                             <label translate="TRANS_gas">
                                 Gas Limit:
                             </label>
-                            <input type="text" class="form-control" placeholder="21000" ng-model="tx.gasLimit" ng-change="gasLimitChanged=true" ng-disabled="tx.readOnly || checkTxReadOnly"
+                            <input type="text" class="form-control" placeholder="52000" ng-model="tx.gasLimit" ng-change="gasLimitChanged=true" ng-disabled="tx.readOnly || checkTxReadOnly"
                                 ng-class="Validator.isPositiveNumber(tx.gasLimit) ? 'is-valid' : 'is-invalid'" />
                         </div>
                     </section>
@@ -3421,7 +3421,7 @@
               rel="noopener noreferrer">
               <img src="images/icon-help.svg" class="help-icon" />
               <p class="account-help-text" translate="OFFLINE_Step2_Label_4b">
-                21000 is the default gas limit.
+                52000 is the default gas limit.
               </p>
             </a> -->
             <label translate="OFFLINE_Step2_Label_4" class="step-box-title">
