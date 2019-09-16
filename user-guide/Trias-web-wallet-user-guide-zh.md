@@ -14,7 +14,6 @@
 <!-- /TOC -->
 
 ## 1. 简介
----
 Trias网页钱包网址：https://wallet.trias.one/
 
 目前网页钱包有三个子页面，分别为：
@@ -26,7 +25,6 @@ Trias网页钱包网址：https://wallet.trias.one/
 以下内容主要介绍测试网TRY钱包和ETH/TRY钱包的使用方法。
 
 ## 2.测试网TRY钱包
----
 钱包首页即为测试网钱包：https://wallet.trias.one/
 
 ![Trias Testnet Wallet - Homepage](./img/1.png)
@@ -65,7 +63,6 @@ Trias网页钱包网址：https://wallet.trias.one/
 步骤同上的1、2、3步。
 
 ## 3. ETH/TRY钱包
----
 对应子页面地址：https://wallet.trias.one/webwallet/
 
 主要功能：
