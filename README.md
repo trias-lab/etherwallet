@@ -1,14 +1,16 @@
 # Trias Web Wallet
-Trias Web Wallet is an open-source, easy-to-use and secure client-side wallet for easily & securely interacting with the Ethereum and Trias network.
+Trias Web Wallet is an open-source, easy-to-use and secure client-side wallet for easily & securely interacting with the Ethereum and Trias network. See: https://wallet.trias.one/webwallet/
 
 ## Features
 - Create new wallets completely client side.
 - Access your wallet via unencrypted private key, encrypted private key, keystore files, mnemonics, or Digital Bitbox, Ledger Nano S or TREZOR hardware wallet.
-- Easily send TRY, ETH and *any* ERC-20 Standard Token. 
+- Easily send TRY and ETH. 
 - Generate, sign & send transactions offline, ensuring your private keys never touch an internet-connected device.
-- Securely access your ETH & Tokens on your [Digital Bitbox, Ledger or TREZOR Hardware Wallet](https://myetherwallet.groovehq.com/knowledge_base/topics/hardware-wallet-recommends) via the Trias Web Wallet interface (Chrome & Opera natively, Firefox w/ [add-on](https://addons.mozilla.org/en-US/firefox/addon/u2f-support-add-on/))
 - Never save, store, or transmit secret info, like passwords or keys.
 - No tracking of private info like email or name.
+
+## User Guide (Chinese version)
+See Trias Web Wallet User Guide [here](https://github.com/trias-lab/web-wallet/blob/mercury/user-guide/Trias-web-wallet-user-guide-zh.md). This document is the Chinese version, other language versions are in preparation.
 
 ## Developers
 If you want to help contribute, here's what you need to know to get it up and running and compiling.
