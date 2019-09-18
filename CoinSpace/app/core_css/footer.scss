@@ -1,6 +1,21 @@
 #header{
     background:rgba(0,2,26,1);
 }
+.warning-banner {
+    text-align: center;
+    padding: 22px 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #f6f6f6;
+    background: url('./assets/img/banner.png') no-repeat;
+    background-size: cover;
+}
+.warning-banner i {
+    font-size: 16px;
+    color: #f6f6f6;
+    line-height: 20px;
+    margin-right: 12px;
+}
 .header-content{
     width:1080px;
     margin:0 auto;
