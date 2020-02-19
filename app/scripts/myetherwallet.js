@@ -109,9 +109,11 @@ function removeAllTokenConflicts(conflictWithDefaultTokens, localTokens) {
   saveToLocalStorage("localTokens", deDuplicatedTokens)
 }
 
-Wallet.prototype.setBalance = function(callback) {
+Wallet.prototype.setBalance = async function(callback) {
     var parentObj = this;
+
     this.balance = this.usdBalance = this.eurBalance = this.btcBalance = this.chfBalance = this.repBalance =  this.gbpBalance = 'loading';
+
     ajaxReq.getBalance(parentObj.getAddressString(), function(data) {
         if (data.error) parentObj.balance = data.msg;
         else {

@@ -865,7 +865,7 @@ function Channel(popup, waiting) {
     this.send = function (value, callback) {
         if (waiting === null) {
             waiting = callback;
-            popup.window.postMessage(value, popup.origin);
+            if(popup && popup.window) popup.window.postMessage(value, popup.origin);
         } else {
             throw new Error(ERR_ALREADY_WAITING);
         }

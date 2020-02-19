@@ -1,4 +1,4 @@
-<section class="pre-footer">
+<!-- <section class="pre-footer">
   <div class="container">
     <p>
       MyEtherWallet.com does not hold your keys for you. We cannot access accounts, recover keys, reset passwords, nor reverse transactions. Protect your keys &amp; always check that you are on correct URL.
@@ -15,7 +15,9 @@
 
     <section class="footer--left">
 
-      <a href="/"><img src="images/logo-myetherwallet.svg" height="45px" width="auto" alt="Ether Wallet" class="footer--logo"/></a>
+      <a href="/">
+        <img src="images/logo.png" height="44px" width="100px" alt="Trias Wallet" class="footer--logo"/>
+      </a>
 
       <p>
         <span translate="FOOTER_1">
@@ -80,9 +82,6 @@
           </a>
           </span>
         </p>
-        <!--
-        <p>MYD: <span class="mono wrap">mewsupport.eth <small>0xf7e983781609012307f2514f63D526D83D24F466</small></span></p>
-        -->
         <h5 ng-hide="curLang=='en'">
           <i>🏅</i>
           <span translate="Translator_Desc"> Thank you to our translators </span>
@@ -191,7 +190,125 @@
 </div>
 
 
-</footer>
+</footer> -->
+
+<div class="common-footer" ng-controller = "footerCtrl">
+  <div class="contacts">
+      <a target="blank" href="https://twitter.com/triaslab">
+          <span class="btn-icon">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+          </span>
+      </a>
+      <a target="blank" href="https://medium.com/@Triaslab">
+          <span class="btn-icon">
+              <i class="fab fa-medium-m"></i>
+          </span>
+      </a>
+      <a class="wechat-button toggle-button" ng-click = "footerToggle('weChat')">
+          <span class="btn-icon">
+              <i class="fa fa-weixin" aria-hidden="true"></i>
+          </span>
+          <div class='qrcode toggle-box' ng-show="footer.weChat">
+              <img src="images/footer/wechat-qrcode.jpeg" />
+          </div>
+      </a>
+      <a target="blank" href="https://www.reddit.com/r/Trias_Lab">
+          <span class="btn-icon">
+              <i class="fab fa-reddit-alien"></i>
+          </span>
+      </a>
+      <span class="telegram-button toggle-button" ng-click = "footerToggle('telegram')">
+          <span class="btn-icon">
+              <i class="fab fa-telegram-plane"></i>
+          </span>
+          <div class='telegram-box toggle-box' ng-show = "footer.telegram">
+              <a target="blank" href="https://t.me/triaslab">Telegram-English</a>
+              <a target="blank" href="https://t.me/TriasChinese">Telegram-中文</a>
+              <a target="blank" href="https://t.me/TriasOfficial">Telegram-Channel</a>
+          </div>
+      </span>
+      <a target="blank" href="https://0.plus/sp/triaslab">
+          <span class="btn-icon logo-biyong">
+            <i class="fas fa-envelope" style="color:transparent"></i>
+          </span>
+      </a>
+      <a target="blank" href="https://github.com/trias-lab/Documentation">
+          <span class="btn-icon">
+              <i class="fa fa-github" aria-hidden="true"></i>
+          </span>
+      </a>                
+      <a class="email-button toggle-button" ng-click = "footerToggle('email')">
+          <span class="btn-icon">
+              <i class="fas fa-envelope"></i>
+          </span>
+          <div class='email-box toggle-box' ng-show = "footer.email">
+              Email: contact@trias.one
+          </div>
+      </a>
+  </div>
+  <div class="info">
+      <div class="center-box clearfix">
+          <div class="intro pull-left">
+              <img src="images/logo.png" alt=""/>
+              <P translate="FOOTER_TriasIntroduction">
+                TRIAS aims to define a new-generation all-platform-supported 
+                public chain system. Trustworthy and Reliable Intelligent 
+                Autonomous Systems make people trust in machines.
+              </P>
+          </div>
+  
+        <div class="links pull-right">
+            <div class="docs">
+                <h2>
+                  About Us
+                </h2>
+                <div class="link">
+                    <a href="https://www.trias.one/aboutus/recent" target="blank" translate="FOOTER_RecentEvents">
+                      Recent Events
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://www.trias.one/aboutus/view" target="blank" translate="FOOTER_View">
+                      View
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://www.trias.one/aboutus/project" target="blank" translate="FOOTER_Project">
+                      Project Progress
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="links pull-right">
+          <div class="docs">
+              <h2>
+                Products
+              </h2>
+              <div class="link">
+                  <a href="https://www.trias.one/" target="blank" translate="HEADER_TriasProject">
+                    Trias Project
+                  </a>
+              </div>
+              <div class="link">
+                  <a href="https://monitor.trias.one/" target="blank" translate="HEADER_Monitor">
+                    Nodes Status Monitor
+                  </a>
+              </div>
+              <div class="link">
+                  <a href=" https://explorer.trias.one/" target="blank" translate="HEADER_Explorer">
+                    Blockchain Explorer
+                  </a>
+              </div>              
+          </div>
+        </div>
+      </div>
+      <div class="center-box clearfix">
+          <hr/>
+          <span class="pull-left">© 2018 Trias-lab Foundation. </span>
+          <!-- <span class="pull-right">All rights reserved.</span> -->
+      </div> 
+  </div>                   
+</div>
 
 @@if (site === 'mew' ) { @@include( './footer-disclaimer-modal.tpl',   { "site": "mew" } ) }
 @@if (site === 'cx'  ) { @@include( './footer-disclaimer-modal.tpl',   { "site": "cx"  } ) }

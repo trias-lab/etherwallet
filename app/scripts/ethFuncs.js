@@ -19,7 +19,7 @@ ethFuncs.validateHexString = function(str) {
 }
 ethFuncs.sanitizeHex = function(hex) {
     hex = hex.substring(0, 2) == '0x' ? hex.substring(2) : hex;
-    if (hex == "") return "";
+    if (hex == "") return "0x";
     return '0x' + this.padLeftEven(hex);
 }
 ethFuncs.trimHexZero = function(hex) {
@@ -76,7 +76,7 @@ ethFuncs.getFunctionSignature = function(name) {
 };
 ethFuncs.estimateGas = function(dataObj, callback) {
     var adjustGas = function(gasLimit) {
-        if (gasLimit == "0x5209") return "21000";
+        if (gasLimit == "0x5209") return "52000";
         if (new BigNumber(gasLimit).gt(4000000)) return "-1";
         return new BigNumber(gasLimit).toString();
     }

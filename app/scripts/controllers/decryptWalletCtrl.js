@@ -1,6 +1,7 @@
 'use strict';
 var decryptWalletCtrl = function($scope, $sce, walletService) {
-    $scope.walletType = "";
+    $scope.walletType = "fileupload";
+    // $scope.walletType = "";
     $scope.requireFPass = $scope.requirePPass = $scope.showFDecrypt = $scope.showPDecrypt = $scope.showAOnly = $scope.showParityDecrypt = false;
     $scope.filePassword = "";
     $scope.fileContent = "";
@@ -315,6 +316,7 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
     }
     $scope.decryptWallet = function() {
         $scope.wallet = null;
+    
         try {
           if ($scope.showPDecrypt && $scope.requirePPass) {
             $scope.wallet = Wallet.fromMyEtherWalletKey($scope.manualprivkey, $scope.privPassword);

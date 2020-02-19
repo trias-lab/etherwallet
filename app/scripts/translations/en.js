@@ -373,7 +373,7 @@ GEN_Label_2                     :  'Save your `Keystore` File.',
 GEN_Label_3                     :  'Save Your Address.',
 GEN_Label_4                     :  'Print paper wallet or a QR code.',
 GEN_Label_5                     :  'Save Your `Private Key`.',
-GEN_Placeholder_1               :  'Do NOT forget to save this!',
+GEN_Placeholder_1               :  'The password is not recoverable!',
 GEN_SuccessMsg                  :  'Success! Your wallet has been generated.',
 GEN_Unlock                      :  'Unlock your wallet to see your address',
 GET_ConfButton                  :  'I understand. Continue.',
@@ -418,6 +418,7 @@ NAV_Contracts                   :  'Contracts',
 NAV_DeployContract              :  'Deploy Contract',
 NAV_DomainSale                  :  'DomainSale',
 NAV_ENS                         :  'ENS',
+NAV_Homepage_alt				: 'Homepage',
 NAV_GenerateWallet              :  'Create New Wallet',
 NAV_GenerateWallet_alt          :  'New Wallet',
 NAV_Help                        :  'Help',
@@ -425,12 +426,12 @@ NAV_InteractContract            :  'Interact with Contract',
 NAV_Multisig                    :  'Multisig',
 NAV_MyWallets                   :  'My Wallets',
 NAV_Offline                     :  'Send Offline',
-NAV_SendEther                   :  'Send Ether & Tokens',
-NAV_SendTokens                  :  'Send Tokens',
+NAV_SendTRI               		:  'Send TRY ',
+NAV_SendTokens                  :  'Send ETH & Tokens',
 NAV_SignMsg                     :  'Sign Message',
 NAV_Swap                        :  'Swap',
 NAV_TxStatus                    :  'TX Status',
-NAV_ViewWallet                  :  'View Wallet Info',
+NAV_ViewAccount                 :  'View Account Info',
 NAV_YourWallets                 :  'Your Wallets',
 
 NODE_CTA                        :  'Save & Use Custom Node',
@@ -809,7 +810,20 @@ PHISHING_Warning_2              :  'This address has been flagged in our Phishin
 APPLE_Mob_Notice_Head           :  "It seems like you're using an IPhone or an IPad.",
 APPLE_Mob_Notice_Body_1         :  "Just letting you know that generating wallets isn't supported in these devices because of Apple's storage restrictions.",
 APPLE_Mob_Notice_Body_2         :  'Please use the actual website on a laptop or computer.',
-APPLE_Mob_Notice_Understand     :  'I understand.'
+APPLE_Mob_Notice_Understand     :  'I understand.',
+
+HEADER_TriasProject				:  'Trias Project',
+HEADER_Monitor					:  'Nodes Status Monitor',
+HEADER_Explorer					:  'Blockchain Explorer',
+
+ETH_Wallet						:  'ETH Wallet',
+BTC_Wallet						:  'BTC Wallet',
+
+FOOTER_RecentEvents				:  'Recent Events',
+FOOTER_View						:  'View',
+FOOTER_Project					:  'Project Progress',
+
+FOOTER_TriasIntroduction		:  'TRIAS aims to define a new-generation all-platform-supported public chain system. Trustworthy and Reliable Intelligent Autonomous Systems make people trust in machines.'
 };
 
 module.exports = en;

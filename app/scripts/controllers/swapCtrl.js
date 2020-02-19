@@ -6,13 +6,38 @@ var swapCtrl = function ($scope, $sce, walletService) {
   $scope.Validator = Validator;
   $scope.bity = new bity();
   $scope.kyber = new kyber();
+  $scope.tri = new tri(); // new a tri instance to use the refreshRate funciton of tri module
   $scope.kyberNetworkEnabled = true;
   $scope.orderRetrievedFromStorage = false;
   $scope.isKyberSwap = false;
 
-  $scope.bityOptions = ["ETH", "REP", "BTC"];
+  // $scope.bityOptions = ["ETH", "REP", "BTC"];
+  $scope.triOptions = [ "TRY"];
   $scope.toExclude = [];
   $scope.fromExclude = [];
+
+  function findParentByClass(ele,name){ 
+    if(ele.className.indexOf(name) !== -1){return true} 
+        for (var i=0,n=ele; n=n.parentNode; i++){ 
+            if(n.className.indexOf(name) !== -1){return true} 
+            if(n==document.body){return false}
+        } 
+  }
+  document.body.addEventListener('click', function(e){
+    if($scope.dropdownFrom && !findParentByClass(e.target, 'dropdown-from')) {
+        $scope.dropdownFrom = false;
+        $scope.$apply();
+    }
+    if($scope.dropdownTo && !findParentByClass(e.target, 'dropdown-to')) {
+        $scope.dropdownTo = false;
+        $scope.$apply();
+    }
+  })
+
+  // Geyt current node key
+  var getCurNodeKey = function(){
+    return JSON.parse(globalFuncs.localStorage.getItem('curNode', null)).key;
+  }
 
   // Currently Not Really Used (kept for usage in a future feature)
   $scope.showInFromList = function (coin) {
@@ -29,34 +54,51 @@ var swapCtrl = function ($scope, $sce, walletService) {
     // else return true;
 
   };
-
+  // 定时刷新汇率
   setInterval(function () {
-    $scope.bity.refreshRates();
-    // $scope.kyber.refreshRates();
-    //$scope.checkKyberNetwork();
+    if(getCurNodeKey()=='tri'){
+      $scope.tri.refreshRates();
+    }else{
+      // $scope.bity.refreshRates();
+      $scope.kyber.refreshRates();
+      $scope.checkKyberNetwork();
+    }
   }, 30000);
+
   $scope.priceTicker = {
     ETHBTC: 1,
     ETHREP: 1,
     BTCREP: 1,
     BTCETH: 1,
     REPBTC: 1,
-    REPETH: 1
+    REPETH: 1,
+    ETHTRI: 1,
+    TRIETH: 1,
   };
 
-  $scope.availableCoins = ["ETH", "BTC", "REP"];
+  // $scope.availableCoins = ["ETH", "BTC", "REP"];
+  $scope.availableCoins = ["ETH"];   //TODO: + TRY ?
   $scope.availableTokens = [];
   $scope.availableOptions = [...$scope.availableCoins, ...$scope.availableTokens];
 
+  // 设定初始值
   var initValues = function () {
-    $scope.bity.refreshRates(function () {
-      $scope.setOrderCoin(true, "ETH");
-    });
+    // if current node is TRY, use tri.refreshRates to get ETH/TRY rates
+    // otherwise, use kyber rates
+    if(getCurNodeKey()=='tri'){
+      $scope.tri.refreshRates(function () {
+        $scope.setOrderCoin(true, "ETH");
+      });
+    }else{
+      $scope.kyber.refreshRates();
+    }
+
     $scope.kyberInit();
     $scope.kyberPriceTicker = {};
     Object.keys($scope.kyber.kyberRates).forEach(kkey => {
       $scope.kyberPriceTicker[kkey] = 1
     });
+    // get available token list of kyber network
     $scope.availableTokens = $scope.kyber.getTokenList();
     $scope.availableTokens.slice($scope.availableTokens.indexOf("ETH"), 1);
     $scope.availableFromOptions = [...$scope.availableCoins, ...$scope.availableTokens];
@@ -67,7 +109,18 @@ var swapCtrl = function ($scope, $sce, walletService) {
     $scope.orderResult = null;
     $scope.swapOrder = {
       fromCoin: "ETH",
-      toCoin: "BTC",
+      toCoin: getCurNodeKey() == 'tri'?"TRY":$scope.availableToOptions[1],
+      isFrom: true,
+      fromVal: '',
+      toVal: '',
+      toAddress: '',
+      swapRate: '',
+      swapPair: ''
+    }
+    // init kyber swap order
+    $scope.kyberSwapOrder = {
+      fromCoin: "ETH",
+      toCoin: getCurNodeKey() == 'tri'?"TRY":$scope.availableToOptions[1],
       isFrom: true,
       fromVal: '',
       toVal: '',
@@ -75,8 +128,13 @@ var swapCtrl = function ($scope, $sce, walletService) {
       swapRate: '',
       swapPair: ''
     };
+    // if current node is not TRY, set order coin.
+    if (getCurNodeKey() !== 'tri') {
+      $scope.setOrderCoin(true, "ETH");
+    }
 
   };
+
 
   /** kyberSwapOrder **/
   $scope.resetErrorShownStates = function () {
@@ -98,14 +156,12 @@ var swapCtrl = function ($scope, $sce, walletService) {
       //     swapRate: '',
       //     swapPair: ''
       //   };
-      //   /*{
-      //       $scope.swapOrder
-      //   }*/
       // }
 
       return $scope.verifyKyberMinMaxValues();
     } else {
-      return $scope.verifyBityMinMaxValues();
+      return true;
+      // return $scope.verifyBityMinMaxValues();  // TODO: verify tri min-max values
     }
   };
 
@@ -123,6 +179,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
       else if (($scope.swapOrder.toCoin == "BTC" && $scope.swapOrder.toVal > bity.max) || ($scope.swapOrder.fromCoin == "BTC" && $scope.swapOrder.fromVal > bity.max)) return errors.greaterThanMax;
       else if (($scope.swapOrder.toCoin == "ETH" && $scope.swapOrder.toVal * $scope.bity.curRate['ETHBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "ETH" && $scope.swapOrder.fromVal * $scope.bity.curRate['ETHBTC'] > bity.max)) return errors.greaterThanMax;
       else if (($scope.swapOrder.toCoin == "REP" && $scope.swapOrder.toVal * $scope.bity.curRate['REPBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "REP" && $scope.swapOrder.fromVal * $scope.bity.curRate['REPBTC'] > bity.max)) return errors.greaterThanMax;
+      // else if (($scope.swapOrder.toCoin == "TRY" && $scope.swapOrder.toVal * $scope.bity.curRate['TRIBTC'] > bity.max) || ($scope.swapOrder.fromCoin == "TRY" && $scope.swapOrder.fromVal * $scope.bity.curRate['TRIBTC'] > bity.max)) return errors.greaterThanMax;
       return errors.noErrors;
     }
     var vResult = verify();
@@ -138,95 +195,117 @@ var swapCtrl = function ($scope, $sce, walletService) {
   };
 
   $scope.setOrderCoin = function (isFrom, coin) {
-    $scope.kyberSwapRateDisplay();
-    let bityOptions = ["ETH", "BTC", "REP"];
-    let kyberOptions = $scope.availableTokens;
-    let isBity = (_coin) => {
-      return bityOptions.indexOf(_coin) > -1;
-    }
-    if (isFrom) {
-      $scope.availableToOptions = []
-      if (isBity(coin)) {
-        bityOptions.forEach((_item) => {
-          if (_item != coin) $scope.availableToOptions.push(_item)
-        })
+    if(getCurNodeKey() == 'tri'){ // if current node is TRY
+      // only support TRY -> ETH
+      let triOptions = ["TRY"];
+      $scope.availableFromOptions = triOptions;
+      $scope.availableToptions = ["ETH"];
+      $scope.swapOrder.toCoin = 'ETH'
+      $scope.swapOrder.fromCoin = 'TRY';
+
+      // if one of the from options is selected, update the to options
+      // if (isFrom){
+      //   $scope.availableToOptions = [];
+
+      //   triOptions.forEach((_item) => {
+      //     if (_item != coin ) $scope.availableToOptions.push(_item)
+      //   })
+      //   $scope.swapOrder.toCoin = coin=='TRY'? 'ETH':'TRY'
+      //   $scope.swapOrder.fromCoin = coin;
+      // }
+
+      $scope.setTriOrderCoin(isFrom);
+
+    } else {
+
+      $scope.kyberSwapRateDisplay();
+      let kyberOptions = $scope.availableTokens;
+      // if one of the original coin options is selected
+      if (isFrom) {
+        // reset available Target coins opitons
+        $scope.availableToOptions = []
+
+        // if swap from ETH
         if (coin == "ETH") {
+          // update the to options with kyber options
           kyberOptions.forEach((_item) => {
             $scope.availableToOptions.push(_item)
           })
+          $scope.swapOrder.toCoin = $scope.availableToOptions[0];
+        } else {
+          $scope.availableToOptions = ["ETH"]
+          $scope.swapOrder.toCoin = "ETH";
         }
-      } else {
-        $scope.availableToOptions = ["ETH"]
-        $scope.swapOrder.toCoin = "ETH";
-      }
-      $scope.swapOrder.fromCoin = coin;
-    } else {
-      $scope.availableFromOptions = []
-      if (isBity(coin)) {
+        $scope.swapOrder.fromCoin = coin;
+      } else {  // if one of the to options is selected
+        // reset the Original coins options
+        $scope.availableFromOptions = []
+        
+        // if swap to ETH
         if (coin == "ETH") {
-          bityOptions.forEach((_item) => {
-            if (_item != coin && _item != "REP") $scope.availableFromOptions.push(_item)
-          })
+          // update the from options with kyber options
           kyberOptions.forEach((_item) => {
             $scope.availableFromOptions.push(_item)
           })
-        } else {
-          bityOptions.forEach((_item) => {
-            if (_item != coin && _item != "REP") $scope.availableFromOptions.push(_item)
-          })
-        }
-      } else {
-        if ($scope.swapOrder.fromCoin == "ETH") {
-          $scope.availableToOptions = []
-          bityOptions.forEach((_item) => {
-            if (_item != coin) $scope.availableToOptions.push(_item)
-          })
-          kyberOptions.forEach((_item) => {
-            $scope.availableToOptions.push(_item)
-          })
-        } else {
-          $scope.availableToOptions = ["ETH"]
-        }
-      }
-      $scope.swapOrder.toCoin = coin;
-    }
+        } else { 
+          if ($scope.swapOrder.fromCoin == "ETH") {
+            $scope.availableToOptions = []
+            $scope.availableToOptions.push('ETH')
 
-
-    if (isBity($scope.swapOrder.toCoin) && isBity($scope.swapOrder.fromCoin)) {
-      if ($scope.swapOrder.fromCoin == $scope.swapOrder.toCoin)
-        for (var i in bityOptions)
-          if (bityOptions[i] != $scope.swapOrder.fromCoin) {
-            $scope.swapOrder.toCoin = bityOptions[i];
-            break;
+            kyberOptions.forEach((_item) => {
+              $scope.availableToOptions.push(_item)
+            })
+          } else {
+            $scope.availableToOptions = ["ETH"]
           }
-      $scope.setBityOrderCoin(isFrom);
-    } else {
+        }
+        $scope.swapOrder.toCoin = coin;
+      }
+      
+      if ($scope.swapOrder.fromCoin == $scope.swapOrder.toCoin){
+        $scope.swapOrder.toCoin = $scope.availableToOptions[1];
+      }
       $scope.setKyberOrderCoin(isFrom);
     }
-
-
+    
   };
 
-  $scope.setBityOrderCoin = function (isFrom) {
-    $scope.swapOrder.swapRate = $scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin];
+  // TODO: do something for TRY swap order?
+  $scope.setTriOrderCoin = function (isFrom) {
+    $scope.swapOrder.swapRate = $scope.tri.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin];
     $scope.swapOrder.swapPair = $scope.swapOrder.fromCoin + "/" + $scope.swapOrder.toCoin;
-    $scope.updateBityEstimate(isFrom);
+    $scope.updateTriEstimate(isFrom);
     $scope.dropdownFrom = $scope.dropdownTo = false;
   };
+
+  // $scope.setBityOrderCoin = function (isFrom) {
+  //   $scope.swapOrder.swapRate = $scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin];
+  //   $scope.swapOrder.swapPair = $scope.swapOrder.fromCoin + "/" + $scope.swapOrder.toCoin;
+  //   $scope.updateBityEstimate(isFrom);
+  //   $scope.dropdownFrom = $scope.dropdownTo = false;
+  // };
+
+  // Estimate value
   $scope.updateEstimate = function (isFrom) {
     if ($scope.checkIfKyber()) {
       $scope.updateKyberEstimate(isFrom);
     } else {
-      $scope.updateBityEstimate(isFrom);
+      $scope.updateTriEstimate(isFrom); // TODO: if not kyber
     }
   };
 
 
-  $scope.updateBityEstimate = function (isFrom) {
-    if (isFrom) $scope.swapOrder.toVal = parseFloat(($scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin] * $scope.swapOrder.fromVal).toFixed(bity.decimals));
-    else $scope.swapOrder.fromVal = parseFloat(($scope.swapOrder.toVal / $scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin]).toFixed(bity.decimals));
+  $scope.updateTriEstimate = function (isFrom) {
+    if (isFrom) $scope.swapOrder.toVal = parseFloat(($scope.tri.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin] * $scope.swapOrder.fromVal).toFixed(tri.decimals));
+    else $scope.swapOrder.fromVal = parseFloat(($scope.swapOrder.toVal / $scope.tri.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin]).toFixed(tri.decimals));
     $scope.swapOrder.isFrom = isFrom;
   };
+
+  // $scope.updateBityEstimate = function (isFrom) {
+  //   if (isFrom) $scope.swapOrder.toVal = parseFloat(($scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin] * $scope.swapOrder.fromVal).toFixed(bity.decimals));
+  //   else $scope.swapOrder.fromVal = parseFloat(($scope.swapOrder.toVal / $scope.bity.curRate[$scope.swapOrder.fromCoin + $scope.swapOrder.toCoin]).toFixed(bity.decimals));
+  //   $scope.swapOrder.isFrom = isFrom;
+  // };
 
 
   $scope.setFinalPrices = function () {
@@ -297,8 +376,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
       timeRemaining: '10:00',
       secsRemaining: orderResult.validFor - parseInt((new Date().getTime() - new Date(orderResult.timestamp_created).getTime()) / 1000),
       pendingStatusReq: false,
-      checkDelay: 1000
+      checkDelay: 10000,
+      step:'OPEN'
     };
+    //定时器 用来计算交易
     var timeRem = setInterval(function () {
       if (!orderResult) clearInterval(timeRem);
       if (orderResult.progress.secsRemaining > 0) {
@@ -318,37 +399,48 @@ var swapCtrl = function ($scope, $sce, walletService) {
       }
     }, 1000);
     var progressCheck = setInterval(function () {
-      if (!orderResult) clearInterval(progressCheck);
+       //if (!orderResult) clearInterval(progressCheck);
+    if (!$scope.orderResult || orderResult.id != $scope.orderResult.id) clearInterval(progressCheck);
       if (!orderResult.progress.pendingStatusReq) {
         orderResult.progress.pendingStatusReq = true;
-        $scope.bity.getStatus({
+        $scope.tri.getStatus({
           orderid: orderResult.id
         }, function (data) {
-          if (data.error) $scope.notifier.danger(data.msg);
+          orderResult.progress.pendingStatusReq = false;
+          if (data.error){
+            // $scope.notifier.danger(JSON.stringify(data.msg));  // TODO: msg={}?? if error=true, msg should not be empty
+          }
           else {
             data = data.data;
-            if (bity.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
-            if (orderResult.progress.status == "OPEN" && bity.validStatus.indexOf(data.input.status) != -1) {
+            if (tri.validStatus.indexOf(data.status) != -1) orderResult.progress.status = "RCVE";
+            if (orderResult.progress.status == "OPEN" && tri.validStatus.indexOf(data.input.status) != -1) {
+              console.log(1)
               orderResult.progress.secsRemaining = 1;
               orderResult.progress.showTimeRem = false;
               orderResult.progress.status = "RCVE";
+              orderResult.progress.step = "RCVE";
               orderResult.progress.bar = getProgressBarArr(3, 5);
 
-            } else if (orderResult.progress.status == "RCVE" && bity.validStatus.indexOf(data.output.status) != -1) {
+            } else if (orderResult.progress.status == "RCVE" && tri.validStatus.indexOf(data.output.status) != -1) {
               orderResult.progress.status = "FILL";
+              orderResult.progress.step = "FILL";
               orderResult.progress.bar = getProgressBarArr(5, 5);
               orderResult.progress.showTimeRem = false;
-              var url = orderResult.output.currency == 'BTC' ? bity.btcExplorer.replace("[[txHash]]", data.output.reference) : bity.ethExplorer.replace("[[txHash]]", data.output.reference)
+              // var url = orderResult.output.currency == 'BTC' ? tri.btcExplorer.replace("[[txHash]]", data.output.reference) : tri.ethExplorer.replace("[[txHash]]", data.output.reference)
+              var url = tri.triExplorer.replace("[[txHash]]", data.output.reference)
               var bExStr = `<a href="${url}" target=" _blank" rel="noopener "> View your transaction </a>`;
               $scope.notifier.success(globalFuncs.successMsgs[2] + data.output.reference + "<br />" + bExStr);
+              console.log(2)
               clearInterval(progressCheck);
               clearInterval(timeRem);
+              
 
-            } else if (bity.invalidStatus.indexOf(data.status) != -1) {
+            } else if (tri.invalidStatus.indexOf(data.status) != -1) {
               orderResult.progress.status = "CANC";
               orderResult.progress.bar = getProgressBarArr(-1, 5);
               $scope.notifier.danger("Time has run out. If you have already sent, please wait 1 hour. If your order has not be processed after 1 hour, please press the orange 'Issue with your Swap?' button.");
               orderResult.progress.secsRemaining = 0;
+              console.log(3)
               clearInterval(progressCheck);
             }
             if (!$scope.$$phase) $scope.$apply();
@@ -363,8 +455,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
       $scope.parentTxConfig = {
         to: ethUtil.toChecksumAddress($scope.orderResult.payment_address),
         value: $scope.orderResult.input.amount,
-        sendMode: $scope.orderResult.input.currency == 'ETH' ? 'ether' : 'token',
-        tokensymbol: $scope.orderResult.input.currency == 'ETH' ? '' : $scope.orderResult.input.currency,
+        // sendMode: $scope.orderResult.input.currency == 'ETH' ? 'ether' : 'token',
+        // tokensymbol: $scope.orderResult.input.currency == 'ETH' ? '' : $scope.orderResult.input.currency,
+        sendMode:'ether',
+        tokensymbol:  '',
         readOnly: true
       }
       $scope.showStage3Eth = true;
@@ -372,16 +466,41 @@ var swapCtrl = function ($scope, $sce, walletService) {
   }
 
 
-  $scope.openOrder = function () {
+  // Start swap for bity
+  // $scope.openOrder = function () {
+  //   //如果接受的币种不是BTC &&  是一个错误的地址  或者 接受的币种是BTC && 是比特币的地址
+  //   if (($scope.swapOrder.toCoin != 'BTC' && $scope.Validator.isValidAddress($scope.swapOrder.toAddress)) || ($scope.swapOrder.toCoin == 'BTC' && $scope.Validator.isValidBTCAddress($scope.swapOrder.toAddress))) {
+  //     var order = {
+  //       amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal, //根据是否是发送方,选择数量
+  //       mode: $scope.swapOrder.isFrom ? 0 : 1,                                               //应该是后台区分的一个参数
+  //       pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,                           //哪种币转哪种币 eg: EHTTRI
+  //       destAddress: $scope.swapOrder.toAddress                                              //目的地址
+  //     }
+  //     $scope.bity.openOrder(order, function (data) {
+  //       if (!data.error) {
+  //         $scope.orderResult = data.data;
+  //         $scope.orderResult.swapOrder = $scope.swapOrder;
+  //         var orderResult = $scope.orderResult;
+  //         saveOrderToStorage(orderResult);
+  //         processOrder();
+  //       } else $scope.notifier.danger(data.msg);
+  //       if (!$scope.$$phase) $scope.$apply();
+  //     });
+  //   } else {
+  //     $scope.notifier.danger(globalFuncs.errorMsgs[5]);
+  //   }
+  // }
 
-    if (($scope.swapOrder.toCoin != 'BTC' && $scope.Validator.isValidAddress($scope.swapOrder.toAddress)) || ($scope.swapOrder.toCoin == 'BTC' && $scope.Validator.isValidBTCAddress($scope.swapOrder.toAddress))) {
+  // open order for ETH/TRY swap
+  $scope.openTriOrder = function () {
+    if ( $scope.Validator.isValidAddress($scope.swapOrder.toAddress)){
       var order = {
-        amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal,
-        mode: $scope.swapOrder.isFrom ? 0 : 1,
-        pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,
-        destAddress: $scope.swapOrder.toAddress
+        amount: $scope.swapOrder.isFrom ? $scope.swapOrder.fromVal : $scope.swapOrder.toVal, //根据是否是发送方,选择数量
+        mode: $scope.swapOrder.isFrom ? 0 : 1,                                               //应该是后台区分的一个参数
+        pair: $scope.swapOrder.fromCoin + $scope.swapOrder.toCoin,                           //哪种币转哪种币 eg: EHTTRI
+        destAddress: $scope.swapOrder.toAddress                                              //目的地址
       }
-      $scope.bity.openOrder(order, function (data) {
+      $scope.tri.openOrder(order, function (data) {
         if (!data.error) {
           $scope.orderResult = data.data;
           $scope.orderResult.swapOrder = $scope.swapOrder;
@@ -631,7 +750,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
         } else {
           $scope.sendDecimals = 6;
 
-          let fromDecimalsToUse = $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals < bity.decimals ? $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals : bity.decimals;
+          // let fromDecimalsToUse = $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals < bity.decimals ? $scope.kyber.tokenDetails[$scope.swapOrder.fromCoin].decimals : bity.decimals;
           let _fromVal = $scope.swapOrder.toVal / finalRate;
           $scope.swapOrder.fromVal = parseFloat((_fromVal).toFixed(bity.decimals));
         }
@@ -659,6 +778,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // if user cap is below the entered amount allow the user to go back and change their inputs
   $scope.returnToStart = function () {
     $scope.showStage1 = true;
+    $scope.showStage2 = false;
     $scope.showStage2Kyber = false;
     $scope.showStage3Kyber = false;
     $scope.showStage4Kyber = false;
@@ -672,6 +792,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // If the destination address does not match the unlocked wallet address allow the user to return to check they entered the correct address.
   $scope.returnToSetDestinationAddress = function () {
     $scope.showStage1 = false;
+    $scope.showStage2 = true;
     $scope.showStage2Kyber = true;
     $scope.showStage3Kyber = false;
     $scope.showStage4Kyber = false;
@@ -692,7 +813,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
         if (data.data > 0) {
           let allocationNeeded = $scope.kyber.convertToTokenBase($scope.kyberSwapOrder.toVal, $scope.kyberSwapOrder.toCoin);
           $scope.kyberTransaction.currentTokenApprovalValue = $scope.kyber.convertToTokenBase(data.data, $scope.kyberSwapOrder.fromCoin);
-          if($scope.kyberTransaction.currentTokenApprovalValue > allocationNeeded){
+          if ($scope.kyberTransaction.currentTokenApprovalValue > allocationNeeded) {
 
             callback("bypass")
           } else {
@@ -752,7 +873,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
               let enoughTokens = userTokenBalance.gte($scope.kyberSwapOrder.fromVal);
               if (enoughTokens) {
                 checkForPriorTokenApproval($scope.walletKyber.getAddressString(), (_data) => {
-                  if(typeof _data === 'boolean'){
+                  if (typeof _data === 'boolean') {
                     if (_data) {
                       $scope.balanceOk = true;
                       $scope.kyberTransaction.tokenNeedsReset = true;
@@ -819,6 +940,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
 
     try {
       $scope.showStage2Kyber = true;
+      $scope.showStage2 = true;
       $scope.kyberOrderResult.input = {
         amount: $scope.swapOrder.fromVal,
         currency: $scope.swapOrder.fromCoin
@@ -859,10 +981,12 @@ var swapCtrl = function ($scope, $sce, walletService) {
       if ($scope.availableTokens.indexOf($scope.kyberSwapOrder.fromCoin) >= 0) {
 
         $scope.showStage2Kyber = false;
+        $scope.showStage2 = false;
         $scope.showStage3Kyber = true;
         $scope.startKyberTokenSwap();
       } else {
         $scope.showStage2Kyber = false;
+        $scope.showStage2 = false;
         $scope.showStage3Kyber = true;
         $scope.startKyberEthSwap();
       }
@@ -882,9 +1006,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // Stage 3 'Start Swap'. Based on selected swap pair determine which processing flow to follow
   $scope.openKyberOrder = function (wallet) {
     $scope.wallet = walletService.wallet;
+    // TOKEN => ETH
     if ($scope.availableTokens.indexOf($scope.swapOrder.fromCoin) >= 0) {
       $scope.checkForResetApproveTokenKyber();
-    } else {
+    } else {  // ETH => TOKEN
       $scope.openKyberEthOrder();
     }
   };
@@ -1005,10 +1130,10 @@ var swapCtrl = function ($scope, $sce, walletService) {
   // generate the transaction object based on the specific flow stage
   $scope.generateKyberTransaction = function (txData, stage) {
     try {
-      if(stage === "GENERATE_SWAP_TRANSACTION" || stage === "OPEN_ETH"){
+      if (stage === "GENERATE_SWAP_TRANSACTION" || stage === "OPEN_ETH") {
         let val = globalFuncs.localStorage.getItem("gasPrice")
         let gp = new BigNumber(val)
-        if(gp.gte(50)){
+        if (gp.gte(50)) {
           $scope.kyberTransaction.kyberMaxGas = true;
           txData.kyberGasPrice = "0xba43b7400"
         }
@@ -1074,8 +1199,8 @@ var swapCtrl = function ($scope, $sce, walletService) {
       switch ($scope.kyberOrderResult.progress.status) {
         case "APPROVE_TOKENS":
           // Generate the content to populate the modal that prompts of user for approval
-          $scope.parseKyberSignedTx($scope.kyberTransaction.tokenTx.signedTx);
-          $scope.kyberModal.open();
+          // $scope.parseKyberSignedTx($scope.kyberTransaction.tokenTx.signedTx);
+          // $scope.kyberModal.open();
         case "RESET_TOKEN_APPROVAL":
           // Generate the content to populate the modal that prompts of user for approval
           $scope.parseKyberSignedTx($scope.kyberTransaction.tokenTx.signedTx);
@@ -1109,8 +1234,8 @@ var swapCtrl = function ($scope, $sce, walletService) {
 
           break;
         case "APPROVE_TOKENS":
-          if($scope.kyberTransaction.bypassTokenApprove){
-            if(!$scope.bypassSendChecked){
+          if ($scope.kyberTransaction.bypassTokenApprove) {
+            if (!$scope.bypassSendChecked) {
               $scope.bypassSendChecked = true;
               $scope.showStage4Kyber = true;
               $scope.showStage3Kyber = false;
@@ -1131,7 +1256,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
           break;
         case "TOKENS_APPROVED":
           $scope.sendKyberTx($scope.kyberTransaction.tokenTx.signedTx);
-          if($scope.kyberModal) $scope.kyberModal.close()
+          if ($scope.kyberModal) $scope.kyberModal.close()
           break;
         case "SEND_ETH":
           $scope.showStage4Kyber = true;
@@ -1364,9 +1489,9 @@ var swapCtrl = function ($scope, $sce, walletService) {
     return parsedKyberTx;
   };
 
-  var applyScope = function () {
-    if (!$scope.$$phase) $scope.$apply();
-  };
+  // var applyScope = function () {
+  //   if (!$scope.$$phase) $scope.$apply();
+  // };
 
   $scope.$watch(function () {
     if (walletService.wallet == null) return null;
@@ -1384,7 +1509,7 @@ var swapCtrl = function ($scope, $sce, walletService) {
   });
 
   ///////////////////////// KYBER (end) //////////////////////////////////////////////////////////////////
-
+  //开始一个新的swap就是将lStorageKey设置为空
   $scope.newSwap = function () {
     globalFuncs.localStorage.setItem(lStorageKey, '');
     initValues();

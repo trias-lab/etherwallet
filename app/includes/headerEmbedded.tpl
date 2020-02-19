@@ -2,7 +2,7 @@
 <html lang="en" ng-app="mewApp">
 <head>
   <meta charset="utf-8">
-  <title>MyEtherWallet.com</title>
+  <title>TriasWallet.com</title>
   <link rel="canonical" href="https://www.myetherwallet.com" />
   <meta name="description" content="MyEtherWallet.com is a free, open-source, client-side interface for generating Ethereum wallets &amp; more. Interact with the Ethereum blockchain easily &amp; securely. Double-check the URL ( myetherwallet.com ) before unlocking your wallet.">
   <meta name="author" content="">
@@ -32,6 +32,6 @@
 
 <header class="bg-gradient text-white">
 <section class="container text-center">
-  <a href="https://www.myetherwallet.com/"><img src="images/logo-myetherwallet.svg" height="50px" width="auto" alt="Ether Wallet" class="embedded-logo" /></a>
+  <a href="https://www.myetherwallet.com/"><img src="images/logo.png" height="44px" width="100px" alt="Trias Wallet" class="embedded-logo" /></a>
 </section>
 </header>

@@ -201,13 +201,13 @@
 			},
 		
 			this.resize = function() {
-				function resizeHandler() {
-					// setTimeout(function() {
-						self._resize();
-						self.handleUpdate();
-						// console.log('offresize')
-					// }, 100)
-				}			
+				// function resizeHandler() {
+				// 	// setTimeout(function() {
+				// 		self._resize();
+				// 		self.handleUpdate();
+				// 		// console.log('offresize')
+				// 	// }, 100)
+				// }			
 
 				if (!/in/.test(this.modal.className)) {
 					window.addEventListener('resize', this.oneResize, false);

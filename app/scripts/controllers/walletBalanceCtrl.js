@@ -14,6 +14,28 @@ var walletBalanceCtrl = function($scope, $sce, $rootScope) {
 
     $scope.customTokenField = false;
 
+    $scope.hasTokenWithBalance = false;
+
+    $scope.$watch('wallet', function() {
+        if ($scope.wallet) {
+            for(var t = 0; t < $scope.wallet.tokenObjs.length; t++){        
+                let token = $scope.wallet.tokenObjs[t];
+                if($scope.hasTokenWithBalance){
+                    break;
+                }
+                if ( token.balance == 'Click to Load' ) {
+                    token.setBalance(function() {
+                        if(parseInt(token.balance) > 0){
+                            $scope.hasTokenWithBalance = true;
+                        }
+                    });
+                }else if( token.balance > 0 ){
+                    $scope.hasTokenWithBalance = true;
+                }  
+            }
+        }
+    });
+
     $scope.saveTokenToLocal = function() {
         globalFuncs.saveTokenToLocal($scope.localToken, function(data) {
             if (!data.error) {
@@ -55,9 +77,7 @@ var walletBalanceCtrl = function($scope, $sce, $rootScope) {
     }
 
     /*
-    $scope.$watch('wallet', function() {
-        if ($scope.wallet) $scope.reverseLookup();
-    });
+   
 
     $scope.reverseLookup = function() {
         var _ens = new ens();

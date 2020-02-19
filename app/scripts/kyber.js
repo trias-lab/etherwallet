@@ -111,10 +111,10 @@ kyberFuncs.prototype.getMainNetAddress = function () {
     })
 }
 
-kyberFuncs.prototype.setDefaultValues = function (_network) {
-    var _this = this
-    // kyberFuncs.defaultValues.maxGasPrice = _network["max gas price"] ? _network["max gas price"] : 50000000000;// 50 Gwei
-}
+// kyberFuncs.prototype.setDefaultValues = function (_network) {
+//     var _this = this
+//     // kyberFuncs.defaultValues.maxGasPrice = _network["max gas price"] ? _network["max gas price"] : 50000000000;// 50 Gwei
+// }
 
 kyberFuncs.prototype.setCurrentTokenABIs = function (_tokenABIs) {
     var _this = this

@@ -53,7 +53,7 @@ etherUnits.toGwei = function(number, unit) {
 	return returnValue.toString(10);
 };
 etherUnits.toWei = function(number, unit) {
-	var returnValue = new BigNumber(String(number)).times(this.getValueOfUnit(unit));
+	var returnValue = new BigNumber(String(number||0)).times(this.getValueOfUnit(unit));
 	return returnValue.toString(10);
 };
 

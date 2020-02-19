@@ -335,11 +335,11 @@ u2f.formatRegisterRequest_ =
   function(appId, registeredKeys, registerRequests, timeoutSeconds, reqId) {
   if (js_api_version === undefined || js_api_version < 1.1) {
     // Adapt request to the 1.0 JS API
-    for (var i = 0; i < registerRequests.length; i++) {
+    for (let i = 0; i < registerRequests.length; i++) {
       registerRequests[i].appId = appId;
     }
     var signRequests = [];
-    for (var i = 0; i < registeredKeys.length; i++) {
+    for (let i = 0; i < registeredKeys.length; i++) {
       signRequests[i] = {
           version: registeredKeys[i].version,
           challenge: registerRequests[0],
@@ -452,9 +452,9 @@ u2f.WrappedAuthenticatorPort_.prototype.addEventListener = function(eventName, h
 u2f.WrappedAuthenticatorPort_.prototype.onRequestUpdate_ =
     function(callback, message) {
   var messageObject = JSON.parse(message.data);
-  var intentUrl = messageObject['intentURL'];
+  // var intentUrl = messageObject['intentURL'];
 
-  var errorCode = messageObject['errorCode'];
+  // var errorCode = messageObject['errorCode'];
   var responseObject = null;
   if (messageObject.hasOwnProperty('data')) {
     responseObject = /** @type {Object} */ (
@@ -536,7 +536,8 @@ u2f.getIframePort_ = function(callback) {
 
   iframe.addEventListener('load', function() {
     // Deliver the port to the iframe and initialize
-    iframe.contentWindow.postMessage('init', iframeOrigin, [channel.port2]);
+    if(iframe.contentWindow) 
+      iframe.contentWindow.postMessage('init', iframeOrigin, [channel.port2]);
   });
 };
 

@@ -60,7 +60,7 @@ var myWalletsCtrl = function($scope, $sce, $timeout, walletService) {
 
 	function scrollContent () {
 		$scope.loadingTokens = true;
-		const loadTokens = $timeout(function(){
+		$timeout(function(){
 			$scope.nextPage($scope.qtyPerPage);
 		}, 500);
 		$scope.loadTokens = false;
@@ -110,16 +110,14 @@ var myWalletsCtrl = function($scope, $sce, $timeout, walletService) {
 		if ($scope.localTokens && $scope.localTokens.length === 0) {
 			return false;
 		} else if ($scope.localTokens && $scope.localTokens.length > 0) {
-			for (let i = 0; i <= $scope.localTokens.length; i++) {
-				if (
-					$scope.localTokens.find(function(item) {
-						return item.address === token.address;
-					}) === undefined
-				) {
-					return false;
-				} else {
-					return true;
-				}
+			if (
+				$scope.localTokens.find(function(item) {
+					return item.address === token.address;
+				}) === undefined
+			) {
+				return false;
+			} else {
+				return true;
 			}
 		}
 	};

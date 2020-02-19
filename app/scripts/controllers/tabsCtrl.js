@@ -6,7 +6,7 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     $scope.customNodeModal = document.getElementById('customNodeModal') ? new Modal(document.getElementById('customNodeModal')) : null;
     $scope.Validator = Validator;
     $scope.nodeList = nodes.nodeList;
-    $scope.defaultNodeKey = 'eth_mew';
+    $scope.defaultNodeKey = 'eth_ethscan';
     $scope.customNode = { options: 'eth', name: '', url: '', port: '', httpBasicAuth: null, eip155: false, chainId: '' };
     $scope.customNodeCount = 0;
     $scope.nodeIsConnected = true;
@@ -40,20 +40,50 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     }
     var setGasValues = function() {
         $scope.gas = {
-            curVal: 41,
-            value: globalFuncs.localStorage.getItem(gasPriceKey, null) ? parseInt(globalFuncs.localStorage.getItem(gasPriceKey)) : 41,
+            curVal: 5,
+            value: globalFuncs.localStorage.getItem(gasPriceKey, null) ? parseInt(globalFuncs.localStorage.getItem(gasPriceKey)) : 5,
             max: 99,
             min: 1,
             step: 1
         }
 
-        var curNode = globalFuncs.localStorage.getItem('curNode', null);
+        // var curNode = globalFuncs.localStorage.getItem('curNode', null);
 
         ethFuncs.gasAdjustment = $scope.gas.value;
         $scope.gasPriceMsg = ethFuncs.gasAdjustment < 41 ? true : false
     }
     setGasValues();
     $scope.gasChanged();
+
+    function findParentByClass(ele,name){ 
+        if(ele.className.indexOf(name) !== -1){return true} 
+            for (var i=0,n=ele; n=n.parentNode; i++){ 
+                if(n.className.indexOf(name) !== -1){return true} 
+                if(n==document.body){return false}
+            } 
+    }
+    document.body.addEventListener('click', function(e){
+        if($scope.dropdownNode && !findParentByClass(e.target, 'dropdown-node')) {
+            $scope.dropdownNode = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownGasPrice && !findParentByClass(e.target, 'dropdown-gas')) {
+            $scope.dropdownGasPrice = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownNode && !findParentByClass(e.target, 'dropdown-node')) {
+            $scope.dropdownNode = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownWallet && !findParentByClass(e.target, 'dropdown-wallet')) {
+            $scope.dropdownWallet = false;
+            $scope.$apply();
+        }
+        if($scope.dropdownLang && !findParentByClass(e.target, 'dropdown-lang')) {
+            $scope.dropdownLang = false;
+            $scope.$apply();
+        }
+    })
 
     function makeNewNode(key) {
       var curNode;
@@ -83,16 +113,16 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
         $scope.dropdownNode = false;
         Token.popTokens = $scope.curNode.tokenList;
         ajaxReq['key'] = key;
-        for (var attrname in $scope.curNode.lib) ajaxReq[attrname] = $scope.curNode.lib[attrname];
-        for (var attrname in $scope.curNode)
+        for (let attrname in $scope.curNode.lib) ajaxReq[attrname] = $scope.curNode.lib[attrname];
+        for (let attrname in $scope.curNode)
             if (attrname != 'name' && attrname != 'tokenList' && attrname != 'lib')
                 ajaxReq[attrname] = $scope.curNode[attrname];
-            globalFuncs.localStorage.setItem('curNode', JSON.stringify({
+        globalFuncs.localStorage.setItem('curNode', JSON.stringify({
             key: key
         }));
-        if (nodes.ensNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = false;
-        if (nodes.domainsaleNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.domainsale.cx = $scope.tabNames.domainsale.mew = false;
-        else $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = true;
+        // if (nodes.ensNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = false;
+        // if (nodes.domainsaleNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.domainsale.cx = $scope.tabNames.domainsale.mew = false;
+        // else $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = true;
         ajaxReq.getCurrentBlock(function(data) {
             if (data.error) {
                 $scope.nodeIsConnected = false;
@@ -232,9 +262,9 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     }
 
     $scope.setErrorMsgLanguage = function() {
-        for (var i = 0; i < globalFuncs.errorMsgs.length; i++) $scope.setLanguageVal('ERROR_' + i, 'errorMsgs', i);
-        for (var i = 0; i < globalFuncs.successMsgs.length; i++) $scope.setLanguageVal('SUCCESS_' + (i + 1), 'successMsgs', i);
-        for (var i = 0; i < globalFuncs.phishingWarning.length; i++) $scope.setLanguageVal('PHISHING_Warning_' + (i + 1), 'phishingWarning', i);
+        for (let i = 0; i < globalFuncs.errorMsgs.length; i++) $scope.setLanguageVal('ERROR_' + i, 'errorMsgs', i);
+        for (let i = 0; i < globalFuncs.successMsgs.length; i++) $scope.setLanguageVal('SUCCESS_' + (i + 1), 'successMsgs', i);
+        for (let i = 0; i < globalFuncs.phishingWarning.length; i++) $scope.setLanguageVal('PHISHING_Warning_' + (i + 1), 'phishingWarning', i);
     }
 
     $scope.setGethErrMsgLanguage = function() {
@@ -266,7 +296,7 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
             $scope.setParityErrMsgLanguage();
         $scope.curLang = value;
         $scope.setArrowVisibility();
-        $scope.dropdown = false;
+        $scope.dropdownLang = false;
         globalFuncs.localStorage.setItem('language', JSON.stringify({
             key: key,
             value: value
@@ -322,6 +352,12 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
 
     angular.element(document.querySelectorAll('.nav-scroll')[0]).bind('scroll', $scope.setOnScrollArrows);
     globalFuncs.changeHash = $scope.setHash;
+
+
+    $scope.toggleWalletShow = false;
+    $scope.toggleWallet = function(){
+        $scope.toggleWalletShow = !$scope.toggleWalletShow
+    }
 
 };
 module.exports = tabsCtrl;

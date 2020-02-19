@@ -7,15 +7,15 @@ var subDomainInterface = require('./ensConfigs/subDomainABI.json');
 var ens = function() {
     var _this = this;
     this.registryABI = {};
-    for (var i in registryInterface) this.registryABI[registryInterface[i].name] = registryInterface[i];
+    for (let i in registryInterface) this.registryABI[registryInterface[i].name] = registryInterface[i];
     this.resolverABI = {};
-    for (var i in resolverInterface) this.resolverABI[resolverInterface[i].name] = resolverInterface[i];
+    for (let i in resolverInterface) this.resolverABI[resolverInterface[i].name] = resolverInterface[i];
     this.auctionABI = {};
-    for (var i in auctionInterface) this.auctionABI[auctionInterface[i].name] = auctionInterface[i];
+    for (let i in auctionInterface) this.auctionABI[auctionInterface[i].name] = auctionInterface[i];
     this.deedABI = {};
-    for (var i in deedInterface) this.deedABI[deedInterface[i].name] = deedInterface[i];
+    for (let i in deedInterface) this.deedABI[deedInterface[i].name] = deedInterface[i];
     this.subDomainABI = {};
-    for (var i in subDomainInterface) this.subDomainABI[subDomainInterface[i].name] = subDomainInterface[i];
+    for (let i in subDomainInterface) this.subDomainABI[subDomainInterface[i].name] = subDomainInterface[i];
     switch (ajaxReq.type) {
         case nodes.nodeTypes.ETH:
             _this.setCurrentRegistry(ens.registry.ETH);

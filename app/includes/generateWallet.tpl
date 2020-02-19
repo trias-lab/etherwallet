@@ -3,40 +3,56 @@
       ng-controller='walletGenCtrl'
       role="main"
       ng-cloak>
-
-  <article class="block__wrap gen__1" ng-show="!wallet && !showGetAddress">
-    <section class="block__main gen__1--inner">
-      <br />
-      <h1 translate="NAV_GenerateWallet" aria-live="polite">
-        Create New Wallet
-      </h1>
-      <h4 translate="GEN_Label_1">
-        Enter password
-      </h4>
-      <div class="input-group">
-        <input name="password"
-             class="form-control"
-             type="{{showPass && 'password' || 'text'}}"
-             placeholder="{{'GEN_Placeholder_1' | translate }}"
-             ng-model="password"
-             ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
-             aria-label="{{'GEN_Label_1' | translate}}"
-             />
-        <span tabindex="0"
-              aria-label="make password visible"
-              role="button"
-              class="input-group-addon eye"
-              ng-click="showPass=!showPass">
-        </span>
+  <div class="tab-title">
+    <div class="text">
+      <h1 translate="NAV_GenerateWallet">Create New Wallet</h1>
+      <div class="icon visible-xs-inline-block">
+        <i class="fas fa-wallet"></i>
+      </div>  
+      <h2>By using Trias Wallet, you’ll be able to send and receive digital currency, swap between currencies and monitor your balance. </h2>
+    </div>
+    <div class="icon hidden-xs">
+      <i class="fas fa-wallet"></i>
+    </div>    
+  </div>
+  <article ng-class="!wallet && !showConfirmation? 'block__wrap gen__1 step-card active':'block__wrap gen__1 step-card'">
+    <div class="step-title">
+      <div class="num">1</div>
+      <p class="text" aria-live="polite">
+        Set Wallet Password
+      </p>
+      <i class="fas fa-check-circle success" ng-show="wallet && !showPaperWallet || showPaperWallet || showConfirmation"></i>
+    </div>
+    <section class="block__main gen__1--inner step-content" ng-show="!wallet && !showConfirmation">
+      <p class="intro">
+        This password encrypts your private key. This does not act as a seed to generate your keys. You will need this password + your private key to unlock your wallet.
+      </p>
+      <div class="input-label">
+        Set wallet password (at least 9 characters)
       </div>
+      <div class="input-group" style="max-width: inherit;">
+        <input name="password"
+           class="form-control"
+           type="{{showPass && 'password' || 'text'}}"
+           placeholder="{{'GEN_Placeholder_1' | translate }}"
+           ng-model="password"
+           ng-class="isStrongPass() ? 'is-valid' : 'is-invalid'"
+           aria-label="{{'GEN_Label_1' | translate}}"
+           />
+        <span tabindex="0"
+            aria-label="make password visible"
+            role="button"
+            class="input-group-addon eye"
+            ng-click="showPass=!showPass">
+        </span>
+      </div>      
       <a tabindex="0"
          role="button"
          class="btn btn-primary"
-         ng-click="genNewWallet()"
-         translate="NAV_GenerateWallet">
-           Generate Wallet
+         ng-click="genNewWallet()">
+           Create New Wallet
       </a>
-      @@include('./apple-mobile-modal.tpl', { "site": "" } )
+      <!-- @@include('./apple-mobile-modal.tpl', { "site": "" } )
       <p translate="x_PasswordDesc"></p>
       <div class="text-center">
         <strong>
@@ -55,10 +71,10 @@
           </a>
         </strong>
       </div>
-      <br>
+      <br> -->
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
 
       <h2 translate="GEN_Help_0">
         Already have a wallet somewhere?
@@ -138,27 +154,54 @@
         </li>
       </ul>
 
-    </section>
+    </section> -->
 
   </article>
 
 
-  <article role="main" class="block__wrap gen__2" ng-show="wallet && !showPaperWallet" > <!-- -->
+  <article role="main" ng-class="wallet && !showPaperWallet ? 'block__wrap gen__2 step-card active':'block__wrap gen__2 step-card'" >
+     <div class="step-title">
+      <div class="num">2</div>
+      <p class="text" aria-live="polite">
+        Save Keystore file
+      </p>
+      <i class="fas fa-check-circle success" ng-show="showPaperWallet || showConfirmation"></i>
+    </div>
+    <section class="block__main gen__2--inner step-content" ng-show="wallet && !showPaperWallet">
 
-    <section class="block__main gen__2--inner">
-      <br />
-      <h1 translate="GEN_Label_2">
-        Save your Keystore File (UTC / JSON)
-      </h1>
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not lose it!
+          </span> 
+          It cannot be recovered if you lose it.
+        </p>
+        <p class="GEN_Warning_2">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not share it!
+          </span> 
+          Your funds will be stolen if you use this file on a malicious/phishing site.
+        </p>
+        <p class="GEN_Warning_3">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Make a backup!
+          </span> 
+          Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
 
       <a tabindex="0" role="button"
-         class="btn btn-primary"
+         class="btn btn-default"
          href="{{blobEnc}}"
          download="{{encFileName}}"
          aria-label="{{'x_Download'|translate}} {{'x_Keystore'|translate}}"
          aria-describedby="x_KeystoreDesc"
          ng-click="downloaded()"
          rel="noopener noreferrer">
+        <i class="fas fa-download"></i>
         <span translate="x_Download">
           DOWNLOAD
         </span>
@@ -167,33 +210,21 @@
         </span>
       </a>
 
-      <div class="warn">
-        <p class="GEN_Warning_1">
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p class="GEN_Warning_2">
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p class="GEN_Warning_3">
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
       <p>
         <a tabindex="0"
            role="button"
-           class="btn btn-danger"
+           class="btn btn-primary pull-right"
            ng-class="fileDownloaded ? '' : 'disabled' "
            ng-click="continueToPaper()">
-            <span translate="GET_ConfButton">
-              I understand. Continue.
+            <span>
+              I’ve Saved Keystore
             </span>
         </a>
       </p>
 
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
       <h2 translate="GEN_Help_8">
         Not Downloading a File?
       </h2>
@@ -234,58 +265,67 @@
         </li>
       </ul>
 
-    </section>
+    </section> -->
 
   </article>
 
 
-  <article role="main" class="block__wrap gen__3" ng-show="showPaperWallet">
-
-    <section class="block__main gen__3--inner">
-
-      <br />
-
-      <h1 translate="GEN_Label_5"> Save your Private Key</h1>
+  <article role="main" ng-class="showPaperWallet ? 'block__wrap gen__3 step-card active':'block__wrap gen__3 step-card'" >
+    <div class="step-title">
+      <div class="num">3</div>
+      <p class="text" aria-live="polite">
+        Save Private Key
+      </p>
+      <i class="fas fa-check-circle success" ng-show="showConfirmation"></i>
+    </div>
+    <section class="block__main gen__3--inner step-content" ng-show="showPaperWallet">
+      <div class="warn">
+        <p class="GEN_Warning_1">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not lose it!
+          </span> 
+          It cannot be recovered if you lose it.
+        </p>
+        <p class="GEN_Warning_2">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Do not share it!
+          </span> 
+          Your funds will be stolen if you use this file on a malicious/phishing site.
+        </p>
+        <p class="GEN_Warning_3">
+          <span class="emphasis">
+            <i class="fas fa-exclamation-triangle"></i>
+            Make a backup!
+          </span> 
+          Secure it like the millions of dollars it may one day be worth.
+        </p>
+      </div>
       <textarea aria-label="{{'x_PrivKey'|translate}}"
              aria-describedby="{{'x_PrivKeyDesc'|translate}}"
              class="form-control"
              readonly="readonly"
-             rows="3"
-             style="max-width: 50rem;margin: auto;"
+             rows="2"
       >{{wallet.getPrivateKeyString()}}</textarea>
-      <br />
 
       <a tabindex="0"
          aria-label="{{'x_Print'|translate}}"
          aria-describedby="x_PrintDesc"
          role="button"
-         class="btn btn-primary"
-         ng-click="printQRCode()"
-         translate="x_Print">
-          PRINT
+         class="btn btn-default"
+         ng-click="printQRCode()">
+         <i class="fas fa-print"></i>
+          Print Paper Wallet
       </a>
 
-      <div class="warn">
-        <p>
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p>
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p>
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
-        </p>
-      </div>
-
-      <br />
-
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
-        <span translate="GEN_Label_3"> Save your Address </span> →
+      <a class="btn btn-primary pull-right" ng-click="confirm()">
+        <span>I’ve Saved Private Key</span>
       </a>
 
     </section>
 
-    <section class="block__help">
+<!--     <section class="block__help">
       <h2 translate="GEN_Help_4">
         Guides &amp; FAQ
       </h2>
@@ -320,10 +360,33 @@
 
       <h2 translate="x_PrintDesc"></h2>
 
-    </section>
+    </section> -->
 
   </article>
 
+  <article role="main" ng-class="showConfirmation ? 'block__wrap gen__4 step-card active':'block__wrap gen__4 step-card'" >
+    <div class="step-title">
+      <div class="num">4</div>
+      <p class="text" aria-live="polite">
+        Confirmation
+      </p>
+    </div>
+    <section class="block__main gen__4--inner step-content" ng-show="showConfirmation">
+
+      <h1><i class="fas fa-check-circle"></i> You’re all set!</h1>
+      <p class="intro">
+        Make sure you’ve already properly saved your wallet password, Keystore file and Private Key. Remember there’s not way to recover any of them if you lost it, and you won’t be able to access your wallet.
+      </p>
+      <a class="btn btn-primary pull-right" ng-click="globalService.currentTab=globalService.tabs.viewWalletInfo.id">
+        <span> Check My Account</span>
+      </a>
+      <a class="btn btn-default pull-right" ng-click="globalService.currentTab=globalService.tabs.homepage.id">
+        <span> Back To Home</span> 
+      </a>
+
+    </section>
+  </article>
+<!-- 
   <article class="text-left" ng-show="showGetAddress">
     <div class="clearfix collapse-container">
 
@@ -344,5 +407,5 @@
       @@if (site === 'mew') {  @@include( './viewWalletInfo-content.tpl', { "site": "mew" } )   }
     </div>
 
-  </article>
+  </article> -->
 </main>

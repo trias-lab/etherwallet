@@ -1,13 +1,10 @@
 <!-- Swap Rates Panel -->
-<article class="swap-rates" ng-show="showStage1">
 
-  <!-- Title -->
+<!-- <article class="swap-rates" ng-show="showStage1">
+
   <section class="row">
     <h5 class="col-xs-6 col-xs-offset-3" translate="SWAP_rates"> Current Rates </h5>
   </section>
-  <!-- Title -->
-
-  <!-- Colored Columns -->
   <section class="row order-panel">
     <div class="col-sm-4 order-info">
       <p class="mono">
@@ -43,69 +40,104 @@
 
   </section>
 
-  <!-- / Colored Columns -->
 
-</article>
+</article> -->
+
+
+
 <!-- / Swap Rates Panel -->
 
 
 
 <!-- Swap Init Panel -->
-<article class="swap-panel block clearfix" ng-show="showStage1">
+<article class="swap-panel clearfix">
 
-  <h1 translate="SWAP_init_1"> I want to swap my </h1>
-  <br />
+  <div  ng-class="showStage1 ?'swap-panel-tit':'swap-panel-tit not-slect'">
 
-  <input class="form-control"
-         type="text"
-         placeholder="{{ 'SEND_amount_short' | translate }}"
-         ng-change ="updateEstimate(true)"
-         ng-model="swapOrder.fromVal"
-         ng-click="resetErrorShownStates()"
-         ng-class="Validator.isPositiveNumber(swapOrder.fromVal)  && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'" />
-
-  <span class="dropdown">
-    <a class="btn btn-default dropdown-toggle" ng-click="dropdownFrom = !dropdownFrom">{{swapOrder.fromCoin}}<i class="caret"></i></a>
-    <ul class="dropdown-menu dropdown-menu-right" ng-show="dropdownFrom">
-      <li ng-repeat="coin in availableFromOptions track by $index" ng-show="showInFromList(coin)">
-        <a ng-class="{true:'active'}[coin == swapOrder.fromCoin]" ng-click="setOrderCoin(true, coin)"> {{coin}} </a>
-      </li>
-    </ul>
-  </span>
-
-  <h1 translate="SWAP_init_2"> for </h1>
-
-  <input class="form-control"
-         type="text"
-         placeholder="{{ 'SEND_amount_short' | translate }}"
-         ng-change ="updateEstimate(false)"
-         ng-model="swapOrder.toVal"
-         ng-click="resetErrorShownStates()"
-         ng-class="Validator.isPositiveNumber(swapOrder.toVal) && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'" />
-
-  <div class="dropdown">
-    <a class="btn btn-default dropdown-toggle" class="dropdown-toggle" ng-click="dropdownTo = !dropdownTo">{{swapOrder.toCoin}}<i class="caret"></i></a>
-    <ul class="dropdown-menu dropdown-menu-right" ng-show="dropdownTo">
-      <li ng-repeat="coin in availableToOptions track by $index" ng-show="showInToList(coin)">
-        <a ng-class="{true:'active'}[coin == swapOrder.toCoin]" ng-click="setOrderCoin(false, coin)"> {{coin}} </a>
-      </li>
-    </ul>
+    <div class="swap-pane-step">1</div> 
+    <span>Swap Detail</span> 
+    <i class="fas fa-check-circle success"   ng-show="!showStage1"></i>
   </div>
-    <div class="col-xs-12 clearfix text-center" ng-if="isKyberRateSwap">
-        <span> 1 {{swapOrder.fromCoin}} = {{kyber.kyberRates[swapOrder.fromCoin + "/" + swapOrder.toCoin] | number: 6}} {{swapOrder.toCoin}}</span><!-- todo: restrict the rate shown to token decimal is less than 6 -->
-    </div>
-  <div class="col-xs-12 clearfix text-center">
-    <a ng-click="setFinalPrices()" class="btn btn-info btn-primary">
-      <span translate="SWAP_init_CTA"> Let's do this! </span>
-    </a>
-    <section class="row">
-      <div class="col-xs-6 col-xs-offset-3" >
-        <h4 style="margin-top: 40px; border: 5px #0b1929">
-          <a href="https://ccswap.myetherwallet.com" > Buy ETH with <img src="images/visa-master.png" width="60" height="30"></a>
-        </h4>
+
+  <div class="swap-panel-warp" ng-show="showStage1">
+
+    <div class="clearfix swap-panel-step1">
+
+      <div style="float: left;width: 43%">
+        <label for="original">
+          Original  
+          <br>
+          <input id="original" class="form-control swap-panel-input" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(true)"
+            ng-model="swapOrder.fromVal" ng-click="resetErrorShownStates()" ng-class="Validator.isPositiveNumber(swapOrder.fromVal)  && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'"
+          />
+          <div class="dropdown dropdown-from">
+              <a class="dropdown-toggle" ng-click="dropdownFrom = !dropdownFrom">{{swapOrder.fromCoin}}<i class="caret"></i></a>
+              <ul class="dropdown-menu dropdown-menu-right" ng-show="dropdownFrom">
+                <li ng-repeat="coin in availableFromOptions track by $index" ng-show="showInFromList(coin)">
+                  <a ng-class="{true:'active'}[coin == swapOrder.fromCoin]" ng-click="setOrderCoin(true, coin)"> {{coin}} </a>
+                </li>
+              </ul>
+            </div>
+        </label>
+      
+
       </div>
-    </section>
+
+
+
+
+      <div  class="original-to-target"> 
+          <i class="fa fa-arrow-right hidden-xs" aria-hidden="true"></i>
+          <i class="fa fa-arrow-down visible-xs" aria-hidden="true"></i>
+      </div>
+
+      <div style="float:right;width: 42%">
+        <label for="target">
+          Target
+          <br>
+          <input id="target" class="form-control swap-panel-input" type="text" placeholder="{{ 'SEND_amount_short' | translate }}" ng-change="updateEstimate(false)"
+            ng-model="swapOrder.toVal" ng-click="resetErrorShownStates()" ng-class="Validator.isPositiveNumber(swapOrder.toVal) && verifyMinMaxValues() ? 'is-valid' : 'is-invalid'"
+          />
+
+          <div class="dropdown dropdown-to">
+              <a class="dropdown-toggle" ng-click="dropdownTo = !dropdownTo">{{swapOrder.toCoin}}<i class="caret"></i></a>
+              <ul class="dropdown-menu dropdown-menu-right" ng-show="dropdownTo">
+                <li ng-repeat="coin in availableToOptions track by $index" ng-show="showInToList(coin)">
+                  <a ng-class="{true:'active'}[coin == swapOrder.toCoin]" ng-click="setOrderCoin(false, coin)"> {{coin}} </a>
+                </li>
+              </ul>
+            </div>
+        </label>
+      
+      </div>
+        <div class="col-xs-12 clearfix text-center" ng-if="isKyberRateSwap">
+          <span ng-show="kyber.kyberRates[swapOrder.fromCoin + '/' + swapOrder.toCoin]"> 1 {{swapOrder.fromCoin}} = {{kyber.kyberRates[swapOrder.fromCoin + "/" + swapOrder.toCoin] | number: 6}} {{swapOrder.toCoin}}</span><!-- todo: restrict the rate shown to token decimal is less than 6 -->
+      </div>
+    </div>
+
+    
+    <div class="generateTransaction-button clearfix">
+        <a ng-click="setFinalPrices()" class="btn btn-info btn-default">
+          <span translate="SWAP_init_CTA"> Generate Transaction </span>
+        </a>
+        <!-- <section class="row">
+          <div class="col-xs-6 col-xs-offset-3" >
+            <h4 style="margin-top: 40px; border: 5px #0b1929">
+              <a href="https://ccswap.myetherwallet.com" > Buy ETH with <img src="images/visa-master.png" width="60" height="30"></a>
+            </h4>
+          </div>
+        </section> -->
+      </div>
   </div>
+
+
+
+  <!-- <div class="col-xs-12 clearfix text-center" ng-if="isKyberRateSwap">
+    <span> 1 {{swapOrder.fromCoin}} = {{kyber.kyberRates[swapOrder.fromCoin + "/" + swapOrder.toCoin] | number: 6}} {{swapOrder.toCoin}}</span>
+  </div> -->
+
+
+
 
 </article>
 <!-- / Swap Init Panel -->
