@@ -22,6 +22,15 @@ If you want to help contribute, here's what you need to know to get it up and ru
 
 ### Getting Started
 
+#### Branches
+
+- dev: default, for development
+- master: for release
+- test: for test
+- add-btc-wallet: for btc web wallet
+- erc20_demo: demo about erc20 tx
+
+#### Develop
 - Start by running `npm install`.
 - Run `npm run dev`. Gulp will then watch & compile everything and then watch for changes to the HTML, JS, or CSS.
 - For distribution, run `npm run dist`.
