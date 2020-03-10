@@ -12,7 +12,7 @@ from .txoutput import TxOutput
 SUBSIDY = int(100*1e18)
 
 def new_coinbase_tx(to_address):
-    txin = TxInput("", -1, None, "www.8lab.cn", "www.trias.one")
+    txin = TxInput("", -1, None, "www.trias.one", "try")
     txout = TxOutput(SUBSIDY, to_address)
     tx = Transaction(None, [txin], [txout])
     tx.hash()

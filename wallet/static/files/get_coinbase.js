@@ -58,7 +58,7 @@ function afterCreateAcc() {
 
 //生成隐私矿工交易对象
 function new_privacy_coinbase_tx(to_shield_addr, to_shield_pkey) {
-    var txin = new TxInput("", -1, "", "www.8lab.cn", "www.trias.one")
+    var txin = new TxInput("", -1, "", "www.trias.one", "try")
     var txout = new TxOutput(COIN_BASE_AMOUNT, to_shield_addr, to_shield_pkey)
     var tx = new Transaction("", [txin], [txout])
     tx.hash()
@@ -67,7 +67,7 @@ function new_privacy_coinbase_tx(to_shield_addr, to_shield_pkey) {
 
 //生成明文矿工交易对象
 function new_normal_coinbase_tx(to_address) {
-    var txin = new TxInput("", -1, "", "www.8lab.cn", "www.trias.one")
+    var txin = new TxInput("", -1, "", "www.trias.one", "try")
     var txout = new TxOutput(COIN_BASE_AMOUNT, to_address, "")
     var tx = new Transaction("", [txin], [txout])
     tx.hash()
