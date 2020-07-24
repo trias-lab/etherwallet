@@ -4,7 +4,7 @@ Trias Web Wallet is an open-source, easy-to-use and secure client-side wallet fo
 ## Features
 - Create new wallets completely client side.
 - Access your wallet via unencrypted private key, encrypted private key, keystore files, mnemonics, or Digital Bitbox, Ledger Nano S or TREZOR hardware wallet.
-- Easily send TRY and ETH. 
+- Easily send TRY and ETH.
 - Generate, sign & send transactions offline, ensuring your private keys never touch an internet-connected device.
 - Never save, store, or transmit secret info, like passwords or keys.
 - No tracking of private info like email or name.
@@ -22,6 +22,15 @@ If you want to help contribute, here's what you need to know to get it up and ru
 
 ### Getting Started
 
+#### Branches
+
+- dev: default, for development
+- master: for release
+- test: for test
+- add-btc-wallet: for btc web wallet
+- erc20_demo: demo about erc20 tx
+
+#### Develop
 - Start by running `npm install`.
 - Run `npm run dev`. Gulp will then watch & compile everything and then watch for changes to the HTML, JS, or CSS.
 - For distribution, run `npm run dist`.
@@ -96,7 +105,7 @@ Trias are now developing at a high speed and we are looking forward to working w
 - [Telegram](https://t.me/triaslab)
 - [Medium](https://medium.com/@Triaslab)
 - [BiYong](https://0.plus/#/triaslab)
-- [Twitter](https://twitter.com/triaslab)
+- [Twitter](https://twitter.com/Trias_One)
 - [Gitbub](https://github.com/trias-lab/Documentation)
 - [Reddit](https://www.reddit.com/r/Trias_Lab)
 - [More](https://www.trias.one/)
